@@ -1219,5 +1219,71 @@
     "language": "en",
     "active": true,
     "reliabilityNotes": "Primary confirmation of contracts for eight Next Generation Corvettes; five to GRSE and three to GSL. Contracted programme, not active fleet."
+  },
+  {
+    "id": "pib-p17a-commissioning-2026",
+    "name": "PIB — Project 17A frigate commissioning and class status, 2026",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2283989&lang=1&reg=1",
+    "sourceType": "official government press release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Official status summary: six Nilgiri-class Project 17A ships commissioned by July 2026; INS Vindhyagiri remains under construction. Use alongside ship-specific commissioning releases."
+  },
+  {
+    "id": "pib-ins-taragiri-commission-2026",
+    "name": "PIB — INS Taragiri commissioned, 3 April 2026",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2248799&lang=2&reg=3",
+    "sourceType": "official government press release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary confirmation of commissioning of the fourth Project 17A ship on 3 April 2026 and its MDL builder."
+  },
+  {
+    "id": "pib-ins-mahendragiri-commission-2026",
+    "name": "PIB — INS Mahendragiri commissioned, 11 July 2026",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2281806&lang=2&reg=48",
+    "sourceType": "official government press release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary confirmation of commissioning of the sixth Project 17A ship on 11 July 2026; built by MDL."
+  },
+  {
+    "id": "pib-t72-t90-apu-contract-2026",
+    "name": "PIB — Auxiliary Power Units for T-72 and T-90 tanks, 21 September 2026",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2313016&lang=1&reg=3",
+    "sourceType": "official government press release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary source for Rs 586 crore contract with Accurate Industrial Controls Pvt Ltd for APUs for T-72 and T-90 tanks; no unit quantity disclosed in the release."
+  },
+  {
+    "id": "pib-k9-vajra-contract-2024",
+    "name": "PIB — K9 Vajra-T contract, 20 December 2024",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2086514&lang=2&reg=3",
+    "sourceType": "official government press release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary confirmation of Rs 7,628.70 crore contract with L&T for 155mm/52 calibre K9 Vajra-T self-propelled tracked artillery guns; release does not state the unit count."
+  },
+  {
+    "id": "pib-t72-bridge-layer-contract-2025",
+    "name": "PIB — 47 T-72 Bridge Laying Tanks contract, 21 January 2025",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2094857&lang=2&reg=3",
+    "sourceType": "official government press release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary source for 47 T-72 Bridge Laying Tanks ordered from Heavy Vehicles Factory, AVNL, for Rs 1,560.52 crore."
   }
 ]
