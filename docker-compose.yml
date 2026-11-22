@@ -1,0 +1,65 @@
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: raksha_atlas
+      POSTGRES_USER: raksha
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
+    volumes:
+      - raksha-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U raksha -d raksha_atlas"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+    networks: [private]
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: api
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 8787
+      DATABASE_URL: postgresql://raksha:${DB_PASSWORD:?Set DB_PASSWORD in .env}@db:5432/raksha_atlas
+      DATABASE_SSL: "false"
+      TRUST_PROXY: "true"
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:8080}
+      PUBLIC_SITE_URL: ${PUBLIC_SITE_URL:-http://localhost:8080}
+      RAKSHA_ADMIN_TOKEN: ${RAKSHA_ADMIN_TOKEN:?Set RAKSHA_ADMIN_TOKEN in .env}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-6-astra}
+      OPENAI_SUMMARY_MODEL: ${OPENAI_SUMMARY_MODEL:-gpt-6-luna}
+      RAG_WEB_SEARCH: ${RAG_WEB_SEARCH:-true}
+      AI_ENRICH_LIMIT: ${AI_ENRICH_LIMIT:-10}
+      METADATA_EXTRACT_LIMIT: ${METADATA_EXTRACT_LIMIT:-12}
+      YOUTUBE_SEARCHES_PER_RUN: ${YOUTUBE_SEARCHES_PER_RUN:-1}
+      YOUTUBE_API_KEY: ${YOUTUBE_API_KEY:-}
+      X_BEARER_TOKEN: ${X_BEARER_TOKEN:-}
+    depends_on:
+      db:
+        condition: service_healthy
+    expose: ["8787"]
+    networks: [private]
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: web
+    restart: unless-stopped
+    depends_on: [api]
+    ports:
+      - "${WEB_PORT:-8080}:80"
+    networks: [private]
+
+volumes:
+  raksha-postgres:
+
+networks:
+  private:
+    driver: bridge

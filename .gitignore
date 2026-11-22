@@ -1,0 +1,33 @@
+
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+.next/
+coverage/
+target/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# IDE and OS
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local tools and generated caches
+.tools/
+*.tsbuildinfo

@@ -1,0 +1,402 @@
+[
+  {
+    "id": "tejas-mk1a",
+    "programme": "Tejas Mk1A",
+    "service": "Air Force",
+    "confidence": "mixed",
+    "verificationStatus": "reported",
+    "sourceId": "pib-tejas-contract-97",
+    "milestones": [
+      {
+        "stage": "DAC approval",
+        "date": "2020-03-18",
+        "label": "DAC cleared the route for 83 Mk1A aircraft; the proposal was to proceed to CCS.",
+        "verificationStatus": "official",
+        "sourceId": "pib-tejas-dac-2020",
+        "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1606941&lang=2&reg=48"
+      },
+      {
+        "stage": "CCS approval",
+        "date": "2021-01-13",
+        "label": "CCS approved 73 fighters and 10 trainers.",
+        "verificationStatus": "official",
+        "sourceId": "pib-tejas-contract-83",
+        "sourceUrl": "https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=1694844&lang=2&reg=48"
+      },
+      {
+        "stage": "Contract",
+        "date": "2021-02-03",
+        "label": "First 83-aircraft contract signed: 73 fighters and 10 trainers. Original schedule called for the first three in the third contract year, then 16 per year for five years.",
+        "verificationStatus": "official",
+        "sourceId": "pib-tejas-contract-83",
+        "sourceUrl": "https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=1694844&lang=2&reg=48"
+      },
+      {
+        "stage": "Follow-on contract",
+        "date": "2025-09-25",
+        "label": "Second contract signed for 97 aircraft: 68 fighters and 29 twin-seat trainers; PIB says deliveries are to begin in 2027-28 over six years.",
+        "verificationStatus": "official",
+        "sourceId": "pib-tejas-contract-97",
+        "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2171108&lang=2&reg=3"
+      },
+      {
+        "stage": "Reported delivery delay",
+        "date": "2026-09-18",
+        "label": "HAL's chairman said 27 airframes were prepared but integration/testing issues remained; no firm handover date was stated in that report.",
+        "verificationStatus": "reported",
+        "sourceId": "times-of-india",
+        "sourceUrl": "https://timesofindia.indiatimes.com/defence/news/27-airframes-of-tejas-mk1a-jets-ready-but-1-2-issues-yet-to-be-fixed-delivery-of-htt-40-aircraft-dhruv-ng-helicopter-a-milestone-for-all-of-us-hal-cmd-ravi-k/amp_articleshow/134323688.cms"
+      },
+      {
+        "stage": "October 2026 status check",
+        "date": "2026-11-04",
+        "label": "No official public handover confirmation was identified in the sources reviewed by this cutoff. Treat the October handover expectation as unconfirmed; absence of a public release is not proof that no handover occurred.",
+        "verificationStatus": "unverified",
+        "sourceId": "financial-express",
+        "sourceUrl": "https://www.financialexpress.com/business/defence/tejas-mk1a-delays-will-hurt-us-iaf-chief-ap-singh-flags-impact-as-fighter-squadrons-fall-to-29-rs-1-1-lakh-crore-locked/4353218/"
+      }
+    ]
+  },
+  {
+    "id": "project-75",
+    "programme": "Project 75",
+    "service": "Navy",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "indian-navy",
+    "milestones": [
+      {
+        "stage": "Contract",
+        "date": "2005-10-06",
+        "label": "Project 75 contract signed"
+      },
+      {
+        "stage": "Delivery",
+        "date": "2021-04-23",
+        "label": "INS Kalvari class delivery sequence"
+      },
+      {
+        "stage": "Induction",
+        "date": "2025-01-15",
+        "label": "INS Vagsheer commissioned",
+        "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2093018&lang=1&reg=20",
+        "sourceId": "pib-project-75-vagsheer",
+        "verificationStatus": "official"
+      }
+    ]
+  },
+  {
+    "id": "rafale-mrfa",
+    "programme": "Rafale / MRFA proposal",
+    "service": "Air Force",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-2026-02",
+    "milestones": [
+      {
+        "stage": "AoN",
+        "date": "2026-02-12",
+        "label": "DAC accorded Acceptance of Necessity for MRFA (Rafale). PIB did not state a final quantity in this release; AoN is not a signed contract.",
+        "verificationStatus": "official",
+        "sourceId": "pib-dac-2026-02",
+        "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2227018&lang=2&reg=3"
+      },
+      {
+        "stage": "Earlier public proposal",
+        "date": null,
+        "label": "114-aircraft figure appears in earlier public reporting/proposal discussion; do not treat as the quantity approved in the 2026 AoN without an official quantity source.",
+        "verificationStatus": "reported",
+        "sourceId": "idrw",
+        "sourceUrl": "https://idrw.org/"
+      }
+    ]
+  },
+  {
+    "id": "k9-vajra-expansion",
+    "programme": "K9 Vajra-T expansion",
+    "service": "Army",
+    "confidence": "low",
+    "verificationStatus": "reported",
+    "sourceId": "idrw",
+    "milestones": [
+      {
+        "stage": "Reported",
+        "date": null,
+        "label": "Additional guns discussed in secondary reporting"
+      },
+      {
+        "stage": "Contract",
+        "date": null,
+        "label": "No signed contract recorded in this timeline"
+      }
+    ]
+  },
+  {
+    "id": "next-generation-corvettes",
+    "programme": "Next-generation corvettes",
+    "service": "Navy",
+    "confidence": "low",
+    "verificationStatus": "reported",
+    "sourceId": "idrw",
+    "milestones": [
+      {
+        "stage": "Reported",
+        "date": null,
+        "label": "Public reporting describes a future corvette requirement"
+      },
+      {
+        "stage": "CCS",
+        "date": null,
+        "label": "Approval detail requires primary-source confirmation"
+      }
+    ]
+  },
+  {
+    "id": "rafale-36-iaf",
+    "programme": "Rafale IAF — 36 aircraft",
+    "service": "Air Force",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-rafale-2016",
+    "milestones": [
+      {
+        "stage": "Government intent",
+        "date": "2016-07-19",
+        "label": "PIB stated that India sought 36 Rafale aircraft in fly-away condition; negotiations were underway.",
+        "verificationStatus": "official",
+        "sourceId": "pib-rafale-2016",
+        "sourceUrl": "https://www.pib.gov.in/newsite/PrintRelease.aspx?lang=2&reg=48&relid=147277"
+      },
+      {
+        "stage": "IGA signed",
+        "date": "2016-09-23",
+        "label": "India and France signed the inter-governmental agreement for 36 aircraft.",
+        "verificationStatus": "official",
+        "sourceId": "pib-rafale-iga-2016",
+        "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1513011&lang=2&reg=48"
+      },
+      {
+        "stage": "Delivery / induction",
+        "date": "2020-07-29",
+        "label": "First five aircraft arrived in India; PIB later summarized their arrival and induction sequence.",
+        "verificationStatus": "official",
+        "sourceId": "pib-rafale-delivery",
+        "sourceUrl": "https://www.pib.gov.in/PressNoteDetails.aspx?ModuleId=3&NoteId=154353&lang=1&reg=3"
+      }
+    ]
+  },
+  {
+    "id": "rafale-m-navy",
+    "programme": "Rafale Marine — 26 aircraft",
+    "service": "Navy",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-rafale-m-2025",
+    "milestones": [
+      {
+        "stage": "Inter-governmental agreement",
+        "date": "2025-04-28",
+        "label": "Agreement signed for 22 single-seat and four twin-seat aircraft; PIB says delivery completion by 2030.",
+        "verificationStatus": "official",
+        "sourceId": "pib-rafale-m-2025",
+        "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2124851&lang=1&reg=3"
+      }
+    ]
+  },
+  {
+    "id": "project-75-kalvari",
+    "programme": "Project 75 / Kalvari-class submarines",
+    "service": "Navy",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-project-75-2005",
+    "milestones": [
+      {
+        "stage": "Contract",
+        "date": "2005-10-06",
+        "label": "Contracts signed for six Scorpene-class submarines to be built at MDL with transfer of technology.",
+        "verificationStatus": "official",
+        "sourceId": "pib-project-75-2005",
+        "sourceUrl": "https://www.pib.gov.in/newsite/erelcontent.aspx?lang=2&reg=48&relid=12592"
+      },
+      {
+        "stage": "Final boat commissioned",
+        "date": "2025-01-15",
+        "label": "INS Vagsheer commissioned, completing the six-boat original Project 75 series.",
+        "verificationStatus": "official",
+        "sourceId": "pib-project-75-vagsheer",
+        "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2093018&lang=1&reg=20"
+      }
+    ]
+  },
+  {
+    "id": "project-15b",
+    "programme": "Project 15B / Visakhapatnam-class destroyers",
+    "service": "Navy",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-project-15b",
+    "milestones": [
+      {
+        "stage": "First ship commissioned",
+        "date": "2021-11-21",
+        "label": "INS Visakhapatnam commissioned; later ships entered service in sequence through 2025.",
+        "verificationStatus": "official",
+        "sourceId": "pib-project-15b",
+        "sourceUrl": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/dec/doc2025123716101.pdf"
+      }
+    ]
+  },
+  {
+    "id": "project-17a",
+    "programme": "Project 17A / Nilgiri-class frigates",
+    "service": "Navy",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-project-17a-2025",
+    "milestones": [
+      {
+        "stage": "Two ships commissioned",
+        "date": "2025-08-26",
+        "label": "INS Udaygiri and INS Himgiri commissioned together; six-ship programme status and remaining ship milestones should be tracked individually.",
+        "verificationStatus": "official",
+        "sourceId": "pib-project-17a-2025",
+        "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2160573&lang=2&reg=3"
+      }
+    ]
+  },
+  {
+    "id": "project-75i",
+    "programme": "Project 75(I) / next-generation submarines",
+    "service": "Navy",
+    "confidence": "medium",
+    "verificationStatus": "reported",
+    "sourceId": "mod-annual-report-2024-25",
+    "milestones": [
+      {
+        "stage": "Procurement planning",
+        "date": "2024-04-01",
+        "label": "Long-running submarine acquisition programme. This record is deliberately not labelled as a signed contract; refresh with current official tender/AoN status.",
+        "verificationStatus": "reported",
+        "sourceId": "mod-annual-report-2024-25",
+        "sourceUrl": "https://www.ddpmod.gov.in/sites/default/files/f8e94bda5b77b0d965c38149f88e92d60cd38ff431611165edca1c59b99653ff/4fd1090a4871149c4845f914894dca251728a192696dcf1d284a02fb51618c3d.pdf"
+      }
+    ]
+  },
+  {
+    "id": "project-17b",
+    "programme": "Next-generation frigate programme / Project 17B",
+    "service": "Navy",
+    "confidence": "low",
+    "verificationStatus": "reported",
+    "sourceId": "idrw",
+    "milestones": [
+      {
+        "stage": "Requirement reporting",
+        "date": null,
+        "label": "Future frigate requirement appears in public secondary reporting; no approval, contract quantity, or delivery date is asserted in this record.",
+        "verificationStatus": "reported",
+        "sourceId": "idrw",
+        "sourceUrl": "https://idrw.org/"
+      }
+    ]
+  },
+  {
+    "id": "p8i-follow-on",
+    "programme": "P-8I long-range maritime reconnaissance aircraft",
+    "service": "Navy",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-2026-02",
+    "milestones": [
+      {
+        "stage": "AoN",
+        "date": "2026-02-12",
+        "label": "DAC approved AoN for P-8I aircraft. The PIB release does not disclose quantity; a contract has not been inferred.",
+        "verificationStatus": "official",
+        "sourceId": "pib-dac-2026-02",
+        "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2227018&lang=2&reg=3"
+      }
+    ]
+  },
+  {
+    "id": "as-haps",
+    "programme": "Air-ship based High Altitude Pseudo-Satellite (AS-HAPS)",
+    "service": "Air Force",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-2026-02",
+    "milestones": [
+      {
+        "stage": "AoN",
+        "date": "2026-02-12",
+        "label": "DAC accorded AoN for AS-HAPS for persistent ISR, electronic intelligence, telecommunications and remote sensing; quantity and contract stage not stated.",
+        "verificationStatus": "official",
+        "sourceId": "pib-dac-2026-02",
+        "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2227018&lang=2&reg=3"
+      }
+    ]
+  },
+  {
+    "id": "vibhav-antitank-mine",
+    "programme": "Vibhav anti-tank mine",
+    "service": "Army",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-2026-02",
+    "milestones": [
+      {
+        "stage": "AoN",
+        "date": "2026-02-12",
+        "label": "DAC accorded AoN for procurement of Vibhav anti-tank mines. AoN does not mean contract signed or delivered.",
+        "verificationStatus": "official",
+        "sourceId": "pib-dac-2026-02",
+        "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2227018&lang=2&reg=3"
+      }
+    ]
+  },
+  {
+    "id": "p8i-depot-inspection",
+    "programme": "P-8I depot-level inspection contract",
+    "service": "Navy",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-p8i-depot-contract",
+    "milestones": [
+      {
+        "stage": "Contract",
+        "date": "2026-03-27",
+        "label": "PIB reported a depot-level inspection contract for P-8I aircraft under Buy Indian category, valued at ₹413 crore. This is sustainment, not procurement of additional aircraft.",
+        "verificationStatus": "official",
+        "sourceId": "pib-p8i-depot-contract",
+        "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2246008&lang=1&reg=3"
+      }
+    ]
+  },
+  {
+    "id": "project-77-ssn",
+    "programme": "Project 77 / indigenous SSN programme",
+    "service": "Navy",
+    "confidence": "medium",
+    "verificationStatus": "reported",
+    "sourceId": "drdo-press-clippings-2024-10",
+    "milestones": [
+      {
+        "stage": "Long-range programme concept",
+        "date": "2015-02",
+        "label": "The future-force reference traces the SSN design/construction programme to a 2015 approval; public documentation is limited.",
+        "verificationStatus": "reported",
+        "sourceId": "wiki-future-navy",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Future_of_the_Indian_Navy"
+      },
+      {
+        "stage": "Two boats reportedly cleared",
+        "date": "2024-10-09",
+        "label": "A DRDO-hosted press-clipping digest reports CCS clearance for two indigenous SSNs. This is a secondary clipping record; do not treat as an official public contract notice or in-service inventory.",
+        "verificationStatus": "reported",
+        "sourceId": "drdo-press-clippings-2024-10",
+        "sourceUrl": "https://www.drdo.gov.in/drdo/sites/default/files/drdo-news-documents/NPC10Oct2024.pdf"
+      }
+    ]
+  }
+]
