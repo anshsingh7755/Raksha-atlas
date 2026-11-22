@@ -1981,6 +1981,11 @@ function App() {
         procurementYear: number | null;
         inductedYear: number | null;
         role: string;
+        variant?: string;
+        manufacturer?: string;
+        capabilitySummary?: string;
+        dataLimitations?: string;
+        technicalProfile?: Record<string, string>;
       }>
     >([]);
     const [serviceFilter, setServiceFilter] = useState(
@@ -2079,6 +2084,9 @@ function App() {
                 <small>{item.quantityStatus.replace("_", " ")}</small>
               </div>
               <p>{item.definition}</p>
+              {item.capabilitySummary && (
+                <p className="inventory-capability">{item.capabilitySummary}</p>
+              )}
               <div className="inventory-meta">
                 <span>{item.category}</span>
                 <span>Origin: {item.originCountry}</span>
@@ -2106,6 +2114,19 @@ function App() {
                   ),
                 )}
               </small>
+              {(item.variant || item.manufacturer || item.technicalProfile || item.dataLimitations) && (
+                <details className="inventory-detail">
+                  <summary>Technical profile &amp; data notes</summary>
+                  <div className="inventory-detail-grid">
+                    {item.variant && <span><b>Variant</b>{item.variant}</span>}
+                    {item.manufacturer && <span><b>Manufacturer</b>{item.manufacturer}</span>}
+                    {Object.entries(item.technicalProfile ?? {}).map(([label, value]) => (
+                      <span key={label}><b>{label.replace(/([A-Z])/g, " $1")}</b>{value}</span>
+                    ))}
+                  </div>
+                  {item.dataLimitations && <p className="inventory-data-note">{item.dataLimitations}</p>}
+                </details>
+              )}
             </article>
           ))}
         </div>
