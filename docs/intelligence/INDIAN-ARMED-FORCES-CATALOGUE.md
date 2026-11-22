@@ -30,9 +30,9 @@ Counts below are **record counts**, not equipment quantities. One programme can 
 | Pipeline / future programme (`pipeline`) | 76 | Future requirement/programme; approval and funding must be checked separately. |
 | Ordered / contractually committed (`ordered`) | 57 | Procured/contracted but not necessarily delivered in full. |
 | Planned requirement (`planned`) | 20 | Future requirement/programme; approval and funding must be checked separately. |
+| AoN granted (`AoN`) | 6 | Acceptance of Necessity; not a contract or induction. |
 | Contract signed (`contract_signed`) | 5 | Procured/contracted but not necessarily delivered in full. |
 | Programme aggregate (`programme_total`) | 2 | Stage-specific; read the individual source and definition. |
-| AoN granted (`AoN`) | 2 | Acceptance of Necessity; not a contract or induction. |
 | In production (`in_production`) | 2 | Stage-specific; read the individual source and definition. |
 | Tender (`tender`) | 2 | Stage-specific; read the individual source and definition. |
 | Under construction (`under_construction`) | 2 | Stage-specific; read the individual source and definition. |
