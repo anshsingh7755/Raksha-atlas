@@ -856,5 +856,49 @@
     "reliabilityNotes": "Government reference for the Indian Navy's two-carrier force and related public fleet context.",
     "termsReviewedAt": null,
     "lastCheckedAt": null
+  },
+  {
+    "id": "wikipedia-army-equipment-2026",
+    "name": "Wikipedia — List of equipment of the Indian Army",
+    "url": "https://en.wikipedia.org/wiki/List_of_equipment_of_the_Indian_Army",
+    "sourceType": "CC BY-SA 4.0 community-edited reference",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Community-maintained compilation. Quantities and statuses must be checked against cited primary sources; preserve attribution and licence."
+  },
+  {
+    "id": "wikipedia-active-military-aircraft-2026",
+    "name": "Wikipedia — List of active Indian military aircraft",
+    "url": "https://en.wikipedia.org/wiki/List_of_active_Indian_military_aircraft",
+    "sourceType": "CC BY-SA 4.0 community-edited reference",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Community-maintained aircraft tables. Distinguish active counts, ordered aircraft, planned aircraft and service allocation."
+  },
+  {
+    "id": "wikipedia-indian-navy-2026",
+    "name": "Wikipedia — Indian Navy",
+    "url": "https://en.wikipedia.org/wiki/Indian_Navy",
+    "sourceType": "CC BY-SA 4.0 community-edited reference",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Overview page used only for public equipment categories and cross-reference context; not used as an authoritative operational source."
+  },
+  {
+    "id": "wikipedia-active-navy-ships-2026",
+    "name": "Wikipedia — List of active Indian Navy ships",
+    "url": "https://en.wikipedia.org/wiki/List_of_active_Indian_Navy_ships",
+    "sourceType": "CC BY-SA 4.0 community-edited reference",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Community-maintained ship register. Ship commissioning years, class and publicly listed displacement are attributed to the page; verify current service status separately."
   }
 ]
