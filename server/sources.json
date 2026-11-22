@@ -1153,5 +1153,71 @@
     "language": "en",
     "active": true,
     "reliabilityNotes": "Source-derived record. Attribute Wikipedia contributors and preserve CC BY-SA 4.0 terms. Quantities/statuses are source-reported, not independently verified."
+  },
+  {
+    "id": "pib-dac-feb-2026",
+    "name": "PIB — DAC AoN proposals, 12 February 2026",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2227018&lang=2&reg=3",
+    "sourceType": "official government press release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary release for proposals accorded Acceptance of Necessity (AoN) on 12 February 2026. AoN is not a signed contract or delivered equipment."
+  },
+  {
+    "id": "pib-lca-mk1a-97-contract-2025",
+    "name": "PIB — Contract for 97 LCA Mk1A aircraft, 25 September 2025",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2171108&lang=2&reg=3",
+    "sourceType": "official government press release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary source for 97-aircraft contract (68 fighters and 29 twin-seaters), value, HAL supplier and delivery start 2027–28 over six years. Contracted quantity must not be counted as active fleet."
+  },
+  {
+    "id": "pib-navy-surface-fleet-2025",
+    "name": "PIB — Surface Fleet and Shipbuilding",
+    "url": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/dec/doc2025123716101.pdf",
+    "sourceType": "official government publication",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Official shipbuilding overview. Reports 51 large ships under construction at publication time; this is an aggregate snapshot and must not be added to individual class counts without reconciliation."
+  },
+  {
+    "id": "pib-navy-deliveries-2026",
+    "name": "PIB — Indian Navy platform deliveries and construction update",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2198298&lang=1&reg=3",
+    "sourceType": "official government press release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Official overview of naval platform inductions, deliveries and under-construction programmes. Use ship-by-ship records and dated status snapshots."
+  },
+  {
+    "id": "pib-navy-dunagiri-2026",
+    "name": "PIB — INS Dunagiri delivered, 31 March 2026",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2247142&lang=1&reg=1",
+    "sourceType": "official government press release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary confirmation of Project 17A ship delivery to the Indian Navy on 30 March 2026."
+  },
+  {
+    "id": "pib-navy-ngc-contract-2026",
+    "name": "PIB — Contracts for eight Next Generation Corvettes, 2 November 2026",
+    "url": "https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2331418&lang=1&reg=3",
+    "sourceType": "official government press release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary confirmation of contracts for eight Next Generation Corvettes; five to GRSE and three to GSL. Contracted programme, not active fleet."
   }
 ]
