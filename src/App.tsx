@@ -1899,23 +1899,21 @@ function App() {
             Procurement timeline <ArrowUpRight size={14} />
           </button>
         </div>
-        {activeForce === "navy" && (
-          <div className="force-modernization">
-            <div className="section-heading">
-              <div>
-                <span className="section-kicker">NAVY / MODERNIZATION</span>
-                <h2>Source-backed programme records</h2>
-              </div>
-              <button className="quiet-btn" onClick={() => navigate("programmes")}>
-                Open programme ledger <ChevronRight size={14} />
-              </button>
+        <div className="force-modernization">
+          <div className="section-heading">
+            <div>
+              <span className="section-kicker">SELECTED DOMAIN / MODERNIZATION</span>
+              <h2>Source-backed programme records</h2>
             </div>
-            <p className="equipment-note">
-              The programme ledger below uses source records and stated stages. It does
-              not display unsourced progress percentages.
-            </p>
+            <button className="quiet-btn" onClick={() => navigate("programmes")}>
+              Open programme ledger <ChevronRight size={14} />
+            </button>
           </div>
-        )}
+          <p className="equipment-note">
+            The programme ledger uses source records and stated stages. It does not
+            display unsourced progress percentages.
+          </p>
+        </div>
       </article>
     </section>
   );
@@ -2170,9 +2168,9 @@ function App() {
             aria-label="Filter timelines by service"
           >
             <option value="all">All services</option>
-            <option value="Navy">Navy</option>
-            <option value="Air Force">Air Force</option>
-            <option value="Army">Army</option>
+            {[...new Set(items.map((item) => item.service))].sort().map((serviceName) => (
+              <option key={serviceName} value={serviceName}>{serviceName}</option>
+            ))}
           </select>
         </div>
         <div className="timeline-list">
