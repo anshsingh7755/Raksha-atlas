@@ -900,5 +900,82 @@
     "language": "en",
     "active": true,
     "reliabilityNotes": "Community-maintained ship register. Ship commissioning years, class and publicly listed displacement are attributed to the page; verify current service status separately."
+  },
+  {
+    "id": "pib-dac-aon-jul-2026",
+    "name": "PIB — DAC AoN proposals, 3 July 2026",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2280728&lang=1&reg=1",
+    "sourceType": "Official Ministry of Defence / PIB release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary source for the stated procurement milestone. AoN is not a contract; contract is not delivery or induction."
+  },
+  {
+    "id": "pib-dac-aon-feb-2026",
+    "name": "PIB — DAC AoN proposals, 12 February 2026",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2227018&lang=1&reg=1",
+    "sourceType": "Official Ministry of Defence / PIB release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary source for the stated procurement milestone. AoN is not a contract; contract is not delivery or induction."
+  },
+  {
+    "id": "pib-dac-aon-dec-2025",
+    "name": "PIB — DAC AoN proposals, 29 December 2025",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2209422&lang=2&reg=48",
+    "sourceType": "Official Ministry of Defence / PIB release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary source for the stated procurement milestone. AoN is not a contract; contract is not delivery or induction."
+  },
+  {
+    "id": "pib-contract-cqb-hwt-2025",
+    "name": "PIB — CQB Carbine and Heavy Weight Torpedo contracts, 30 December 2025",
+    "url": "https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2209832&lang=2&reg=3",
+    "sourceType": "Official Ministry of Defence / PIB release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary source for the stated procurement milestone. AoN is not a contract; contract is not delivery or induction."
+  },
+  {
+    "id": "pib-contract-lch-156-2025",
+    "name": "PIB — 156 LCH Prachand contracts, 28 March 2025",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2116411&lang=1&reg=6",
+    "sourceType": "Official Ministry of Defence / PIB release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary source for the stated procurement milestone. AoN is not a contract; contract is not delivery or induction."
+  },
+  {
+    "id": "pib-dac-aon-mar-2025",
+    "name": "PIB — DAC AoN proposals, 20 March 2025",
+    "url": "https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=2113268&lang=2&reg=48",
+    "sourceType": "Official Ministry of Defence / PIB release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary source for the stated procurement milestone. AoN is not a contract; contract is not delivery or induction."
+  },
+  {
+    "id": "pib-dac-aon-sep-2024",
+    "name": "PIB — DAC AoN proposals, 3 September 2024",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2051323&lang=2&reg=3",
+    "sourceType": "Official Ministry of Defence / PIB release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary source for the stated procurement milestone. AoN is not a contract; contract is not delivery or induction."
   }
 ]
