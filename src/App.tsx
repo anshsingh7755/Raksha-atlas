@@ -1985,21 +1985,6 @@ function App() {
         role: string;
       }>
     >([]);
-    const [frigates, setFrigates] = useState<
-      Array<{
-        className: string;
-        classCount: number;
-        displacementT: number;
-        origin: string;
-        homeport: string;
-        role: string;
-        note: string;
-        futureOrders: string;
-        imageUrl: string;
-        sourceUrl: string;
-        ships: Array<{ name: string; pennant: string; commissioned: number }>;
-      }>
-    >([]);
     const [serviceFilter, setServiceFilter] = useState(
       () =>
         ({
@@ -2021,9 +2006,6 @@ function App() {
       fetch(`/api/inventory${params.toString() ? `?${params}` : ""}`)
         .then((r) => r.json())
         .then((data: { items: typeof items }) => setItems(data.items));
-      fetch("/api/inventory/frigates")
-        .then((r) => r.json())
-        .then((data: { items: typeof frigates }) => setFrigates(data.items));
     }, [serviceFilter, categoryFilter, statusFilter]);
     return (
       <section className="page-section">
@@ -2048,12 +2030,9 @@ function App() {
                 aria-label="Filter inventory by service"
               >
                 <option value="all">All services</option>
-                <option value="Navy">Navy</option>
-                <option value="Air Force">Air Force</option>
-                <option value="Army">Army</option>
-                <option value="Space">Space</option>
-                <option value="Cyber">Cyber</option>
-                <option value="Intelligence">Intelligence</option>
+                {[...new Set(items.map((item) => item.service))].sort().map((service) => (
+                  <option key={service} value={service}>{service}</option>
+                ))}
               </select>
             </label>
             <label>
@@ -2064,29 +2043,9 @@ function App() {
                 aria-label="Filter inventory by category"
               >
                 <option value="all">All categories</option>
-                <option value="Aircraft carrier">Aircraft carrier</option>
-                <option value="Submarine">Submarine</option>
-                <option value="Destroyer">Destroyer</option>
-                <option value="Frigate">Frigate</option>
-                <option value="Fighter aircraft">Fighter aircraft</option>
-                <option value="Trainer aircraft">Trainer aircraft</option>
-                <option value="Transport aircraft">Transport aircraft</option>
-                <option value="Tanker / refueller">Tanker / refueller</option>
-                <option value="AEW&C / AWACS">AEW&C / AWACS</option>
-                <option value="Tank">Tank</option>
-                <option value="Self-propelled artillery">
-                  Self-propelled artillery
-                </option>
-                <option value="Towed artillery">Towed artillery</option>
-                <option value="Corvette">Corvette</option>
-                <option value="Naval helicopter">Naval helicopter</option>
-                <option value="Anti-ship missile">Anti-ship missile</option>
-                <option value="Air defence system">Air defence system</option>
-                <option value="Tracked IFV">Tracked IFV</option>
-                <option value="Wheeled IFV">Wheeled IFV</option>
-                <option value="Shallow water vessel">Shallow water vessel</option>
-                <option value="Satellite">Satellite</option>
-                <option value="Command / capability">Command / capability</option>
+                {[...new Set(items.map((item) => item.category))].sort().map((category) => (
+                  <option key={category} value={category}>{category}</option>
+                ))}
               </select>
             </label>
             <label>
@@ -2106,28 +2065,7 @@ function App() {
           </div>
           <strong className="inventory-count">{items.length} records</strong>
         </div>
-        {(serviceFilter === "all" || serviceFilter === "Navy") &&
-          (categoryFilter === "all" || categoryFilter === "Aircraft carrier") && (
-            <div className="inventory-highlight">
-              <div>
-                <span>INDIAN NAVY / ACTIVE AIRCRAFT CARRIERS</span>
-                <strong>
-                  {items
-                    .filter(
-                      (item) =>
-                        item.service === "Navy" &&
-                        item.category === "Aircraft carrier" &&
-                        item.quantityStatus === "in_service",
-                    )
-                    .reduce((sum, item) => sum + (item.quantity ?? 0), 0)}
-                </strong>
-              </div>
-              <p>
-                INS Vikramaditya · INS Vikrant. Count reflects curated public records,
-                not current readiness or availability.
-              </p>
-            </div>
-          )}
+
         <div className="inventory-grid">
           {items.map((item) => (
             <article className="inventory-card" key={item.id}>
