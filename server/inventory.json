@@ -4820,5 +4820,1407 @@
     "verificationStatus": "reported",
     "sourceId": "wikipedia-active-navy-ships-2026",
     "sourceUrl": "https://en.wikipedia.org/wiki/List_of_active_Indian_Navy_ships"
+  },
+  {
+    "id": "akash-tarang-aon",
+    "service": "Army",
+    "category": "Counter-UAS / electronic warfare",
+    "platform": "AKASH TARANG anti-UAV electronic warfare system",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Counter-UAS protection",
+    "asOfDate": "2026-11-23",
+    "definition": "AKASH TARANG anti-UAV electronic warfare system received Acceptance of Necessity (AoN) on 2026-07-03 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-jul-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2280728&lang=1&reg=1",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-07-03",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2026-07-03",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "mpatgm-aon",
+    "service": "Army",
+    "category": "Anti-tank guided missile",
+    "platform": "Man Portable Anti-Tank Guided Missile (MPATGM)",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Infantry anti-armour system",
+    "asOfDate": "2026-11-23",
+    "definition": "Man Portable Anti-Tank Guided Missile (MPATGM) received Acceptance of Necessity (AoN) on 2026-07-03 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-jul-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2280728&lang=1&reg=1",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-07-03",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2026-07-03",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "mrsatm-army-aon",
+    "service": "Army",
+    "category": "Air defence missile system",
+    "platform": "Medium Range Surface-to-Air Missile (MRSAM) — Army",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Ground-based air defence",
+    "asOfDate": "2026-11-23",
+    "definition": "Medium Range Surface-to-Air Missile (MRSAM) — Army received Acceptance of Necessity (AoN) on 2026-07-03 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-jul-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2280728&lang=1&reg=1",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-07-03",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2026-07-03",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "vshorads-army-aon",
+    "service": "Army",
+    "category": "Air defence missile system",
+    "platform": "Very Short Range Air Defence System (VSHORADS) — Army",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Very-short-range air defence",
+    "asOfDate": "2026-11-23",
+    "definition": "Very Short Range Air Defence System (VSHORADS) — Army received Acceptance of Necessity (AoN) on 2026-07-03 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-jul-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2280728&lang=1&reg=1",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-07-03",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2026-07-03",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "tank-aps-aon",
+    "service": "Army",
+    "category": "Armoured vehicle protection",
+    "platform": "Active Protection System for tanks",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Tank active protection",
+    "asOfDate": "2026-11-23",
+    "definition": "Active Protection System for tanks received Acceptance of Necessity (AoN) on 2026-07-03 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-jul-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2280728&lang=1&reg=1",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-07-03",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2026-07-03",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "jet-kamikaze-aon",
+    "service": "Army",
+    "category": "Uncrewed aerial system",
+    "platform": "Jet-based kamikaze drone system",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "One-way uncrewed system",
+    "asOfDate": "2026-11-23",
+    "definition": "Jet-based kamikaze drone system received Acceptance of Necessity (AoN) on 2026-07-03 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-jul-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2280728&lang=1&reg=1",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-07-03",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2026-07-03",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "mig-mine-aon",
+    "service": "Navy",
+    "category": "Naval mine",
+    "platform": "Multi Influence Ground Mine (MIGM)",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Naval mine procurement",
+    "asOfDate": "2026-11-23",
+    "definition": "Multi Influence Ground Mine (MIGM) received Acceptance of Necessity (AoN) on 2026-07-03 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-jul-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2280728&lang=1&reg=1",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-07-03",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2026-07-03",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "naval-shipborne-uas-aon",
+    "service": "Navy",
+    "category": "Uncrewed aerial system",
+    "platform": "Naval Shipborne Unmanned Aerial System (NSUAS)",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Shipborne UAS",
+    "asOfDate": "2026-11-23",
+    "definition": "Naval Shipborne Unmanned Aerial System (NSUAS) received Acceptance of Necessity (AoN) on 2026-07-03 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-jul-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2280728&lang=1&reg=1",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-07-03",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2026-07-03",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "naval-electric-propulsion-test-facility-aon",
+    "service": "Navy",
+    "category": "Test infrastructure",
+    "platform": "Land Based Testing Facility for electric propulsion",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Electric propulsion test infrastructure",
+    "asOfDate": "2026-11-23",
+    "definition": "Land Based Testing Facility for electric propulsion received Acceptance of Necessity (AoN) on 2026-07-03 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-jul-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2280728&lang=1&reg=1",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-07-03",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2026-07-03",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "fw-haps-aon",
+    "service": "Air Force",
+    "category": "High-altitude pseudo-satellite",
+    "platform": "Fixed-Wing Based High Altitude Pseudo Satellite (FW-HAPS)",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Persistent ISR and communications",
+    "asOfDate": "2026-11-23",
+    "definition": "Fixed-Wing Based High Altitude Pseudo Satellite (FW-HAPS) received Acceptance of Necessity (AoN) on 2026-07-03 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-jul-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2280728&lang=1&reg=1",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-07-03",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2026-07-03",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "mrfa-rafale-aon",
+    "service": "Air Force",
+    "category": "Multirole fighter procurement",
+    "platform": "Multi Role Fighter Aircraft (MRFA) — Rafale",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Multirole fighter acquisition",
+    "asOfDate": "2026-11-23",
+    "definition": "Multi Role Fighter Aircraft (MRFA) — Rafale received Acceptance of Necessity (AoN) on 2026-02-12 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-feb-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2227018&lang=1&reg=1",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-02-12",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2026-02-12",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "iaf-combat-missiles-aon",
+    "service": "Air Force",
+    "category": "Combat missile procurement",
+    "platform": "Combat missiles for Indian Air Force",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Air-launched missile capability",
+    "asOfDate": "2026-11-23",
+    "definition": "Combat missiles for Indian Air Force received Acceptance of Necessity (AoN) on 2026-02-12 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-feb-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2227018&lang=1&reg=1",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-02-12",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2026-02-12",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "as-haps-aon",
+    "service": "Air Force",
+    "category": "High-altitude pseudo-satellite",
+    "platform": "Air-Ship Based High Altitude Pseudo Satellite (AS-HAPS)",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Persistent ISR and communications",
+    "asOfDate": "2026-11-23",
+    "definition": "Air-Ship Based High Altitude Pseudo Satellite (AS-HAPS) received Acceptance of Necessity (AoN) on 2026-02-12 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-feb-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2227018&lang=1&reg=1",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-02-12",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2026-02-12",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "vibhav-mines-aon",
+    "service": "Army",
+    "category": "Anti-tank mine",
+    "platform": "Vibhav anti-tank mines",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Anti-armour obstacle system",
+    "asOfDate": "2026-11-23",
+    "definition": "Vibhav anti-tank mines received Acceptance of Necessity (AoN) on 2026-02-12 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-feb-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2227018&lang=1&reg=1",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-02-12",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2026-02-12",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "arv-overhaul-aon",
+    "service": "Army",
+    "category": "Armoured recovery vehicle overhaul",
+    "platform": "Armoured Recovery Vehicle platform overhaul",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Life-extension overhaul",
+    "asOfDate": "2026-11-23",
+    "definition": "Armoured Recovery Vehicle platform overhaul received Acceptance of Necessity (AoN) on 2026-02-12 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-feb-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2227018&lang=1&reg=1",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-02-12",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2026-02-12",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "t72-overhaul-aon",
+    "service": "Army",
+    "category": "Tank overhaul",
+    "platform": "T-72 tank platform overhaul",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Life-extension overhaul",
+    "asOfDate": "2026-11-23",
+    "definition": "T-72 tank platform overhaul received Acceptance of Necessity (AoN) on 2026-02-12 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-feb-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2227018&lang=1&reg=1",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-02-12",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2026-02-12",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "bmp2-overhaul-aon",
+    "service": "Army",
+    "category": "Infantry fighting vehicle overhaul",
+    "platform": "BMP-II infantry combat vehicle platform overhaul",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Life-extension overhaul",
+    "asOfDate": "2026-11-23",
+    "definition": "BMP-II infantry combat vehicle platform overhaul received Acceptance of Necessity (AoN) on 2026-02-12 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-feb-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2227018&lang=1&reg=1",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-02-12",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2026-02-12",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "naval-4mw-generator-aon",
+    "service": "Navy",
+    "category": "Marine power generation",
+    "platform": "04 MW marine gas-turbine-based electric power generator",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Naval electric power generation",
+    "asOfDate": "2026-11-23",
+    "definition": "04 MW marine gas-turbine-based electric power generator received Acceptance of Necessity (AoN) on 2026-02-12 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-feb-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2227018&lang=1&reg=1",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-02-12",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2026-02-12",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "p8i-additional-aon",
+    "service": "Navy",
+    "category": "Maritime patrol aircraft",
+    "platform": "P-8I Long Range Maritime Reconnaissance Aircraft — additional procurement",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Long-range maritime reconnaissance",
+    "asOfDate": "2026-11-23",
+    "definition": "P-8I Long Range Maritime Reconnaissance Aircraft — additional procurement received Acceptance of Necessity (AoN) on 2026-02-12 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-feb-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2227018&lang=1&reg=1",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-02-12",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2026-02-12",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "loiter-munition-aon",
+    "service": "Army",
+    "category": "Loitering munition",
+    "platform": "Loiter Munition System for Artillery Regiments",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Precision strike system",
+    "asOfDate": "2026-11-23",
+    "definition": "Loiter Munition System for Artillery Regiments received Acceptance of Necessity (AoN) on 2025-12-29 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-dec-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2209422&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-12-29",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2025-12-29",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "low-level-radar-aon",
+    "service": "Army",
+    "category": "Air surveillance radar",
+    "platform": "Low Level Light Weight Radar",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Low-level air surveillance",
+    "asOfDate": "2026-11-23",
+    "definition": "Low Level Light Weight Radar received Acceptance of Necessity (AoN) on 2025-12-29 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-dec-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2209422&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-12-29",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2025-12-29",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "pinaka-guided-rocket-aon",
+    "service": "Army",
+    "category": "Guided rocket ammunition",
+    "platform": "Long Range Guided Rocket Ammunition for Pinaka MRLS",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Guided rocket artillery ammunition",
+    "asOfDate": "2026-11-23",
+    "definition": "Long Range Guided Rocket Ammunition for Pinaka MRLS received Acceptance of Necessity (AoN) on 2025-12-29 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-dec-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2209422&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-12-29",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2025-12-29",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "iddis-mk2-aon",
+    "service": "Army",
+    "category": "Counter-UAS system",
+    "platform": "Integrated Drone Detection & Interdiction System Mk-II",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Drone detection and interdiction",
+    "asOfDate": "2026-11-23",
+    "definition": "Integrated Drone Detection & Interdiction System Mk-II received Acceptance of Necessity (AoN) on 2025-12-29 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-dec-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2209422&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-12-29",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2025-12-29",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "bollard-pull-tugs-aon",
+    "service": "Navy",
+    "category": "Harbour tug",
+    "platform": "Bollard Pull Tugs",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Harbour assistance",
+    "asOfDate": "2026-11-23",
+    "definition": "Bollard Pull Tugs received Acceptance of Necessity (AoN) on 2025-12-29 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-dec-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2209422&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-12-29",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2025-12-29",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "hf-sdr-manpack-aon",
+    "service": "Navy",
+    "category": "Communications equipment",
+    "platform": "High Frequency Software Defined Radio Manpack",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Long-range secure communications",
+    "asOfDate": "2026-11-23",
+    "definition": "High Frequency Software Defined Radio Manpack received Acceptance of Necessity (AoN) on 2025-12-29 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-dec-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2209422&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-12-29",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2025-12-29",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "hale-rpas-lease-aon",
+    "service": "Navy",
+    "category": "Uncrewed aerial system",
+    "platform": "High Altitude Long Endurance RPAS — lease",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Maritime domain awareness",
+    "asOfDate": "2026-11-23",
+    "definition": "High Altitude Long Endurance RPAS — lease received Acceptance of Necessity (AoN) on 2025-12-29 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-dec-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2209422&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-12-29",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2025-12-29",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "atol-recording-aon",
+    "service": "Air Force",
+    "category": "Aviation safety system",
+    "platform": "Automatic Take-off and Landing Recording System",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Flight safety recording",
+    "asOfDate": "2026-11-23",
+    "definition": "Automatic Take-off and Landing Recording System received Acceptance of Necessity (AoN) on 2025-12-29 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-dec-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2209422&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-12-29",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2025-12-29",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "astra-mk2-aon",
+    "service": "Air Force",
+    "category": "Air-to-air missile",
+    "platform": "Astra Mk-II missile",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Beyond-visual-range air-to-air missile",
+    "asOfDate": "2026-11-23",
+    "definition": "Astra Mk-II missile received Acceptance of Necessity (AoN) on 2025-12-29 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-dec-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2209422&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-12-29",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2025-12-29",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "tejas-simulator-aon",
+    "service": "Air Force",
+    "category": "Training simulator",
+    "platform": "Full Mission Simulator for Light Combat Aircraft Tejas",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Pilot training simulator",
+    "asOfDate": "2026-11-23",
+    "definition": "Full Mission Simulator for Light Combat Aircraft Tejas received Acceptance of Necessity (AoN) on 2025-12-29 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-dec-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2209422&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-12-29",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2025-12-29",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "spice-1000-aon",
+    "service": "Air Force",
+    "category": "Precision guidance kit",
+    "platform": "SPICE-1000 Long Range Guidance Kit",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Precision guidance kit",
+    "asOfDate": "2026-11-23",
+    "definition": "SPICE-1000 Long Range Guidance Kit received Acceptance of Necessity (AoN) on 2025-12-29 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-dec-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2209422&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-12-29",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2025-12-29",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "t90-1350hp-aon",
+    "service": "Army",
+    "category": "Tank powerpack",
+    "platform": "1350 HP engine for T-90 tanks",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "T-90 tank engine upgrade",
+    "asOfDate": "2026-11-23",
+    "definition": "1350 HP engine for T-90 tanks received Acceptance of Necessity (AoN) on 2025-03-20 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-mar-2025",
+    "sourceUrl": "https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=2113268&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-03-20",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2025-03-20",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "varunastra-aon-2025",
+    "service": "Navy",
+    "category": "Heavyweight torpedo",
+    "platform": "Additional Varunastra combat torpedoes",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Ship-launched anti-submarine torpedo",
+    "asOfDate": "2026-11-23",
+    "definition": "Additional Varunastra combat torpedoes received Acceptance of Necessity (AoN) on 2025-03-20 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-mar-2025",
+    "sourceUrl": "https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=2113268&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-03-20",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2025-03-20",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "aewc-aon-2025",
+    "service": "Air Force",
+    "category": "AEW&C aircraft",
+    "platform": "Airborne Early Warning & Control aircraft systems",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Airborne early warning and control",
+    "asOfDate": "2026-11-23",
+    "definition": "Airborne Early Warning & Control aircraft systems received Acceptance of Necessity (AoN) on 2025-03-20 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-mar-2025",
+    "sourceUrl": "https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=2113268&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-03-20",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2025-03-20",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "frcv-aon",
+    "service": "Army",
+    "category": "Main battle tank programme",
+    "platform": "Future Ready Combat Vehicle (FRCV)",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2024,
+    "inductedYear": null,
+    "role": "Next-generation main battle tank",
+    "asOfDate": "2026-11-23",
+    "definition": "Future Ready Combat Vehicle (FRCV) received Acceptance of Necessity (AoN) on 2024-09-03 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-sep-2024",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2051323&lang=2&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2024-09-03",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2024-09-03",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ad-fire-control-radar-aon",
+    "service": "Army",
+    "category": "Air defence radar",
+    "platform": "Air Defence Fire Control Radar",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2024,
+    "inductedYear": null,
+    "role": "Fire-control radar",
+    "asOfDate": "2026-11-23",
+    "definition": "Air Defence Fire Control Radar received Acceptance of Necessity (AoN) on 2024-09-03 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-sep-2024",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2051323&lang=2&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2024-09-03",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2024-09-03",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "dornier-228-aon-2024",
+    "service": "Air Force",
+    "category": "Light transport aircraft",
+    "platform": "Dornier-228 aircraft procurement",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2024,
+    "inductedYear": null,
+    "role": "Light transport aircraft",
+    "asOfDate": "2026-11-23",
+    "definition": "Dornier-228 aircraft procurement received Acceptance of Necessity (AoN) on 2024-09-03 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-sep-2024",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2051323&lang=2&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2024-09-03",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2024-09-03",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ngfpv-opv-aon",
+    "service": "Navy",
+    "category": "Patrol vessel programme",
+    "platform": "Next Generation Fast Patrol / Offshore Patrol Vessel",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "procurementYear": 2024,
+    "inductedYear": null,
+    "role": "Patrol and offshore patrol vessels",
+    "asOfDate": "2026-11-23",
+    "definition": "Next Generation Fast Patrol / Offshore Patrol Vessel received Acceptance of Necessity (AoN) on 2024-09-03 according to the Ministry of Defence release. The release does not specify an item-level quantity or contract delivery schedule.",
+    "capabilitySummary": "Publicly announced acquisition programme; not an inducted asset.",
+    "dataLimitations": "AoN is in-principle administrative approval, not a signed contract. Quantity and delivery dates remain unknown unless separately announced.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aon-sep-2024",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2051323&lang=2&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2024-09-03",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval; not a signed contract.",
+      "timeline": [
+        {
+          "date": "2024-09-03",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "lch-prachand-iaf-contract-2025",
+    "service": "Air Force",
+    "category": "Light combat helicopter",
+    "platform": "HAL LCH Prachand — IAF contract",
+    "quantity": 66,
+    "quantityStatus": "ordered",
+    "originCountry": "Not stated",
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Light combat helicopter",
+    "asOfDate": "2026-11-23",
+    "definition": "66 aircraft; contract signed 28 March 2025. Supply is to commence from the third year and spread over five years.",
+    "capabilitySummary": "Contracted procurement; deliveries and induction must be tracked separately.",
+    "dataLimitations": "Contract quantity is not delivered or operational quantity.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-contract-lch-156-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2116411&lang=1&reg=6",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2025-03-28",
+      "quantity": 66,
+      "quantityUnit": "helicopters",
+      "deliveryStart": "2027-03",
+      "deliveryEnd": "2032-03",
+      "stageMeaning": "Contract signed; procurement commitment does not mean all equipment has been delivered or inducted.",
+      "timeline": [
+        {
+          "date": "2025-03-28",
+          "event": "Ministry of Defence signed procurement contract",
+          "stage": "contract_signed"
+        }
+      ]
+    }
+  },
+  {
+    "id": "lch-prachand-army-contract-2025",
+    "service": "Army",
+    "category": "Light combat helicopter",
+    "platform": "HAL LCH Prachand — Army contract",
+    "quantity": 90,
+    "quantityStatus": "ordered",
+    "originCountry": "Not stated",
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Light combat helicopter",
+    "asOfDate": "2026-11-23",
+    "definition": "90 aircraft; contract signed 28 March 2025. Supply is to commence from the third year and spread over five years.",
+    "capabilitySummary": "Contracted procurement; deliveries and induction must be tracked separately.",
+    "dataLimitations": "Contract quantity is not delivered or operational quantity.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-contract-lch-156-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2116411&lang=1&reg=6",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2025-03-28",
+      "quantity": 90,
+      "quantityUnit": "helicopters",
+      "deliveryStart": "2027-03",
+      "deliveryEnd": "2032-03",
+      "stageMeaning": "Contract signed; procurement commitment does not mean all equipment has been delivered or inducted.",
+      "timeline": [
+        {
+          "date": "2025-03-28",
+          "event": "Ministry of Defence signed procurement contract",
+          "stage": "contract_signed"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cqb-carbine-army-navy-contract-2025",
+    "service": "Joint",
+    "category": "Infantry weapon",
+    "platform": "Close Quarter Battle Carbine — Army and Navy",
+    "quantity": 425000,
+    "quantityStatus": "ordered",
+    "originCountry": "Not stated",
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Infantry weapon",
+    "asOfDate": "2026-11-23",
+    "definition": "Over 4.25 lakh carbines with accessories for Army and Navy combined; service split and delivery schedule not disclosed.",
+    "capabilitySummary": "Contracted procurement; deliveries and induction must be tracked separately.",
+    "dataLimitations": "Contract quantity is not delivered or operational quantity.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-contract-cqb-hwt-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2209832&lang=2&reg=3",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2025-12-30",
+      "quantity": 425000,
+      "quantityUnit": "carbines",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Contract signed; procurement commitment does not mean all equipment has been delivered or inducted.",
+      "timeline": [
+        {
+          "date": "2025-12-30",
+          "event": "Ministry of Defence signed procurement contract",
+          "stage": "contract_signed"
+        }
+      ]
+    }
+  },
+  {
+    "id": "kalvari-hwt-contract-2025",
+    "service": "Navy",
+    "category": "Submarine heavyweight torpedo",
+    "platform": "Heavy Weight Torpedoes for Kalvari-class submarines",
+    "quantity": 48,
+    "quantityStatus": "ordered",
+    "originCountry": "Not stated",
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Submarine heavyweight torpedo",
+    "asOfDate": "2026-11-23",
+    "definition": "48 torpedoes; delivery expected to commence April 2028 and complete by early 2030.",
+    "capabilitySummary": "Contracted procurement; deliveries and induction must be tracked separately.",
+    "dataLimitations": "Contract quantity is not delivered or operational quantity.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-contract-cqb-hwt-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2209832&lang=2&reg=3",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2025-12-30",
+      "quantity": 48,
+      "quantityUnit": "torpedoes",
+      "deliveryStart": "2028-04",
+      "deliveryEnd": "2030-03",
+      "stageMeaning": "Contract signed; procurement commitment does not mean all equipment has been delivered or inducted.",
+      "timeline": [
+        {
+          "date": "2025-12-30",
+          "event": "Ministry of Defence signed procurement contract",
+          "stage": "contract_signed"
+        }
+      ]
+    }
   }
 ]
