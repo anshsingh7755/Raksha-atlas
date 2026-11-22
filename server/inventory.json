@@ -6222,5 +6222,2077 @@
         }
       ]
     }
+  },
+  {
+    "id": "hmv-army-aon-oct26",
+    "service": "Army",
+    "category": "Logistics vehicle",
+    "platform": "High Mobility Vehicles (HMV) — additional procurement",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "High mobility logistics vehicles",
+    "asOfDate": "2026-11-23",
+    "definition": "High Mobility Vehicles (HMV) — additional procurement is identified in the official Ministry of Defence announcement dated 2026-10-26. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-oct-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2328486&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-10-26",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2026-10-26",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "spts-army-aon-oct26",
+    "service": "Army",
+    "category": "Self-propelled artillery",
+    "platform": "Self-Propelled Tracked Gun System",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Tracked artillery system",
+    "asOfDate": "2026-11-23",
+    "definition": "Self-Propelled Tracked Gun System is identified in the official Ministry of Defence announcement dated 2026-10-26. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-oct-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2328486&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-10-26",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2026-10-26",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "gsrs-army-aon-oct26",
+    "service": "Army",
+    "category": "Acoustic gunshot detection",
+    "platform": "Gun Shot Response System (GSRS)",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Gunshot detection and location",
+    "asOfDate": "2026-11-23",
+    "definition": "Gun Shot Response System (GSRS) is identified in the official Ministry of Defence announcement dated 2026-10-26. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-oct-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2328486&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-10-26",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2026-10-26",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "lmhr-army-aon-oct26",
+    "service": "Army",
+    "category": "Light utility helicopter",
+    "platform": "Light Multi Role Helicopters (LMRH)",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Light multi-role rotary-wing capability",
+    "asOfDate": "2026-11-23",
+    "definition": "Light Multi Role Helicopters (LMRH) is identified in the official Ministry of Defence announcement dated 2026-10-26. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-oct-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2328486&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-10-26",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2026-10-26",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "vshorads-army-aon-oct26",
+    "service": "Army",
+    "category": "Air defence missile",
+    "platform": "VSHORADS — additional procurement",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Very-short-range air defence",
+    "asOfDate": "2026-11-23",
+    "definition": "VSHORADS — additional procurement is identified in the official Ministry of Defence announcement dated 2026-10-26. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-oct-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2328486&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-10-26",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2026-10-26",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "pb-cuas-army-aon-oct26",
+    "service": "Army",
+    "category": "Counter-UAS",
+    "platform": "Platform Based Counter-UAS System",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Platform-mounted counter-drone system",
+    "asOfDate": "2026-11-23",
+    "definition": "Platform Based Counter-UAS System is identified in the official Ministry of Defence announcement dated 2026-10-26. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-oct-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2328486&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-10-26",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2026-10-26",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "uas-brick-lr-army-aon-oct26",
+    "service": "Army",
+    "category": "Uncrewed aerial system",
+    "platform": "Unmanned Aerial System Brick — Long Range",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Long-range uncrewed system",
+    "asOfDate": "2026-11-23",
+    "definition": "Unmanned Aerial System Brick — Long Range is identified in the official Ministry of Defence announcement dated 2026-10-26. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-oct-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2328486&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-10-26",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2026-10-26",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "surveillance-uav-army-aon-oct26",
+    "service": "Army",
+    "category": "Uncrewed aerial system",
+    "platform": "Surveillance UAV",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Surveillance and reconnaissance",
+    "asOfDate": "2026-11-23",
+    "definition": "Surveillance UAV is identified in the official Ministry of Defence announcement dated 2026-10-26. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-oct-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2328486&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-10-26",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2026-10-26",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "isss-army-aon-oct26",
+    "service": "Army",
+    "category": "Integrated surveillance and strike",
+    "platform": "Integrated Surveillance and Strike System",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Integrated sensor-to-effect system",
+    "asOfDate": "2026-11-23",
+    "definition": "Integrated Surveillance and Strike System is identified in the official Ministry of Defence announcement dated 2026-10-26. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-oct-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2328486&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-10-26",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2026-10-26",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "long-range-kamikaze-army-aon-oct26",
+    "service": "Army",
+    "category": "Loitering munition",
+    "platform": "Long Range Kamikaze Drone System",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Long-range one-way uncrewed system",
+    "asOfDate": "2026-11-23",
+    "definition": "Long Range Kamikaze Drone System is identified in the official Ministry of Defence announcement dated 2026-10-26. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-oct-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2328486&lang=2&reg=48",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-10-26",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2026-10-26",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cbrn-recce-vehicle-aon-sep26",
+    "service": "Army",
+    "category": "CBRN reconnaissance vehicle",
+    "platform": "CBRN Reconnaissance Vehicles",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Detect, identify and mark CBRN-contaminated areas",
+    "asOfDate": "2026-11-23",
+    "definition": "CBRN Reconnaissance Vehicles is identified in the official Ministry of Defence announcement dated 2026-09-07. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-sep-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2307452&lang=1&reg=2&v=sd",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-09-07",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2026-09-07",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "hmv-army-aon-sep26",
+    "service": "Army",
+    "category": "Logistics vehicle",
+    "platform": "High Mobility Vehicles — Army",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Mobility and logistics in difficult terrain",
+    "asOfDate": "2026-11-23",
+    "definition": "High Mobility Vehicles — Army is identified in the official Ministry of Defence announcement dated 2026-09-07. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-sep-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2307452&lang=1&reg=2&v=sd",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-09-07",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2026-09-07",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "mml-army-aon-sep26",
+    "service": "Army",
+    "category": "Mine-laying vehicle",
+    "platform": "Self-Propelled Mechanical Mine Layers",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Mechanised mine laying",
+    "asOfDate": "2026-11-23",
+    "definition": "Self-Propelled Mechanical Mine Layers is identified in the official Ministry of Defence announcement dated 2026-09-07. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-sep-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2307452&lang=1&reg=2&v=sd",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-09-07",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2026-09-07",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "alh-army-aon-sep26",
+    "service": "Army",
+    "category": "Utility helicopter",
+    "platform": "Advanced Light Helicopters — Army",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Light multi-role helicopter",
+    "asOfDate": "2026-11-23",
+    "definition": "Advanced Light Helicopters — Army is identified in the official Ministry of Defence announcement dated 2026-09-07. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-sep-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2307452&lang=1&reg=2&v=sd",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-09-07",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2026-09-07",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "trawl-tank-aon-sep26",
+    "service": "Army",
+    "category": "Mine-clearing vehicle",
+    "platform": "Trawl Tanks",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Route and minefield breaching",
+    "asOfDate": "2026-11-23",
+    "definition": "Trawl Tanks is identified in the official Ministry of Defence announcement dated 2026-09-07. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-sep-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2307452&lang=1&reg=2&v=sd",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-09-07",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2026-09-07",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "sarvatra-bridge-aon-sep26",
+    "service": "Army",
+    "category": "Bridging equipment",
+    "platform": "Sarvatra Bridge System",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Mobile bridging capability",
+    "asOfDate": "2026-11-23",
+    "definition": "Sarvatra Bridge System is identified in the official Ministry of Defence announcement dated 2026-09-07. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-sep-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2307452&lang=1&reg=2&v=sd",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-09-07",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2026-09-07",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "gsat7c-iaf-contract-oct26",
+    "service": "Air Force",
+    "category": "Military communications satellite",
+    "platform": "GSAT-7C dedicated communication satellite",
+    "quantity": 1,
+    "quantityStatus": "ordered",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Secure resilient communications for IAF assets",
+    "asOfDate": "2026-11-23",
+    "definition": "Contract signed with NewSpace India Limited for ₹2,563 crore. The PIB release confirms contract, not launch or operational service date.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-contract-oct-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2323814&lang=2&reg=48",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2026-10-15",
+      "quantity": 1,
+      "quantityUnit": "satellite",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Contract signed; delivery and induction remain separate milestones.",
+      "timeline": [
+        {
+          "date": "2026-10-15",
+          "event": "Ministry of Defence signed contract",
+          "stage": "contract_signed"
+        }
+      ]
+    }
+  },
+  {
+    "id": "varunastra-hwt-contract-oct26",
+    "service": "Navy",
+    "category": "Heavyweight torpedo",
+    "platform": "Varunastra Heavy Weight Torpedoes — 2026 contract",
+    "quantity": null,
+    "quantityStatus": "ordered",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Ship-launched anti-submarine torpedo",
+    "asOfDate": "2026-11-23",
+    "definition": "Contract signed with Bharat Dynamics Limited for ₹1,543 crore. The release does not disclose quantity or delivery schedule.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-contract-oct-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2323814&lang=2&reg=48",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2026-10-15",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Contract signed; delivery and induction remain separate milestones.",
+      "timeline": [
+        {
+          "date": "2026-10-15",
+          "event": "Ministry of Defence signed contract",
+          "stage": "contract_signed"
+        }
+      ]
+    }
+  },
+  {
+    "id": "air-defence-tracked-system-aon-mar26",
+    "service": "Army",
+    "category": "Tracked air defence system",
+    "platform": "Air Defence Tracked System",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Mobile air defence control and engagement",
+    "asOfDate": "2026-11-23",
+    "definition": "Air Defence Tracked System is identified in the official Ministry of Defence announcement dated 2026-03-27. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-mar-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2246125&lang=1&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-03-27",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2026-03-27",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "armour-piercing-tank-ammunition-aon-mar26",
+    "service": "Army",
+    "category": "Tank ammunition",
+    "platform": "Armour Piercing Tank Ammunition",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Armour-piercing ammunition",
+    "asOfDate": "2026-11-23",
+    "definition": "Armour Piercing Tank Ammunition is identified in the official Ministry of Defence announcement dated 2026-03-27. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-mar-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2246125&lang=1&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-03-27",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2026-03-27",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "high-capacity-radio-relay-aon-mar26",
+    "service": "Army",
+    "category": "Communications equipment",
+    "platform": "High Capacity Radio Relay",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Long-range reliable communications",
+    "asOfDate": "2026-11-23",
+    "definition": "High Capacity Radio Relay is identified in the official Ministry of Defence announcement dated 2026-03-27. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-mar-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2246125&lang=1&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-03-27",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2026-03-27",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "dhanush-gun-aon-mar26",
+    "service": "Army",
+    "category": "Towed artillery",
+    "platform": "Dhanush Gun System",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Long-range artillery capability",
+    "asOfDate": "2026-11-23",
+    "definition": "Dhanush Gun System is identified in the official Ministry of Defence announcement dated 2026-03-27. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-mar-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2246125&lang=1&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-03-27",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2026-03-27",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "runway-independent-aerial-surveillance-aon-mar26",
+    "service": "Army",
+    "category": "Uncrewed aerial system",
+    "platform": "Runway Independent Aerial Surveillance System",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2026,
+    "inductedYear": null,
+    "role": "Runway-independent aerial surveillance",
+    "asOfDate": "2026-11-23",
+    "definition": "Runway Independent Aerial Surveillance System is identified in the official Ministry of Defence announcement dated 2026-03-27. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-mar-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2246125&lang=1&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2026-03-27",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2026-03-27",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "namis-mk2-aon-oct25",
+    "service": "Army",
+    "category": "Tracked anti-tank missile system",
+    "platform": "Nag Missile System (Tracked) Mk-II (NAMIS)",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Anti-armour and fortified-position engagement",
+    "asOfDate": "2026-11-23",
+    "definition": "Nag Missile System (Tracked) Mk-II (NAMIS) is identified in the official Ministry of Defence announcement dated 2025-10-23. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-oct-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2181814&lang=1&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-10-23",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2025-10-23",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "gbmes-aon-oct25",
+    "service": "Army",
+    "category": "Electronic intelligence system",
+    "platform": "Ground Based Mobile ELINT System",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Electronic intelligence collection",
+    "asOfDate": "2026-11-23",
+    "definition": "Ground Based Mobile ELINT System is identified in the official Ministry of Defence announcement dated 2025-10-23. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-oct-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2181814&lang=1&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-10-23",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2025-10-23",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "hmv-mhc-aon-oct25",
+    "service": "Army",
+    "category": "Logistics vehicle",
+    "platform": "High Mobility Vehicles with Material Handling Crane",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Heavy logistics and material handling",
+    "asOfDate": "2026-11-23",
+    "definition": "High Mobility Vehicles with Material Handling Crane is identified in the official Ministry of Defence announcement dated 2025-10-23. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-oct-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2181814&lang=1&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-10-23",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2025-10-23",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "alwt-navy-aon-oct25",
+    "service": "Navy",
+    "category": "Lightweight anti-submarine torpedo",
+    "platform": "Advanced Lightweight Torpedo (ALWT)",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Air / ship delivered ASW torpedo",
+    "asOfDate": "2026-11-23",
+    "definition": "Advanced Lightweight Torpedo (ALWT) is identified in the official Ministry of Defence announcement dated 2025-10-23. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-oct-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2181814&lang=1&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-10-23",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2025-10-23",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "lpd-navy-aon-oct25",
+    "service": "Navy",
+    "category": "Amphibious assault ship",
+    "platform": "Landing Platform Docks (LPD)",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Amphibious lift and landing platform",
+    "asOfDate": "2026-11-23",
+    "definition": "Landing Platform Docks (LPD) is identified in the official Ministry of Defence announcement dated 2025-10-23. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-oct-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2181814&lang=1&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-10-23",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2025-10-23",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "naval-30mm-gun-aon-oct25",
+    "service": "Navy",
+    "category": "Naval gun",
+    "platform": "30 mm Naval Surface Gun",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Shipborne close-range surface engagement",
+    "asOfDate": "2026-11-23",
+    "definition": "30 mm Naval Surface Gun is identified in the official Ministry of Defence announcement dated 2025-10-23. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-oct-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2181814&lang=1&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-10-23",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2025-10-23",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "compact-autonomous-surface-craft-aon-aug25",
+    "service": "Navy",
+    "category": "Uncrewed surface vessel",
+    "platform": "Compact Autonomous Surface Craft",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Autonomous maritime operations",
+    "asOfDate": "2026-11-23",
+    "definition": "Compact Autonomous Surface Craft is identified in the official Ministry of Defence announcement dated 2025-08-01. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aug-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2191937&lang=2&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-08-01",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2025-08-01",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "brahmos-fire-control-navy-aon-aug25",
+    "service": "Navy",
+    "category": "Missile fire-control system",
+    "platform": "BrahMos Fire Control System",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "BrahMos system integration",
+    "asOfDate": "2026-11-23",
+    "definition": "BrahMos Fire Control System is identified in the official Ministry of Defence announcement dated 2025-08-01. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aug-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2191937&lang=2&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-08-01",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2025-08-01",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "barak1-upgrade-navy-aon-aug25",
+    "service": "Navy",
+    "category": "Shipborne air defence upgrade",
+    "platform": "BARAK-1 upgrade",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Shipborne air defence capability",
+    "asOfDate": "2026-11-23",
+    "definition": "BARAK-1 upgrade is identified in the official Ministry of Defence announcement dated 2025-08-01. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aug-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2191937&lang=2&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-08-01",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2025-08-01",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "moored-mines-navy-aon-jul25",
+    "service": "Navy",
+    "category": "Naval mine",
+    "platform": "Moored Mines",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Naval mine capability",
+    "asOfDate": "2026-11-23",
+    "definition": "Moored Mines is identified in the official Ministry of Defence announcement dated 2025-07-03. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-jul-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2210154&lang=1&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-07-03",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2025-07-03",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "mcmv-navy-aon-jul25",
+    "service": "Navy",
+    "category": "Mine countermeasure vessel",
+    "platform": "Mine Counter Measure Vessels (MCMV)",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Mine detection and clearance",
+    "asOfDate": "2026-11-23",
+    "definition": "Mine Counter Measure Vessels (MCMV) is identified in the official Ministry of Defence announcement dated 2025-07-03. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-jul-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2210154&lang=1&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-07-03",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2025-07-03",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "srgm-navy-aon-jul25",
+    "service": "Navy",
+    "category": "Naval gun",
+    "platform": "Super Rapid Gun Mount",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Shipborne naval gun system",
+    "asOfDate": "2026-11-23",
+    "definition": "Super Rapid Gun Mount is identified in the official Ministry of Defence announcement dated 2025-07-03. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-jul-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2210154&lang=1&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-07-03",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2025-07-03",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "submersible-autonomous-vessel-aon-jul25",
+    "service": "Navy",
+    "category": "Autonomous underwater vehicle",
+    "platform": "Submersible Autonomous Vessel",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Autonomous underwater capability",
+    "asOfDate": "2026-11-23",
+    "definition": "Submersible Autonomous Vessel is identified in the official Ministry of Defence announcement dated 2025-07-03. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-jul-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2210154&lang=1&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-07-03",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2025-07-03",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "waterjet-fast-attack-craft-aon-dec24",
+    "service": "Navy",
+    "category": "Fast attack craft",
+    "platform": "Water Jet Fast Attack Craft",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2024,
+    "inductedYear": null,
+    "role": "High-speed coastal craft",
+    "asOfDate": "2026-11-23",
+    "definition": "Water Jet Fast Attack Craft is identified in the official Ministry of Defence announcement dated 2024-12-01. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-jul-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2210154&lang=1&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2024-12-01",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2024-12-01",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "fast-interceptor-craft-aon-dec24",
+    "service": "Navy",
+    "category": "Interceptor craft",
+    "platform": "Fast Interceptor Craft",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2024,
+    "inductedYear": null,
+    "role": "High-speed maritime interception",
+    "asOfDate": "2026-11-23",
+    "definition": "Fast Interceptor Craft is identified in the official Ministry of Defence announcement dated 2024-12-01. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-jul-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2210154&lang=1&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2024-12-01",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2024-12-01",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "mountain-radar-iaf-aon-aug25",
+    "service": "Air Force",
+    "category": "Air surveillance radar",
+    "platform": "Mountain Radars",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Mountain airspace surveillance",
+    "asOfDate": "2026-11-23",
+    "definition": "Mountain Radars is identified in the official Ministry of Defence announcement dated 2025-08-01. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aug-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2191937&lang=2&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-08-01",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2025-08-01",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "saksham-spyder-upgrade-aon-aug25",
+    "service": "Air Force",
+    "category": "Air defence system upgrade",
+    "platform": "SAKSHAM / SPYDER system upgrades",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Integrated air defence upgrade",
+    "asOfDate": "2026-11-23",
+    "definition": "SAKSHAM / SPYDER system upgrades is identified in the official Ministry of Defence announcement dated 2025-08-01. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aug-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2191937&lang=2&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-08-01",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2025-08-01",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "male-rpa-triservice-aon-aug25",
+    "service": "Air Force",
+    "category": "Medium-altitude long-endurance UAV",
+    "platform": "Medium Altitude Long Endurance RPAs — tri-service",
+    "quantity": null,
+    "quantityStatus": "pipeline",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Persistent surveillance for all three services",
+    "asOfDate": "2026-11-23",
+    "definition": "Medium Altitude Long Endurance RPAs — tri-service is identified in the official Ministry of Defence announcement dated 2025-08-01. The announcement does not establish any additional quantity or milestone beyond the recorded stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aug-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2191937&lang=2&reg=3",
+    "acquisition": {
+      "stage": "AoN",
+      "stageDate": "2025-08-01",
+      "quantity": null,
+      "quantityUnit": "systems",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Acceptance of Necessity: in-principle administrative approval, not a contract.",
+      "timeline": [
+        {
+          "date": "2025-08-01",
+          "event": "DAC accorded Acceptance of Necessity",
+          "stage": "AoN"
+        }
+      ]
+    }
+  },
+  {
+    "id": "iddis-emergency-proc-army-2025",
+    "service": "Army",
+    "category": "Counter-UAS system",
+    "platform": "Integrated Drone Detection and Interdiction Systems — EP",
+    "quantity": null,
+    "quantityStatus": "ordered",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Counter-drone detection and interdiction",
+    "asOfDate": "2026-11-23",
+    "definition": "Included in 13 emergency procurement contracts totalling ₹1,981.90 crore. The PIB release lists these categories but does not disclose category-wise quantities or per-item contract stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-army-emergency-procurement-jun-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2139102&lang=2&reg=48",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2025-06-24",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Contract signed; delivery and induction remain separate milestones.",
+      "timeline": [
+        {
+          "date": "2025-06-24",
+          "event": "Ministry of Defence signed contract",
+          "stage": "contract_signed"
+        }
+      ]
+    }
+  },
+  {
+    "id": "lllr-emergency-proc-army-2025",
+    "service": "Army",
+    "category": "Air surveillance radar",
+    "platform": "Low Level Lightweight Radars — EP",
+    "quantity": null,
+    "quantityStatus": "ordered",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Low-level air surveillance",
+    "asOfDate": "2026-11-23",
+    "definition": "Included in 13 emergency procurement contracts totalling ₹1,981.90 crore. The PIB release lists these categories but does not disclose category-wise quantities or per-item contract stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-army-emergency-procurement-jun-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2139102&lang=2&reg=48",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2025-06-24",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Contract signed; delivery and induction remain separate milestones.",
+      "timeline": [
+        {
+          "date": "2025-06-24",
+          "event": "Ministry of Defence signed contract",
+          "stage": "contract_signed"
+        }
+      ]
+    }
+  },
+  {
+    "id": "vshorads-launchers-missiles-ep-2025",
+    "service": "Army",
+    "category": "Air defence missile",
+    "platform": "VSHORADS launchers and missiles — EP",
+    "quantity": null,
+    "quantityStatus": "ordered",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Very-short-range air defence",
+    "asOfDate": "2026-11-23",
+    "definition": "Included in 13 emergency procurement contracts totalling ₹1,981.90 crore. The PIB release lists these categories but does not disclose category-wise quantities or per-item contract stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-army-emergency-procurement-jun-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2139102&lang=2&reg=48",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2025-06-24",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Contract signed; delivery and induction remain separate milestones.",
+      "timeline": [
+        {
+          "date": "2025-06-24",
+          "event": "Ministry of Defence signed contract",
+          "stage": "contract_signed"
+        }
+      ]
+    }
+  },
+  {
+    "id": "rpav-emergency-proc-army-2025",
+    "service": "Army",
+    "category": "Uncrewed aerial system",
+    "platform": "Remotely Piloted Aerial Vehicles — EP",
+    "quantity": null,
+    "quantityStatus": "ordered",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Tactical aerial reconnaissance",
+    "asOfDate": "2026-11-23",
+    "definition": "Included in 13 emergency procurement contracts totalling ₹1,981.90 crore. The PIB release lists these categories but does not disclose category-wise quantities or per-item contract stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-army-emergency-procurement-jun-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2139102&lang=2&reg=48",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2025-06-24",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Contract signed; delivery and induction remain separate milestones.",
+      "timeline": [
+        {
+          "date": "2025-06-24",
+          "event": "Ministry of Defence signed contract",
+          "stage": "contract_signed"
+        }
+      ]
+    }
+  },
+  {
+    "id": "loitering-munitions-ep-army-2025",
+    "service": "Army",
+    "category": "Loitering munition",
+    "platform": "Loitering Munitions including VTOL systems — EP",
+    "quantity": null,
+    "quantityStatus": "ordered",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Precision strike",
+    "asOfDate": "2026-11-23",
+    "definition": "Included in 13 emergency procurement contracts totalling ₹1,981.90 crore. The PIB release lists these categories but does not disclose category-wise quantities or per-item contract stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-army-emergency-procurement-jun-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2139102&lang=2&reg=48",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2025-06-24",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Contract signed; delivery and induction remain separate milestones.",
+      "timeline": [
+        {
+          "date": "2025-06-24",
+          "event": "Ministry of Defence signed contract",
+          "stage": "contract_signed"
+        }
+      ]
+    }
+  },
+  {
+    "id": "army-drones-ep-2025",
+    "service": "Army",
+    "category": "Uncrewed aerial system",
+    "platform": "Various categories of drones — EP",
+    "quantity": null,
+    "quantityStatus": "ordered",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Tactical unmanned systems",
+    "asOfDate": "2026-11-23",
+    "definition": "Included in 13 emergency procurement contracts totalling ₹1,981.90 crore. The PIB release lists these categories but does not disclose category-wise quantities or per-item contract stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-army-emergency-procurement-jun-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2139102&lang=2&reg=48",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2025-06-24",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Contract signed; delivery and induction remain separate milestones.",
+      "timeline": [
+        {
+          "date": "2025-06-24",
+          "event": "Ministry of Defence signed contract",
+          "stage": "contract_signed"
+        }
+      ]
+    }
+  },
+  {
+    "id": "bpj-ep-army-2025",
+    "service": "Army",
+    "category": "Personal protective equipment",
+    "platform": "Bullet Proof Jackets — EP",
+    "quantity": null,
+    "quantityStatus": "ordered",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Ballistic protection",
+    "asOfDate": "2026-11-23",
+    "definition": "Included in 13 emergency procurement contracts totalling ₹1,981.90 crore. The PIB release lists these categories but does not disclose category-wise quantities or per-item contract stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-army-emergency-procurement-jun-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2139102&lang=2&reg=48",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2025-06-24",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Contract signed; delivery and induction remain separate milestones.",
+      "timeline": [
+        {
+          "date": "2025-06-24",
+          "event": "Ministry of Defence signed contract",
+          "stage": "contract_signed"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ballistic-helmets-ep-army-2025",
+    "service": "Army",
+    "category": "Personal protective equipment",
+    "platform": "Ballistic Helmets — EP",
+    "quantity": null,
+    "quantityStatus": "ordered",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Head protection",
+    "asOfDate": "2026-11-23",
+    "definition": "Included in 13 emergency procurement contracts totalling ₹1,981.90 crore. The PIB release lists these categories but does not disclose category-wise quantities or per-item contract stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-army-emergency-procurement-jun-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2139102&lang=2&reg=48",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2025-06-24",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Contract signed; delivery and induction remain separate milestones.",
+      "timeline": [
+        {
+          "date": "2025-06-24",
+          "event": "Ministry of Defence signed contract",
+          "stage": "contract_signed"
+        }
+      ]
+    }
+  },
+  {
+    "id": "qrfv-ep-army-2025",
+    "service": "Army",
+    "category": "Protected mobility vehicle",
+    "platform": "Quick Reaction Fighting Vehicles — Heavy and Medium — EP",
+    "quantity": null,
+    "quantityStatus": "ordered",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Protected troop mobility",
+    "asOfDate": "2026-11-23",
+    "definition": "Included in 13 emergency procurement contracts totalling ₹1,981.90 crore. The PIB release lists these categories but does not disclose category-wise quantities or per-item contract stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-army-emergency-procurement-jun-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2139102&lang=2&reg=48",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2025-06-24",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Contract signed; delivery and induction remain separate milestones.",
+      "timeline": [
+        {
+          "date": "2025-06-24",
+          "event": "Ministry of Defence signed contract",
+          "stage": "contract_signed"
+        }
+      ]
+    }
+  },
+  {
+    "id": "rifle-night-sights-ep-army-2025",
+    "service": "Army",
+    "category": "Weapon sight",
+    "platform": "Night Sights for Rifles — EP",
+    "quantity": null,
+    "quantityStatus": "ordered",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2025,
+    "inductedYear": null,
+    "role": "Low-light aiming equipment",
+    "asOfDate": "2026-11-23",
+    "definition": "Included in 13 emergency procurement contracts totalling ₹1,981.90 crore. The PIB release lists these categories but does not disclose category-wise quantities or per-item contract stage.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-army-emergency-procurement-jun-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2139102&lang=2&reg=48",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2025-06-24",
+      "quantity": null,
+      "quantityUnit": "not disclosed",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Contract signed; delivery and induction remain separate milestones.",
+      "timeline": [
+        {
+          "date": "2025-06-24",
+          "event": "Ministry of Defence signed contract",
+          "stage": "contract_signed"
+        }
+      ]
+    }
+  },
+  {
+    "id": "mq9b-triservice-contract-2024",
+    "service": "Joint",
+    "category": "High altitude long endurance RPAS",
+    "platform": "MQ-9B SkyGuardian / SeaGuardian",
+    "quantity": 31,
+    "quantityStatus": "ordered",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2024,
+    "inductedYear": null,
+    "role": "Tri-service remotely piloted aircraft",
+    "asOfDate": "2026-11-23",
+    "definition": "Tri-service contract for 31 RPAS signed in October 2024; the official 2024 defence contracts summary records the contract.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aug-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2191937&lang=2&reg=3",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2024-10-01",
+      "quantity": 31,
+      "quantityUnit": "aircraft",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Contract signed; delivery and induction remain separate milestones.",
+      "timeline": [
+        {
+          "date": "2024-10-01",
+          "event": "Ministry of Defence signed contract",
+          "stage": "contract_signed"
+        }
+      ]
+    }
+  },
+  {
+    "id": "su30mki-12-contract-2024",
+    "service": "Air Force",
+    "category": "Multirole fighter",
+    "platform": "Su-30MKI additional aircraft contract",
+    "quantity": 12,
+    "quantityStatus": "ordered",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2024,
+    "inductedYear": null,
+    "role": "Multirole fighter",
+    "asOfDate": "2026-11-23",
+    "definition": "Contract signed in December 2024 for 12 Su-30MKI aircraft and associated equipment.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aug-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2191937&lang=2&reg=3",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2024-12-01",
+      "quantity": 12,
+      "quantityUnit": "aircraft",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Contract signed; delivery and induction remain separate milestones.",
+      "timeline": [
+        {
+          "date": "2024-12-01",
+          "event": "Ministry of Defence signed contract",
+          "stage": "contract_signed"
+        }
+      ]
+    }
+  },
+  {
+    "id": "su30mki-al31fp-engine-contract-2024",
+    "service": "Air Force",
+    "category": "Aircraft engine",
+    "platform": "AL-31FP engines for Su-30MKI",
+    "quantity": 240,
+    "quantityStatus": "ordered",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2024,
+    "inductedYear": null,
+    "role": "Fighter aircraft engine",
+    "asOfDate": "2026-11-23",
+    "definition": "Contract for 240 AL-31FP engines signed September 2024.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aug-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2191937&lang=2&reg=3",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2024-09-01",
+      "quantity": 240,
+      "quantityUnit": "engines",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Contract signed; delivery and induction remain separate milestones.",
+      "timeline": [
+        {
+          "date": "2024-09-01",
+          "event": "Ministry of Defence signed contract",
+          "stage": "contract_signed"
+        }
+      ]
+    }
+  },
+  {
+    "id": "alh-dhruv-army-contract-2024",
+    "service": "Army",
+    "category": "Utility helicopter",
+    "platform": "ALH Dhruv Mk III — Army",
+    "quantity": 25,
+    "quantityStatus": "ordered",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2024,
+    "inductedYear": null,
+    "role": "Utility helicopter",
+    "asOfDate": "2026-11-23",
+    "definition": "Contract signed March 2024 for 25 Army ALH Dhruv Mk III with operational role equipment.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aug-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2191937&lang=2&reg=3",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2024-03-01",
+      "quantity": 25,
+      "quantityUnit": "helicopters",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Contract signed; delivery and induction remain separate milestones.",
+      "timeline": [
+        {
+          "date": "2024-03-01",
+          "event": "Ministry of Defence signed contract",
+          "stage": "contract_signed"
+        }
+      ]
+    }
+  },
+  {
+    "id": "dornier-mlu-navy-contract-2024",
+    "service": "Navy",
+    "category": "Maritime patrol aircraft",
+    "platform": "Dornier aircraft mid-life upgrade",
+    "quantity": 25,
+    "quantityStatus": "ordered",
+    "originCountry": "Not stated",
+    "manufacturer": null,
+    "procurementYear": 2024,
+    "inductedYear": null,
+    "role": "Maritime patrol / utility aircraft",
+    "asOfDate": "2026-11-23",
+    "definition": "Contract signed March 2024 for mid-life upgrade of 25 Navy Dornier aircraft.",
+    "capabilitySummary": "Publicly announced capability / acquisition programme. This is not an inducted asset unless separately stated.",
+    "dataLimitations": "RFI, AoN, RFP, trials, financial approval, contract, production, delivery and induction are separate milestones. Missing figures are not inferred.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-dac-aug-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2191937&lang=2&reg=3",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2024-03-01",
+      "quantity": 25,
+      "quantityUnit": "aircraft",
+      "deliveryStart": null,
+      "deliveryEnd": null,
+      "stageMeaning": "Contract signed; delivery and induction remain separate milestones.",
+      "timeline": [
+        {
+          "date": "2024-03-01",
+          "event": "Ministry of Defence signed contract",
+          "stage": "contract_signed"
+        }
+      ]
+    }
   }
 ]
