@@ -830,5 +830,31 @@
     "reliabilityNotes": "Official Ministry of Defence annual report. Use the dated reporting period and distinguish contract, delivery and induction.",
     "termsReviewedAt": null,
     "lastCheckedAt": null
+  },
+  {
+    "id": "pib-ins-vikrant-commission",
+    "name": "PIB — Commissioning of INS Vikrant",
+    "url": "https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=1856230&lang=2&reg=48",
+    "sourceType": "official government release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary government release confirming commissioning of India's first indigenous aircraft carrier.",
+    "termsReviewedAt": null,
+    "lastCheckedAt": null
+  },
+  {
+    "id": "pib-two-carrier-force",
+    "name": "PIB — Indian Navy two-aircraft-carrier force reference",
+    "url": "https://www.pib.gov.in/PressNoteDetails.aspx?ModuleId=3&NoteId=154353&lang=1&reg=3",
+    "sourceType": "official government release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Government reference for the Indian Navy's two-carrier force and related public fleet context.",
+    "termsReviewedAt": null,
+    "lastCheckedAt": null
   }
 ]
