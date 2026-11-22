@@ -2872,3 +2872,55 @@ body {
     gap: 9px;
   }
 }
+
+
+/* Expandable public technical profile on inventory cards */
+.inventory-capability {
+  color: var(--muted);
+  margin-top: 0.65rem;
+}
+.inventory-detail {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+.inventory-detail summary {
+  color: var(--text, #e8e5df);
+  cursor: pointer;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+}
+.inventory-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem 1rem;
+  margin-top: 0.9rem;
+}
+.inventory-detail-grid span {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.inventory-detail-grid b {
+  color: var(--muted);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.inventory-data-note {
+  margin: 0.9rem 0 0;
+  padding-left: 0.7rem;
+  border-left: 2px solid var(--line, rgba(255, 255, 255, 0.2));
+  font-size: 0.72rem;
+}
+@media (max-width: 640px) {
+  .inventory-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
