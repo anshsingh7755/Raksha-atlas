@@ -951,7 +951,7 @@
     "inductedYear": 2025,
     "role": "Stealth guided-missile frigate",
     "asOfDate": "2026-11-23",
-    "definition": "Seven-ship Project 17A frigate programme. The programme includes ships built at two Indian shipyards; commissioning is tracked individually and the programme total must not be interpreted as all ships simultaneously in service.",
+    "definition": "Seven-ship Project 17A frigate programme. Official PIB reporting confirms six ships commissioned by 11 July 2026 (INS Nilgiri, Himgiri, Udaygiri, Taragiri, Dunagiri and Mahendragiri); INS Vindhyagiri remains under construction. Programme total is not an active-fleet count.",
     "capabilitySummary": "Indigenous stealth frigate family developed as a follow-on to the Shivalik class.",
     "technicalProfile": {
       "platformType": "Guided-missile frigate",
@@ -959,18 +959,55 @@
       "manufacturer": "MDL / GRSE",
       "countryOfOrigin": "India"
     },
-    "dataLimitations": "Programme total is not an in-service count. Individual commissioning status should be updated from official Navy releases.",
+    "dataLimitations": "Official programme total: seven. Six ships commissioned and one under construction according to PIB status update in 2026. Individual ships are separately catalogued; do not add the programme total to individual ship records.",
     "confidence": "high",
     "verificationStatus": "official",
-    "sourceId": "pib-project-17a-2025",
-    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2160573&lang=2&reg=3"
+    "sourceId": "pib-p17a-commissioning-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2283989&lang=1&reg=1",
+    "acquisition": {
+      "stage": "under_construction",
+      "quantity": 7,
+      "quantityUnit": "ships",
+      "timeline": [
+        {
+          "date": "2025-01-15",
+          "event": "INS Nilgiri commissioned",
+          "stage": "in_service"
+        },
+        {
+          "date": "2025-08-26",
+          "event": "INS Himgiri and INS Udaygiri commissioned",
+          "stage": "in_service"
+        },
+        {
+          "date": "2026-04-03",
+          "event": "INS Taragiri commissioned",
+          "stage": "in_service"
+        },
+        {
+          "date": "2026-06-21",
+          "event": "INS Dunagiri commissioned",
+          "stage": "in_service"
+        },
+        {
+          "date": "2026-07-11",
+          "event": "INS Mahendragiri commissioned; six of seven commissioned",
+          "stage": "in_service"
+        },
+        {
+          "date": null,
+          "event": "INS Vindhyagiri remains under construction",
+          "stage": "under_construction"
+        }
+      ]
+    }
   },
   {
     "id": "ins-mormugao",
     "service": "Navy",
     "category": "Destroyer",
     "platform": "INS Mormugao",
-    "quantity": 2022,
+    "quantity": null,
     "quantityStatus": "in_service",
     "originCountry": "India",
     "manufacturer": "Mazagon Dock Shipbuilders Limited",
@@ -983,9 +1020,10 @@
     "technicalProfile": {
       "platformType": "Destroyer",
       "manufacturer": "Mazagon Dock Shipbuilders Limited",
-      "countryOfOrigin": "India"
+      "countryOfOrigin": "India",
+      "commissioningYear": 2022
     },
-    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented.",
+    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented. Correction: previous dataset revision stored the commissioning year in the quantity field. Quantity is now null; year is retained as commissioningYear.",
     "confidence": "high",
     "verificationStatus": "official",
     "sourceId": "pib-project-15b",
@@ -996,7 +1034,7 @@
     "service": "Navy",
     "category": "Destroyer",
     "platform": "INS Imphal",
-    "quantity": 2023,
+    "quantity": null,
     "quantityStatus": "in_service",
     "originCountry": "India",
     "manufacturer": "Mazagon Dock Shipbuilders Limited",
@@ -1009,9 +1047,10 @@
     "technicalProfile": {
       "platformType": "Destroyer",
       "manufacturer": "Mazagon Dock Shipbuilders Limited",
-      "countryOfOrigin": "India"
+      "countryOfOrigin": "India",
+      "commissioningYear": 2023
     },
-    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented.",
+    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented. Correction: previous dataset revision stored the commissioning year in the quantity field. Quantity is now null; year is retained as commissioningYear.",
     "confidence": "high",
     "verificationStatus": "official",
     "sourceId": "pib-project-15b",
@@ -1022,7 +1061,7 @@
     "service": "Navy",
     "category": "Destroyer",
     "platform": "INS Surat",
-    "quantity": 2025,
+    "quantity": null,
     "quantityStatus": "in_service",
     "originCountry": "India",
     "manufacturer": "Mazagon Dock Shipbuilders Limited",
@@ -1035,9 +1074,10 @@
     "technicalProfile": {
       "platformType": "Destroyer",
       "manufacturer": "Mazagon Dock Shipbuilders Limited",
-      "countryOfOrigin": "India"
+      "countryOfOrigin": "India",
+      "commissioningYear": 2025
     },
-    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented.",
+    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented. Correction: previous dataset revision stored the commissioning year in the quantity field. Quantity is now null; year is retained as commissioningYear.",
     "confidence": "high",
     "verificationStatus": "official",
     "sourceId": "pib-navy-2025-deliveries",
@@ -1048,7 +1088,7 @@
     "service": "Navy",
     "category": "Frigate",
     "platform": "INS Udaygiri",
-    "quantity": 2025,
+    "quantity": null,
     "quantityStatus": "in_service",
     "originCountry": "India",
     "manufacturer": "Mazagon Dock Shipbuilders Limited",
@@ -1061,9 +1101,10 @@
     "technicalProfile": {
       "platformType": "Frigate",
       "manufacturer": "Mazagon Dock Shipbuilders Limited",
-      "countryOfOrigin": "India"
+      "countryOfOrigin": "India",
+      "commissioningYear": 2025
     },
-    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented.",
+    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented. Correction: previous dataset revision stored the commissioning year in the quantity field. Quantity is now null; year is retained as commissioningYear.",
     "confidence": "high",
     "verificationStatus": "official",
     "sourceId": "pib-navy-2025-deliveries",
@@ -1074,7 +1115,7 @@
     "service": "Navy",
     "category": "Frigate",
     "platform": "INS Himgiri",
-    "quantity": 2025,
+    "quantity": null,
     "quantityStatus": "in_service",
     "originCountry": "India",
     "manufacturer": "Garden Reach Shipbuilders & Engineers",
@@ -1087,9 +1128,10 @@
     "technicalProfile": {
       "platformType": "Frigate",
       "manufacturer": "Garden Reach Shipbuilders & Engineers",
-      "countryOfOrigin": "India"
+      "countryOfOrigin": "India",
+      "commissioningYear": 2025
     },
-    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented.",
+    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented. Correction: previous dataset revision stored the commissioning year in the quantity field. Quantity is now null; year is retained as commissioningYear.",
     "confidence": "high",
     "verificationStatus": "official",
     "sourceId": "pib-navy-2025-deliveries",
@@ -1100,7 +1142,7 @@
     "service": "Navy",
     "category": "Anti-submarine warfare craft",
     "platform": "INS Arnala",
-    "quantity": 2025,
+    "quantity": null,
     "quantityStatus": "in_service",
     "originCountry": "India",
     "manufacturer": "Garden Reach Shipbuilders & Engineers",
@@ -1113,9 +1155,10 @@
     "technicalProfile": {
       "platformType": "Anti-submarine warfare craft",
       "manufacturer": "Garden Reach Shipbuilders & Engineers",
-      "countryOfOrigin": "India"
+      "countryOfOrigin": "India",
+      "commissioningYear": 2025
     },
-    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented.",
+    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented. Correction: previous dataset revision stored the commissioning year in the quantity field. Quantity is now null; year is retained as commissioningYear.",
     "confidence": "high",
     "verificationStatus": "official",
     "sourceId": "pib-navy-2025-deliveries",
@@ -1126,7 +1169,7 @@
     "service": "Navy",
     "category": "Anti-submarine warfare craft",
     "platform": "INS Androth",
-    "quantity": 2025,
+    "quantity": null,
     "quantityStatus": "in_service",
     "originCountry": "India",
     "manufacturer": "Garden Reach Shipbuilders & Engineers",
@@ -1139,9 +1182,10 @@
     "technicalProfile": {
       "platformType": "Anti-submarine warfare craft",
       "manufacturer": "Garden Reach Shipbuilders & Engineers",
-      "countryOfOrigin": "India"
+      "countryOfOrigin": "India",
+      "commissioningYear": 2025
     },
-    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented.",
+    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented. Correction: previous dataset revision stored the commissioning year in the quantity field. Quantity is now null; year is retained as commissioningYear.",
     "confidence": "high",
     "verificationStatus": "official",
     "sourceId": "pib-navy-2025-deliveries",
@@ -1152,7 +1196,7 @@
     "service": "Navy",
     "category": "Anti-submarine warfare craft",
     "platform": "INS Mahe",
-    "quantity": 2025,
+    "quantity": null,
     "quantityStatus": "in_service",
     "originCountry": "India",
     "manufacturer": "Cochin Shipyard Limited",
@@ -1165,9 +1209,10 @@
     "technicalProfile": {
       "platformType": "Anti-submarine warfare craft",
       "manufacturer": "Cochin Shipyard Limited",
-      "countryOfOrigin": "India"
+      "countryOfOrigin": "India",
+      "commissioningYear": 2025
     },
-    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented.",
+    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented. Correction: previous dataset revision stored the commissioning year in the quantity field. Quantity is now null; year is retained as commissioningYear.",
     "confidence": "high",
     "verificationStatus": "official",
     "sourceId": "pib-navy-2025-deliveries",
@@ -1178,7 +1223,7 @@
     "service": "Navy",
     "category": "Diving support vessel",
     "platform": "INS Nistar",
-    "quantity": 2025,
+    "quantity": null,
     "quantityStatus": "in_service",
     "originCountry": "India",
     "manufacturer": "Hindustan Shipyard Limited",
@@ -1191,9 +1236,10 @@
     "technicalProfile": {
       "platformType": "Diving support vessel",
       "manufacturer": "Hindustan Shipyard Limited",
-      "countryOfOrigin": "India"
+      "countryOfOrigin": "India",
+      "commissioningYear": 2025
     },
-    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented.",
+    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented. Correction: previous dataset revision stored the commissioning year in the quantity field. Quantity is now null; year is retained as commissioningYear.",
     "confidence": "high",
     "verificationStatus": "official",
     "sourceId": "pib-navy-2025-deliveries",
@@ -1204,7 +1250,7 @@
     "service": "Navy",
     "category": "Survey vessel",
     "platform": "INS Ikshak",
-    "quantity": 2025,
+    "quantity": null,
     "quantityStatus": "in_service",
     "originCountry": "India",
     "manufacturer": "Garden Reach Shipbuilders & Engineers",
@@ -1217,9 +1263,10 @@
     "technicalProfile": {
       "platformType": "Survey vessel",
       "manufacturer": "Garden Reach Shipbuilders & Engineers",
-      "countryOfOrigin": "India"
+      "countryOfOrigin": "India",
+      "commissioningYear": 2025
     },
-    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented.",
+    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented. Correction: previous dataset revision stored the commissioning year in the quantity field. Quantity is now null; year is retained as commissioningYear.",
     "confidence": "high",
     "verificationStatus": "official",
     "sourceId": "pib-navy-2025-deliveries",
@@ -1230,7 +1277,7 @@
     "service": "Navy",
     "category": "Frigate",
     "platform": "INS Dunagiri",
-    "quantity": 2026,
+    "quantity": null,
     "quantityStatus": "in_service",
     "originCountry": "India",
     "manufacturer": "Garden Reach Shipbuilders & Engineers",
@@ -1243,9 +1290,10 @@
     "technicalProfile": {
       "platformType": "Frigate",
       "manufacturer": "Garden Reach Shipbuilders & Engineers",
-      "countryOfOrigin": "India"
+      "countryOfOrigin": "India",
+      "commissioningYear": 2026
     },
-    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented.",
+    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented. Correction: previous dataset revision stored the commissioning year in the quantity field. Quantity is now null; year is retained as commissioningYear.",
     "confidence": "high",
     "verificationStatus": "official",
     "sourceId": "pib-navy-2026-three-platforms",
@@ -1256,7 +1304,7 @@
     "service": "Navy",
     "category": "Survey vessel",
     "platform": "INS Sanshodhak",
-    "quantity": 2026,
+    "quantity": null,
     "quantityStatus": "in_service",
     "originCountry": "India",
     "manufacturer": "Garden Reach Shipbuilders & Engineers",
@@ -1269,9 +1317,10 @@
     "technicalProfile": {
       "platformType": "Survey vessel",
       "manufacturer": "Garden Reach Shipbuilders & Engineers",
-      "countryOfOrigin": "India"
+      "countryOfOrigin": "India",
+      "commissioningYear": 2026
     },
-    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented.",
+    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented. Correction: previous dataset revision stored the commissioning year in the quantity field. Quantity is now null; year is retained as commissioningYear.",
     "confidence": "high",
     "verificationStatus": "official",
     "sourceId": "pib-navy-2026-three-platforms",
@@ -1282,7 +1331,7 @@
     "service": "Navy",
     "category": "Anti-submarine warfare craft",
     "platform": "INS Agray",
-    "quantity": 2026,
+    "quantity": null,
     "quantityStatus": "in_service",
     "originCountry": "India",
     "manufacturer": "Garden Reach Shipbuilders & Engineers",
@@ -1295,9 +1344,10 @@
     "technicalProfile": {
       "platformType": "Anti-submarine warfare craft",
       "manufacturer": "Garden Reach Shipbuilders & Engineers",
-      "countryOfOrigin": "India"
+      "countryOfOrigin": "India",
+      "commissioningYear": 2026
     },
-    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented.",
+    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented. Correction: previous dataset revision stored the commissioning year in the quantity field. Quantity is now null; year is retained as commissioningYear.",
     "confidence": "high",
     "verificationStatus": "official",
     "sourceId": "pib-navy-2026-three-platforms",
@@ -1308,7 +1358,7 @@
     "service": "Navy",
     "category": "Multi-purpose vessel",
     "platform": "INS Samarthak",
-    "quantity": 2026,
+    "quantity": null,
     "quantityStatus": "in_service",
     "originCountry": "India",
     "manufacturer": "Larsen & Toubro Shipyard",
@@ -1321,9 +1371,10 @@
     "technicalProfile": {
       "platformType": "Multi-purpose vessel",
       "manufacturer": "Larsen & Toubro Shipyard",
-      "countryOfOrigin": "India"
+      "countryOfOrigin": "India",
+      "commissioningYear": 2026
     },
-    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented.",
+    "dataLimitations": "Publicly documented programme/platform information only. No deployment, readiness, unit location or sensitive operational details are represented. Correction: previous dataset revision stored the commissioning year in the quantity field. Quantity is now null; year is retained as commissioningYear.",
     "confidence": "high",
     "verificationStatus": "official",
     "sourceId": "pib-navy-samarthak-2026",
@@ -9965,6 +10016,155 @@
       "stage": "planned",
       "quantity": 10,
       "quantityUnit": "platforms"
+    }
+  },
+  {
+    "id": "ins-vindhyagiri-p17a",
+    "service": "Navy",
+    "category": "Frigate",
+    "platform": "INS Vindhyagiri",
+    "quantity": null,
+    "quantityStatus": "under_construction",
+    "originCountry": "India",
+    "manufacturer": "Garden Reach Shipbuilders & Engineers",
+    "procurementYear": null,
+    "inductedYear": null,
+    "role": "Frigate",
+    "asOfDate": "2026-11-23",
+    "definition": "Seventh and final Project 17A Nilgiri-class frigate; listed by PIB as under construction in the 2026 programme status update.",
+    "capabilitySummary": "Public-source catalogue record: INS Vindhyagiri.",
+    "dataLimitations": "Quantity/status is limited to the cited public source. This record does not represent operational availability, readiness or deployment.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-p17a-commissioning-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2283989&lang=1&reg=1",
+    "variant": "Nilgiri-class Project 17A frigate",
+    "acquisition": {
+      "stage": "under_construction",
+      "quantity": 1,
+      "quantityUnit": "ship"
+    }
+  },
+  {
+    "id": "next-generation-corvettes-8-contract-2026",
+    "service": "Navy",
+    "category": "Corvette",
+    "platform": "Next Generation Corvettes — 2026 contract",
+    "quantity": 8,
+    "quantityStatus": "contract_signed",
+    "originCountry": "India",
+    "manufacturer": "Garden Reach Shipbuilders & Engineers (5) / Goa Shipyard Limited (3)",
+    "procurementYear": null,
+    "inductedYear": null,
+    "role": "Corvette",
+    "asOfDate": "2026-11-23",
+    "definition": "MoD signed contracts on 2 November 2026 for eight Next Generation Corvettes worth Rs 53,866.50 crore: five to GRSE and three to GSL. These are contracted future ships, not active fleet units.",
+    "capabilitySummary": "Public-source catalogue record: Next Generation Corvettes — 2026 contract.",
+    "dataLimitations": "Quantity/status is limited to the cited public source. This record does not represent operational availability, readiness or deployment.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-navy-ngc-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2331418&lang=1&reg=3",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2026-11-02",
+      "quantity": 8,
+      "quantityUnit": "ships",
+      "timeline": [
+        {
+          "date": "2026-11-02",
+          "event": "Contracts signed for eight ships: five GRSE, three GSL",
+          "stage": "contract_signed"
+        }
+      ]
+    }
+  },
+  {
+    "id": "t72-bridge-layer-47-contract-2025",
+    "service": "Army",
+    "category": "Armoured bridging vehicle",
+    "platform": "T-72 Bridge Laying Tank (BLT) — 2025 contract",
+    "quantity": 47,
+    "quantityStatus": "ordered",
+    "originCountry": "India",
+    "manufacturer": "Heavy Vehicles Factory (AVNL)",
+    "procurementYear": null,
+    "inductedYear": null,
+    "role": "Armoured bridging vehicle",
+    "asOfDate": "2026-11-23",
+    "definition": "MoD signed a Rs 1,560.52 crore contract on 21 January 2025 with Heavy Vehicles Factory, a unit of AVNL, for 47 T-72 Bridge Laying Tanks for the Indian Army.",
+    "capabilitySummary": "Public-source catalogue record: T-72 Bridge Laying Tank (BLT) — 2025 contract.",
+    "dataLimitations": "Quantity/status is limited to the cited public source. This record does not represent operational availability, readiness or deployment.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-t72-bridge-layer-contract-2025",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2094857&lang=2&reg=3",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2025-01-21",
+      "quantity": 47,
+      "quantityUnit": "vehicles",
+      "timeline": [
+        {
+          "date": "2025-01-21",
+          "event": "Contract signed for 47 vehicles",
+          "stage": "contract_signed"
+        }
+      ]
+    }
+  },
+  {
+    "id": "t72-t90-apu-contract-2026",
+    "service": "Army",
+    "category": "Tank modernization subsystem",
+    "platform": "T-72 and T-90 Auxiliary Power Units — 2026 contract",
+    "quantity": null,
+    "quantityStatus": "contract_signed",
+    "originCountry": "India",
+    "manufacturer": "Accurate Industrial Controls Private Limited",
+    "procurementYear": null,
+    "inductedYear": null,
+    "role": "Tank modernization subsystem",
+    "asOfDate": "2026-11-23",
+    "definition": "MoD signed a Rs 586 crore contract on 21 September 2026 with Accurate Industrial Controls Pvt Ltd for Auxiliary Power Units for T-72 and T-90 tanks. The PIB release does not disclose a unit quantity; none is inferred.",
+    "capabilitySummary": "Public-source catalogue record: T-72 and T-90 Auxiliary Power Units — 2026 contract.",
+    "dataLimitations": "Quantity/status is limited to the cited public source. This record does not represent operational availability, readiness or deployment.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-t72-t90-apu-contract-2026",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2313016&lang=1&reg=3",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2026-09-21",
+      "quantity": null,
+      "quantityUnit": "not disclosed"
+    }
+  },
+  {
+    "id": "k9-vajra-2024-contract-official",
+    "service": "Army",
+    "category": "Self-propelled artillery",
+    "platform": "K9 Vajra-T — 2024 contract record",
+    "quantity": null,
+    "quantityStatus": "contract_signed",
+    "originCountry": "India",
+    "manufacturer": "Larsen & Toubro",
+    "procurementYear": null,
+    "inductedYear": null,
+    "role": "Self-propelled artillery",
+    "asOfDate": "2026-11-23",
+    "definition": "MoD signed a Rs 7,628.70 crore contract with Larsen & Toubro on 20 December 2024 for 155 mm/52 calibre K9 Vajra-T self-propelled tracked artillery guns. The cited PIB release does not state the unit quantity; the separate 100-unit Wikipedia-derived entries remain independently attributed and are not overwritten.",
+    "capabilitySummary": "Public-source catalogue record: K9 Vajra-T — 2024 contract record.",
+    "dataLimitations": "Quantity/status is limited to the cited public source. This record does not represent operational availability, readiness or deployment.",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "sourceId": "pib-k9-vajra-contract-2024",
+    "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2086514&lang=2&reg=3",
+    "acquisition": {
+      "stage": "contract_signed",
+      "stageDate": "2024-12-20",
+      "quantity": null,
+      "quantityUnit": "not disclosed"
     }
   }
 ]
