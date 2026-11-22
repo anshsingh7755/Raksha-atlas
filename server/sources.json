@@ -1076,5 +1076,82 @@
     "language": "en",
     "active": true,
     "reliabilityNotes": "Primary government announcement or annual report. Record only the stage, quantities and schedule explicitly stated in the source."
+  },
+  {
+    "id": "wikipedia-army-full-2026",
+    "name": "Wikipedia — List of equipment of the Indian Army (2026 snapshot)",
+    "url": "https://en.wikipedia.org/wiki/List_of_equipment_of_the_Indian_Army",
+    "sourceType": "Wikipedia CC BY-SA 4.0 community-edited reference",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Source-derived record. Attribute Wikipedia contributors and preserve CC BY-SA 4.0 terms. Quantities/statuses are source-reported, not independently verified."
+  },
+  {
+    "id": "wikipedia-army-infantry-2026",
+    "name": "Wikipedia — List of infantry equipment of the Indian Army",
+    "url": "https://en.wikipedia.org/wiki/List_of_infantry_equipment_of_the_Indian_Army",
+    "sourceType": "Wikipedia CC BY-SA 4.0 community-edited reference",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Source-derived record. Attribute Wikipedia contributors and preserve CC BY-SA 4.0 terms. Quantities/statuses are source-reported, not independently verified."
+  },
+  {
+    "id": "wikipedia-aircraft-active-2026",
+    "name": "Wikipedia — List of active Indian military aircraft",
+    "url": "https://en.wikipedia.org/wiki/List_of_active_Indian_military_aircraft",
+    "sourceType": "Wikipedia CC BY-SA 4.0 community-edited reference",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Source-derived record. Attribute Wikipedia contributors and preserve CC BY-SA 4.0 terms. Quantities/statuses are source-reported, not independently verified."
+  },
+  {
+    "id": "wikipedia-air-force-future-2026",
+    "name": "Wikipedia — Future of the Indian Air Force",
+    "url": "https://en.wikipedia.org/wiki/Future_of_the_Indian_Air_Force",
+    "sourceType": "Wikipedia CC BY-SA 4.0 community-edited reference",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Source-derived record. Attribute Wikipedia contributors and preserve CC BY-SA 4.0 terms. Quantities/statuses are source-reported, not independently verified."
+  },
+  {
+    "id": "wikipedia-navy-active-2026",
+    "name": "Wikipedia — List of active Indian Navy ships",
+    "url": "https://en.wikipedia.org/wiki/List_of_active_Indian_Navy_ships",
+    "sourceType": "Wikipedia CC BY-SA 4.0 community-edited reference",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Source-derived record. Attribute Wikipedia contributors and preserve CC BY-SA 4.0 terms. Quantities/statuses are source-reported, not independently verified."
+  },
+  {
+    "id": "wikipedia-navy-future-2026",
+    "name": "Wikipedia — Future of the Indian Navy",
+    "url": "https://en.wikipedia.org/wiki/Future_of_the_Indian_Navy",
+    "sourceType": "Wikipedia CC BY-SA 4.0 community-edited reference",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Source-derived record. Attribute Wikipedia contributors and preserve CC BY-SA 4.0 terms. Quantities/statuses are source-reported, not independently verified."
+  },
+  {
+    "id": "wikipedia-indian-navy-overview-2026",
+    "name": "Wikipedia — Indian Navy",
+    "url": "https://en.wikipedia.org/wiki/Indian_Navy",
+    "sourceType": "Wikipedia CC BY-SA 4.0 community-edited reference",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Source-derived record. Attribute Wikipedia contributors and preserve CC BY-SA 4.0 terms. Quantities/statuses are source-reported, not independently verified."
   }
 ]
