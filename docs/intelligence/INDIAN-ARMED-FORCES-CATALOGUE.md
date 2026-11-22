@@ -7,18 +7,18 @@
 
 ## 1. Executive coverage
 
-The current structured dataset contains **358 records** and **144 Army**, **119 Navy**, **84 Air Force** records. It also retains **11 joint/strategic records** across Space, Cyber, Intelligence and Joint categories. The source register contains **99 source records** after this documentation update.
+The current structured dataset contains **362 records** and **144 Army**, **121 Navy**, **86 Air Force** records. It also retains **11 joint/strategic records** across Space, Cyber, Intelligence and Joint categories. The source register contains **99 source records** after this documentation update.
 
 | Service / domain | Records |
 |---|---:|
 | Army | 144 |
-| Navy | 119 |
-| Air Force | 84 |
+| Navy | 121 |
+| Air Force | 86 |
 | Space | 1 |
 | Cyber | 1 |
 | Intelligence | 1 |
 | Joint | 8 |
-| **Total** | **358** |
+| **Total** | **362** |
 
 ### Record status distribution
 
@@ -1305,6 +1305,10 @@ These are the five new platform/procurement rows added to `server/inventory.json
 | Army | `k9-vajra-2024-contract-official` | K9 Vajra-T 155 mm/52 calibre tracked artillery contract | Not disclosed in cited PIB release | Contract signed | Larsen & Toubro |
 | Navy | `next-generation-corvettes-8-contract-2026` | Next Generation Corvettes | 8 ships | Contract signed, 2 November 2026 | GRSE (5), GSL (3) |
 | Navy | `ins-vindhyagiri-p17a` | INS Vindhyagiri, Project 17A | One named ship; quantity not expressed as a fleet count | Under construction | GRSE |
+| Air Force | `aewec-aircraft-systems-aon-mar2025` | AEW&C Aircraft Systems | Not disclosed | AoN | Not stated |
+| Navy | `arudhra-naval-radar-aon-sep2026` | Arudhra naval radar | Not disclosed | AoN | Not stated |
+| Navy | `marine-gas-turbine-development-aon-sep2026` | Marine Gas Turbine design, development and procurement | Not disclosed | AoN | Not stated |
+| Air Force | `ground-based-multipurpose-jammer-aon-sep2026` | Ground-Based Multi-Purpose Jammer | Not disclosed | AoN | Not stated |
 
 ## 6. Data quality and coverage limitations
 
