@@ -10063,7 +10063,7 @@
     "dataLimitations": "Quantity/status is limited to the cited public source. This record does not represent operational availability, readiness or deployment.",
     "confidence": "high",
     "verificationStatus": "official",
-    "sourceId": "pib-navy-ngc-2026",
+    "sourceId": "pib-navy-ngc-contract-2026",
     "sourceUrl": "https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2331418&lang=1&reg=3",
     "acquisition": {
       "stage": "contract_signed",
