@@ -2924,3 +2924,31 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+
+.inventory-acquisition {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-top: 1rem;
+  padding: 0.85rem;
+  border: 1px solid var(--line, rgba(255,255,255,.14));
+  background: rgba(255,255,255,.025);
+  overflow-wrap: anywhere;
+}
+.inventory-acquisition > b {
+  color: var(--text, #e8e5df);
+  font-size: .66rem;
+  font-weight: 600;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+.inventory-acquisition > span {
+  color: var(--muted);
+  font-size: .76rem;
+}
+.inventory-acquisition p {
+  margin: .25rem 0 0;
+  color: var(--muted);
+  font-size: .72rem;
+}
