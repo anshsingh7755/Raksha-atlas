@@ -1293,6 +1293,19 @@ This appendix lists every current inventory record as it exists in `server/inven
 ### Data correction
 Fourteen Navy ship records had incorrectly stored a commissioning year (for example, 2025 or 2026) in the numeric `quantity` field. Those values have been removed from `quantity` and retained as `technicalProfile.commissioningYear`. An individual ship is one hull; its commissioning year is not its quantity.
 
+
+## Appendix A — Officially verified additions in the 23 November 2026 update
+
+These are the five new platform/procurement rows added to `server/inventory.json`. The record IDs below are canonical references; the full record-level fields remain in the JSON catalogue.
+
+| Service | Record ID | Platform / programme | Quantity | Status | Manufacturer / shipyard |
+|---|---|---|---:|---|---|
+| Army | `t72-bridge-layer-47-contract-2025` | T-72 Bridge Laying Tank contract | 47 vehicles | Contract signed / ordered | Heavy Vehicles Factory, AVNL |
+| Army | `t72-t90-apu-contract-2026` | T-72/T-90 Auxiliary Power Unit contract | Not disclosed | Contract signed | Accurate Industrial Controls Pvt Ltd |
+| Army | `k9-vajra-2024-contract-official` | K9 Vajra-T 155 mm/52 calibre tracked artillery contract | Not disclosed in cited PIB release | Contract signed | Larsen & Toubro |
+| Navy | `next-generation-corvettes-8-contract-2026` | Next Generation Corvettes | 8 ships | Contract signed, 2 November 2026 | GRSE (5), GSL (3) |
+| Navy | `ins-vindhyagiri-p17a` | INS Vindhyagiri, Project 17A | One named ship; quantity not expressed as a fleet count | Under construction | GRSE |
+
 ## 6. Data quality and coverage limitations
 
 - Current record total is a count of catalogue rows, **not** the number of aircraft, ships, tanks, guns, missiles or personnel.
