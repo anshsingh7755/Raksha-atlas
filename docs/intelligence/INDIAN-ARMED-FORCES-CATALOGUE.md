@@ -7,18 +7,18 @@
 
 ## 1. Executive coverage
 
-The current structured dataset contains **353 records** and **141 Army**, **117 Navy**, **84 Air Force** records. It also retains **11 joint/strategic records** across Space, Cyber, Intelligence and Joint categories. The source register contains **93 source records** after this documentation update.
+The current structured dataset contains **358 records** and **144 Army**, **119 Navy**, **84 Air Force** records. It also retains **11 joint/strategic records** across Space, Cyber, Intelligence and Joint categories. The source register contains **99 source records** after this documentation update.
 
 | Service / domain | Records |
 |---|---:|
-| Army | 141 |
-| Navy | 117 |
+| Army | 144 |
+| Navy | 119 |
 | Air Force | 84 |
 | Space | 1 |
 | Cyber | 1 |
 | Intelligence | 1 |
 | Joint | 8 |
-| **Total** | **353** |
+| **Total** | **358** |
 
 ### Record status distribution
 
@@ -28,13 +28,14 @@ Counts below are **record counts**, not equipment quantities. One programme can 
 |---|---:|---|
 | Active / in service (`in_service`) | 180 | Listed as currently in service by its cited source. |
 | Pipeline / future programme (`pipeline`) | 76 | Future requirement/programme; approval and funding must be checked separately. |
-| Ordered / contractually committed (`ordered`) | 56 | Procured/contracted but not necessarily delivered in full. |
+| Ordered / contractually committed (`ordered`) | 57 | Procured/contracted but not necessarily delivered in full. |
 | Planned requirement (`planned`) | 20 | Future requirement/programme; approval and funding must be checked separately. |
+| Contract signed (`contract_signed`) | 5 | Procured/contracted but not necessarily delivered in full. |
 | Programme aggregate (`programme_total`) | 2 | Stage-specific; read the individual source and definition. |
-| Contract signed (`contract_signed`) | 2 | Procured/contracted but not necessarily delivered in full. |
 | AoN granted (`AoN`) | 2 | Acceptance of Necessity; not a contract or induction. |
 | In production (`in_production`) | 2 | Stage-specific; read the individual source and definition. |
 | Tender (`tender`) | 2 | Stage-specific; read the individual source and definition. |
+| Under construction (`under_construction`) | 2 | Stage-specific; read the individual source and definition. |
 | Phasing out (`phasing_out`) | 1 | Stage-specific; read the individual source and definition. |
 | Leased (`leased`) | 1 | Stage-specific; read the individual source and definition. |
 | Development (`development`) | 1 | Stage-specific; read the individual source and definition. |
@@ -44,7 +45,6 @@ Counts below are **record counts**, not equipment quantities. One programme can 
 | Approved (`approved`) | 1 | Stage-specific; read the individual source and definition. |
 | Design (`design`) | 1 | Stage-specific; read the individual source and definition. |
 | Proposed (`proposed`) | 1 | Future requirement/programme; approval and funding must be checked separately. |
-| Under construction (`under_construction`) | 1 | Stage-specific; read the individual source and definition. |
 | Under production (`under_production`) | 1 | Stage-specific; read the individual source and definition. |
 
 **Interpretation warning:** The status field records the source's claim about the record. It does not independently establish operational availability, serviceability, squadron strength, readiness, or whether all units are deployed. Quantities may refer to platforms, launchers, ships, systems, missiles, vehicles, kits or programme totals; always read the unit.
@@ -444,6 +444,7 @@ This appendix lists every current inventory record as it exists in `server/inven
 | Suryastra | 2 | launchers | Trials | Not stated | `suryastra-mlrs-wiki` |
 
 #### Self-propelled artillery
+| K9 Vajra-T — 2024 contract record | Not stated | not disclosed | Contract signed | Larsen & Toubro | `k9-vajra-2024-contract-official` |
 
 | Platform / programme | Quantity | Unit | Status | Manufacturer / yard | Record ID |
 |---|---:|---|---|---|---|
@@ -679,6 +680,7 @@ This appendix lists every current inventory record as it exists in `server/inven
 | High Frequency Software Defined Radio Manpack | Not stated | not disclosed | Pipeline / future programme | Not stated | `hf-sdr-manpack-aon` |
 
 #### Corvette
+| Next Generation Corvettes — 2026 contract | 8 | ships | Contract signed | GRSE (5) / GSL (3) | `next-generation-corvettes-8-contract-2026` |
 
 | Platform / programme | Quantity | Unit | Status | Manufacturer / yard | Record ID |
 |---|---:|---|---|---|---|
@@ -731,6 +733,7 @@ This appendix lists every current inventory record as it exists in `server/inven
 | Surya-class fleet replenishment ships | 5 | platforms | Under construction | Not stated | `surya-replenishment-5-wiki` |
 
 #### Frigate
+| INS Vindhyagiri | Not stated | — | Under construction | Garden Reach Shipbuilders & Engineers | `ins-vindhyagiri-p17a` |
 
 | Platform / programme | Quantity | Unit | Status | Manufacturer / yard | Record ID |
 |---|---:|---|---|---|---|
@@ -1276,7 +1279,21 @@ This appendix lists every current inventory record as it exists in `server/inven
 | MQ-9B SkyGuardian / SeaGuardian | 31 | — | Ordered / contractually committed | General Atomics Aeronautical Systems | `mq9b-tri-service` |
 
 
-## 5. Data quality and coverage limitations
+## 5. Additional official records added in this update
+
+### Indian Army
+- **47 T-72 Bridge Laying Tanks:** contract signed on 21 January 2025 with Heavy Vehicles Factory (AVNL), value ₹1,560.52 crore. [PIB source](https://www.pib.gov.in/PressReleasePage.aspx?PRID=2094857&lang=2&reg=3).
+- **T-72/T-90 Auxiliary Power Units:** ₹586 crore contract signed on 21 September 2026 with Accurate Industrial Controls Pvt Ltd. The release does not state a unit count, so the catalogue leaves quantity blank. [PIB source](https://www.pib.gov.in/PressReleasePage.aspx?PRID=2313016&lang=1&reg=3).
+- **K9 Vajra-T:** ₹7,628.70 crore contract with L&T signed on 20 December 2024 for 155 mm/52 calibre tracked self-propelled guns. The cited PIB release does not state the number of guns; the catalogue preserves the separate Wikipedia-derived quantity record rather than silently treating it as official. [PIB source](https://www.pib.gov.in/PressReleasePage.aspx?PRID=2086514&lang=2&reg=3).
+
+### Indian Navy
+- **Project 17A Nilgiri class:** seven ships in the programme; six commissioned by 11 July 2026 and INS Vindhyagiri still under construction. The six commissioned ships are Nilgiri, Himgiri, Udaygiri, Taragiri, Dunagiri and Mahendragiri. [PIB class status](https://www.pib.gov.in/PressReleasePage.aspx?PRID=2283989&lang=1&reg=1).
+- **Next Generation Corvettes:** contracts for eight ships signed on 2 November 2026, five with GRSE and three with GSL; these are future ships, not active fleet units. [PIB contract release](https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2331418&lang=1&reg=3).
+
+### Data correction
+Fourteen Navy ship records had incorrectly stored a commissioning year (for example, 2025 or 2026) in the numeric `quantity` field. Those values have been removed from `quantity` and retained as `technicalProfile.commissioningYear`. An individual ship is one hull; its commissioning year is not its quantity.
+
+## 6. Data quality and coverage limitations
 
 - Current record total is a count of catalogue rows, **not** the number of aircraft, ships, tanks, guns, missiles or personnel.
 - Some entries are programme-level and may overlap with class, variant, batch or individual-platform entries. Do not add overlapping rows into one fleet total.
@@ -1288,7 +1305,7 @@ This appendix lists every current inventory record as it exists in `server/inven
 - Wikipedia-derived entries are discovery-level records. Each should be checked against a dated official source before being labelled official.
 - This document records the current 353-row data snapshot. It is **not yet a certified exhaustive inventory** of every small arm, sensor, radar, vehicle, ammunition type, depot asset, support system, regiment, squadron, ship or acquisition case.
 
-## 6. Required fields for future expansion
+## 7. Required fields for future expansion
 
 Every new platform or programme record should capture, where publicly available:
 
@@ -1309,7 +1326,7 @@ Every new platform or programme record should capture, where publicly available:
 | Verification | Official / reported / community-edited / unverified |
 | Limitations | Conflicting totals, unclear scope, stale status, unknown quantity |
 
-## 7. Maintenance workflow
+## 8. Maintenance workflow
 
 1. Discover candidate platforms and programmes from service and manufacturer sources.
 2. Capture the original claim verbatim in notes, including its date and unit.
@@ -1322,7 +1339,7 @@ Every new platform or programme record should capture, where publicly available:
 9. Rebuild the website and inspect service filters, status filters and record detail views.
 10. Keep the previous value and source in the change history when a quantity or stage changes.
 
-## 8. Source register
+## 9. Source register
 
 The full source register is maintained in `server/sources.json`. The latest official additions include:
 - [MoD Annual Report 2025–26](https://www.dodmod.gov.in/static/uploads/2026/09/a7246d934eda1e2d031293822d4a323f.pdf)
@@ -1333,6 +1350,10 @@ The full source register is maintained in `server/sources.json`. The latest offi
 - [Navy shipbuilding / induction update](https://www.pib.gov.in/PressReleasePage.aspx?PRID=2198298&lang=1&reg=3)
 - [INS Dunagiri delivery — 31 March 2026](https://www.pib.gov.in/PressReleasePage.aspx?PRID=2247142&lang=1&reg=1)
 - [Eight Next Generation Corvettes contract — 2 November 2026](https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2331418&lang=1&reg=3)
+- [Project 17A six commissioned, one under construction — July 2026](https://www.pib.gov.in/PressReleasePage.aspx?PRID=2283989&lang=1&reg=1)
+- [T-72/T-90 APU contract — 21 September 2026](https://www.pib.gov.in/PressReleasePage.aspx?PRID=2313016&lang=1&reg=3)
+- [47 T-72 Bridge Laying Tanks contract — 21 January 2025](https://www.pib.gov.in/PressReleasePage.aspx?PRID=2094857&lang=2&reg=3)
+- [K9 Vajra-T contract — 20 December 2024](https://www.pib.gov.in/PressReleasePage.aspx?PRID=2086514&lang=2&reg=3)
 
 ---
 *Generated from the Raksha Atlas public-source inventory snapshot. Update this document whenever the underlying inventory changes; do not manually edit counts without regenerating or revalidating them.*
