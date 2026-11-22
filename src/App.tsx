@@ -1986,6 +1986,16 @@ function App() {
         capabilitySummary?: string;
         dataLimitations?: string;
         technicalProfile?: Record<string, string>;
+        acquisition?: {
+          stage: string;
+          stageDate?: string | null;
+          quantity?: number | null;
+          quantityUnit?: string;
+          deliveryStart?: string | null;
+          deliveryEnd?: string | null;
+          stageMeaning?: string;
+          timeline?: Array<{ date: string; event: string; stage: string }>;
+        };
       }>
     >([]);
     const [serviceFilter, setServiceFilter] = useState(
@@ -2114,9 +2124,9 @@ function App() {
                   ),
                 )}
               </small>
-              {(item.variant || item.manufacturer || item.technicalProfile || item.dataLimitations) && (
+              {(item.variant || item.manufacturer || item.technicalProfile || item.dataLimitations || item.acquisition) && (
                 <details className="inventory-detail">
-                  <summary>Technical profile &amp; data notes</summary>
+                  <summary>Technical profile, acquisition &amp; data notes</summary>
                   <div className="inventory-detail-grid">
                     {item.variant && <span><b>Variant</b>{item.variant}</span>}
                     {item.manufacturer && <span><b>Manufacturer</b>{item.manufacturer}</span>}
@@ -2124,6 +2134,22 @@ function App() {
                       <span key={label}><b>{label.replace(/([A-Z])/g, " $1")}</b>{value}</span>
                     ))}
                   </div>
+                  {item.acquisition && (
+                    <div className="inventory-acquisition">
+                      <b>Acquisition stage</b>
+                      <span>{item.acquisition.stage}{item.acquisition.stageDate ? ` · ${item.acquisition.stageDate}` : ""}</span>
+                      {item.acquisition.quantity != null && (
+                        <span>Programme quantity: {item.acquisition.quantity.toLocaleString()} {item.acquisition.quantityUnit ?? "units"}</span>
+                      )}
+                      {(item.acquisition.deliveryStart || item.acquisition.deliveryEnd) && (
+                        <span>Delivery window: {item.acquisition.deliveryStart ?? "Not stated"} – {item.acquisition.deliveryEnd ?? "Not stated"}</span>
+                      )}
+                      {item.acquisition.stageMeaning && <p>{item.acquisition.stageMeaning}</p>}
+                      {item.acquisition.timeline?.map((event, index) => (
+                        <span key={`${event.date}-${index}`}>{event.date} — {event.event}</span>
+                      ))}
+                    </div>
+                  )}
                   {item.dataLimitations && <p className="inventory-data-note">{item.dataLimitations}</p>}
                 </details>
               )}
