@@ -752,5 +752,83 @@
     "reliabilityNotes": "A human-submitted public link and summary. Treat as an unverified lead until a reviewer checks the original source.",
     "termsReviewedAt": null,
     "lastCheckedAt": null
+  },
+  {
+    "id": "pib-navy-2025-deliveries",
+    "name": "PIB — Indian Navy ship deliveries and commissioning in 2025",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2210154&lang=2&reg=3",
+    "sourceType": "official government release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary Ministry of Defence / PIB summary of 2025 deliveries and commissioning milestones. Use ship-specific releases for later updates.",
+    "termsReviewedAt": null,
+    "lastCheckedAt": null
+  },
+  {
+    "id": "pib-navy-2026-three-platforms",
+    "name": "PIB — Commissioning of INS Dunagiri, INS Sanshodhak and INS Agray",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2276104&lang=1&reg=1",
+    "sourceType": "official government release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary government release dated 21 June 2026 confirming commissioning of three Indian Navy platforms.",
+    "termsReviewedAt": null,
+    "lastCheckedAt": null
+  },
+  {
+    "id": "pib-navy-samarthak-2026",
+    "name": "PIB — Commissioning of INS Samarthak",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2324581&lang=1&reg=3",
+    "sourceType": "official government release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary government release dated 16 October 2026 confirming commissioning of the first indigenous multi-purpose vessel.",
+    "termsReviewedAt": null,
+    "lastCheckedAt": null
+  },
+  {
+    "id": "pib-defence-contracts-2024",
+    "name": "PIB — Major defence contracts and platform procurement in 2024",
+    "url": "https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2088180&lang=2&reg=48",
+    "sourceType": "official government release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary Ministry of Defence summary of selected 2024 contracts, including MQ-9B, ALH, Dornier upgrades, BMP-2 upgrades and BrahMos.",
+    "termsReviewedAt": null,
+    "lastCheckedAt": null
+  },
+  {
+    "id": "pib-atags-307-2025",
+    "name": "PIB — Approval for 307 ATAGS and 327 gun towing vehicles",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2116612&lang=1&reg=1",
+    "sourceType": "official government release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary government release confirming approval for 307 ATAGS and 327 high-mobility gun towing vehicles. Approval is not proof of delivery or induction.",
+    "termsReviewedAt": null,
+    "lastCheckedAt": null
+  },
+  {
+    "id": "mod-annual-report-2023-24",
+    "name": "Ministry of Defence Annual Report 2023–24",
+    "url": "https://www.ddpmod.gov.in/sites/default/files/57cfea92938b03f670763d972acabf946f5cf7bd47c6252b78aede2f466d0214/aa2dde469a046132ce341e7e686e18eba17f1a007e9519a8658715109a3a729a.pdf",
+    "sourceType": "official annual report",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Official Ministry of Defence annual report. Use the dated reporting period and distinguish contract, delivery and induction.",
+    "termsReviewedAt": null,
+    "lastCheckedAt": null
   }
 ]
