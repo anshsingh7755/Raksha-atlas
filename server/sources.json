@@ -977,5 +977,104 @@
     "language": "en",
     "active": true,
     "reliabilityNotes": "Primary source for the stated procurement milestone. AoN is not a contract; contract is not delivery or induction."
+  },
+  {
+    "id": "pib-dac-sep-2026",
+    "name": "DAC AoN proposals, 7 September 2026",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2307452&lang=1&reg=2&v=sd",
+    "sourceType": "Official Ministry of Defence / PIB source",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary government announcement or annual report. Record only the stage, quantities and schedule explicitly stated in the source."
+  },
+  {
+    "id": "pib-dac-oct-2026",
+    "name": "DAC AoN proposals, 26 October 2026",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2328486&lang=2&reg=48",
+    "sourceType": "Official Ministry of Defence / PIB source",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary government announcement or annual report. Record only the stage, quantities and schedule explicitly stated in the source."
+  },
+  {
+    "id": "pib-dac-mar-2026",
+    "name": "DAC AoN proposals, 27 March 2026",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2246125&lang=1&reg=3",
+    "sourceType": "Official Ministry of Defence / PIB source",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary government announcement or annual report. Record only the stage, quantities and schedule explicitly stated in the source."
+  },
+  {
+    "id": "pib-contract-oct-2026",
+    "name": "Contracts for GSAT-7C and Varunastra, 15 October 2026",
+    "url": "https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2323814&lang=2&reg=48",
+    "sourceType": "Official Ministry of Defence / PIB source",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary government announcement or annual report. Record only the stage, quantities and schedule explicitly stated in the source."
+  },
+  {
+    "id": "pib-dac-oct-2025",
+    "name": "DAC approvals, 23 October 2025",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2181814&lang=1&reg=3",
+    "sourceType": "Official Ministry of Defence / PIB source",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary government announcement or annual report. Record only the stage, quantities and schedule explicitly stated in the source."
+  },
+  {
+    "id": "pib-dac-aug-2025",
+    "name": "DAC approvals, August 2025",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2191937&lang=2&reg=3",
+    "sourceType": "Official Ministry of Defence / PIB source",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary government announcement or annual report. Record only the stage, quantities and schedule explicitly stated in the source."
+  },
+  {
+    "id": "pib-dac-jul-2025",
+    "name": "DAC approvals, 3 July 2025",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2210154&lang=1&reg=3",
+    "sourceType": "Official Ministry of Defence / PIB source",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary government announcement or annual report. Record only the stage, quantities and schedule explicitly stated in the source."
+  },
+  {
+    "id": "pib-army-emergency-procurement-jun-2025",
+    "name": "Army Emergency Procurement contracts, 24 June 2025",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2139102&lang=2&reg=48",
+    "sourceType": "Official Ministry of Defence / PIB source",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary government announcement or annual report. Record only the stage, quantities and schedule explicitly stated in the source."
+  },
+  {
+    "id": "mod-annual-report-2025-26",
+    "name": "Ministry of Defence Annual Report 2025–26",
+    "url": "https://www.dodmod.gov.in/static/uploads/2026/09/a7246d934eda1e2d031293822d4a323f.pdf",
+    "sourceType": "Official Ministry of Defence / PIB source",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Primary government announcement or annual report. Record only the stage, quantities and schedule explicitly stated in the source."
   }
 ]
