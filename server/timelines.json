@@ -659,6 +659,9 @@
         "sourceId": "lok-sabha-rafale-2017",
         "sourceUrl": "https://sansad.in/getFile/loksabhaquestions/annex/12/AS287.pdf?source=pqals"
       }
+    ],
+    "dossierRecordIds": [
+      "rafale-iaf-36"
     ]
   },
   {
@@ -693,6 +696,9 @@
         "sourceId": "pib-rafale-m-delivery-2030",
         "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2210154&lang=13&reg=22"
       }
+    ],
+    "dossierRecordIds": [
+      "rafale-marine-26"
     ]
   }
 ]
