@@ -1,11 +1,8 @@
 const SEARCH_ALIASES = new Map([
   ["iaf", ["indian air force", "air force"]],
-  ["ia", ["indian army", "army"]],
-  ["in", ["indian navy", "navy"]],
   ["mod", ["ministry of defence", "defence ministry"]],
   ["pib", ["press information bureau"]],
   ["anc", ["andaman and nicobar command"]],
-  ["anc", ["andaman nicobar command"]],
   ["amca", ["advanced medium combat aircraft"]],
   ["lca", ["light combat aircraft", "tejas"]],
   ["mrca", ["multi role combat aircraft"]],
@@ -13,7 +10,16 @@ const SEARCH_ALIASES = new Map([
   ["ssn", ["nuclear powered attack submarine"]],
   ["ssbn", ["nuclear powered ballistic missile submarine"]],
   ["s-400", ["s400", "triumpf"]],
-  ["ak", ["army", "air force"]],
+  ["drdo", ["defence research and development organisation"]],
+  ["hal", ["hindustan aeronautics limited"]],
+  ["bel", ["bharat electronics limited"]],
+  ["lch", ["light combat helicopter", "prachand"]],
+  ["alh", ["advanced light helicopter", "dhruv"]],
+  ["uav", ["unmanned aerial vehicle", "drone"]],
+  ["ucav", ["unmanned combat aerial vehicle"]],
+  ["bmd", ["ballistic missile defence"]],
+  ["qrsam", ["quick reaction surface to air missile"]],
+  ["mrsam", ["medium range surface to air missile"]],
 ]);
 
 export function normalizeSearchText(value) {
