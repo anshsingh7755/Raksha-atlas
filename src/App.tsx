@@ -1050,6 +1050,7 @@ type ReviewArticle = {
   verificationStatus: string;
   reviewState: string;
   sourceId: string;
+  publisherOfficial?: boolean;
   publishedAt?: string | null;
   category?: string;
   subcategory?: string | null;
@@ -1062,19 +1063,23 @@ type ReviewArticle = {
 };
 function SignalFeed({
   articles,
+  sources,
   onReview,
 }: {
   articles: ReviewArticle[];
+  sources: RegistrySource[];
   onReview: () => void;
 }) {
   const [query, setQuery] = useState("");
   useEffect(() => { const saved = sessionStorage.getItem("raksha-search-query"); if (saved) { setQuery(saved); sessionStorage.removeItem("raksha-search-query"); } }, []);
   const [category, setCategory] = useState("all");
   const [publisher, setPublisher] = useState("all");
+  const sourceById = new Map(sources.map((source) => [source.id, source]));
   const publisherName = (sourceId: string) =>
-    sourceId.includes("idrw") ? "IDRW" :
-    sourceId === "indian-defence-news" || sourceId === "indian-defence-news-rss" ? "Indian Defence News" :
-    sourceId === "et-defence" ? "ETDefence" : sourceId;
+    sourceById.get(sourceId)?.name ?? sourceId;
+  const publishers = [...new Set(articles.map((article) => article.sourceId))]
+    .map((sourceId) => ({ id: sourceId, name: publisherName(sourceId) }))
+    .sort((left, right) => left.name.localeCompare(right.name));
   const categories = [
     ...new Set(
       articles
@@ -1086,7 +1091,7 @@ function SignalFeed({
     .filter(
       (article) =>
         article.reviewState !== "rejected" &&
-        (publisher === "all" || publisherName(article.sourceId) === publisher) &&
+        (publisher === "all" || article.sourceId === publisher) &&
         (category === "all" || article.category === category) &&
         (!query ||
           `${article.title} ${article.summary ?? ""} ${article.sourceId} ${(article.keywords ?? []).join(" ")}`
@@ -1112,9 +1117,9 @@ function SignalFeed({
       <div className="article-toolbar">
         <select value={publisher} onChange={(event) => setPublisher(event.target.value)} aria-label="Filter reports by publisher">
           <option value="all">All publishers</option>
-          <option value="IDRW">IDRW</option>
-          <option value="ETDefence">ETDefence</option>
-          <option value="Indian Defence News">Indian Defence News</option>
+          {publishers.map((source) => (
+            <option key={source.id} value={source.id}>{source.name}</option>
+          ))}
         </select>
         <input
           value={query}
@@ -1154,6 +1159,9 @@ function SignalFeed({
                 <span className={"verification-chip " + article.verificationStatus}>
                   {article.verificationStatus}
                 </span>
+                {sourceById.get(article.sourceId)?.official && (
+                  <span className="verification-chip official">Official publisher</span>
+                )}
                 <span className="verification-chip">
                   {article.reviewState.replace(/_/g, " ")}
                 </span>
@@ -1180,7 +1188,7 @@ function SignalFeed({
                     rel="noreferrer"
                     key={source.url}
                   >
-                    Also reported by {source.sourceId} <ArrowUpRight size={12} />
+                    Also reported by {publisherName(source.sourceId)} <ArrowUpRight size={12} />
                   </a>
                 ))}
               </div>
@@ -2217,7 +2225,7 @@ function App() {
     </section>
   );
   const Signals = () => (
-    <SignalFeed articles={articles} onReview={() => navigate("sources")} />
+    <SignalFeed articles={articles} sources={sourceRegistry} onReview={() => navigate("sources")} />
   );
   const Inventory = () => {
     type InventoryItem = {
