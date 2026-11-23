@@ -868,18 +868,57 @@ const server = createServer(async (request, response) => {
     });
     return;
   }
+  if (request.method === "GET" && url.pathname === "/api/search") {
+    const query = (url.searchParams.get("q") ?? "").trim().toLowerCase();
+    if (query.length < 2) {
+      send(response, 200, { query, count: 0, results: [] });
+      return;
+    }
+    const terms = query.split(/\\s+/).filter(Boolean);
+    const results = [];
+    const add = (section, view, id, title, summary, haystack) => {
+      const textValue = String(haystack ?? "").toLowerCase();
+      if (!terms.every((term) => textValue.includes(term))) return;
+      const titleValue = String(title ?? "").toLowerCase();
+      const score = (titleValue === query ? 100 : titleValue.startsWith(query) ? 60 : titleValue.includes(query) ? 35 : 0) + terms.length * 3;
+      results.push({ section, view, id: String(id ?? title), title: String(title ?? "Untitled"), summary: String(summary ?? "").slice(0, 220), score });
+    };
+    for (const item of readInventory()) add("Inventory", "inventory", item.id, item.platform, item.definition || item.role, [item.platform,item.service,item.category,item.role,item.variant,item.manufacturer,item.originCountry,item.definition,item.capabilitySummary,Object.values(item.technicalProfile ?? {}).join(" ")].join(" "));
+    for (const item of readProgrammeDossier()) add("Programmes", "programmes", item.id, item.title, item.summary, [item.title,item.service,item.stage,item.summary,item.details].join(" "));
+    for (const item of data.articles ?? []) if (item.reviewState !== "rejected") add("News & articles", "signals", item.id, item.title, item.summary, [item.title,item.summary,item.sourceId,item.topic,(item.keywords ?? []).join(" ")].join(" "));
+    for (const item of readTimelines()) add("Programme timelines", "timeline", item.id, item.programme, item.summary || item.description, [item.programme,item.service,item.stage,item.summary,item.description].join(" "));
+    for (const item of readProcurement()) add("Procurement", "pipeline", item.id, item.title || item.programme || item.name, item.summary || item.notes, JSON.stringify(item));
+    for (const item of readPlatformRegister()) add("Platform classes", "register", item.className, item.className, item.role || item.platform, [item.className,item.platform,item.category,item.role,item.origin,item.futureOrders].join(" "));
+    for (const item of readSources()) add("Sources", "sources", item.id, item.name || item.title || item.id, item.description || item.publisher || item.url, [item.id,item.name,item.title,item.description,item.publisher,item.url].join(" "));
+    results.sort((a,b) => b.score-a.score || a.title.localeCompare(b.title));
+    const limited = results.slice(0, 40).map(({score,...item}) => item);
+    send(response, 200, { query, count: limited.length, results: limited });
+    return;
+  }
   if (request.method === "GET" && url.pathname === "/api/inventory") {
     const service = url.searchParams.get("service");
     const category = url.searchParams.get("category");
     const quantityStatus = url.searchParams.get("quantityStatus");
     const originCountry = url.searchParams.get("originCountry");
+    const classImages = readPlatformRegister();
     const items = readInventory().filter(
       (item) =>
         (!service || item.service === service) &&
         (!category || item.category === category) &&
         (!quantityStatus || item.quantityStatus === quantityStatus) &&
         (!originCountry || item.originCountry === originCountry),
-    );
+    ).map((item) => {
+      if (item.imageUrl) return item;
+      const normalize = (value) => String(value ?? "").toLowerCase().replace(/[^a-z0-9]+/g, "");
+      const platform = normalize(item.platform);
+      const match = classImages.find((entry) => {
+        const className = normalize(entry.className);
+        const platformName = normalize(entry.platform);
+        return (className && (platform.includes(className) || className.includes(platform))) ||
+          (platformName && (platform.includes(platformName) || platformName.includes(platform)));
+      });
+      return match?.imageUrl ? { ...item, imageUrl: match.imageUrl } : item;
+    });
     send(response, 200, {
       items,
       count: items.length,
