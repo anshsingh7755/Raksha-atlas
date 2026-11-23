@@ -3212,3 +3212,42 @@ body {
 @media (max-width: 560px) {
   .programme-history-note { grid-template-columns: 1fr; gap: 5px; }
 }
+
+
+.publisher-source-chip {
+  display: inline-flex;
+  align-items: center;
+  margin: 8px 6px 4px 0;
+  padding: 4px 7px;
+  border: 1px solid var(--line);
+  color: var(--accent, #8aa8ff);
+  font: 9px "DM Mono";
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.publisher-source-directory {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin: 20px 0;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 11px;
+}
+.publisher-source-directory > span {
+  color: var(--text);
+  font: 9px "DM Mono";
+  text-transform: uppercase;
+}
+.publisher-source-directory a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.publisher-source-directory small {
+  flex-basis: 100%;
+  font-size: 10px;
+  line-height: 1.5;
+}
