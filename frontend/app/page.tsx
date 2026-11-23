@@ -1,11 +1,5 @@
-"use client";
-
-import dynamic from "next/dynamic";
-
-const App = dynamic(() => import("../../src/App"), {
-  ssr: false,
-});
+import AtlasApp from "./AtlasApp";
 
 export default function Page() {
-  return <App />;
+  return <AtlasApp />;
 }
