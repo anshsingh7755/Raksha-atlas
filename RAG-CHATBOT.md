@@ -4,13 +4,13 @@
 
 The chat is no longer a fixed answer map. `POST /api/chat` retrieves matching public records from the curated `inventory.json`, source-table equipment catalogue, procurement pipeline, programme timelines, history, and collected article records. In PostgreSQL mode it reads collected articles from the database, rather than relying on the JSON seed file. It sends those records as cited context to the OpenAI Responses API when `OPENAI_API_KEY` is configured. The model may use Responses API `web_search` for current questions. Local evidence is cited as `[R1]`, etc.; live-search citations are returned alongside it. Without a model key, inventory count questions can still be answered from matching curated records; other questions return retrieved records and explain that conversational synthesis/live search needs the key.
 
-The local retriever is lexical/keyword based. It is a practical first RAG implementation without a vector database; it may miss a question that uses very different wording from the stored record. Add an embedding/vector index later if semantic recall needs improvement.
+The local retriever is lexical/keyword based, with lightweight intent boosts for inventory counts, programme status, organisation, public geography and document research. It now indexes programme dossiers, the public command directory, Theatre Atlas regional records and completed document extractions (PDF pages remain page-addressable). It may miss semantic paraphrases; embeddings/vector search remain future work and should be added only with measured retrieval evaluation. See [AI Assistant module specification](docs/roadmap/AI-ASSISTANT-MODULE.md).
 
 ## What the scheduled collector does
 
 Every hour on the Asia/Kolkata clock, while the API process is running, the worker collects configured public feeds/APIs, normalizes URLs, deduplicates and groups similar headlines, extracts capped Open Graph metadata, applies category/tags, and stores candidates. At 04:00 IST a separate daily job refreshes PIB Defence release metadata and equipment reference snapshots.
 
-The monitor ingests:
+The assistant preserves source URL, publisher/source name, verification status, review state, publication/review date and record kind in its retrieved citations. Extracted PDF page records include page numbers. It distinguishes publisher officialness from claim verification and treats retrieved text as untrusted data, not instructions. Requests for targeting, live deployment, exploitable vulnerabilities, weapon construction or actionable tactical guidance are bounded to a refusal and high-level redirect. Citation coverage is currently a diagnostic presence metric, not a claim-level factuality score.\n\nThe monitor ingests:
 
 - PIB RSS and configured Google News RSS discovery feeds for ANI, News on AIR / Prasar Bharati, IDRW, India Today, The Indian Express, The Hindu, international defence outlets, and the named defence channels/reporters.
 - YouTube public video metadata when `YOUTUBE_API_KEY` is configured. It runs the listed discovery searches and any individually configured channel IDs. It does not download videos or scrape transcripts.
