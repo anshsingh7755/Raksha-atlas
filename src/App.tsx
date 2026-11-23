@@ -817,8 +817,7 @@ function ProgrammeDossierExplorer() {
       </div>
       {!loading && filtered.length === 0 && <div className="empty-state">No programme records match these filters.</div>}
       <div className="equipment-note"><a href="https://github.com/anshsingh7755/Raksha-atlas/blob/work/step-1-foundation/docs/intelligence/FUTURE-PROGRAMMES-ACQUISITION-DOSSIER.md" target="_blank" rel="noreferrer">Open the full research dossier <ArrowUpRight size={12} /></a></div>
-      {selected && <div className="modal-backdrop programme-modal-backdrop" onClick={() => setSelected(null)}>
-        <section className="programme-modal" role="dialog" aria-modal="true" aria-labelledby="programme-modal-title" onClick={(event) => event.stopPropagation()}>
+      {selected && <AccessibleDialog onClose={() => setSelected(null)} labelledBy="programme-modal-title" contentClassName="programme-modal" backdropClassName="modal-backdrop programme-modal-backdrop">
           <header className="programme-modal-header"><div><span className="section-kicker">PROGRAMME INTELLIGENCE RECORD · {selected.id}</span><h2 id="programme-modal-title">{selected.title}</h2></div><button className="icon-btn" onClick={() => setSelected(null)} aria-label="Close programme record"><X size={18} /></button></header>
           <div className="programme-modal-grid">
             <div><span>Service / domain</span><strong>{selected.service}</strong></div>
@@ -841,8 +840,7 @@ function ProgrammeDossierExplorer() {
             </div>
           </div>
           <footer className="programme-modal-footer">Last verified: {selected.lastVerifiedAt ?? "Not yet verified"} · Record ID: {selected.id}</footer>
-        </section>
-      </div>}
+    </AccessibleDialog>}
     </section>
   );
 }
@@ -2017,8 +2015,7 @@ function App() {
         </div>
         {menuOpen && <Nav mobile />}
       </header>
-      {globalSearchOpen && <div className="atlas-search-backdrop" onMouseDown={(event) => { if (event.target === event.currentTarget) setGlobalSearchOpen(false); }}>
-        <section className="atlas-search-dialog" role="dialog" aria-modal="true" aria-label="Search Raksha Atlas" tabIndex={-1}>
+      {globalSearchOpen && <AccessibleDialog onClose={() => setGlobalSearchOpen(false)} ariaLabel="Search Raksha Atlas" contentClassName="atlas-search-dialog" backdropClassName="atlas-search-backdrop">
           <div className="atlas-search-input"><Search size={19}/><input aria-label="Search all Raksha Atlas records" autoFocus value={globalSearch} onChange={(event) => setGlobalSearch(event.target.value)} placeholder="Search AMCA, Apache, destroyer, Tejas…" onKeyDown={(event) => { if (event.key === "Enter" && globalSearchResults[0]) { sessionStorage.setItem("raksha-search-query", globalSearch.trim()); sessionStorage.setItem("raksha-search-target", globalSearchResults[0].id); sessionStorage.setItem("raksha-search-section", globalSearchResults[0].section); if (globalSearchResults[0].view === "pipeline") sessionStorage.setItem("raksha-search-mode", "pipeline"); navigate(globalSearchResults[0].view); setGlobalSearchOpen(false); } }}/><kbd>ESC</kbd></div>
           <div className="atlas-search-hint">{globalSearch.trim().length < 2 ? "Search inventory, commands, programmes, news, procurement, sources and geography" : globalSearchLoading ? "Searching across Raksha Atlas…" : `${globalSearchResults.length} results · ${globalSearchSection === "all" ? "All sections" : globalSearchSection}`}</div>
           {globalSearch.trim().length >= 2 && <div className="atlas-search-filters"><button className={globalSearchSection === "all" ? "active" : ""} onClick={() => setGlobalSearchSection("all")}>All sections</button>{globalSearchSections.map((section) => <button key={section} className={globalSearchSection === section ? "active" : ""} onClick={() => setGlobalSearchSection(section)}>{section}</button>)}</div>}
@@ -2028,8 +2025,7 @@ function App() {
               {!globalSearchLoading && !globalSearchError && globalSearchResults.length === 0 && <div className="atlas-search-empty">No matching records. Try a full platform name, acronym or a broader term.</div>}
             </div>}
           <div className="atlas-search-footer">Results are ranked by title relevance and matching fields · Enter opens the first result</div>
-        </section>
-      </div>}
+      </AccessibleDialog>}
       <div className="command-strip">
         <span>
           <i className="strip-status" /> SYSTEM ONLINE
@@ -2712,7 +2708,7 @@ function App() {
             <div className="document-status"><span>{item.evidenceStatus}</span><span>{item.extractionStatus.replace(/_/g," ")}</span></div>
             <div className="document-actions"><button disabled={extractingId === item.id || item.extractionStatus === "text_extracted"} onClick={() => extractDocument(item)}>{extractingId === item.id ? "Extracting…" : item.extractionStatus === "needs_ocr" && item.fileFormat === "pdf" ? "Run OCR" : item.extractionStatus === "text_extracted" ? "Extracted" : item.fileFormat === "pdf" ? "Extract PDF text" : "Extract document text"}</button><button onClick={() => setSelected(item)}>View record</button><a href={item.originalUrl} target="_blank" rel="noreferrer">Open source <ArrowUpRight size={12}/></a></div>
           </article>)}</div>}
-        {selected && <div className="modal-backdrop" onMouseDown={(event) => { if (event.target === event.currentTarget) setSelected(null); }}><section className="document-detail-modal">
+        {selected && <AccessibleDialog onClose={() => setSelected(null)} ariaLabel={`Document details: ${selected.title}`} contentClassName="document-detail-modal">
           <button className="icon-btn" onClick={() => setSelected(null)} aria-label="Close document details"><X size={17}/></button>
           <span className="section-kicker">DOCUMENT PROVENANCE</span><h2>{selected.title}</h2>
           <p>{selected.publisher} · {selected.service}</p>
@@ -2724,7 +2720,7 @@ function App() {
           {selected.extractedText && !selected.pages?.length && <article className="document-full-text"><h3>Extracted text</h3><pre>{selected.extractedText}</pre></article>}
           {selected.pages?.length > 0 && <div className="document-extracted-pages">{selected.pages.map((page) => <article key={page.page}><strong>Page {page.page}</strong><p>{page.text}</p></article>)}</div>}
           <a href={selected.originalUrl} target="_blank" rel="noreferrer">Open original public document <ArrowUpRight size={13}/></a>
-        </section></div>}
+        </AccessibleDialog>}
       </section>
     );
   };
@@ -3358,11 +3354,7 @@ function App() {
         />
       )}
       {showComposer && (
-        <div
-          className="modal-backdrop"
-          onClick={() => !composerSaving && setShowComposer(false)}
-        >
-          <div className="composer-panel" onClick={(event) => event.stopPropagation()}>
+          <AccessibleDialog onClose={() => !composerSaving && setShowComposer(false)} ariaLabel="Add a public lead" contentClassName="composer-panel" dismissOnBackdrop={!composerSaving}>
             <div className="chat-header">
               <div>
                 <span className="section-kicker">SOURCE REVIEW / MANUAL CANDIDATE</span>
@@ -3421,8 +3413,7 @@ function App() {
                 </>
               )}
             </button>
-          </div>
-        </div>
+          </AccessibleDialog>
       )}
     </div>
   );
