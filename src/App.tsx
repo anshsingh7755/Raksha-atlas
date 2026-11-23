@@ -1113,8 +1113,7 @@ function SignalFeed({
       <div className="auto-discovery-list">
         {visible.length === 0 ? (
           <div className="data-state">
-            No reports match these filters. The API must be running for scheduled
-            collection.
+            No reports match these filters. ETDefence is currently provided as a publisher link until RSS republication permission is confirmed.
           </div>
         ) : (
           visible.map((article) => (
@@ -1141,7 +1140,7 @@ function SignalFeed({
                 <h3>{article.title}</h3>
                 <p>{article.summary || "Open the linked source for details."}</p>
                 <small>
-                  {article.sourceId}
+                  {publisherName(article.sourceId)}
                   {article.publishedAt
                     ? ` · ${new Date(article.publishedAt).toLocaleString("en-IN")}`
                     : " · date not supplied"}
