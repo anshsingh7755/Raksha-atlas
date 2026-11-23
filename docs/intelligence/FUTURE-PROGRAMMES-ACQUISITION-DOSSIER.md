@@ -8,7 +8,7 @@
 
 ## 1. Executive summary
 
-This dossier records **46 programme entries** from this research pass, spanning strategic missiles, hypersonic technology, land systems, naval platforms, submarines, combat aircraft, radars, air defence, drones and support systems.
+This dossier records **60 programme entries** from this research pass, spanning strategic missiles, hypersonic technology, land systems, naval platforms, submarines, combat aircraft, radars, air defence, drones and support systems.
 
 The source register has been expanded to include official PIB/DRDO/BrahMos Aerospace references and IDRW discovery/reporting references. IDRW is useful for discovering claims and following programme reporting, but claims based on unnamed sources or editorial estimates remain **reported / unverified** until confirmed by MoD, PIB, DRDO, service headquarters, Parliament, the named developer or shipyard.
 
@@ -738,3 +738,172 @@ Unofficial / discovery:
 
 ---
 *Prepared as a first-pass public-source intelligence dossier. Programme claims and stages must be revalidated against primary sources before they are promoted into the structured inventory or displayed as official status.*
+
+
+---
+
+## 3. Expanded programme histories — aerospace, unmanned systems, engines and land platforms
+
+**Register extension:** 14 additional programme/product records are added in this pass, bringing the dossier's working register from 46 to **60 entries**. Some are concepts or manufacturer products rather than sanctioned acquisition programmes; they are included for discovery but explicitly not counted as approved orders.
+
+### 47. TEDBF — Twin Engine Deck Based Fighter
+
+- **Domain / lead:** Indian Navy; Aeronautical Development Agency (ADA), with HAL as the expected industrial aircraft-development partner.
+- **Stage:** Publicly identified future naval fighter programme / design-development pathway; no production contract or service induction established by the sources reviewed here.
+- **History and evidence:** The MoD's Technology Perspective and Capability Roadmap lists “new generation aircraft viz TEDBF” alongside LCA (Navy), sensors and avionics. This is an official capability-planning reference, not a programme sanction or order. IDRW's February 2025 article interprets budget allocations and reports a reduced Navy requirement; those quantity and funding interpretations remain secondary reporting.
+- **Quantity:** No confirmed procurement quantity in the primary source used here. Do not turn the IDRW-reported 80/140 figures into orders.
+- **Industrial partners:** ADA is the design agency; HAL is the established public-sector aircraft development/production partner discussed in the programme context. A signed production partner contract was not established here.
+- **Milestones:** MoD capability roadmap listing (2026 document); IDRW budget interpretation (3 February 2025).
+- **Sources:** MoD capability roadmap: https://www.dodmod.gov.in/static/uploads/2026/02/959e4c6cc6c9d38cbe6077d8739c584c.pdf ; IDRW: https://idrw.org/indian-defence-budget-confirms-capital-outlay-for-tedbf-and-ghatak-ucav-programs/
+- **Caveat:** TEDBF is not ORCA. Do not record design renderings, projected squadron totals or reported funding as contracted aircraft.
+
+### 48. ORCA — Omni-Role Combat Aircraft proposal
+
+- **Domain / lead:** Proposed Indian Air Force combat aircraft concept; associated in secondary reporting with ADA's TEDBF design lineage.
+- **Stage:** Unapproved proposal / concept according to the IDRW report reviewed.
+- **History and evidence:** IDRW's 3 June 2026 article describes ORCA as an IAF-oriented land-based derivative concept and explicitly states that formal approval and funding had not been provided. The article is useful evidence that the proposal is discussed publicly, not evidence of an official programme.
+- **Quantity:** None established.
+- **Industrial partners:** No officially appointed development or production partner established.
+- **Sources:** https://idrw.org/indias-forgotten-fighter-why-the-orca-program-remains-in-limbo/
+- **Caveat:** Keep in a “concepts / proposals” register. Do not combine ORCA with TEDBF or count it as an approved IAF fighter programme.
+
+### 49. Kaveri engine family — original engine programme
+
+- **Domain / lead:** DRDO Gas Turbine Research Establishment (GTRE); indigenous military aero-engine technology.
+- **Stage:** Long-running development programme; original configuration did not meet the Tejas FOC thrust requirement and is not the engine fitted to operational Tejas aircraft.
+- **History and evidence:** A November 2021 parliamentary reply states that CCS sanctioned the project in 1989; nine full prototype engines and four core engines were built; 3,217 hours of testing were completed; altitude tests and flying test-bed trials were conducted. The reply explicitly says the existing Kaveri architecture could not be integrated with Tejas FOC configuration without a modified engine.
+- **Milestones:** 1989 project sanction; 9 full engines + 4 core engines; 3,217 testing hours; altitude and FTB trials (as reported in the 2021 reply).
+- **Funding:** ₹2,105 crore allocated; ₹2,035.56 crore expenditure and ₹2,097.65 crore commitment as reported in the same 2021 reply. These are historical programme figures, not current budget.
+- **Sources:** PIB parliamentary reply: https://www.pib.gov.in/PressReleasePage.aspx?PRID=1776092&lang=2&reg=48
+- **Caveat:** Keep original Kaveri separate from the dry derivative, afterburning demonstrator and any future fighter-engine programme.
+
+### 50. Kaveri Dry Engine / Kaveri Derivative Engine (KDE)
+
+- **Domain / lead:** DRDO-GTRE; propulsion work associated publicly with unmanned aircraft development, including the Ghatak/RPSA context.
+- **Stage:** Separate sanctioned development workstreams; flightworthy engine development and technology demonstration, not confirmed operational engine certification.
+- **History and evidence:** PIB on 25 July 2025 confirmed two sanctioned projects: Flightworthy Kaveri Dry Engine Development costing ₹472.42 crore and Technology Demonstration of Kaveri Derivative “Dry” Engine costing ₹251.17 crore. PIB on 16 February 2026 confirmed continuing GTRE engine-development work and that the Raksha Mantri witnessed a full afterburner Kaveri engine test.
+- **Industrial partners:** PIB describes DRDO's engagement with Indian industry, academia and R&D institutes, but the cited releases do not name a complete production consortium for these engine projects.
+- **Sources:** https://www.pib.gov.in/PressReleasePage.aspx?PRID=2148337&lang=2&reg=48 ; https://www.pib.gov.in/PressReleasePage.aspx?PRID=2228670&lang=1&reg=6
+- **Caveat:** A ground test or test-bed clearance is not equivalent to engine certification, aircraft integration, serial production or Ghatak operationalisation. Do not attach unofficial thrust estimates to verified inventory records.
+
+### 51. RPSA / Ghatak and FUFA terminology
+
+- **Domain / lead:** DRDO-led remotely piloted strike aircraft / stealth UCAV programme; service requirement context includes the Indian Air Force.
+- **Stage:** Programme development; SWiFT technology demonstrator flight-tested; the 2026 IDSA analysis reports DAC clearance for RPSA Ghatak on 27 March 2026.
+- **History and evidence:** IDSA's 29 September 2026 analysis traces the effort to the AURA feasibility study initiated in 2016, discusses the SWiFT demonstrator's successful autonomous maiden flight on 1 July 2022, and reports the March 2026 DAC clearance. PIB separately confirms the two Kaveri dry-engine development projects. These establish distinct airframe-demonstrator and propulsion workstreams.
+- **Industrial partners:** IDSA reports a Development-cum-Production Partner model in which private industry is to build flying prototypes; the specific selected partner(s) and contract details require primary confirmation.
+- **Quantity:** No confirmed production quantity or squadron order established.
+- **Sources:** IDSA analysis: https://idsa.in/publisher/comments/rpsa-ghatak-and-indias-stealth-ucav-programme ; PIB engine projects: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2148337&lang=2&reg=48
+- **FUFA handling:** “FUFA” appears in secondary reporting as “Futuristic Unmanned Fighter Aircraft” and is sometimes conflated with AURA/Ghatak. No separate official programme sanction was identified in this pass. Keep FUFA as an alias/terminology watch item, not an additional platform count.
+- **Caveat:** Do not conflate Ghatak, SWiFT, FUFA, CATS Warrior or other loyal-wingman concepts. They have different reported roles and programme histories.
+
+### 52. HAL CATS Warrior
+
+- **Domain / lead:** HAL Combat Air Teaming System (CATS); manned-unmanned teaming / loyal-wingman demonstrator concept.
+- **Stage:** Full-scale engineering demonstrator reported; a 2025 report described an engine ground run and anticipated first flight, but this research pass did not establish an official completed first flight.
+- **History and evidence:** Janes reported the CATS family reveal at Aero India 2021 and described Warrior as an autonomous unmanned aircraft intended to operate with/ahead of a manned fighter. ThePrint reported a full-scale demonstrator on display at Aero India 2025 and an engine ground run in January 2025. These are industry/press reports, not a procurement contract.
+- **Industrial partners:** HAL-led; supporting industry partners need to be verified from HAL disclosures.
+- **Quantity:** No service order quantity established.
+- **Sources:** https://www.janes.com/defence-intelligence-insights/defence-news/aero-india-2021-hals-loyal-wingmen-break-cover ; https://theprint.in/defence/designed-for-assisting-fighter-aircraft-hal-cats-likely-to-take-first-flight-by-year-end/2488765/
+- **Caveat:** Do not describe CATS Warrior as an inducted UCAV or equate its demonstrator with Ghatak.
+
+### 53. HAL CATS Hunter
+
+- **Domain / lead:** HAL CATS family; unmanned expendable/strike support concept as publicly described in the Aero India 2021 family reveal.
+- **Stage:** Concept / displayed family component; no separate official development contract, flight-test milestone or acquisition quantity established here.
+- **History and evidence:** Janes' 2021 report identifies CATS Hunter as one of the unmanned platforms shown within the CATS family. This is a product-family disclosure, not proof of a fielded capability.
+- **Industrial partners:** HAL-led CATS family; specific Hunter subsystem partners not established.
+- **Quantity:** None.
+- **Source:** https://www.janes.com/defence-intelligence-insights/defence-news/aero-india-2021-hals-loyal-wingmen-break-cover
+- **Caveat:** Track as a CATS sub-system concept, not as a separate procurement order.
+
+### 54. HAL CATS ALFA / ALFA-S
+
+- **Domain / lead:** HAL CATS family; air-launched flexible asset / unmanned expendable system concept.
+- **Stage:** Publicly displayed concept / development reporting; no independently verified service order quantity or operational induction.
+- **History and evidence:** Janes' Aero India 2021 report lists CATS-Air Launched Flexible Asset (ALFA) within the CATS family. Later reporting uses ALFA-S nomenclature. The exact variant naming and development status need HAL primary-source confirmation.
+- **Industrial partners:** HAL-led CATS family; component partners not established from the cited sources.
+- **Quantity:** None.
+- **Sources:** https://www.janes.com/defence-intelligence-insights/defence-news/aero-india-2021-hals-loyal-wingmen-break-cover ; https://www.moneycontrol.com/defence/india-s-combat-drone-programme-what-s-ready-and-what-s-still-being-developed-article-14053952.html
+- **Caveat:** Keep ALFA and ALFA-S naming linked but not assumed identical until HAL confirms variant relationship.
+
+### 55. WhAP 8x8 — Wheeled Armoured Platform
+
+- **Domain / lead:** DRDO-VRDE with Indian industrial development and manufacturing partners.
+- **Stage:** Officially listed developed product/platform; variants and user-specific orders must be tracked separately.
+- **History and evidence:** DRDO's official products catalogue lists the Wheeled Armoured Platform (WhAP) 8x8 and a paramilitary variant. This confirms the platform's existence as a DRDO product, not a single consolidated quantity across Army, paramilitary or export users.
+- **Industrial partners:** Tata Advanced Systems is associated with the WhAP development/manufacturing ecosystem; verify exact contract and variant partner by user.
+- **Quantity:** Do not infer a fleet-wide total from variant or export reporting. Record only contract-specific numbers supported by official releases.
+- **Source:** https://drdo.gov.in/drdo/en/offerings/products
+- **Caveat:** Keep WhAP 8x8 distinct from the newly unveiled tracked/wheeled Advanced Armoured Platforms of April 2026.
+
+### 56. Advanced Armoured Platforms — tracked and wheeled (VRDE, 2026)
+
+- **Domain / lead:** DRDO Vehicles Research & Development Establishment (VRDE).
+- **Stage:** Officially unveiled on 25 April 2026; development platform disclosure, not a confirmed Army procurement contract.
+- **History and evidence:** PIB confirms two platforms, tracked and wheeled, integrated with an indigenous 30mm crewless turret and 7.62mm PKT; the release states 65% indigenous content with an aim to increase to 90%.
+- **Industrial partners:** Tata Advanced Systems Limited and Bharat Forge Limited; DRDO laboratories and MSMEs also supported development.
+- **Quantity:** No order quantity disclosed.
+- **Milestone:** Unveiling on 25 April 2026.
+- **Source:** https://www.pib.gov.in/PressReleasePage.aspx?PRID=2255538&lang=1&reg=1
+- **Caveat:** Do not assume this platform is WhAP, FICV, FRCV or Zorawar. They are distinct programmes/platform families.
+
+### 57. MArG 155-BR — Multi-terrain Artillery Gun
+
+- **Domain / lead:** Bharat Forge / Kalyani Strategic Systems.
+- **Stage:** Manufacturer-developed and publicly unveiled artillery product; no Indian Army procurement order established by the cited source.
+- **History and evidence:** Bharat Forge's 23 December 2021 press release records the unveiling of MArG 155-BR. The company describes it as a 155mm/39-calibre gun mounted on a 4x4 high-mobility vehicle.
+- **Industrial partners:** Bharat Forge / Kalyani Strategic Systems; vehicle and subsystem supply details should be verified from contract-specific documents.
+- **Quantity:** No Indian Army order quantity established.
+- **Source:** https://www.kssl.in/press_releases_details_23rd_december_2021
+- **Caveat:** Do not confuse the MArG 155-BR product with ATAGS or the later MGS truck-mounted gun system.
+
+### 58. MGS 4x4 — Mounted Gun System
+
+- **Domain / lead:** Bharat Forge / Kalyani Strategic Systems; mobile artillery.
+- **Stage:** Manufacturer-disclosed development/product; no Indian Army procurement contract established here.
+- **History and evidence:** Bharat Forge's public disclosures describe a 155mm/39-calibre MGS mounted on a 4x4 chassis. The company material also refers to the BEML-developed “Go Anywhere Vehicle” chassis in the programme description. An annual report mentions the TC-20 MGS as a system considered at an industry event; secondary reporting says a mounted gun system was supplied to a friendly country, but the precise variant and customer require separate confirmation.
+- **Industrial partners:** Bharat Forge/KSSL; BEML is named in the 4x4 chassis description.
+- **Quantity:** No Indian Army order quantity established.
+- **Sources:** https://www.bharatforge.com/media/press-release/2022/83/press_page ; https://www.bharatforge.com/AR2022/defence-business-progresses-with-indias-journey-of-self-reliance.html
+- **Caveat:** MGS is a broad mounted-gun category used by multiple manufacturers. Maintain manufacturer, calibre, chassis and variant fields to avoid merging unrelated systems.
+
+### 59. MArG-T — Titanium ultra-light howitzer
+
+- **Domain / lead:** Bharat Forge / Kalyani Strategic Systems.
+- **Stage:** Manufacturer-disclosed development product; cited company material described it as ready for proof-firing trials in 2020. Current status not established by a fresh official source in this pass.
+- **History and evidence:** Bharat Forge's 2022 public disclosure describes MArG-T as an indigenously designed 155mm/39-calibre titanium ultra-light howitzer. The same material refers to proof-firing readiness, not completion of trials or procurement.
+- **Industrial partners:** Bharat Forge / Kalyani Strategic Systems.
+- **Quantity:** None established.
+- **Source:** https://www.bharatforge.com/media/press-release/2022/83/press_page
+- **Caveat:** Keep as a product-development line item; do not classify as in service.
+
+### 60. Matang — Vehicle Factory Jabalpur vehicle (legacy product watch)
+
+- **Domain / lead:** Vehicle Factory Jabalpur (VFJ), now within the reorganised defence production ecosystem.
+- **Stage:** Legacy product reference; current production or acquisition status not established.
+- **History and evidence:** Secondary encyclopaedic material identifies Matang as a vehicle developed and manufactured by VFJ. The source set reviewed did not produce a primary VFJ/AVNL product sheet, dated contract, quantity or current user status.
+- **Industrial partner:** VFJ is the reported developer/manufacturer; no private industrial partner identified.
+- **Quantity:** Not established.
+- **Source:** https://wiki.tyfsadik.org/content/wikipedia_en_all_maxi_2026-02/Directorate_of_Ordnance_%28Coordination_%26_Services%29
+- **Caveat:** “Matang” requires primary-source validation before it is treated as a current programme. It may belong in a legacy equipment catalogue rather than the future-acquisition register.
+
+## 4. Additional discovery leads and research gaps
+
+The next archive pass should search and cross-reference these programme families, then create individual histories only where a distinct programme identity and evidence trail can be established:
+
+- **Naval aviation:** LCA Navy, TEDBF, deck-based multi-role helicopters, naval shipborne UAV, carrier aviation support systems, shipborne unmanned systems.
+- **Combat aviation:** Tejas Mk1A, Tejas Mk2, AMCA, MRFA, MTA, C-295 special mission variants, Netra AEW&C, Virupaksha/Su-30MKI upgrade, engine programmes and airborne electronic warfare.
+- **Unmanned aviation:** Ghatak/RPSA, SWiFT, CATS Warrior, CATS Hunter, ALFA/ALFA-S, Archer-NG, TAPAS BH-201, Rustom family, MALE/HALE UAVs, HAPS, loitering munition families.
+- **Land mobility and armour:** Zorawar, FRCV, FICV, WhAP variants, advanced armoured platforms, Kalyani M4, light specialist vehicles, mine-protected vehicles, recovery and bridge systems.
+- **Artillery and rockets:** ATAGS, MArG 155, MArG-T, MGS, Garuda 105, Dhanush, Sharang, Pinaka variants, guided rockets, ammunition and gun-laying/fire-control systems.
+- **Propulsion and naval systems:** Kaveri derivatives, future fighter engine, marine gas turbines, electric ship propulsion, AIP, torpedoes, sonars, radars and shipborne decoys.
+- **Electronics and air defence:** Akash family, QRSAM, VSHORADS, MRSAM, Project Kusha, radars, EW systems, counter-UAS, secure communications, data links and battlefield management.
+
+These are discovery leads, not a claim that each has been fully researched in this pass. The next source sweep should prioritise MoD annual reports and parliamentary committee reports, DRDO lab pages and press releases, DAC/CCS notices, HAL annual reports and investor disclosures, BEL/BDL/BEML/AVNL/MDL/GRSE/Cochin Shipyard disclosures, and service capability documents. IDRW should be used to discover leads and then corroborated.
+
+## 5. Source-by-source evidence register additions
+
+The source register now includes the new official and secondary references for TEDBF, ORCA, Kaveri, Ghatak/FUFA terminology, CATS, WhAP, advanced armoured platforms, MArG, MGS and Matang. See `server/sources.json` for URLs, source class, official flag and reliability notes.
+
+**Important:** This extension deliberately preserves gaps. In particular, no primary-source evidence was found in this pass to confirm an ORCA sanction, FUFA as a distinct sanctioned programme, CATS Warrior operational flight status, Indian Army MArG/MGS orders, or a current Matang procurement programme.
