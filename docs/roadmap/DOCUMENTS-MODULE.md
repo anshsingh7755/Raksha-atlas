@@ -43,7 +43,7 @@ Returns `items`, `count`, `total`, `filters`, `availableFilters`, `policy` and p
 
 ### `POST /api/documents`
 
-Registers metadata and optional already-extracted public text. In production, write access requires `RAKSHA_ADMIN_TOKEN` as a bearer token. URL validation is syntactic at registration time; the API does not fetch the submitted URL or download a file. Duplicate canonical URLs are rejected.
+Registers metadata and optional already-extracted public text. In production, write access requires `RAKSHA_ADMIN_TOKEN` as a bearer token. URL validation is syntactic at registration time; the API does not fetch the submitted URL or download a file. Duplicate canonical URLs are rejected. After retrieval, SHA-256 is compared against previously extracted files; identical binaries are rejected with a reference to the existing document.
 
 ### `POST /api/documents/:id/extract`
 
@@ -54,8 +54,8 @@ Starts extraction for a registered PDF. The Node API calls the private FastAPI w
 The FastAPI service in `ai/` implements the extraction path using HTTPX and PyMuPDF:
 
 1. Require an explicit hostname allowlist in `DOCUMENT_ALLOWED_HOSTS`; the default empty value denies all downloads.
-2. Accept HTTPS only, reject URL credentials and unapproved hosts, resolve DNS and reject any non-global IP address.
-3. Revalidate each redirect, check publisher `robots.txt`, ignore ambient proxy variables and enforce download size limits.
+2. Accept HTTPS only, reject URL credentials and unapproved hosts, resolve DNS and reject any non-global IP address; custom ports are blocked.
+3. Revalidate each redirect, check publisher `robots.txt` (bounded to 512 KiB), ignore ambient proxy variables and enforce download size limits.
 4. Require a PDF content type and `%PDF-` signature; reject encrypted, corrupt, oversized or excessive-page files.
 5. Extract text page-by-page and preserve page numbers. Store the original URL separately from the final redirected URL.
 6. Calculate SHA-256 and persist byte size, retrieval timestamp, engine version, page count and extraction warnings.
