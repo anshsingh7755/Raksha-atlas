@@ -33,13 +33,11 @@ export function tokenizeSearch(value) {
 
 function expandedTerms(query) {
   const tokens = tokenizeSearch(query);
-  const expanded = new Set(tokens);
-  for (const token of tokens) {
-    for (const alias of SEARCH_ALIASES.get(token) ?? []) {
-      for (const aliasToken of tokenizeSearch(alias)) expanded.add(aliasToken);
-    }
-  }
-  return { tokens, expanded: [...expanded] };
+  const alternatives = tokens.map((token) => [
+    [token],
+    ...(SEARCH_ALIASES.get(token) ?? []).map(tokenizeSearch),
+  ]);
+  return { tokens, alternatives };
 }
 
 function fieldScore(value, terms, query) {
@@ -56,7 +54,7 @@ function fieldScore(value, terms, query) {
 
 export function scoreSearchRecord(record, query) {
   const normalizedQuery = normalizeSearchText(query);
-  const { tokens, expanded } = expandedTerms(query);
+  const { tokens, alternatives } = expandedTerms(query);
   if (!normalizedQuery || !tokens.length) return 0;
 
   const fields = record.searchFields ?? {
@@ -66,9 +64,13 @@ export function scoreSearchRecord(record, query) {
     body: record.body,
   };
   const normalizedValues = Object.values(fields).map(normalizeSearchText);
-  const allTermsMatch = expanded.every((term) =>
-    normalizedValues.some((value) => value.split(" ").includes(term)),
+  const wordSets = normalizedValues.map((value) => new Set(value.split(" ")));
+  const allTermsMatch = alternatives.every((options) =>
+    options.some((option) =>
+      wordSets.some((words) => option.every((term) => words.has(term))),
+    ),
   );
+  const expanded = [...new Set(alternatives.flatMap((options) => options.flat()))];
   const phraseMatch = normalizedValues.some((value) => value.includes(normalizedQuery));
   if (!allTermsMatch && !phraseMatch) return 0;
 
@@ -77,8 +79,8 @@ export function scoreSearchRecord(record, query) {
   const categoryScore = fieldScore(fields.category, expanded, normalizedQuery);
   const summaryScore = fieldScore(fields.summary, expanded, normalizedQuery);
   const bodyScore = fieldScore(fields.body, expanded, normalizedQuery);
-  const tokenCoverage = tokens.filter((term) =>
-    normalizedValues.some((value) => value.split(" ").includes(term)),
+  const tokenCoverage = alternatives.filter((options) =>
+    options.some((option) => wordSets.some((words) => option.every((term) => words.has(term)))),
   ).length / tokens.length;
 
   return (
