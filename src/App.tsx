@@ -2164,7 +2164,7 @@ function App() {
         ...Object.values(item.technicalProfile ?? {}),
       ].join(" ").toLowerCase().includes(q));
     }, [items, query]);
-    const subcategory = (item: InventoryItem) => item.technicalProfile?.platformType || item.category;
+    const subcategory = (item: InventoryItem) => item.technicalProfile?.class || item.variant || item.technicalProfile?.platformType || item.role || item.category;
     const iconFor = (item: InventoryItem) => /ship|submarine|corvette|destroyer|frigate|carrier/i.test(item.category) ? Ship : /aircraft|helicopter|fighter|trainer|aviation|drone|uav|missile|air defence/i.test(item.category) ? Plane : Shield;
     return (
       <section className="page-section">
