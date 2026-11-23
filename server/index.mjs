@@ -893,6 +893,33 @@ const server = createServer(async (request, response) => {
     send(response, 200, { query, count: limited.length, results: limited });
     return;
   }
+  if (request.method === "GET" && url.pathname === "/api/commands") {
+    const register = JSON.parse(readFileSync(join(root, "commands.json"), "utf8"));
+    const service = url.searchParams.get("service");
+    const group = url.searchParams.get("group");
+    const structureType = url.searchParams.get("type");
+    const status = url.searchParams.get("status");
+    const items = (register.records ?? []).filter((item) =>
+      (!service || item.service === service) &&
+      (!group || item.group === group) &&
+      (!structureType || item.structureType === structureType) &&
+      (!status || item.status === status),
+    );
+    send(response, 200, {
+      items,
+      count: items.length,
+      filters: { service, group, structureType, status },
+      availableFilters: {
+        services: [...new Set(register.records.map((item) => item.service))].sort(),
+        groups: [...new Set(register.records.map((item) => item.group))].sort(),
+        structureTypes: [...new Set(register.records.map((item) => item.structureType))].sort(),
+        statuses: [...new Set(register.records.map((item) => item.status))].sort(),
+      },
+      asOf: register.asOf ?? null,
+      policy: register.policy,
+    });
+    return;
+  }
   if (request.method === "GET" && url.pathname === "/api/inventory") {
     const service = url.searchParams.get("service");
     const category = url.searchParams.get("category");
