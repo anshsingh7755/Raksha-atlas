@@ -1,6 +1,6 @@
 # Inventory Module — Implementation Specification
 
-**Status:** Phase 0.1 — initial implementation slice applied; local validation pending  
+**Status:** Phase 0.1 — service-neutral default and data-driven filters implemented; local validation pending  
 **Working branch:** `work/step-1-foundation`  
 **Active runtime:** React + TypeScript + Vite and Node.js API
 
@@ -67,6 +67,8 @@ The current UI exposes Army, Navy, Air Force, Joint, Space, Cyber and Intelligen
 2. Added an explicit neutral All services selection descriptor for the Commands view.
 3. Removed `frigatesPath`, `readFrigates()` and `GET /api/inventory/frigates` from `server/index.mjs`.
 4. Kept the common `GET /api/inventory` API, its filters, image enrichment and existing inventory records intact.
+7. Added `availableFilters` metadata (services, categories, lifecycle statuses and origin countries) derived from the full dataset, so the UI no longer maintains hardcoded filter option lists.
+8. Updated the inventory response date to the latest `asOfDate` among the source records (`asOf` remains as a compatibility alias and `latestRecordAsOf` is explicit).
 5. Kept `server/frigates.json` in the repository for now as a rollback/reference artifact. It is no longer loaded by the API. Do not delete it until local build/smoke verification and a repository-wide usage check confirm it is safe to remove.
 6. No inventory dataset records were intentionally changed by this slice.
 
@@ -86,7 +88,14 @@ Response:
     "quantityStatus": null,
     "originCountry": null
   },
-  "asOf": "source snapshot date"
+  "availableFilters": {
+    "services": ["Army", "Air Force", "Cyber", "Intelligence", "Joint", "Navy", "Space"],
+    "categories": ["..."],
+    "quantityStatuses": ["AoN", "contract_signed", "in_service", "..."],
+    "originCountries": ["..."]
+  },
+  "asOf": "latest source-record as-of date",
+  "latestRecordAsOf": "latest source-record as-of date"
 }
 ```
 
@@ -99,6 +108,8 @@ Each query parameter is optional and combines with the others using AND semantic
 - [ ] `GET /api/health` returns HTTP 200.
 - [ ] `GET /api/inventory` returns items and `count` equals the array length.
 - [ ] Service filters for Army, Navy and Air Force return only matching service values.
+- [ ] Service, category and lifecycle dropdown options are derived from the complete data response, not hardcoded arrays.
+- [ ] Every lifecycle value present in the source data is available in the lifecycle dropdown.
 - [ ] `GET /api/inventory?service=Joint` returns a valid empty list when there are no Joint rows; no dummy records are added.
 - [ ] Category, lifecycle and origin filters compose correctly with service.
 - [ ] Opening Inventory directly defaults to All services.
@@ -134,9 +145,8 @@ Exact returned counts depend on the source snapshot. Check that returned service
 
 ## Next implementation slices
 
-1. Make service/category/lifecycle filter options data-driven from the inventory contract where appropriate.
-2. Promote class/family to an explicit field where supported, retaining `technicalProfile.class` compatibility during transition.
-3. Add source/as-of filters and clearer provenance presentation.
-4. Add a record detail view with full technical profile and acquisition timeline.
-5. Add backend contract tests for filter combinations.
-6. Design the PostgreSQL inventory schema only after the UI/API contract is stable and the current dataset is reconciled.
+1. Promote class/family to an explicit field where supported, retaining `technicalProfile.class` compatibility during transition.
+2. Add source/as-of filters and clearer provenance presentation.
+3. Add a record detail view with full technical profile and acquisition timeline.
+4. Add backend contract tests for filter combinations.
+5. Design the PostgreSQL inventory schema only after the UI/API contract is stable and the current dataset is reconciled.
