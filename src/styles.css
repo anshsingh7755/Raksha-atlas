@@ -3251,3 +3251,177 @@ body {
   font-size: 10px;
   line-height: 1.5;
 }
+
+
+/* =========================================================
+   RAKSHA ATLAS — Aurora Glass visual refresh
+   Clear contrast, luminous accents, soft depth and motion.
+   ========================================================= */
+:root {
+  color-scheme: dark;
+  --muted: #a8b8c9;
+  --line: rgba(159, 190, 226, .17);
+  --panel: rgba(17, 29, 49, .68);
+  --teal: #63e1dc;
+  --text: #f1f5ff;
+  --accent: #8daeff;
+  --glass-bg: rgba(18, 31, 54, .66);
+  --glass-border: rgba(177, 203, 255, .18);
+  --glow-cyan: rgba(65, 219, 218, .18);
+  --glow-violet: rgba(143, 111, 255, .19);
+}
+html { scroll-behavior: smooth; }
+body {
+  color: var(--text);
+  background:
+    radial-gradient(ellipse at 12% 8%, rgba(48, 119, 173, .20), transparent 34rem),
+    radial-gradient(ellipse at 88% 16%, rgba(122, 78, 205, .18), transparent 36rem),
+    radial-gradient(ellipse at 55% 88%, rgba(34, 163, 151, .12), transparent 38rem),
+    #080e1b;
+  background-attachment: fixed;
+}
+.app-shell {
+  background:
+    radial-gradient(circle at 12% 10%, rgba(61, 153, 196, .13), transparent 28rem),
+    radial-gradient(circle at 90% 18%, rgba(130, 91, 224, .14), transparent 30rem),
+    linear-gradient(145deg, rgba(8, 15, 29, .97), rgba(10, 17, 32, .94));
+}
+::selection { color: #06121b; background: #7ce8df; }
+a { color: #a9c4ff; transition: color .2s ease; }
+a:hover { color: #76eee2; }
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  background: rgba(8, 15, 29, .74);
+  border-bottom: 1px solid rgba(165, 195, 255, .16);
+  backdrop-filter: blur(22px) saturate(145%);
+  -webkit-backdrop-filter: blur(22px) saturate(145%);
+}
+.brand-mark {
+  border-color: rgba(103, 230, 220, .7);
+  color: #72eee0;
+  background: linear-gradient(145deg, rgba(66, 218, 213, .17), rgba(117, 114, 255, .12));
+  box-shadow: 0 0 24px rgba(74, 225, 218, .15), inset 0 0 12px rgba(255,255,255,.04);
+}
+.brand span, .eyebrow, .section-kicker, .strip-label, .force-code,
+.row-meta, .update-top, .answer-label { color: #83e7df; }
+.nav-link { transition: color .22s ease, border-color .22s ease, text-shadow .22s ease; }
+.nav-link.active, .nav-link:hover {
+  color: #f4f7ff;
+  border-color: #75e6df;
+  text-shadow: 0 0 18px rgba(103, 230, 220, .3);
+}
+.hero h1 {
+  background: linear-gradient(105deg, #fff 5%, #c4d8ff 48%, #8de9df 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero p, .section-intro, .muted, .programme-summary { color: #b5c3d5; }
+.panel, .glass-panel, .stat-card, .force-card, .inventory-card,
+.programme-card, .signal-card, .source-card, .article-card,
+.catalog-controls, .programme-modal, .programme-modal-grid > div,
+.publisher-source-directory, .timeline-card, .insight-card {
+  background: linear-gradient(145deg, rgba(24, 39, 66, .76), rgba(13, 24, 43, .72));
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, .20), inset 0 1px 0 rgba(255,255,255,.055);
+  backdrop-filter: blur(18px) saturate(135%);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+}
+.force-card, .inventory-card, .programme-card, .signal-card, .source-card,
+.stat-card, .article-card, .timeline-card, .insight-card {
+  transition: transform .24s ease, border-color .24s ease, box-shadow .24s ease, background .24s ease;
+}
+.force-card:hover, .inventory-card:hover, .programme-card:hover, .signal-card:hover,
+.source-card:hover, .article-card:hover, .timeline-card:hover, .insight-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(116, 226, 225, .42);
+  box-shadow: 0 18px 44px rgba(0,0,0,.27), 0 0 28px rgba(73, 193, 207, .09), inset 0 1px 0 rgba(255,255,255,.08);
+}
+button, input, select, textarea {
+  transition: border-color .2s ease, background .2s ease, box-shadow .2s ease, color .2s ease, transform .2s ease;
+}
+button:not(.nav-link):hover { filter: brightness(1.08); }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid #72e5dc;
+  outline-offset: 3px;
+}
+input, select, textarea {
+  color: #edf4ff;
+  background: rgba(8, 17, 33, .72);
+  border-color: rgba(159, 190, 226, .23);
+}
+input::placeholder, textarea::placeholder { color: #8194ad; }
+input:hover, select:hover, textarea:hover {
+  border-color: rgba(125, 210, 225, .46);
+}
+input:focus, select:focus, textarea:focus {
+  border-color: rgba(105, 231, 221, .72);
+  box-shadow: 0 0 0 3px rgba(105, 231, 221, .11);
+}
+button.primary, .primary-btn, .action-btn {
+  color: #071421;
+  background: linear-gradient(110deg, #75e7dc, #8fb6ff 58%, #b49aff);
+  border: 1px solid rgba(211, 235, 255, .36);
+  box-shadow: 0 8px 24px rgba(79, 172, 213, .18);
+}
+.badge, .chip, .tag, .status-chip {
+  border-color: rgba(140, 185, 255, .28);
+}
+.programme-modal {
+  background: linear-gradient(145deg, rgba(18, 31, 53, .97), rgba(9, 18, 34, .97));
+  border-color: rgba(155, 190, 255, .24);
+  box-shadow: 0 28px 100px rgba(0,0,0,.65), 0 0 55px rgba(91, 129, 225, .10);
+  backdrop-filter: blur(26px) saturate(145%);
+}
+.programme-modal-grid > div {
+  background: rgba(19, 35, 59, .66);
+}
+.programme-modal-caveat {
+  color: #c2d0e4;
+  background: linear-gradient(100deg, rgba(84, 139, 231, .12), rgba(67, 205, 193, .08));
+  border-left-color: #8bb6ff;
+}
+.programme-history-note > p, .programme-modal-section > p { color: #c6d3e5; }
+.publisher-source-chip {
+  color: #9ee9e4;
+  background: rgba(78, 213, 206, .08);
+  border-color: rgba(112, 227, 219, .25);
+}
+.publisher-source-directory {
+  background: rgba(18, 31, 53, .68);
+  border-color: var(--glass-border);
+  border-radius: 14px;
+  backdrop-filter: blur(16px);
+}
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: rgba(5, 12, 24, .7); }
+::-webkit-scrollbar-thumb {
+  border: 2px solid rgba(5, 12, 24, .7);
+  border-radius: 20px;
+  background: linear-gradient(180deg, #4bbebd, #8176d9);
+}
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #79e8df, #a395ff); }
+@keyframes atlas-rise-in {
+  from { opacity: 0; transform: translateY(9px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.programme-card, .signal-card, .source-card, .inventory-card {
+  animation: atlas-rise-in .42s both;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .live-dot, .status-pip { animation: atlas-pulse 2.4s ease-in-out infinite; }
+  @keyframes atlas-pulse {
+    0%, 100% { box-shadow: 0 0 7px rgba(99,225,220,.45); }
+    50% { box-shadow: 0 0 17px rgba(99,225,220,.9); }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
