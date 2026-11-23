@@ -114,4 +114,4 @@ Run the focused parser and deduplication tests with:
 npm test
 ```
 
-The current Node test suite covers canonical URL normalization, PIB release identity, headline matching, RSS parsing, Atom alternate-link selection and malformed feed entries. Add regression tests whenever collector or editorial-state behavior changes.
+The current Node test suite covers canonical URL normalization, PIB release identity, headline matching, RSS parsing, Atom alternate-link selection and malformed feed entries. GitHub Actions runs `npm test` and `npm run build` on pushes and pull requests to the active foundation branch. Add regression tests whenever collector or editorial-state behavior changes.
