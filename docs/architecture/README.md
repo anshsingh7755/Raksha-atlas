@@ -162,7 +162,15 @@ The register separates:
 
 A command's headquarters is populated only when the linked source supports it; otherwise it remains null. This is a public organisational directory, not an operational order of battle. Do not add deployment, readiness or sensitive unit-location information.
 
-## 11. Where to find implementation details
+## 11. Programmes module boundary
+
+The active `GET /api/programmes` endpoint reads the curated `server/programmes.json` register generated from the public Future Programmes & Acquisition Intelligence dossier. It returns source records, quantities only when structured, milestone arrays, record status, evidence quality and stage-classification provenance. Filters cover service/domain, record status, stage-classification method and evidence quality.
+
+A text-derived stage guess is not an acquisition milestone. Records whose `stageClassification` is `heuristic_from_dossier_text` are exposed to the UI as **Needs verification**, while the original dossier wording remains separately visible as an unverified reported label. AoN, RFP, development, trials, contract, construction, delivery and in-service are distinct states; do not infer one from keywords in a narrative.
+
+The Programmes page is a research/discovery register, not a contract ledger or official programme status dashboard. Programme milestones must retain their own dates and source URLs. Quantity fields remain null unless explicitly structured and supported; do not infer quantities from narrative estimates.
+
+## 12. Where to find implementation details
 
 - [Delivery roadmap](../roadmap/README.md) — phases, sequence, acceptance criteria and learning plan.
 - [Inventory module specification](../roadmap/INVENTORY-MODULE.md) — canonical model, API contract, current implementation and acceptance checklist.\n- [Commands module specification](../roadmap/COMMANDS-MODULE.md) — command classification, API contract, source policy and acceptance checklist.
