@@ -2618,7 +2618,7 @@ function App() {
           <button className="primary-btn" disabled={saving || !title.trim() || !publisher.trim() || !url.trim()} onClick={registerDocument}>{saving ? "Registering…" : "Save document metadata"}</button>
         </article>}
         {error && <div className="watch-warning">{error}</div>}
-        <div className="documents-count"><strong>{visible.length}</strong> documents in current view <span>· PDF text extraction and OCR are available for approved public sources</span></div>
+        <div className="documents-count"><strong>{visible.length}</strong> documents in current view <span>· public HTML/PDF extraction and optional PDF OCR</span></div>
         {loading ? <div className="data-state">Loading public documents…</div> : visible.length === 0 ? <div className="data-state">{items.length === 0 ? "No public documents have been registered yet. Add a public source URL to begin the library." : "No documents match these filters."}</div> :
           <div className="document-grid">{visible.map((item) => <article className="document-card" key={item.id}>
             <div className="document-card-meta"><span>{item.documentType.replace(/_/g," ")}</span><span>{item.fileFormat.toUpperCase()}</span></div>
