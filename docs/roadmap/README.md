@@ -152,7 +152,7 @@ This phase is the immediate priority. Complete and verify the product before the
 
 ## 5. Phase 1 — one-time frontend migration
 
-**Target:** Next.js + React + TypeScript. **Status: in progress — Phase 1.1 audit recorded; Phase 1.2 configurable API proxy and CI typecheck/build steps committed; local Next.js homepage confirmed running. CI and production-build verification pending.** See [Phase 1 frontend migration plan](PHASE-1-FRONTEND-MIGRATION.md).
+**Target:** Next.js + React + TypeScript. **Status: in progress — Phase 1.1 audit recorded; Phase 1.2 configurable API proxy and CI typecheck/build steps committed; local Next.js homepage confirmed running; initial route-aware App Router integration committed. CI, production-build and deep-link verification pending.** See [Phase 1 frontend migration plan](PHASE-1-FRONTEND-MIGRATION.md).
 
 1. Audit the completed Vite UI, routes, components, styles, assets and API contracts.
 2. Move/restructure the existing UI into Next.js App Router; do not redesign/rewrite the product from scratch.
