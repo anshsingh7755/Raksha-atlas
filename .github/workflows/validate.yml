@@ -23,3 +23,11 @@ jobs:
         run: npm test
       - name: Build website
         run: npm run build
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install AI service test dependencies
+        run: pip install -r ai/requirements-dev.txt
+      - name: Test document extraction worker
+        run: pytest -q
