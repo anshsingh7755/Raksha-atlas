@@ -1659,7 +1659,9 @@ function App({
     ? (initialView as View)
     : "overview";
   const [activeView, setActiveView] = useState<View>(resolvedInitialView);
-  useEffect(() => {\n    setActiveView(resolvedInitialView);\n  }, [resolvedInitialView]);\n  const [activeForce, setActiveForce] = useState("all");
+  useEffect(() => {
+    setActiveView(resolvedInitialView);
+  }, [resolvedInitialView]);\n  const [activeForce, setActiveForce] = useState("all");
   const [chatOpen, setChatOpen] = useState(false);
   const [question, setQuestion] = useState("");
   const [chatAnswer, setChatAnswer] = useState("");
