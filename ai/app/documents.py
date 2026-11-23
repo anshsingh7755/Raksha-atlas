@@ -13,6 +13,7 @@ from urllib.robotparser import RobotFileParser
 import fitz
 import httpx
 from fastapi import HTTPException
+from starlette.concurrency import run_in_threadpool
 
 USER_AGENT = "RakshaAtlasDocumentBot/1.0"
 MAX_FILE_BYTES = int(os.getenv("DOCUMENT_MAX_FILE_BYTES", str(25 * 1024 * 1024)))
@@ -221,11 +222,11 @@ async def extract_public_document(raw_url: str, ocr: bool = False) -> dict:
     url = _validate_url(raw_url)
     content, final_url, content_type = await _download_public_document(url)
     if content_type == "application/pdf" or content.startswith(b"%PDF-"):
-        result = _extract_pdf(content, ocr)
+        result = await run_in_threadpool(_extract_pdf, content, ocr)
         file_format = "pdf"
         engine = f"PyMuPDF {fitz.VersionBind}"
     elif content_type in ("text/html", "application/xhtml+xml"):
-        result = _extract_html(content)
+        result = await run_in_threadpool(_extract_html, content)
         file_format = "html"
         engine = "Python HTMLParser"
     else:
