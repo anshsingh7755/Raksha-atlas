@@ -28,6 +28,7 @@ import {
   Command,
 } from "lucide-react";
 import { fetchPlatformRegister, type PlatformRegisterItem } from "./services/inventory";
+import ProgrammeTimelinePanel, { type ProgrammeMilestone } from "./components/ProgrammeTimelinePanel";
 
 type View =
   | "overview"
@@ -605,15 +606,12 @@ function EquipmentDataExplorer() {
       </div>
       {mode === "inventory" ? (
         <>
-          <div className="catalog-summary">
+          <div className="catalog-service-strip" aria-label="Inventory source rows by service">
+            <span className="catalog-service-strip-label">SOURCE ROWS BY SERVICE</span>
             {services.map((name) => (
-              <div key={name}>
-                <span>{name}</span>
-                <strong>
-                  {inventory.filter((item) => item.service === name).length}
-                </strong>
-                <small>source rows · quantities not summed</small>
-              </div>
+              <button key={name} className={service === name ? "active" : ""} onClick={() => setService(service === name ? "all" : name)}>
+                <span>{name}</span><strong>{inventory.filter((item) => item.service === name).length}</strong>
+              </button>
             ))}
           </div>
           <div className="class-table-wrap">
@@ -754,12 +752,19 @@ function ProgrammeHistoryNotes({ text }: { text: string }) {
 
 function ProgrammeDossierExplorer() {
   const [items, setItems] = useState<ProgrammeDossierItem[]>([]);
+  const [programmeTimelines, setProgrammeTimelines] = useState<Array<{id:string;programme:string;service:string;dossierRecordIds?:string[];milestones:ProgrammeMilestone[]}>>([]);
   const [query, setQuery] = useState("");
   useEffect(() => { const saved = sessionStorage.getItem("raksha-search-query"); if (saved) { setQuery(saved); sessionStorage.removeItem("raksha-search-query"); } }, []);
   const [service, setService] = useState("all");
   const [stage, setStage] = useState("all");
   const [selected, setSelected] = useState<ProgrammeDossierItem | null>(null);
   const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    fetch("/api/timelines")
+      .then((response) => { if (!response.ok) throw new Error("Timeline API unavailable"); return response.json(); })
+      .then((data: { items?: Array<{id:string;programme:string;service:string;dossierRecordIds?:string[];milestones:ProgrammeMilestone[]}> }) => setProgrammeTimelines(data.items ?? []))
+      .catch((error) => console.error("Could not load programme milestones.", error));
+  }, []);
   useEffect(() => {
     fetch("/api/programmes")
       .then((response) => { if (!response.ok) throw new Error("Programme dossier API unavailable"); return response.json(); })
@@ -812,9 +817,14 @@ function ProgrammeDossierExplorer() {
             <div><span>Evidence quality</span><strong>{selected.evidenceQuality ?? "Not normalized"}</strong></div>
           </div>
           <p className="programme-modal-caveat">Discovery register only. Stage labels are provisional text-based classifications; absence of a structured quantity does not mean zero. An AoN, proposal, test or report is not evidence of a signed contract or induction.</p>
-          <div className="programme-modal-section"><h3>Programme history and notes</h3><ProgrammeHistoryNotes text={selected.details} /></div>
-          <div className="programme-modal-section"><h3>Evidence references ({selected.sourceRecords?.length ?? selected.sourceUrls.length})</h3>
+          <div className="programme-modal-body-layout">
+            <ProgrammeTimelinePanel programme={selected.title} milestones={programmeTimelines.find((timeline) => timeline.dossierRecordIds?.includes(selected.id))?.milestones ?? []} />
+            <div className="programme-modal-main-notes">
+              <div className="programme-modal-section"><h3>Programme history and notes</h3><ProgrammeHistoryNotes text={selected.details} /></div>
+              <div className="programme-modal-section"><h3>Evidence references ({selected.sourceRecords?.length ?? selected.sourceUrls.length})</h3>
             {(selected.sourceRecords?.length ? selected.sourceRecords : selected.sourceUrls.map((url) => ({url,sourceId:null,sourceName:null,sourceType:"unregistered",official:null}))).map((source) => <a className="programme-modal-source" key={source.url} href={source.url} target="_blank" rel="noreferrer"><span><strong>{source.sourceName ?? new URL(source.url).hostname}</strong><small>{source.sourceId ?? "Source not mapped to registry"} · {source.sourceType}{source.official === true ? " · Official" : source.official === false ? " · Secondary / unofficial" : ""}</small></span><ArrowUpRight size={14} /></a>)}
+              </div>
+            </div>
           </div>
           <footer className="programme-modal-footer">Last verified: {selected.lastVerifiedAt ?? "Not yet verified"} · Record ID: {selected.id}</footer>
         </section>
