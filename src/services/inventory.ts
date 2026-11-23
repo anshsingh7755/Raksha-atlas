@@ -1,3 +1,5 @@
+import { apiGet } from "./api";
+
 export type PlatformRegisterItem = {
   category: string;
   service: string;
@@ -23,12 +25,6 @@ export async function fetchPlatformRegister(
   category: string,
 ): Promise<PlatformRegisterItem[]> {
   const query = category === "all" ? "" : `?category=${encodeURIComponent(category)}`;
-  const response = await fetch(`/api/inventory/register${query}`);
-
-  if (!response.ok) {
-    throw new Error(`Platform register request failed (${response.status}).`);
-  }
-
-  const data = (await response.json()) as PlatformRegisterResponse;
+  const data = await apiGet<PlatformRegisterResponse>(`/api/inventory/register${query}`);
   return data.items;
 }
