@@ -51,15 +51,15 @@ Starts extraction for a registered PDF. The Node API calls the private FastAPI w
 
 ## PDF extraction worker
 
-The FastAPI service in `ai/` implements the extraction path using HTTPX and PyMuPDF:
+The FastAPI service in `ai/` implements the extraction path using HTTPX, PyMuPDF and Python's HTML parser. It accepts public PDF and HTML/XHTML documents:
 
 1. Require an explicit hostname allowlist in `DOCUMENT_ALLOWED_HOSTS`; the default empty value denies all downloads.
 2. Accept HTTPS only, reject URL credentials and unapproved hosts, resolve DNS and reject any non-global IP address; custom ports are blocked.
 3. Revalidate each redirect, check publisher `robots.txt` (bounded to 512 KiB), ignore ambient proxy variables and enforce download size limits.
 4. Require a PDF content type and `%PDF-` signature; reject encrypted, corrupt, oversized or excessive-page files.
-5. Extract text page-by-page and preserve page numbers. Store the original URL separately from the final redirected URL.
+5. Extract PDF text page-by-page and preserve page numbers; extract readable HTML text while excluding script, style, navigation and form content. HTML text has no invented page references. Store the original URL separately from the final redirected URL.
 6. Calculate SHA-256 and persist byte size, retrieval timestamp, engine version, page count and extraction warnings.
-7. If pages contain no usable text, mark the record `needs_ocr`. The UI then offers an explicit OCR retry using English Tesseract; OCR is capped by `DOCUMENT_MAX_OCR_PAGES`.
+7. If PDF pages contain no usable text, mark the record `needs_ocr`. The UI then offers an explicit OCR retry using English Tesseract; OCR is capped by `DOCUMENT_MAX_OCR_PAGES`.
 
 Default limits: 25 MiB per PDF, 300 pages, 200,000 extracted characters, 20 OCR pages. These can be configured through environment variables. The worker never crawls pages or links from a document.
 
