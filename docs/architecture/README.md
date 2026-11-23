@@ -152,7 +152,8 @@ The unused Navy-specific frigate reader and `GET /api/inventory/frigates` route 
 
 ## 10. Where to find implementation details
 
-- [Delivery roadmap](../roadmap/README.md) — phases, sequence, acceptance criteria and learning plan.\n- [Inventory module specification](../roadmap/INVENTORY-MODULE.md) — canonical model, API contract, current implementation and acceptance checklist.
+- [Delivery roadmap](../roadmap/README.md) — phases, sequence, acceptance criteria and learning plan.
+- [Inventory module specification](../roadmap/INVENTORY-MODULE.md) — canonical model, API contract, current implementation and acceptance checklist.
 - [Inventory data notes](../../INVENTORY-DATA.md) — inventory provenance and data handling.
 - [News pipeline](../../NEWS-PIPELINE.md) — current ingestion implementation.
 - [RAG chatbot](../../RAG-CHATBOT.md) — current retrieval/chat design.
