@@ -908,9 +908,37 @@ const server = createServer(async (request, response) => {
     for (const item of readPlatformRegister()) add("Platform classes", "register", item.className, item.className, item.role || item.platform, [item.className,item.platform,item.category,item.role,item.origin,item.futureOrders].join(" "));
     for (const item of readSources()) add("Sources", "sources", item.id, item.name || item.title || item.id, item.description || item.publisher || item.url, [item.id,item.name,item.title,item.description,item.publisher,item.url].join(" "));
     for (const item of JSON.parse(readFileSync(join(root, "commands.json"), "utf8")).records ?? []) add("Commands", "forces", item.id, item.name, item.description, [item.name,item.service,item.group,item.structureType,item.status,item.headquarters,item.description].join(" "));
+    for (const item of JSON.parse(readFileSync(join(root, "theatre-locations.json"), "utf8")).records ?? []) add("Theatre Atlas", "atlas", item.id, item.name, item.description, [item.name,item.country,item.region,item.city,item.locationType,item.service,item.status,item.description].join(" "));
     results.sort((a,b) => b.score-a.score || a.title.localeCompare(b.title));
     const limited = results.slice(0, 40).map(({score,...item}) => item);
     send(response, 200, { query, count: limited.length, results: limited });
+    return;
+  }
+  if (request.method === "GET" && url.pathname === "/api/theatre-atlas") {
+    const register = JSON.parse(readFileSync(join(root, "theatre-locations.json"), "utf8"));
+    const service = url.searchParams.get("service");
+    const type = url.searchParams.get("type");
+    const country = url.searchParams.get("country");
+    const query = (url.searchParams.get("q") || "").trim().toLowerCase();
+    const items = (register.records ?? []).filter((item) =>
+      (!service || item.service === service) &&
+      (!type || item.locationType === type) &&
+      (!country || item.country === country) &&
+      (!query || [item.name,item.country,item.region,item.city,item.locationType,item.status,item.description]
+        .filter(Boolean).join(" ").toLowerCase().includes(query)),
+    );
+    send(response, 200, {
+      items,
+      count: items.length,
+      filters: { service, type, country, q: query || null },
+      availableFilters: {
+        services: [...new Set(register.records.map((item) => item.service))].sort(),
+        types: [...new Set(register.records.map((item) => item.locationType))].sort(),
+        countries: [...new Set(register.records.map((item) => item.country))].sort(),
+      },
+      asOf: register.asOf ?? null,
+      policy: register.policy,
+    });
     return;
   }
   if (request.method === "GET" && url.pathname === "/api/commands") {
