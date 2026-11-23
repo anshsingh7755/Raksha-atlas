@@ -91,6 +91,16 @@
       "kind": "discovery-rss",
       "active": true,
       "notes": "Secondary/international reporting. Headlines/snippets are retained, not full article text."
+    },
+    {
+      "id": "indian-defence-news-rss",
+      "name": "Indian Defence News — Publisher RSS",
+      "url": "https://www.indiandefensenews.in/feeds/posts/default?alt=rss",
+      "official": false,
+      "defaultVerification": "reported",
+      "kind": "rss",
+      "active": true,
+      "notes": "Publisher Blogger RSS feed. Secondary curated reporting; preserve article labels/bylines and underlying source attribution. Do not treat claims as verified without primary corroboration."
     }
   ],
   "youtube": {
