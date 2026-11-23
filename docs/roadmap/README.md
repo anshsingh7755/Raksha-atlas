@@ -138,7 +138,7 @@ This phase is the immediate priority. Complete and verify the product before the
 | Order | Workstream | Acceptance criteria |
 |---|---|---|
 | 0.1 | Inventory | Shared service-independent catalogue, neutral All services default, no service-specific duplicate API, data-driven service/domain/category/lifecycle filters and source attribution. Local build/API validation remains pending. See [Inventory module specification](INVENTORY-MODULE.md). |
-| 0.2 | Commands | Established service commands and tri-service structures are correctly distinguished; proposals are labelled separately |
+| 0.2 | Commands | API-backed directory distinguishes service operational/training/maintenance commands, joint operational commands, headquarters/agencies and under-study theatre-command proposals. See [Commands module specification](COMMANDS-MODULE.md). |
 | 0.3 | Programmes | Programme histories, acquisition stage, milestones, dates, quantities and evidence are source-linked |
 | 0.4 | News | Three defence-news sources plus official sources; publication date, publisher, canonical URL, deduplication and attribution visible |
 | 0.5 | Theatre Atlas | Geographic basemap, usable layers, public regional locations, clear established/proposed status and source profiles |
@@ -258,4 +258,4 @@ For each technology, use the same learning loop:
 
 ## 12. Current next action
 
-**Current task: finish Phase 0.1 — Inventory.** The current code now defaults the inventory experience to All services, removes the unused Navy-only frigate API reader/route, and loads service/domain/category/lifecycle options from the full inventory dataset. Follow [Inventory module specification](INVENTORY-MODULE.md), run its local build/API acceptance checks, then add explicit class/family handling and record details. Do not start the main Next.js/Spring Boot cutover until the Phase 0 acceptance criteria are closed.
+**Current task: validate Phase 0.2 — Commands.** The initial register is in `server/commands.json`; `GET /api/commands` exposes exact-match filters and the overview/Forces pages consume the API. Follow [Commands module specification](COMMANDS-MODULE.md), run the local build and API acceptance checks, then close remaining source/headquarters verification gaps. Phase 0.1 Inventory still has its local API runtime check pending. Do not start the main Next.js/Spring Boot cutover until the Phase 0 acceptance criteria are closed.
