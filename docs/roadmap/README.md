@@ -137,7 +137,7 @@ This phase is the immediate priority. Complete and verify the product before the
 
 | Order | Workstream | Acceptance criteria |
 |---|---|---|
-| 0.1 | Inventory | Shared service-independent catalogue, neutral All services default, no service-specific duplicate API, data-driven service/category/lifecycle filters and source attribution. Local build/API validation remains pending. See [Inventory module specification](INVENTORY-MODULE.md). |
+| 0.1 | Inventory | Shared service-independent catalogue, neutral All services default, no service-specific duplicate API, data-driven service/domain/category/lifecycle filters and source attribution. Local build/API validation remains pending. See [Inventory module specification](INVENTORY-MODULE.md). |
 | 0.2 | Commands | Established service commands and tri-service structures are correctly distinguished; proposals are labelled separately |
 | 0.3 | Programmes | Programme histories, acquisition stage, milestones, dates, quantities and evidence are source-linked |
 | 0.4 | News | Three defence-news sources plus official sources; publication date, publisher, canonical URL, deduplication and attribution visible |
@@ -258,4 +258,4 @@ For each technology, use the same learning loop:
 
 ## 12. Current next action
 
-**Current task: finish Phase 0.1 — Inventory.** The current code now defaults the inventory experience to All services, removes the unused Navy-only frigate API reader/route, and loads service/category/lifecycle options from the full inventory dataset. Follow [Inventory module specification](INVENTORY-MODULE.md), run its local build/API acceptance checks, then add explicit class/family handling and record details. Do not start the main Next.js/Spring Boot cutover until the Phase 0 acceptance criteria are closed.
+**Current task: finish Phase 0.1 — Inventory.** The current code now defaults the inventory experience to All services, removes the unused Navy-only frigate API reader/route, and loads service/domain/category/lifecycle options from the full inventory dataset. Follow [Inventory module specification](INVENTORY-MODULE.md), run its local build/API acceptance checks, then add explicit class/family handling and record details. Do not start the main Next.js/Spring Boot cutover until the Phase 0 acceptance criteria are closed.
