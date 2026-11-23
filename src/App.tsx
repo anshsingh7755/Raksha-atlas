@@ -30,6 +30,7 @@ import {
 import { fetchPlatformRegister, type PlatformRegisterItem } from "./services/inventory";
 import ProgrammeTimelinePanel, { type ProgrammeMilestone } from "./components/ProgrammeTimelinePanel";
 import TheatreAtlas from "./components/TheatreAtlas";
+import AtlasFooter from "./components/AtlasFooter";
 
 type View =
   | "overview"
@@ -3326,21 +3327,7 @@ function App({
         {activeView === "pib" && <PibDefence />}
         {activeView === "sources" && <Sources />}
       </main>
-      <footer className="footer">
-        <button className="brand brand-button" onClick={() => navigate("overview")}>
-          <div className="brand-mark">
-            <Shield size={16} />
-          </div>
-          <div>
-            <strong>RAKSHA</strong>
-            <span>ATLAS / 01</span>
-          </div>
-        </button>
-        <p>Public information. Clear context. No classified material.</p>
-        <span>
-          <Clock3 size={12} /> PIB metadata sync target: 04:00 IST
-        </span>
-      </footer>
+      <AtlasFooter onNavigate={navigate} />
       {chatOpen && (
         <ChatDialog
           question={question}
