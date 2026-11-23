@@ -144,9 +144,15 @@ Do not introduce Kafka, Spark, Kubernetes or other infrastructure until a real w
 | FastAPI | `http://localhost:8001/health` | Scaffold health endpoint |
 | PostgreSQL | Compose private network, port 5432 internally | Local database service |
 
-## 9. Where to find implementation details
+## 9. Inventory implementation boundary
 
-- [Delivery roadmap](../roadmap/README.md) — phases, sequence, acceptance criteria and learning plan.
+Inventory is a shared service-independent module. The active `GET /api/inventory` endpoint filters `server/inventory.json` by exact service, category, lifecycle and origin values; the React `Inventory` component consumes this API for all listed domains. The UI defaults to All services when the user has not selected a service. Selecting a service from Commands preselects that service on the Inventory page.
+
+The unused Navy-specific frigate reader and `GET /api/inventory/frigates` route have been removed from the active API because the common inventory catalogue is the canonical UI data path. The legacy JSON file is temporarily retained as a rollback/reference artifact and is not loaded by the API. Detailed field definitions and acceptance checks are in [Inventory module specification](../roadmap/INVENTORY-MODULE.md).
+
+## 10. Where to find implementation details
+
+- [Delivery roadmap](../roadmap/README.md) — phases, sequence, acceptance criteria and learning plan.\n- [Inventory module specification](../roadmap/INVENTORY-MODULE.md) — canonical model, API contract, current implementation and acceptance checklist.
 - [Inventory data notes](../../INVENTORY-DATA.md) — inventory provenance and data handling.
 - [News pipeline](../../NEWS-PIPELINE.md) — current ingestion implementation.
 - [RAG chatbot](../../RAG-CHATBOT.md) — current retrieval/chat design.
