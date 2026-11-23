@@ -191,6 +191,9 @@ const signal = {
 function PlatformRegister() {
   const [category, setCategory] = useState("all");
   const [items, setItems] = useState<PlatformRegisterItem[]>([]);
+  const [query, setQuery] = useState("");
+  useEffect(() => { const saved = sessionStorage.getItem("raksha-search-query"); const section = sessionStorage.getItem("raksha-search-section"); if (saved && (section === "Platform classes" || section === "Reference equipment catalogue")) { setQuery(saved); sessionStorage.removeItem("raksha-search-query"); sessionStorage.removeItem("raksha-search-target"); sessionStorage.removeItem("raksha-search-section"); } }, []);
+  const visibleItems = items.filter((item) => [item.className,item.platform,item.category,item.service,item.origin,item.status,item.role,item.futureOrders].join(" ").toLowerCase().includes(query.toLowerCase()));
   useEffect(() => {
     fetchPlatformRegister(category)
       .then(setItems)
@@ -228,7 +231,8 @@ function PlatformRegister() {
             <option value="Artillery">Artillery</option>
           </select>
         </label>
-        <strong className="inventory-count">{items.length} class records</strong>
+        <label className="command-search"><Search size={15}/><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search platform, class, service or role"/></label>
+        <strong className="inventory-count">{visibleItems.length} class records</strong>
       </div>
       <div className="class-table-wrap">
         <table className="class-table platform-register-table">
@@ -247,7 +251,7 @@ function PlatformRegister() {
             </tr>
           </thead>
           <tbody>
-            {items.map((item) => (
+            {visibleItems.map((item) => (
               <tr key={`${item.category}-${item.className}`}>
                 <td>
                   <img src={item.imageUrl} alt={`${item.className} representative`} />
@@ -1430,10 +1434,12 @@ function SourceRegistry({
   sources,
   adminToken,
   onUpdated,
+  query = "",
 }: {
   sources: RegistrySource[];
   adminToken: string;
   onUpdated: (source: RegistrySource) => void;
+  query?: string;
 }) {
   const [busyId, setBusyId] = useState("");
   const [error, setError] = useState("");
@@ -1464,7 +1470,7 @@ function SourceRegistry({
   return (
     <>
       <div className="source-table">
-        {sources.map((source) => {
+        {sources.filter((source) => [source.name,source.id,source.sourceType,source.reliabilityNotes,source.url].join(" ").toLowerCase().includes(query.toLowerCase())).map((source) => {
           const monitorable = /rss|discovery feed/i.test(source.sourceType);
           return (
             <div className="source-entry" key={source.id}>
@@ -2669,6 +2675,8 @@ function App() {
     );
   };
   const Sources = () => {
+    const [sourceQuery, setSourceQuery] = useState("");
+    useEffect(() => { const saved = sessionStorage.getItem("raksha-search-query"); const section = sessionStorage.getItem("raksha-search-section"); if (saved && section === "Sources") { setSourceQuery(saved); sessionStorage.removeItem("raksha-search-query"); sessionStorage.removeItem("raksha-search-target"); sessionStorage.removeItem("raksha-search-section"); } }, []);
     const [syncState, setSyncState] = useState("ready");
     const [showFeedForm, setShowFeedForm] = useState(false);
     const [feedName, setFeedName] = useState("");
@@ -2971,9 +2979,11 @@ function App() {
             ))}
           </div>
         )}
+        <label className="command-search"><Search size={15}/><input value={sourceQuery} onChange={(event) => setSourceQuery(event.target.value)} placeholder="Search source, publisher or URL"/></label>
         <SourceRegistry
           sources={sourceRegistry}
           adminToken={adminToken}
+          query={sourceQuery}
           onUpdated={(updated) =>
             setSourceRegistry((previous) =>
               previous.map((source) => (source.id === updated.id ? updated : source)),
