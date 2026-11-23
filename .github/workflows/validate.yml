@@ -23,6 +23,12 @@ jobs:
         run: npm test
       - name: Build website
         run: npm run build
+      - name: Install Next.js frontend dependencies
+        run: npm ci --prefix frontend
+      - name: Type-check Next.js frontend
+        run: npm run typecheck --prefix frontend
+      - name: Build Next.js frontend
+        run: npm run build --prefix frontend
       - name: Validate Docker Compose configuration
         env:
           DB_PASSWORD: test-database-password
