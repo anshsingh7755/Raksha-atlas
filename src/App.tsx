@@ -765,12 +765,12 @@ function ProgrammeDossierExplorer() {
       .finally(() => setLoading(false));
   }, []);
   const services = [...new Set(items.map((item) => item.service))].sort();
-  const stages = [...new Set(items.map((item) => item.stage))].sort();
+  const stageClassifications = [...new Set(items.map((item) => item.stageClassification ?? "unclassified"))].sort();
   const statuses = [...new Set(items.map((item) => item.status ?? "needs_verification"))].sort();
   const evidenceQualities = [...new Set(items.map((item) => item.evidenceQuality ?? "not_normalized"))].sort();
   const filtered = items.filter((item) =>
     (service === "all" || item.service === service) &&
-    (stage === "all" || item.stage === stage) &&
+    (stage === "all" || (item.stageClassification ?? "unclassified") === stage) &&
     (status === "all" || (item.status ?? "needs_verification") === status) &&
     (evidence === "all" || (item.evidenceQuality ?? "not_normalized") === evidence) &&
     (!query || `${item.title} ${item.summary} ${item.details}`.toLowerCase().includes(query.toLowerCase())),
@@ -791,7 +791,7 @@ function ProgrammeDossierExplorer() {
       <div className="catalog-controls programme-catalog-controls">
         <label>Search <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Tejas, S-400, Kaveri, ATAGS…" /></label>
         <label>Service / domain <select value={service} onChange={(event) => setService(event.target.value)}><option value="all">All services</option>{services.map((value) => <option key={value} value={value}>{value}</option>)}</select></label>
-        <label>Acquisition stage <select value={stage} onChange={(event) => setStage(event.target.value)}><option value="all">All stage classifications</option>{stages.map((value) => <option key={value} value={value}>{value}</option>)}</select></label>
+        <label>Stage classification <select value={stage} onChange={(event) => setStage(event.target.value)}><option value="all">All classification methods</option>{stageClassifications.map((value) => <option key={value} value={value}>{value.replace(/_/g, " ")}</option>)}</select></label>
         <label>Record status <select value={status} onChange={(event) => setStatus(event.target.value)}><option value="all">All statuses</option>{statuses.map((value) => <option key={value} value={value}>{value.replace(/_/g, " ")}</option>)}</select></label>
         <label>Evidence quality <select value={evidence} onChange={(event) => setEvidence(event.target.value)}><option value="all">All evidence classes</option>{evidenceQualities.map((value) => <option key={value} value={value}>{value.replace(/_/g, " ")}</option>)}</select></label>
       </div>
