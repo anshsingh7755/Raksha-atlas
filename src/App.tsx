@@ -494,6 +494,7 @@ function EquipmentDataExplorer() {
   const [service, setService] = useState("all");
   const [status, setStatus] = useState("all");
   const [query, setQuery] = useState("");
+  useEffect(() => { const saved = sessionStorage.getItem("raksha-search-query"); if (saved) { setQuery(saved); sessionStorage.removeItem("raksha-search-query"); } }, []);
   const [limit, setLimit] = useState(100);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -753,6 +754,7 @@ function ProgrammeHistoryNotes({ text }: { text: string }) {
 function ProgrammeDossierExplorer() {
   const [items, setItems] = useState<ProgrammeDossierItem[]>([]);
   const [query, setQuery] = useState("");
+  useEffect(() => { const saved = sessionStorage.getItem("raksha-search-query"); if (saved) { setQuery(saved); sessionStorage.removeItem("raksha-search-query"); } }, []);
   const [service, setService] = useState("all");
   const [stage, setStage] = useState("all");
   const [selected, setSelected] = useState<ProgrammeDossierItem | null>(null);
@@ -1048,6 +1050,7 @@ function SignalFeed({
   onReview: () => void;
 }) {
   const [query, setQuery] = useState("");
+  useEffect(() => { const saved = sessionStorage.getItem("raksha-search-query"); if (saved) { setQuery(saved); sessionStorage.removeItem("raksha-search-query"); } }, []);
   const [category, setCategory] = useState("all");
   const [publisher, setPublisher] = useState("all");
   const publisherName = (sourceId: string) =>
@@ -1803,7 +1806,7 @@ function App() {
           <div className="atlas-search-input"><Search size={19}/><input autoFocus value={globalSearch} onChange={(event) => setGlobalSearch(event.target.value)} placeholder="Search AMCA, Apache, destroyer, Tejas…" onKeyDown={(event) => { if (event.key === "Enter" && globalSearchResults[0]) { navigate(globalSearchResults[0].view); setGlobalSearchOpen(false); } }}/><kbd>ESC</kbd></div>
           <div className="atlas-search-hint">{globalSearch.trim().length < 2 ? "Search inventory, programmes, articles, procurement, timelines and sources" : globalSearchLoading ? "Searching across Raksha Atlas…" : `${globalSearchResults.length} matching records across the Atlas`}</div>
           {globalSearch.trim().length < 2 ? <div className="atlas-search-links">{navigationItems.map(([view,label]) => <button key={view} onClick={() => {navigate(view);setGlobalSearchOpen(false);}}><span>{label}</span><small>{view}</small><ArrowUpRight size={14}/></button>)}</div> :
-            <div className="atlas-search-results">{globalSearchResults.map((result,index) => <button key={result.view+"-"+result.id+"-"+index} onClick={() => {navigate(result.view);setGlobalSearchOpen(false);}}><span className="atlas-result-section">{result.section}</span><strong>{result.title}</strong><small>{result.summary || "Open this record"}</small><ArrowUpRight size={14}/></button>)}
+            <div className="atlas-search-results">{globalSearchResults.map((result,index) => <button key={result.view+"-"+result.id+"-"+index} onClick={() => { sessionStorage.setItem("raksha-search-query", globalSearch.trim()); if (result.view === "pipeline") sessionStorage.setItem("raksha-search-mode", "pipeline"); navigate(result.view); setGlobalSearchOpen(false); }}><span className="atlas-result-section">{result.section}</span><strong>{result.title}</strong><small>{result.summary || "Open this record"}</small><ArrowUpRight size={14}/></button>)}
               {!globalSearchLoading && globalSearchResults.length === 0 && <div className="atlas-search-empty">No exact matches found. Try a shorter platform name, acronym or variant.</div>}
             </div>}
           <div className="atlas-search-footer">Results are grouped by the section that owns each record · Enter opens the first result</div>
@@ -2139,6 +2142,7 @@ function App() {
     const [categoryFilter, setCategoryFilter] = useState("all");
     const [statusFilter, setStatusFilter] = useState("all");
     const [query, setQuery] = useState("");
+    useEffect(() => { const saved = sessionStorage.getItem("raksha-search-query"); if (saved) { setQuery(saved); sessionStorage.removeItem("raksha-search-query"); } }, []);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
       const controller = new AbortController();
