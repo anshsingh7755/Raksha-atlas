@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 import { answerWithRag } from "./rag.mjs";
 import { searchRecords } from "./search/index.mjs";
-import { normalizeDocument, documentFilters } from "./documents/index.mjs";
+import { normalizeDocument, documentFilters, findDuplicateByChecksum } from "./documents/index.mjs";
 import { initializeStore } from "./db/store.mjs";
 import { startScheduler } from "./scheduler/hourly-scheduler.mjs";
 import { runNewsWorker } from "./workers/news-worker.mjs";
@@ -798,6 +798,15 @@ const server = createServer(async (request, response) => {
       const extraction = await workerResponse.json().catch(() => ({}));
       if (!workerResponse.ok) {
         send(response, workerResponse.status, { error: extraction.detail || extraction.error || "Document extraction failed." });
+        return;
+      }
+      const checksumDuplicate = findDuplicateByChecksum(register.records ?? [], extraction.checksumSha256, document.id);
+      if (checksumDuplicate) {
+        send(response, 409, {
+          error: "The downloaded PDF checksum matches another registered document.",
+          duplicateOfId: checksumDuplicate.id,
+          duplicateTitle: checksumDuplicate.title,
+        });
         return;
       }
       document.canonicalUrl = extraction.canonicalUrl || document.canonicalUrl;
