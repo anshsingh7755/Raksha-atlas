@@ -15,7 +15,8 @@ The register may contain official programme announcements, official test milesto
 
 - `GET /api/programmes` reads the curated JSON register.
 - The Programmes page loads the API and provides client-side search and filters.
-- Programme detail records expose source references, research notes, quantity confidence and links to dated timeline records where available.
+- Programme detail records expose source references, research notes, quantity confidence and dated timeline records linked through explicit `dossierRecordIds`.
+- The 22 timeline records are maintained in `server/timelines.json`; 13 programme-register entries currently have an explicit timeline link. Unmatched timeline records remain separate rather than being attached by fuzzy name matching.
 - Global search already indexes programme records.
 - The API now returns stage-classification provenance, record status, evidence quality, source records, structured milestone fields and summary counts.
 
@@ -34,7 +35,7 @@ The register may contain official programme announcements, official test milesto
 - `items`: filtered programme records.
 - `count`: number of returned records.
 - `availableFilters`: service, status, stage-classification and evidence-quality values from the full register.
-- `summary`: total records, records needing verification, records with structured stage classification, records with programme milestones and records containing at least one official source.
+- `summary`: register entries, records needing verification, records with structured stage classification, programme entries linked to dated timeline milestones, timeline-record count and records containing at least one official source.
 - `asOf`: research cutoff declared by the register.
 - `classificationPolicy`: register-level classification caveat.
 
@@ -105,7 +106,8 @@ The initial extraction also contains a high proportion of heuristic stage labels
 - [x] Source links and evidence metadata remain visible in programme detail.
 - [ ] Reconcile the JSON/dossier record-count discrepancy and duplicate candidates.
 - [ ] Normalize programme stages from dated source milestones.
-- [ ] Add and validate programme-specific milestone coverage.
+- [x] Link existing dated timeline records to their matching programme-register entries where identity is explicit.
+- [ ] Expand programme-specific milestone coverage with source-level evidence and explicit record mappings.
 - [ ] Confirm quantities and acquisition status against primary sources.
 - [ ] Add automated API/data-contract tests and end-to-end page coverage.
 
