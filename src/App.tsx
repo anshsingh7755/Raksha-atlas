@@ -763,7 +763,7 @@ function ProgrammeDossierExplorer() {
       <div className="inventory-grid programme-grid">
         {filtered.map((item) => (
           <article className="inventory-card programme-card" key={item.id}>
-            <div className="inventory-card-top"><span className="verification-chip reported">{item.service}</span><span>{item.sourceCount} source links</span></div>
+            <div className="inventory-card-top"><span className="verification-chip">{item.service}</span><span>{item.sourceCount} source links</span></div>
             <h3>{item.title}</h3><p className="programme-summary">{item.summary || "Open the record for its research notes and source references."}</p>
             <div className="programme-meta"><strong>{item.stage}</strong></div>
             <details className="programme-details"><summary>Programme history and evidence</summary><div className="programme-detail-text">{item.details}</div>
@@ -773,7 +773,7 @@ function ProgrammeDossierExplorer() {
         ))}
       </div>
       {!loading && filtered.length === 0 && <div className="empty-state">No programme records match these filters.</div>}
-      <div className="equipment-note"><a href="/docs/intelligence/FUTURE-PROGRAMMES-ACQUISITION-DOSSIER.md" target="_blank" rel="noreferrer">Open the full research dossier <ArrowUpRight size={12} /></a></div>
+      <div className="equipment-note"><a href="https://github.com/anshsingh7755/Raksha-atlas/blob/work/step-1-foundation/docs/intelligence/FUTURE-PROGRAMMES-ACQUISITION-DOSSIER.md" target="_blank" rel="noreferrer">Open the full research dossier <ArrowUpRight size={12} /></a></div>
     </section>
   );
 }
@@ -1981,9 +1981,7 @@ function App() {
           Programmes in <em>motion.</em>
         </h1>
         <p>
-          Only source-backed procurement rows appear here. A planning signal or AoN is
-          not a contract, production, delivery, or induction; unknown stages remain
-          unknown.
+          Browse official programmes, acquisition approvals, contracts and reported plans. Each record keeps its evidence trail; a proposal or AoN is not a contract, delivery or induction.
         </p>
       </div>
       <ProgrammeDossierExplorer />
