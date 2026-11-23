@@ -489,6 +489,7 @@ type ProcurementRow = {
 
 function EquipmentDataExplorer() {
   const [mode, setMode] = useState<"inventory" | "pipeline">("inventory");
+  useEffect(() => { const saved = sessionStorage.getItem("raksha-search-mode"); if (saved === "pipeline") setMode("pipeline"); if (saved) sessionStorage.removeItem("raksha-search-mode"); }, []);
   const [inventory, setInventory] = useState<EquipmentRow[]>([]);
   const [procurement, setProcurement] = useState<ProcurementRow[]>([]);
   const [service, setService] = useState("all");
