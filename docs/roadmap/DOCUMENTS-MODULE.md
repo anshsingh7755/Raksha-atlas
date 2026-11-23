@@ -45,9 +45,34 @@ Returns `items`, `count`, `total`, `filters`, `availableFilters`, `policy` and p
 
 Registers metadata and optional already-extracted public text. In production, write access requires `RAKSHA_ADMIN_TOKEN` as a bearer token. URL validation is syntactic at registration time; the API does not fetch the submitted URL or download a file. Duplicate canonical URLs are rejected.
 
-## Extraction boundary
+## PDF extraction worker
 
-The current Node.js phase establishes the metadata contract and page-aware storage shape. It does not pretend to parse arbitrary PDF binaries. The production extraction worker belongs in the planned FastAPI/Python service: fetch only permitted public files, validate content type and size, calculate SHA-256, extract text while preserving page boundaries, and mark scanned/unsupported files explicitly. OCR is a later opt-in capability with provenance and confidence metadata.
+The FastAPI service in `ai/` implements the extraction path using HTTPX and PyMuPDF:
+
+1. Require an explicit hostname allowlist in `DOCUMENT_ALLOWED_HOSTS`; the default empty value denies all downloads.
+2. Accept HTTPS only, reject URL credentials and unapproved hosts, resolve DNS and reject any non-global IP address.
+3. Revalidate each redirect, check publisher `robots.txt`, ignore ambient proxy variables and enforce download size limits.
+4. Require a PDF content type and `%PDF-` signature; reject encrypted, corrupt, oversized or excessive-page files.
+5. Extract text page-by-page and preserve page numbers. Store the original URL separately from the final redirected URL.
+6. Calculate SHA-256 and persist byte size, retrieval timestamp, engine version, page count and extraction warnings.
+7. If pages contain no usable text, mark the record `needs_ocr`. The UI then offers an explicit OCR retry using English Tesseract; OCR is capped by `DOCUMENT_MAX_OCR_PAGES`.
+
+Default limits: 25 MiB per PDF, 300 pages, 200,000 extracted characters, 20 OCR pages. These can be configured through environment variables. The worker never crawls pages or links from a document.
+
+### Local configuration
+
+Set these values in `.env` for Compose, or in both the Node and Python process environments for local development:
+
+- `DOCUMENT_WORKER_TOKEN`: shared long random secret between Node and FastAPI.
+- `DOCUMENT_ALLOWED_HOSTS`: comma-separated approved public publisher hostnames, for example `mod.gov.in,pib.gov.in,drdo.gov.in`. Add only domains you have reviewed.
+- `DOCUMENT_EXTRACTION_URL`: worker base URL; Compose uses `http://ai:8001`, local Node uses `http://127.0.0.1:8001`.
+- `DOCUMENT_MAX_FILE_BYTES`, `DOCUMENT_MAX_PAGES`, `DOCUMENT_MAX_TEXT_CHARS`, `DOCUMENT_MAX_OCR_PAGES`: optional resource limits.
+
+The `ai` service is included in Docker Compose and is private to the Compose network. It is not exposed through the public web service. The Node API remains the only browser-facing entry point.
+
+### Operational limitations
+
+The worker validates DNS before each request and restricts hosts to an operator allowlist. As with ordinary application-level URL fetchers, DNS can theoretically change between validation and connection; production hardening should pin the resolved IP at the transport layer or enforce equivalent outbound network policy. Publisher robots rules and allowlist policy are required but do not replace legal or editorial review.
 
 ## Search and UI
 
