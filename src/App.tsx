@@ -80,6 +80,7 @@ type ChatSource = {
   reviewState?: string;
   publishedAt?: string | null;
   kind?: string;
+  pageNumber?: number;
 };
 
 const forces: Force[] = [
@@ -1017,6 +1018,7 @@ function ChatDialog({
                               source.kind ??
                               "Public source"}
                             {source.publishedAt ? ` · ${source.publishedAt}` : ""}
+                            {source.pageNumber ? ` · Page ${source.pageNumber}` : ""}
                           </small>
                         </a>
                       ))}
@@ -1032,7 +1034,7 @@ function ChatDialog({
             value={question}
             onChange={(event) => setQuestion(event.target.value)}
             onKeyDown={(event) => event.key === "Enter" && onAsk()}
-            placeholder="Ask about a programme, inventory, or scenario…"
+            placeholder="Ask about inventory, programmes, commands, documents or public geography…"
             disabled={loading}
           />
           <button
