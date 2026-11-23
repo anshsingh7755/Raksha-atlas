@@ -732,6 +732,21 @@ type ProgrammeDossierItem = {
   sourceRecords?: ProgrammeSourceRecord[]; lastVerifiedAt?: string | null;
 };
 
+function ProgrammeHistoryNotes({ text }: { text: string }) {
+  const lines = text.split(/\\r?\\n/).map((line) => line.trim()).filter(Boolean);
+  return <div className="programme-history-notes">{lines.map((raw, index) => {
+    const line = raw.replace(/^-\\s*/, "").replace(/\\*\\*/g, "");
+    const splitAt = line.indexOf(":");
+    const label = splitAt > 0 ? line.slice(0, splitAt).trim() : "";
+    const value = splitAt > 0 ? line.slice(splitAt + 1).trim() : line;
+    if (/^primary discovery\\/source link$/i.test(label)) return null;
+    return <div className="programme-history-note" key={index}>
+      {label && <strong>{label}</strong>}
+      <p>{value}</p>
+    </div>;
+  })}</div>;
+}
+
 function ProgrammeDossierExplorer() {
   const [items, setItems] = useState<ProgrammeDossierItem[]>([]);
   const [query, setQuery] = useState("");
@@ -791,8 +806,7 @@ function ProgrammeDossierExplorer() {
             <div><span>Evidence quality</span><strong>{selected.evidenceQuality ?? "Not normalized"}</strong></div>
           </div>
           <p className="programme-modal-caveat">Discovery register only. Stage labels are provisional text-based classifications; absence of a structured quantity does not mean zero. An AoN, proposal, test or report is not evidence of a signed contract or induction.</p>
-          <div className="programme-modal-section"><h3>Research summary</h3><p>{selected.summary}</p></div>
-          <div className="programme-modal-section"><h3>Programme history and notes</h3><p className="programme-detail-text">{selected.details}</p></div>
+          <div className="programme-modal-section"><h3>Programme history and notes</h3><ProgrammeHistoryNotes text={selected.details} /></div>
           <div className="programme-modal-section"><h3>Evidence references ({selected.sourceRecords?.length ?? selected.sourceUrls.length})</h3>
             {(selected.sourceRecords?.length ? selected.sourceRecords : selected.sourceUrls.map((url) => ({url,sourceId:null,sourceName:null,sourceType:"unregistered",official:null}))).map((source) => <a className="programme-modal-source" key={source.url} href={source.url} target="_blank" rel="noreferrer"><span><strong>{source.sourceName ?? new URL(source.url).hostname}</strong><small>{source.sourceId ?? "Source not mapped to registry"} · {source.sourceType}{source.official === true ? " · Official" : source.official === false ? " · Secondary / unofficial" : ""}</small></span><ArrowUpRight size={14} /></a>)}
           </div>
