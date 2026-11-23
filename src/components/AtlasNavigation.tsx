@@ -1,7 +1,24 @@
+type View =
+  | "overview"
+  | "forces"
+  | "atlas"
+  | "programmes"
+  | "pipeline"
+  | "signals"
+  | "sources"
+  | "inventory"
+  | "timeline"
+  | "watch"
+  | "pib"
+  | "register"
+  | "history"
+  | "briefs"
+  | "documents";
+
 type AtlasNavigationProps = {
-  activeView: string;
-  items: Array<[string, string]>;
-  onNavigate: (view: string) => void;
+  activeView: View;
+  items: Array<[View, string]>;
+  onNavigate: (view: View) => void;
   mobile?: boolean;
 };
 
