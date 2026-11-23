@@ -1,12 +1,17 @@
 export function canonicalArticleKey(article) {
   try {
     const url = new URL(article.canonicalUrl);
-    const releaseId = url.searchParams.get("PRID") || url.searchParams.get("relid");
-    if (releaseId) return `release:${releaseId}`;
+    const releaseId = [...url.searchParams.entries()].find(
+      ([key]) => /^(prid|relid)$/i.test(key),
+    )?.[1];
+    if (releaseId) return `release:${releaseId.trim()}`;
     url.hash = "";
     for (const key of [...url.searchParams.keys()])
-      if (/^(utm_|fbclid|gclid)/i.test(key)) url.searchParams.delete(key);
-    return url.toString().replace(/\/$/, "");
+      if (/^(utm_.*|fbclid|gclid|dclid|msclkid|mc_cid|mc_eid)$/i.test(key))
+        url.searchParams.delete(key);
+    url.searchParams.sort();
+    if (url.pathname.length > 1) url.pathname = url.pathname.replace(/\/+$/, "");
+    return url.toString();
   } catch {
     return article.canonicalUrl;
   }
