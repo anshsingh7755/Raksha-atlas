@@ -761,7 +761,13 @@ const server = createServer(async (request, response) => {
   }
   const documentExtractionMatch = url.pathname.match(/^\/api\/documents\/([^/]+)\/extract$/);
   if (request.method === "POST" && documentExtractionMatch) {
-    const documentId = decodeURIComponent(documentExtractionMatch[1]);
+    let documentId;
+    try {
+      documentId = decodeURIComponent(documentExtractionMatch[1]);
+    } catch {
+      send(response, 400, { error: "invalid document identifier" });
+      return;
+    }
     const register = readDocuments();
     const document = (register.records ?? []).find((item) => item.id === documentId);
     if (!document) {
