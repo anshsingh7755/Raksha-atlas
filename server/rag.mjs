@@ -333,9 +333,9 @@ export async function collectDocuments(articleOverride) {
 
 export function classifyQuery(query) {
   if (/\b(how many|number of|total|count|fleet)\b/i.test(query)) return "inventory_count";
-  if (/\b(timeline|milestone|when|stage|progress|status|contract|delivery)\b/i.test(query)) return "programme_status";
+  if (/\b(theatre|region|location|base|port|access arrangement|duqm|agalega|sabang|varsha)\b/i.test(query)) return "public_geography";
   if (/\b(command|headquarters|organisation|formation)\b/i.test(query)) return "organisation";
-  if (/\b(theatre|region|location|base|port|access arrangement)\b/i.test(query)) return "public_geography";
+  if (/\b(timeline|milestone|when|stage|progress|status|contract|delivery)\b/i.test(query)) return "programme_status";
   if (/\b(document|pdf|report|parliament|policy|page)\b/i.test(query)) return "document_research";
   return "general_research";
 }
