@@ -14,8 +14,9 @@ export function canonicalizeDocumentUrl(rawUrl) {
 }
 
 export function findDuplicateByChecksum(records, checksumSha256, excludeId = null) {
-  if (!/^[a-f0-9]{64}$/i.test(checksumSha256 ?? "")) return null;
-  return records.find((item) => item.id !== excludeId && item.checksumSha256 === checksumSha256.toLowerCase()) ?? null;
+  const checksum = typeof checksumSha256 === "string" ? checksumSha256.toLowerCase() : "";
+  if (!/^[a-f0-9]{64}$/.test(checksum)) return null;
+  return records.find((item) => item.id !== excludeId && item.checksumSha256 === checksum) ?? null;
 }
 
 export function normalizeDocument(input, existing = []) {
@@ -24,7 +25,7 @@ export function normalizeDocument(input, existing = []) {
   if (!title || !publisher) throw new Error("title and publisher are required.");
   if (title.length > 300 || publisher.length > 160) throw new Error("title or publisher exceeds the allowed length.");
   const originalUrl = String(input.originalUrl ?? input.url ?? "").trim();
-  const canonicalUrl = canonicalizeDocumentUrl(originalUrl);
+  if (originalUrl.length > 2048) throw new Error("document URL exceeds the allowed length.");\n  const canonicalUrl = canonicalizeDocumentUrl(originalUrl);
   const duplicate = existing.find((item) => item.canonicalUrl === canonicalUrl);
   if (duplicate) throw new Error("This document URL is already registered.");
   const documentType = DOCUMENT_TYPES.includes(input.documentType) ? input.documentType : "other";
