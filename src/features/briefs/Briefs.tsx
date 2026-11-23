@@ -13,7 +13,7 @@ type BriefRecord = {
 };
 
 export default function Briefs() {
-      const [items, setItems] = useState<Array<{id:string;title:string;summary:string;status:string;confidence:string;sourceUrls:string[];createdAt:string}>>([]);
+      const [items, setItems] = useState<BriefRecord[]>([]);
       const [query, setQuery] = useState("");
       const [loading, setLoading] = useState(true);
       useEffect(() => {
@@ -25,8 +25,8 @@ export default function Briefs() {
           sessionStorage.removeItem("raksha-search-target");
           sessionStorage.removeItem("raksha-search-section");
         }
-        fetch("/api/briefs").then((response) => { if (!response.ok) throw new Error("Brief register unavailable"); return response.json(); })
-          .then((data: {items?: typeof items}) => setItems(data.items ?? []))
+        apiGet<{ items?: BriefRecord[] }>("/api/briefs")
+          .then((data) => setItems(data.items ?? []))
           .catch(() => setItems([]))
           .finally(() => setLoading(false));
       }, []);
