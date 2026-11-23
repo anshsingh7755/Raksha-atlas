@@ -35,7 +35,7 @@ const places:Place[] = [
 const layers=["All locations","Indian commands","Indian infrastructure","Partner access & ports"];
 const markerIcon=(L:any,group:string,active:boolean)=>L.divIcon({className:"raksha-map-marker-wrap",html:`<span class="raksha-map-marker ${group} ${active?"active":""}"></span>`,iconSize:[24,24],iconAnchor:[12,12]});
 export default function TheatreAtlas(){
- const [layer,setLayer]=useState(layers[0]);const [query,setQuery]=useState("");const [selected,setSelected]=useState("anc");const [mapError,setMapError]=useState("");
+ const [layer,setLayer]=useState(layers[0]);const [query,setQuery]=useState("");const [selected,setSelected]=useState("anc");const [mapError,setMapError]=useState("");const [mapReady,setMapReady]=useState(false);
  const mapNode=useRef<HTMLDivElement|null>(null);const mapRef=useRef<LeafletMap|null>(null);const markerRefs=useRef<Record<string,any>>({});
  const visible=useMemo(()=>places.filter(p=>(layer==="All locations"||(layer==="Indian commands"&&p.id==="anc")||(layer==="Indian infrastructure"&&p.group==="india"&&p.id!=="anc")||(layer==="Partner access & ports"&&p.group==="partner"))&&[p.name,p.country,p.kind,p.status].join(" ").toLowerCase().includes(query.toLowerCase())),[layer,query]);
  const active=places.find(p=>p.id===selected);
@@ -45,10 +45,10 @@ export default function TheatreAtlas(){
    if(disposed||!mapNode.current)return;
    map=L.map(mapNode.current,{center:[5,76],zoom:4,scrollWheelZoom:true,worldCopyJump:true,zoomControl:true});
    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',crossOrigin:true}).addTo(map);
-   mapRef.current=map;
+   mapRef.current=map;setMapReady(true);
    requestAnimationFrame(()=>map&&map.invalidateSize());
   }).catch(e=>{if(!disposed)setMapError(e instanceof Error?e.message:"Unable to load map");});
-  return()=>{disposed=true;if(mapRef.current){mapRef.current.remove();mapRef.current=null;}markerRefs.current={};};
+  return()=>{disposed=true;if(mapRef.current){mapRef.current.remove();mapRef.current=null;}markerRefs.current={};setMapReady(false);};
  },[]);
  useEffect(()=>{
   const map=mapRef.current;if(!map||!window.L)return;
@@ -60,7 +60,7 @@ export default function TheatreAtlas(){
   });
   if(visible.length>1){const bounds=L.latLngBounds(visible.map(p=>[p.lat,p.lng]));map.fitBounds(bounds.pad(.22),{maxZoom:5,animate:true});}
   else if(visible.length===1)map.setView([visible[0].lat,visible[0].lng],6,{animate:true});
- },[visible,selected]);
+ },[visible,selected,mapReady]);
  const focus=(p:Place)=>{setSelected(p.id);const map=mapRef.current;if(map)map.flyTo([p.lat,p.lng],Math.max(map.getZoom(),6),{duration:.7});};
  return <section className="page-section theatre-atlas-page">
   <div className="section-heading"><div><span className="section-kicker">GEOGRAPHY / COMMANDS / MARITIME ACCESS</span><h2>India & the Indian Ocean</h2><p>Explore established commands, publicly documented infrastructure and partner-port relationships on a live, zoomable geographic basemap.</p></div></div>
