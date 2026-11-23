@@ -3182,3 +3182,33 @@ body {
 @media (max-width: 640px) {
   .programme-modal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+
+.programme-history-notes {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+.programme-history-note {
+  display: grid;
+  grid-template-columns: minmax(145px, .34fr) minmax(0, 1fr);
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.programme-history-note > strong {
+  color: var(--muted);
+  font: 9px "DM Mono";
+  line-height: 1.55;
+  text-transform: uppercase;
+}
+.programme-history-note > p {
+  margin: 0;
+  color: #c3ced0;
+  font-size: .8rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 560px) {
+  .programme-history-note { grid-template-columns: 1fr; gap: 5px; }
+}
