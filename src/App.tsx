@@ -1506,7 +1506,7 @@ function CommandDirectory({ records, compact = false }: { records: CommandRecord
             {records.filter((record) => record.status !== "established").map((record) => (
               <div className="command-record" key={record.id}>
                 <strong>{record.name}</strong>
-                <small>{record.structureType} · {record.status.replaceAll("_", " ")}</small>
+                <small>{record.structureType} · {record.status.replace(/_/g, " ")}</small>
                 <p>{record.description}</p>
                 <a href={record.sourceUrl} target="_blank" rel="noreferrer">
                   {record.sourceName} <ArrowUpRight size={11} />
