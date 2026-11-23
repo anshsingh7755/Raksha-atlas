@@ -1046,6 +1046,11 @@ function SignalFeed({
 }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("all");
+  const [publisher, setPublisher] = useState("all");
+  const publisherName = (sourceId: string) =>
+    sourceId.includes("idrw") ? "IDRW" :
+    sourceId === "indian-defence-news" || sourceId === "indian-defence-news-rss" ? "Indian Defence News" :
+    sourceId === "et-defence" ? "ETDefence" : sourceId;
   const categories = [
     ...new Set(
       articles
@@ -1057,6 +1062,7 @@ function SignalFeed({
     .filter(
       (article) =>
         article.reviewState !== "rejected" &&
+        (publisher === "all" || publisherName(article.sourceId) === publisher) &&
         (category === "all" || article.category === category) &&
         (!query ||
           `${article.title} ${article.summary ?? ""} ${article.sourceId} ${(article.keywords ?? []).join(" ")}`
@@ -1080,6 +1086,12 @@ function SignalFeed({
         </p>
       </div>
       <div className="article-toolbar">
+        <select value={publisher} onChange={(event) => setPublisher(event.target.value)} aria-label="Filter reports by publisher">
+          <option value="all">All publishers</option>
+          <option value="IDRW">IDRW</option>
+          <option value="ETDefence">ETDefence</option>
+          <option value="Indian Defence News">Indian Defence News</option>
+        </select>
         <input
           value={query}
           onChange={(event) => setQuery(event.target.value)}
@@ -1125,6 +1137,7 @@ function SignalFeed({
                 {article.category && (
                   <span className="verification-chip">{article.category}</span>
                 )}
+                <span className="publisher-source-chip">{publisherName(article.sourceId)}</span>
                 <h3>{article.title}</h3>
                 <p>{article.summary || "Open the linked source for details."}</p>
                 <small>
@@ -1156,6 +1169,13 @@ function SignalFeed({
             </article>
           ))
         )}
+      </div>
+      <div className="publisher-source-directory">
+        <span>Publisher links</span>
+        <a href="https://idrw.org/" target="_blank" rel="noreferrer">IDRW <ArrowUpRight size={11} /></a>
+        <a href="https://defence.economictimes.indiatimes.com/" target="_blank" rel="noreferrer">ETDefence <ArrowUpRight size={11} /></a>
+        <a href="https://www.indiandefensenews.in/" target="_blank" rel="noreferrer">Indian Defence News <ArrowUpRight size={11} /></a>
+        <small>ETDefence is link-out only pending permission for RSS republication.</small>
       </div>
       <button className="quiet-btn" onClick={onReview}>
         Review and update candidate status <ArrowUpRight size={14} />
