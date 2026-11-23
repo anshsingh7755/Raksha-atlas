@@ -1,4 +1,3 @@
-import React from "react";
 import { ArrowUpRight, CircleDot } from "lucide-react";
 
 export type ProgrammeMilestone = {
