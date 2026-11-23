@@ -52,16 +52,21 @@ async def _robots_allows(client: httpx.AsyncClient, url: str) -> bool:
     parsed = urlparse(url)
     robots_url = f"{parsed.scheme}://{parsed.netloc}/robots.txt"
     try:
-        response = await client.get(robots_url, headers={"User-Agent": USER_AGENT}, follow_redirects=False)
+        async with client.stream("GET", robots_url, headers={"User-Agent": USER_AGENT}, follow_redirects=False) as response:
+            if response.status_code == 404:
+                return True
+            if response.status_code != 200:
+                raise HTTPException(status_code=403, detail="Publisher robots.txt policy could not be confirmed.")
+            robots_bytes = bytearray()
+            async for chunk in response.aiter_bytes():
+                robots_bytes.extend(chunk)
+                if len(robots_bytes) > 512 * 1024:
+                    raise HTTPException(status_code=413, detail="Publisher robots.txt file is unexpectedly large.")
     except httpx.HTTPError as exc:
         raise HTTPException(status_code=502, detail="Could not verify publisher robots.txt policy.") from exc
-    if response.status_code == 404:
-        return True
-    if response.status_code != 200:
-        raise HTTPException(status_code=403, detail="Publisher robots.txt policy could not be confirmed.")
     parser = RobotFileParser()
     parser.set_url(robots_url)
-    parser.parse(response.text.splitlines())
+    parser.parse(robots_bytes.decode("utf-8", errors="replace").splitlines())
     return parser.can_fetch(USER_AGENT, url)
 
 
