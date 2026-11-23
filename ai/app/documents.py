@@ -74,7 +74,7 @@ async def _robots_allows(client: httpx.AsyncClient, url: str) -> bool:
     return parser.can_fetch(USER_AGENT, url)
 
 
-async def _download_pdf(raw_url: str) -> tuple[bytes, str]:
+async def _download_public_document(raw_url: str) -> tuple[bytes, str, str]:
     current = _validate_url(raw_url)
     timeout = httpx.Timeout(20.0, connect=8.0)
     async with httpx.AsyncClient(timeout=timeout, trust_env=False) as client:
@@ -83,7 +83,7 @@ async def _download_pdf(raw_url: str) -> tuple[bytes, str]:
             if not await _robots_allows(client, current):
                 raise HTTPException(status_code=403, detail="Publisher robots.txt disallows document retrieval.")
             try:
-                async with client.stream("GET", current, headers={"User-Agent": USER_AGENT, "Accept": "application/pdf"}, follow_redirects=False) as response:
+                async with client.stream("GET", current, headers={"User-Agent": USER_AGENT, "Accept": "application/pdf,text/html,application/xhtml+xml"}, follow_redirects=False) as response:
                     if response.status_code in (301, 302, 303, 307, 308):
                         location = response.headers.get("location")
                         if not location or redirect_count == 3:
@@ -93,8 +93,9 @@ async def _download_pdf(raw_url: str) -> tuple[bytes, str]:
                     if response.status_code != 200:
                         raise HTTPException(status_code=502, detail=f"Publisher returned HTTP {response.status_code}.")
                     content_type = response.headers.get("content-type", "").split(";")[0].strip().lower()
-                    if content_type not in ("application/pdf", "application/octet-stream", "binary/octet-stream"):
-                        raise HTTPException(status_code=415, detail="Publisher did not return a PDF file.")
+                    allowed_types = ("application/pdf", "application/octet-stream", "binary/octet-stream", "text/html", "application/xhtml+xml")
+                    if content_type not in allowed_types:
+                        raise HTTPException(status_code=415, detail="Publisher did not return a supported PDF or HTML document.")
                     declared_length = response.headers.get("content-length")
                     try:
                         declared_size = int(declared_length) if declared_length else 0
@@ -110,9 +111,11 @@ async def _download_pdf(raw_url: str) -> tuple[bytes, str]:
                             raise HTTPException(status_code=413, detail="PDF exceeds the configured download size limit.")
                         chunks.append(chunk)
                     content = b"".join(chunks)
-                    if not content.startswith(b"%PDF-"):
+                    if content_type in ("application/pdf", "application/octet-stream", "binary/octet-stream") and not content.startswith(b"%PDF-"):
                         raise HTTPException(status_code=415, detail="Downloaded file does not have a valid PDF signature.")
-                    return content, current
+                    if content_type in ("text/html", "application/xhtml+xml") and content.startswith(b"%PDF-"):
+                        content_type = "application/pdf"
+                    return content, current, content_type
             except httpx.HTTPError as exc:
                 raise HTTPException(status_code=502, detail="Could not retrieve the public PDF.") from exc
     raise HTTPException(status_code=502, detail="Document redirect limit exceeded.")
@@ -159,16 +162,79 @@ def _extract_pdf(content: bytes, ocr: bool) -> dict:
         return {"extractionStatus": status, "extractedText": extracted_text[:MAX_TEXT_CHARS], "pages": pages, "pageCount": len(pdf), "ocrPages": ocr_pages, "warnings": warnings}
 
 
-async def extract_public_pdf(raw_url: str, ocr: bool = False) -> dict:
+class _ReadableHTMLParser(HTMLParser):
+    SKIP_TAGS = {"script", "style", "noscript", "svg", "nav", "footer", "aside", "form"}
+    BLOCK_TAGS = {"p", "div", "section", "article", "h1", "h2", "h3", "h4", "li", "br", "tr"}
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.skip_depth = 0
+        self.parts = []
+        self.title_parts = []
+        self.in_title = False
+
+    def handle_starttag(self, tag, attrs):
+        tag = tag.lower()
+        if tag in self.SKIP_TAGS:
+            self.skip_depth += 1
+        if tag == "title":
+            self.in_title = True
+        if not self.skip_depth and tag in self.BLOCK_TAGS:
+            self.parts.append("\\n")
+
+    def handle_endtag(self, tag):
+        tag = tag.lower()
+        if tag in self.SKIP_TAGS and self.skip_depth:
+            self.skip_depth -= 1
+        if tag == "title":
+            self.in_title = False
+        if not self.skip_depth and tag in self.BLOCK_TAGS:
+            self.parts.append("\\n")
+
+    def handle_data(self, data):
+        if self.in_title:
+            self.title_parts.append(data)
+        if not self.skip_depth:
+            self.parts.append(data)
+
+
+def _extract_html(content: bytes) -> dict:
+    parser = _ReadableHTMLParser()
+    parser.feed(content.decode("utf-8", errors="replace"))
+    text = "\\n".join(" ".join(line.split()) for line in "".join(parser.parts).splitlines() if line.strip())
+    title = " ".join(" ".join(parser.title_parts).split())[:300]
+    if len(text) > MAX_TEXT_CHARS:
+        text = text[:MAX_TEXT_CHARS]
+    return {
+        "extractionStatus": "text_extracted" if len(text) >= 80 else "metadata_only",
+        "extractedText": text,
+        "pages": [],
+        "pageCount": None,
+        "ocrPages": [],
+        "warnings": ["HTML text has no stable PDF page references."],
+        "documentTitle": title,
+    }
+
+
+async def extract_public_document(raw_url: str, ocr: bool = False) -> dict:
     url = _validate_url(raw_url)
-    content, final_url = await _download_pdf(url)
-    result = _extract_pdf(content, ocr)
+    content, final_url, content_type = await _download_public_document(url)
+    if content_type == "application/pdf" or content.startswith(b"%PDF-"):
+        result = _extract_pdf(content, ocr)
+        file_format = "pdf"
+        engine = f"PyMuPDF {fitz.VersionBind}"
+    elif content_type in ("text/html", "application/xhtml+xml"):
+        result = _extract_html(content)
+        file_format = "html"
+        engine = "Python HTMLParser"
+    else:
+        raise HTTPException(status_code=415, detail="Unsupported public document format.")
     result.update({
         "canonicalUrl": final_url,
         "checksumSha256": hashlib.sha256(content).hexdigest(),
         "fileSizeBytes": len(content),
-        "fileFormat": "pdf",
+        "fileFormat": file_format,
         "retrievedAt": datetime.now(timezone.utc).isoformat(),
-        "extractionEngine": f"PyMuPDF {fitz.VersionBind}",
+        "extractionEngine": engine,
     })
     return result
