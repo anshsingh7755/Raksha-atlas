@@ -28,6 +28,8 @@ jobs:
           DB_PASSWORD: test-database-password
           RAKSHA_ADMIN_TOKEN: test-admin-token
         run: docker compose config --quiet
+      - name: Build document extraction worker image
+        run: docker build -t raksha-atlas-ai-test -f ai/Dockerfile ai
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
