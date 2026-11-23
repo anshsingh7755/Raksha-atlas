@@ -3083,7 +3083,8 @@ function App() {
         {activeView === "atlas" && <TheatreAtlas />}
         {activeView === "programmes" && <Programmes />}
         {activeView === "pipeline" && <Pipeline />}
-        {activeView === "signals" && <Signals />}\n        {activeView === "briefs" && <Briefs />}
+        {activeView === "signals" && <Signals />}
+        {activeView === "briefs" && <Briefs />}
         {activeView === "inventory" && <Inventory />}
         {activeView === "register" && <PlatformRegister />}
         {activeView === "timeline" && <Timeline />}
