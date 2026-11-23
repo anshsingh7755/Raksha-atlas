@@ -33,6 +33,7 @@ The active website currently uses React, TypeScript, Vite and a Node.js API. The
 | [Inventory classification policy](docs/data/INVENTORY-CLASSIFICATION-AND-RECONCILIATION.md) | Operator attribution, domain classification and quantity reconciliation |
 
 | [Inventory module specification](docs/roadmap/INVENTORY-MODULE.md) | Shared inventory model, API contract, implementation record and acceptance checks |
+| [Programmes module specification](docs/roadmap/PROGRAMMES-MODULE.md) | Programme register API, stage classification, evidence rules and acceptance checks |
 | [News pipeline](NEWS-PIPELINE.md) | Existing news collection and processing |
 | [RAG chatbot](RAG-CHATBOT.md) | Existing retrieval and assistant implementation |
 | [Theatre Atlas source register](docs/intelligence/THEATRE-ATLAS-SOURCE-REGISTER.md) | Public geography records and classification rules |
