@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+from html.parser import HTMLParser
 import ipaddress
 import os
 import shutil
@@ -180,7 +181,7 @@ class _ReadableHTMLParser(HTMLParser):
         if tag == "title":
             self.in_title = True
         if not self.skip_depth and tag in self.BLOCK_TAGS:
-            self.parts.append("\\n")
+            self.parts.append("\n")
 
     def handle_endtag(self, tag):
         tag = tag.lower()
@@ -189,7 +190,7 @@ class _ReadableHTMLParser(HTMLParser):
         if tag == "title":
             self.in_title = False
         if not self.skip_depth and tag in self.BLOCK_TAGS:
-            self.parts.append("\\n")
+            self.parts.append("\n")
 
     def handle_data(self, data):
         if self.in_title:
@@ -201,7 +202,7 @@ class _ReadableHTMLParser(HTMLParser):
 def _extract_html(content: bytes) -> dict:
     parser = _ReadableHTMLParser()
     parser.feed(content.decode("utf-8", errors="replace"))
-    text = "\\n".join(" ".join(line.split()) for line in "".join(parser.parts).splitlines() if line.strip())
+    text = "\n".join(" ".join(line.split()) for line in "".join(parser.parts).splitlines() if line.strip())
     title = " ".join(" ".join(parser.title_parts).split())[:300]
     if len(text) > MAX_TEXT_CHARS:
         text = text[:MAX_TEXT_CHARS]
