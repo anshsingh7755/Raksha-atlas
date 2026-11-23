@@ -1,7 +1,7 @@
 import { Clock3, Shield } from "lucide-react";
 
 type AtlasFooterProps = {
-  onNavigate: (view: string) => void;
+  onNavigate: (view: "overview") => void;
 };
 
 export default function AtlasFooter({ onNavigate }: AtlasFooterProps) {
