@@ -152,16 +152,22 @@ This phase is the immediate priority. Complete and verify the product before the
 
 ## 5. Phase 1 — one-time frontend migration
 
-**Target:** Next.js + React + TypeScript. **Status: in progress — Phase 1.1 audit recorded; Phase 1.2 configurable API proxy and CI typecheck/build steps committed; local Next.js homepage confirmed running; initial route-aware App Router integration committed. CI, production-build and deep-link verification pending.** See [Phase 1 frontend migration plan](PHASE-1-FRONTEND-MIGRATION.md).
+**Target:** Next.js + React + TypeScript. **Status: Phase 1.4 in progress — audit, API proxy/CI foundation and route integration are recorded; shared footer extraction is implemented.** See [Phase 1 frontend migration plan](PHASE-1-FRONTEND-MIGRATION.md) for the ten sub-phases and completion notes.
 
-1. Audit the completed Vite UI, routes, components, styles, assets and API contracts.
-2. Move/restructure the existing UI into Next.js App Router; do not redesign/rewrite the product from scratch.
-3. Extract shared UI components and typed API clients.
-4. Move configuration and secrets to environment variables.
-5. Implement server/client rendering boundaries and loading/error states.
-6. Verify every route and interaction against the existing website.
-7. Switch the primary local development command to Next.js after parity.
-8. Retire Vite only after the Next.js version passes acceptance checks.
+| Sub-phase | Workstream |
+|---|---|
+| 1.1 | Audit and baseline |
+| 1.2 | Next.js foundation: configurable API proxy and CI |
+| 1.3 | Route integration and deep-link support |
+| 1.4 | Shared shell extraction |
+| 1.5 | Feature boundary extraction |
+| 1.6 | Typed API layer |
+| 1.7 | Rendering boundaries and loading/error states |
+| 1.8 | Responsive, accessibility and UX parity |
+| 1.9 | Automated route, interaction and API parity gate |
+| 1.10 | Controlled cutover, rollback and Vite retirement |
+
+The Vite app remains the reference and must not be retired before feature parity and explicit approval.
 
 ## 6. Phase 2 — Spring Boot backend and PostgreSQL
 
