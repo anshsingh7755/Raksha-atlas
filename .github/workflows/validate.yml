@@ -30,4 +30,4 @@ jobs:
       - name: Install AI service test dependencies
         run: pip install -r ai/requirements-dev.txt
       - name: Test document extraction worker
-        run: pytest -q
+        run: pytest -q -c ai/pytest.ini ai/tests
