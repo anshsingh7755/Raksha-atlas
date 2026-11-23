@@ -723,9 +723,13 @@ function EquipmentDataExplorer() {
 }
 
 
+type ProgrammeSourceRecord = { url: string; sourceId: string | null; sourceName: string | null; sourceType: string; official: boolean | null };
 type ProgrammeDossierItem = {
   id: string; title: string; service: string; stage: string;
   summary: string; details: string; sourceUrls: string[]; sourceCount: number;
+  status?: string; quantity?: number | null; quantityType?: string;
+  quantityConfidence?: string; evidenceQuality?: string;
+  sourceRecords?: ProgrammeSourceRecord[]; lastVerifiedAt?: string | null;
 };
 
 function ProgrammeDossierExplorer() {
@@ -733,6 +737,7 @@ function ProgrammeDossierExplorer() {
   const [query, setQuery] = useState("");
   const [service, setService] = useState("all");
   const [stage, setStage] = useState("all");
+  const [selected, setSelected] = useState<ProgrammeDossierItem | null>(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetch("/api/programmes")
@@ -764,7 +769,7 @@ function ProgrammeDossierExplorer() {
         {filtered.map((item) => (
           <article className="inventory-card programme-card" key={item.id}>
             <div className="inventory-card-top"><span className="verification-chip">{item.service}</span><span>{item.sourceCount} source links</span></div>
-            <h3>{item.title}</h3><p className="programme-summary">{item.summary || "Open the record for its research notes and source references."}</p>
+            <h3>{item.title}</h3><button className="programme-open-detail" onClick={() => setSelected(item)}>Open programme record <ArrowUpRight size={13} /></button><p className="programme-summary">{item.summary || "Open the record for its research notes and source references."}</p>
             <div className="programme-meta"><strong>{item.stage.replace(/\s*\(text match; verify\)/i, "")}</strong></div>
             <details className="programme-details"><summary>Programme history and evidence</summary><div className="programme-detail-text">{item.details}</div>
               {item.sourceUrls.length > 0 && <div className="programme-source-links"><strong>Source references</strong>{item.sourceUrls.map((url) => <a key={url} href={url} target="_blank" rel="noreferrer">{new URL(url).hostname} <ArrowUpRight size={12} /></a>)}</div>}
@@ -774,6 +779,26 @@ function ProgrammeDossierExplorer() {
       </div>
       {!loading && filtered.length === 0 && <div className="empty-state">No programme records match these filters.</div>}
       <div className="equipment-note"><a href="https://github.com/anshsingh7755/Raksha-atlas/blob/work/step-1-foundation/docs/intelligence/FUTURE-PROGRAMMES-ACQUISITION-DOSSIER.md" target="_blank" rel="noreferrer">Open the full research dossier <ArrowUpRight size={12} /></a></div>
+      {selected && <div className="modal-backdrop programme-modal-backdrop" onClick={() => setSelected(null)}>
+        <section className="programme-modal" role="dialog" aria-modal="true" aria-labelledby="programme-modal-title" onClick={(event) => event.stopPropagation()}>
+          <header className="programme-modal-header"><div><span className="section-kicker">PROGRAMME INTELLIGENCE RECORD · {selected.id}</span><h2 id="programme-modal-title">{selected.title}</h2></div><button className="icon-btn" onClick={() => setSelected(null)} aria-label="Close programme record"><X size={18} /></button></header>
+          <div className="programme-modal-grid">
+            <div><span>Service / domain</span><strong>{selected.service}</strong></div>
+            <div><span>Reported stage</span><strong>{selected.stage.replace(/\\s*\\(text match; verify\\)/i, "")}</strong></div>
+            <div><span>Record status</span><strong>{selected.status ?? "Needs verification"}</strong></div>
+            <div><span>Quantity</span><strong>{selected.quantity ?? "Not established in structured data"}</strong></div>
+            <div><span>Quantity confidence</span><strong>{selected.quantityConfidence ?? "Not assessed"}</strong></div>
+            <div><span>Evidence quality</span><strong>{selected.evidenceQuality ?? "Not normalized"}</strong></div>
+          </div>
+          <p className="programme-modal-caveat">Discovery register only. Stage labels are provisional text-based classifications; absence of a structured quantity does not mean zero. An AoN, proposal, test or report is not evidence of a signed contract or induction.</p>
+          <div className="programme-modal-section"><h3>Research summary</h3><p>{selected.summary}</p></div>
+          <div className="programme-modal-section"><h3>Programme history and notes</h3><p className="programme-detail-text">{selected.details}</p></div>
+          <div className="programme-modal-section"><h3>Evidence references ({selected.sourceRecords?.length ?? selected.sourceUrls.length})</h3>
+            {(selected.sourceRecords?.length ? selected.sourceRecords : selected.sourceUrls.map((url) => ({url,sourceId:null,sourceName:null,sourceType:"unregistered",official:null}))).map((source) => <a className="programme-modal-source" key={source.url} href={source.url} target="_blank" rel="noreferrer"><span><strong>{source.sourceName ?? new URL(source.url).hostname}</strong><small>{source.sourceId ?? "Source not mapped to registry"} · {source.sourceType}{source.official === true ? " · Official" : source.official === false ? " · Secondary / unofficial" : ""}</small></span><ArrowUpRight size={14} /></a>)}
+          </div>
+          <footer className="programme-modal-footer">Last verified: {selected.lastVerifiedAt ?? "Not yet verified"} · Record ID: {selected.id}</footer>
+        </section>
+      </div>}
     </section>
   );
 }
