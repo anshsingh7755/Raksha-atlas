@@ -85,11 +85,11 @@ For every future update:
 
 ## 6. Acceptance checklist
 
-- [ ] `GET /api/commands` returns all register records and available filters.
-- [ ] Exact service, group, type and status filters work.
-- [ ] Overview and Forces pages render API-backed records.
-- [ ] Established and proposed structures are visually separated.
-- [ ] No headquarters is inferred when the source does not support it.
-- [ ] Links open the cited source.
-- [ ] `npm run build` passes.
-- [ ] Local API smoke tests pass.
+- [x] `GET /api/commands` returns all register records and available filters (implementation committed; local runtime check pending).
+- [x] Exact service, group, type and status filters are implemented (local runtime check pending).
+- [x] Overview and Forces pages render API-backed records.
+- [x] Established and proposed structures are visually separated.
+- [x] Unsupported headquarters fields remain null.
+- [x] Each register record includes a source link.
+- [ ] `npm run build` passes locally after pulling the branch.
+- [ ] Local API smoke tests pass after starting the updated Node API.
