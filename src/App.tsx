@@ -31,6 +31,7 @@ import { fetchPlatformRegister, type PlatformRegisterItem } from "./services/inv
 import ProgrammeTimelinePanel, { type ProgrammeMilestone } from "./components/ProgrammeTimelinePanel";
 import TheatreAtlas from "./components/TheatreAtlas";
 import AtlasFooter from "./components/AtlasFooter";
+import SectionTitle from "./components/SectionTitle";
 
 type View =
   | "overview"
@@ -2037,23 +2038,6 @@ function App({
         <strong>{todayIst} · IST</strong>
       </div>
     </>
-  );
-  const SectionTitle = ({
-    kicker,
-    title,
-    action,
-  }: {
-    kicker: string;
-    title: React.ReactNode;
-    action?: React.ReactNode;
-  }) => (
-    <div className="section-heading">
-      <div>
-        <span className="section-kicker">{kicker}</span>
-        <h2>{title}</h2>
-      </div>
-      {action}
-    </div>
   );
   const ForceCards = () => (
     <div className="force-grid">
