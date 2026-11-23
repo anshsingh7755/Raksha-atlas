@@ -2,7 +2,7 @@ import fitz
 import pytest
 from fastapi import HTTPException
 
-from app.documents import _allowed_host, _extract_pdf, _validate_url
+from app.documents import _allowed_host, _extract_pdf, _extract_html, _validate_url
 
 
 def test_host_allowlist_requires_explicit_domain(monkeypatch):
@@ -52,3 +52,13 @@ def test_nonstandard_https_port_is_rejected(monkeypatch):
     monkeypatch.setattr("app.documents.ALLOWED_HOSTS", ("mod.gov.in",))
     with pytest.raises(HTTPException):
         _validate_url("https://mod.gov.in:8443/report.pdf")
+
+def test_extracts_readable_html_and_title_without_script_or_navigation():
+    html = b"<html><head><title>Public report</title><script>secret script</script></head><body><nav>menu</nav><main><h1>Defence report</h1><p>" + (b"Publicly available report text. " * 8) + b"</p></main></body></html>"
+    result = _extract_html(html)
+    assert result["extractionStatus"] == "text_extracted"
+    assert result["documentTitle"] == "Public report"
+    assert "Defence report" in result["extractedText"]
+    assert "secret script" not in result["extractedText"]
+    assert "menu" not in result["extractedText"]
+    assert result["pages"] == []
