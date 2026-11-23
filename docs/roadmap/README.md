@@ -152,7 +152,7 @@ This phase is the immediate priority. Complete and verify the product before the
 
 ## 5. Phase 1 — one-time frontend migration
 
-**Target:** Next.js + React + TypeScript. **Status: Phase 1.4 in progress — audit, API proxy/CI foundation and route integration are recorded; shared footer, section heading and navigation are extracted and reused.** See [Phase 1 frontend migration plan](PHASE-1-FRONTEND-MIGRATION.md) for the ten sub-phases and completion notes.
+**Target:** Next.js + React + TypeScript. **Status: Phase 1.5 in progress — shared shell extraction passed CI; the Programmes page and dossier explorer are now separated into a feature module.** See [Phase 1 frontend migration plan](PHASE-1-FRONTEND-MIGRATION.md) for the ten sub-phases and completion notes.
 
 | Sub-phase | Workstream |
 |---|---|
