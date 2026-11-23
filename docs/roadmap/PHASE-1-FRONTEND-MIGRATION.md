@@ -47,7 +47,10 @@ Move the existing Raksha Atlas user interface from the root Vite application int
 | 1.10 | Controlled cutover | Make Next.js primary only after acceptance; keep rollback available and retire Vite only after explicit parity approval. |
 
 ### Current implementation notes
-- The shared footer now lives in `src/components/AtlasFooter.tsx` and is consumed by the existing `src/App.tsx`; this keeps one implementation available to both frontends.
+- Shared footer: `src/components/AtlasFooter.tsx`, consumed by `src/App.tsx`.
+- Shared section heading: `src/components/SectionTitle.tsx`, consumed by existing feature sections.
+- Shared navigation: `src/components/AtlasNavigation.tsx`, receives the active view, navigation items and navigation callback as props.
+- These components remain in the shared root `src/` tree so Vite and Next.js can reuse one implementation.
 - The large application component remains the feature source of truth. Extract only components with clear ownership and limited dependencies; do not split nested components blindly.
 - Existing Node API endpoints, server JSON data and the Vite runtime remain unchanged during Phase 1.
 - A successful build is not proof of route or interaction parity.
@@ -87,4 +90,4 @@ The Next.js API rewrite currently expects the Node API at `http://127.0.0.1:8787
 
 ## 8. Current decision
 
-Phase 1.1 audit is recorded. Phase 1.2 API-proxy configuration and CI checks are committed; local typecheck and production build have passed. Phase 1.3 route integration is committed; browser navigation and deep-link verification remain pending. Phase 1.4 has started: the shared footer was extracted into `src/components/AtlasFooter.tsx` and the existing app now reuses it. Next, extract the shared navigation/header only after its state and search dependencies have clear interfaces. The Vite application remains the active reference until Phase 1 acceptance criteria are met. Phase 0 manual validation also remains open; this Phase 1 work does not mark Phase 0 as closed.
+Phase 1.1 audit is recorded. Phase 1.2 API-proxy configuration and CI checks are committed; local typecheck and production build have passed. Phase 1.3 route integration is committed; browser navigation and deep-link verification remain pending. Phase 1.4 is in progress: shared footer, section heading and navigation have been extracted into `src/components/` and reused by the existing app. The remaining header is state-heavy because it owns search, theme and mobile-menu interactions; keep those behaviors intact and extract it only with explicit props. The Vite application remains the active reference until Phase 1 acceptance criteria are met. Phase 0 manual validation also remains open; this Phase 1 work does not mark Phase 0 as closed.
