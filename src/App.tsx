@@ -1504,12 +1504,13 @@ function SourceRegistry({
   );
 }
 
-function CommandDirectory({ records, compact = false }: { records: CommandRecord[]; compact?: boolean }) {
+function CommandDirectory({ records, compact = false, query = "" }: { records: CommandRecord[]; compact?: boolean; query?: string }) {
+  const filteredRecords = records.filter((record) => [record.name,record.service,record.group,record.structureType,record.status,record.headquarters,record.description].filter(Boolean).join(" ").toLowerCase().includes(query.trim().toLowerCase()));
   const groups = ["Indian Army", "Indian Navy", "Indian Air Force", "Joint"];
   return (
     <div className={compact ? "command-grid command-grid-compact" : "command-grid"}>
       {groups.map((service) => {
-        const items = records.filter((record) => record.service === service && record.status === "established");
+        const items = filteredRecords.filter((record) => record.service === service && record.status === "established");
         if (!items.length) return null;
         return (
           <article className="command-card" key={service}>
@@ -1530,12 +1531,12 @@ function CommandDirectory({ records, compact = false }: { records: CommandRecord
           </article>
         );
       })}
-      {records.some((record) => record.status !== "established") && (
+      {filteredRecords.some((record) => record.status !== "established") && (
         <article className="command-card">
           <span className="section-kicker">NOT ESTABLISHED</span>
           <h3>Proposed / under-study structures</h3>
           <div className="command-record-list">
-            {records.filter((record) => record.status !== "established").map((record) => (
+            {filteredRecords.filter((record) => record.status !== "established").map((record) => (
               <div className="command-record" key={record.id}>
                 <strong>{record.name}</strong>
                 <small>{record.structureType} · {record.status.replace(/_/g, " ")}</small>
@@ -2143,7 +2144,10 @@ function App() {
       <SignalCard onOpen={() => navigate("signals")} />
     </>
   );
-  const Forces = () => (
+  const Forces = () => {
+    const [commandQuery, setCommandQuery] = useState("");
+    useEffect(() => { const saved = sessionStorage.getItem("raksha-search-query"); const section = sessionStorage.getItem("raksha-search-section"); if (saved && section === "Commands") { setCommandQuery(saved); sessionStorage.removeItem("raksha-search-query"); sessionStorage.removeItem("raksha-search-target"); sessionStorage.removeItem("raksha-search-section"); } }, []);
+    return (
     <section className="page-section">
       <div className="page-hero">
         <span className="section-kicker">FORCE MAP / PUBLIC RECORD</span>
@@ -2165,7 +2169,8 @@ function App() {
           Service commands, joint operational commands, headquarters and agencies are kept in separate classifications.
           Proposed theatre-command structures are labelled as under study, not established.
         </p>
-        {commandState === "ready" && <CommandDirectory records={commandRecords} />}
+        <label className="command-search"><Search size={15}/><input value={commandQuery} onChange={(event) => setCommandQuery(event.target.value)} placeholder="Search commands, services and headquarters"/></label>
+        {commandState === "ready" && <CommandDirectory records={commandRecords} query={commandQuery} />}
         {commandState === "error" && <p className="equipment-note">Command directory is temporarily unavailable.</p>}
       </section>
       <article className="force-detail-panel">
@@ -2205,7 +2210,8 @@ function App() {
         </div>
       </article>
     </section>
-  );
+    );
+  };
   const Programmes = () => (
     <section className="page-section">
       <div className="page-hero">
