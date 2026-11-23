@@ -15,7 +15,8 @@
     "sync:reference": "node scripts/refresh-public-data.mjs",
     "rag:sync": "node scripts/ingest-monitored-sources.mjs",
     "news:run": "node scripts/ingest-monitored-sources.mjs",
-    "db:migrate": "node scripts/migrate-db.mjs"
+    "db:migrate": "node scripts/migrate-db.mjs",
+    "test": "node --test"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",
