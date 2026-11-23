@@ -29,9 +29,9 @@ Provide a source-led register for publicly accessible defence and government doc
 | checksumSha256 | Optional content checksum when the file is actually retrieved |
 | retrievedAt | Metadata registration/retrieval timestamp |
 | extractionStatus | not_extracted, metadata_only, text_extracted, needs_ocr, failed |
-| extractedText / pages | Optional bounded text and page-level references |
+| extractedText / pages | Optional bounded text and page-level PDF references; HTML text has no invented page references |
 | evidenceStatus | unreviewed, official, verified, reported, disputed or withdrawn |
-| summary / notes | Editorial context, not a substitute for the source |
+| pageCount / ocrPages / extractionEngine / extractionWarnings | Extraction provenance and diagnostics |\n| extractedTitle | Title parsed from the HTML document, when available |\n| summary / notes | Editorial context, not a substitute for the source |
 
 ## API
 
