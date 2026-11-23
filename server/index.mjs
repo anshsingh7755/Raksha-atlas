@@ -925,7 +925,7 @@ const server = createServer(async (request, response) => {
     for (const item of readTimelines()) add("Programme timelines", "timeline", item.id, item.programme, item.summary || item.description, {
       category: item.service, body: [item.service,item.stage,item.summary,item.description].join(" "),
     });
-    for (const item of readProcurement()) add("Procurement", "pipeline", item.id, item.title || item.programme || item.name, item.summary || item.notes, {
+    for (const item of readProcurement()) add("Procurement", "watch", item.id, item.title || item.programme || item.name, item.summary || item.notes, {
       category: item.service, body: JSON.stringify(item),
     });
     for (const item of (readFutureProcurement().records ?? [])) add("Future procurement", "pipeline", item.id, item.system, item.notes || item.deliveryWindow || item.quantityText, {
