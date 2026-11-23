@@ -1,165 +1,154 @@
-# Raksha Atlas migration map
+# Raksha Atlas — Architecture and Service Boundaries
 
-The implementation schedule is maintained in
-[docs/roadmap/README.md](../roadmap/README.md).
+This document describes the current running system, the target system and the controlled migration path. The detailed delivery plan and acceptance criteria live in [the implementation roadmap](../roadmap/README.md).
 
-The current website remains the working application:
-
-```text
-src/ + server/ + scripts/
-```
-
-The target structure is introduced gradually:
+## 1. Architecture at a glance
 
 ```text
-frontend/          Next.js web application
-backend/           Java Spring Boot business API
-ai/                Python FastAPI and LangGraph services
-data-engineering/  Python collection and processing pipelines
-database/          Shared PostgreSQL schemas and migrations
-infrastructure/    Docker, AWS and deployment configuration
+Browser
+  |
+  v
+Next.js + React + TypeScript                 [target frontend]
+  | REST / WebSockets
+  v
+Spring Boot 4 / Java 21                     [target business API]
+  |                    \
+  |                     \ internal API
+  v                      v
+PostgreSQL             FastAPI / Python
+pgvector               AI / RAG / document workflows
+Redis                  |
+  ^                    |
+  |                    v
+  +-------------- S3 document storage
+
+Python data pipelines
+  public sources -> collect -> extract -> normalize -> deduplicate
+  -> classify -> validate -> PostgreSQL / S3 -> events / AI indexing
+
+Runtime: Docker / Compose locally
+Cloud: AWS (S3, RDS, ECS, IAM/VPC) + Terraform
+Delivery: GitHub Actions
+Observability: OpenTelemetry, Prometheus, Grafana
+Scale options: Kafka, Airflow, dbt, Spark, Iceberg, Kubernetes/EKS
 ```
 
-## Migration order
+## 2. Responsibility by layer
 
-1. Foundation folders and service boundaries
-2. Frontend migration from Vite to Next.js
-3. Java Spring Boot business backend
-4. Python AI service
-5. Python data-engineering services
-6. Docker and AWS infrastructure
+| Layer | Technology | Owns |
+|---|---|---|
+| UI | Next.js, React, TypeScript | Routes, components, forms, maps, charts, user interaction |
+| Business backend | Spring Boot, Java 21 | Authentication, authorization, domain rules, APIs, audit |
+| Operational database | PostgreSQL | Users, inventory, programmes, procurement, articles, sources |
+| Semantic retrieval | pgvector | Embedding vectors and retrieval metadata |
+| Cache | Redis | Cache, rate limits and short-lived state |
+| AI service | FastAPI, Python, LangGraph, LiteLLM | Retrieval, model calls, summarization and document intelligence |
+| File storage | S3 | Original public documents, PDFs, images and generated files |
+| Data pipelines | Python, Polars | Source collection, extraction, normalization and quality |
+| Event/workflow layer | Kafka, Airflow | Asynchronous events and scheduled/retried jobs |
+| Analytics | Parquet, dbt, Spark, Iceberg | Historical datasets and analytical transformations |
+| Runtime/cloud | Docker, AWS, Terraform | Packaging, hosting, networking and infrastructure provisioning |
+| Operations | GitHub Actions, OpenTelemetry, Prometheus, Grafana | CI/CD, telemetry and dashboards |
 
-Do not delete `src/` or `server/` until the replacement service passes the same
-checks and the website is verified.
-
-## Current progress
-
-Phase 2 has started. `frontend/` contains a Next.js shell that reuses the
-existing `src/App.tsx` and `src/styles.css`. Its `/api/*` requests proxy to the
-existing Node API on port `8787`.
-
-Phase 3 has started. `backend/` contains a Spring Boot service scaffold with a
-health endpoint on port `8081`. It does not replace the Node API yet.
-
-Phase 4 has started. `ai/` contains a FastAPI service scaffold with a health
-endpoint on port `8001`. It does not replace `server/rag.mjs` yet.
-
-Phase 5 has started. `data-engineering/` contains a Python pipeline boundary
-with collector types, deduplication, and a local CLI check. It does not replace
-the JavaScript collectors yet.
-
-Phase 6 has started. `infrastructure/` contains deployment notes for the
-existing Docker stack and the future AWS structure. The root deployment files
-remain the source of truth for now.
-
-## Complete redesign status
-
-### Completed foundation work
-
-- Added target folders: `frontend/`, `backend/`, `ai/`,
-  `data-engineering/`, `database/`, and `infrastructure/`.
-- Added a Next.js shell that reuses the current React UI.
-- Extracted the platform-register API request into
-  `src/services/inventory.ts`.
-- Added a Spring Boot 4 project targeting Java 21.
-- Added a Spring health endpoint.
-- Added the FastAPI AI service health endpoint.
-- Added the Python pipeline boundary and deduplication check.
-- Added the PostgreSQL inventory migration.
-- Added Docker and AWS migration documentation.
-- Added the 24-week implementation roadmap.
-
-### Work in progress
-
-The Spring inventory slice is **not complete**. The following code exists:
+## 3. Current system (what actually runs today)
 
 ```text
-database/migrations/001_inventory.sql
-backend/.../inventory/InventoryItem.java
-backend/.../inventory/InventoryRepository.java
-backend/.../inventory/InventoryController.java
+Browser
+  |
+  v
+React + TypeScript + Vite (root src/)
+  |
+  | /api/*
+  v
+Node.js API (server/index.mjs, port 8787)
+  |-- server/*.json
+  |-- collectors / extractors / processors / scheduler / workers
+  |-- server/rag.mjs
+  |-- optional PostgreSQL adapter when DATABASE_URL is configured
+
+Docker Compose:
+  web container -> Node API -> PostgreSQL 17
 ```
 
-It still needs:
+The root Vite/Node application remains the active website and API. The current local development command is `npm run dev:full`. The root build command `npm run build` runs TypeScript project build and Vite production build.
 
-1. Start PostgreSQL.
-2. Apply the inventory migration.
-3. Compile the updated Java code with Maven. **Done**
-4. Start Spring Boot with database configuration.
-5. Call `GET /api/inventory`.
-6. Compare its response with the existing Node endpoint.
+## 4. Migration scaffolds already present
 
-The Node API remains the production development backend until these checks pass.
+| Path | Current contents | Not yet complete |
+|---|---|---|
+| `frontend/` | Next.js 15 shell and package | Full App Router migration and feature parity |
+| `backend/` | Spring Boot 4 / Java 21 scaffold, health and initial inventory slice | PostgreSQL runtime, full domain APIs, auth, tests and cutover |
+| `ai/` | FastAPI app and health endpoint | RAG, embeddings, workflows, evaluation and Node RAG replacement |
+| `data-engineering/` | Python pipeline boundary, deduplication and CLI check | Ported production collectors, orchestration and quality monitoring |
+| `database/` | PostgreSQL migration(s), initial inventory schema | Full domain schema and verified import |
+| `infrastructure/` | Docker/AWS migration notes and directories | Terraform, cloud resources, CI/CD and production observability |
 
-### Remaining redesign work
+The Next.js shell currently reuses the existing UI and proxies API requests to Node. This is a transition aid, not a second permanent frontend.
 
-```text
-Frontend
-  Extract more API services, then migrate screens from Vite to Next.js.
+## 5. Request flows
 
-Java backend
-  Finish inventory, then add users, roles, procurement, approvals and audit logs.
+### Standard website request
+1. Browser loads a Next.js route.
+2. Frontend calls Spring Boot REST API.
+3. Spring Boot applies validation, authentication and domain rules.
+4. Spring Boot reads/writes PostgreSQL; Redis is used only where caching is useful.
+5. Typed API response is rendered in the UI.
 
-PostgreSQL
-  Add migrations for business entities and connect Spring Data repositories.
+### AI assistant request
+1. Frontend submits a question to Spring Boot.
+2. Spring Boot checks access and forwards an authorized request to FastAPI.
+3. FastAPI retrieves source chunks/metadata using pgvector and approved document storage.
+4. LLM generates a grounded response with citations.
+5. Result returns through Spring Boot to the frontend.
 
-AI
-  Move RAG responsibilities from server/rag.mjs into FastAPI incrementally.
+### Public-source ingestion
+1. Python collectors read permitted public RSS feeds, APIs, pages and documents.
+2. Extractors parse text and metadata.
+3. Polars/Python processors normalize, deduplicate and classify.
+4. Data-quality checks validate provenance, dates and required fields.
+5. Structured records go to PostgreSQL; original files go to S3.
+6. Kafka may publish events to downstream consumers.
+7. Airflow schedules and retries workflows.
+8. AI indexing makes approved content available for retrieval.
 
-Data engineering
-  Move collectors and processors from server/ into Python one pipeline at a time.
+## 6. Data ownership and source of truth
 
-Infrastructure
-  Add service Dockerfiles, then AWS ECS/RDS/S3 and CI/CD.
+- PostgreSQL is the canonical store for structured application records after each domain migration.
+- S3 stores original documents and media; PostgreSQL stores their metadata and provenance.
+- pgvector stores embeddings linked to source/document identifiers; it is not the canonical record store.
+- Redis is disposable cache/transient state, not the system of record.
+- JSON files under `server/` are current inputs/reference data while migration is in progress. They must not become a second permanent source of truth.
+- Every intelligence record should preserve source URL/ID, publisher, publication date, collection/update timestamps, confidence, verification status and the original claim context.
 
-Production
-  Add security, tests, observability, Kubernetes and backup procedures.
-```
+## 7. Migration and cutover policy
 
-No existing website feature has been removed. The current `src/`, `server/`,
-root Docker files, and JSON data remain active during migration.
+1. Complete the agreed website features in the current running application.
+2. Migrate the completed UI once into Next.js; do not rewrite features in parallel.
+3. Move business APIs from Node to Spring Boot domain by domain.
+4. Migrate structured data into PostgreSQL with repeatable migrations and reconciliation reports.
+5. Move RAG/document workflows into FastAPI.
+6. Port collectors and processors into Python one pipeline at a time.
+7. Verify feature parity, API contract, data integrity, tests and runtime before switching each consumer.
+8. Remove legacy code only after all consumers have moved and rollback is no longer needed.
 
-Run both applications during this transition:
+Do not introduce Kafka, Spark, Kubernetes or other infrastructure until a real workload justifies it. ECS is the initial AWS container target; EKS is a later option.
 
-```powershell
-# Terminal 1
-npm run dev:full
+## 8. Local service endpoints
 
-# Terminal 2
-cd frontend
-npm run dev
-```
+| Service | Local endpoint | Current role |
+|---|---|---|
+| Vite frontend | `http://localhost:5173` | Active website |
+| Node API | `http://localhost:8787` | Active API |
+| Next.js | `http://localhost:3000` | Migration scaffold |
+| Spring Boot | `http://localhost:8081/api/health` | Scaffold health endpoint |
+| FastAPI | `http://localhost:8001/health` | Scaffold health endpoint |
+| PostgreSQL | Compose private network, port 5432 internally | Local database service |
 
-Open the Next.js version at `http://localhost:3000`. The existing Vite version
-remains at `http://localhost:5173`.
+## 9. Where to find implementation details
 
-The Java service will be run after Java 21 and Maven are installed:
-
-```powershell
-cd backend
-mvn spring-boot:run
-```
-
-Health check: `http://localhost:8081/api/health`.
-
-The Python AI service can be run with Python 3.11+:
-
-```powershell
-cd ai
-python -m uvicorn app.main:app --reload --port 8001
-```
-
-Health check: `http://localhost:8001/health`.
-
-Run the data-engineering wiring check:
-
-```powershell
-cd data-engineering
-python -m pipeline.main --check
-```
-
-Run the current container stack:
-
-```powershell
-docker compose up --build
-```
+- [Delivery roadmap](../roadmap/README.md) — phases, sequence, acceptance criteria and learning plan.
+- [Inventory data notes](../../INVENTORY-DATA.md) — inventory provenance and data handling.
+- [News pipeline](../../NEWS-PIPELINE.md) — current ingestion implementation.
+- [RAG chatbot](../../RAG-CHATBOT.md) — current retrieval/chat design.
+- [Theatre Atlas source register](../intelligence/THEATRE-ATLAS-SOURCE-REGISTER.md) — geography records and classification policy.
+- [Future programmes dossier](../intelligence/FUTURE-PROGRAMMES-ACQUISITION-DOSSIER.md) — public programme research.
