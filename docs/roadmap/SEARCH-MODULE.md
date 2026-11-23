@@ -9,7 +9,7 @@ The global search modal is the single cross-module discovery entry point. It sea
 
 - Inventory records
 - Programme dossier records
-- News articles and intelligence briefs
+- News articles and intelligence briefs (with a dedicated Briefs destination page)
 - Programme timeline records
 - Current procurement and future procurement records
 - Reference equipment catalogue and platform classes
@@ -49,7 +49,7 @@ A multi-token query must match every query concept, while each acronym can match
 - Search across all sections or narrow to one section without closing the modal.
 - Loading, API error and no-results states are distinct.
 - Enter opens the highest-ranked result; clicking a result opens its owning module.
-- The query is passed into the destination module's existing search/filter where available. Command, source, platform-register and Theatre Atlas destinations accept the carried query.
+- The query is passed into the destination module's existing search/filter where available. Command, source, platform-register, Theatre Atlas and Briefs destinations accept the carried query.
 
 ## Validation
 
