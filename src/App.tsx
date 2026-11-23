@@ -742,10 +742,10 @@ function ProgrammeDossierExplorer() {
       .finally(() => setLoading(false));
   }, []);
   const services = [...new Set(items.map((item) => item.service))].sort();
-  const stages = [...new Set(items.map((item) => item.stage))].sort();
+  const stages = [...new Set(items.map((item) => item.stage.replace(/\s*\(text match; verify\)/i, "")))].sort();
   const filtered = items.filter((item) =>
     (service === "all" || item.service === service) &&
-    (stage === "all" || item.stage === stage) &&
+    (stage === "all" || item.stage.replace(/\s*\(text match; verify\)/i, "") === stage) &&
     (!query || `${item.title} ${item.summary} ${item.details}`.toLowerCase().includes(query.toLowerCase())),
   );
   return (
@@ -757,7 +757,7 @@ function ProgrammeDossierExplorer() {
       <p className="equipment-note">This view is generated from the Future Programmes & Acquisition Intelligence dossier. Reported plans, official approvals, development, contracts and deliveries are not interchangeable. Open each record for detailed notes and source links.</p>
       <div className="catalog-controls">
         <label>Search <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Tejas, S-400, Kaveri, ATAGS…" /></label>
-        <label>Service / domain <select value={service} onChange={(event) => setService(event.target.value)}><option value="all">All services</option>{services.map((value) => <option key={value}>{value}</option>)}</select></label>
+        <label>Service / domain <select value={service} onChange={(event) => setService(event.target.value)}><option value="all">All services</option>{services.map((value) => <option key={value} value={value}>{value}</option>)}</select></label>
         <label>Evidence stage <select value={stage} onChange={(event) => setStage(event.target.value)}><option value="all">All stages</option>{stages.map((value) => <option key={value}>{value}</option>)}</select></label>
       </div>
       <div className="inventory-grid programme-grid">
@@ -765,7 +765,7 @@ function ProgrammeDossierExplorer() {
           <article className="inventory-card programme-card" key={item.id}>
             <div className="inventory-card-top"><span className="verification-chip">{item.service}</span><span>{item.sourceCount} source links</span></div>
             <h3>{item.title}</h3><p className="programme-summary">{item.summary || "Open the record for its research notes and source references."}</p>
-            <div className="programme-meta"><strong>{item.stage}</strong></div>
+            <div className="programme-meta"><strong>{item.stage.replace(/\s*\(text match; verify\)/i, "")}</strong></div>
             <details className="programme-details"><summary>Programme history and evidence</summary><div className="programme-detail-text">{item.details}</div>
               {item.sourceUrls.length > 0 && <div className="programme-source-links"><strong>Source references</strong>{item.sourceUrls.map((url) => <a key={url} href={url} target="_blank" rel="noreferrer">{new URL(url).hostname} <ArrowUpRight size={12} /></a>)}</div>}
             </details>
