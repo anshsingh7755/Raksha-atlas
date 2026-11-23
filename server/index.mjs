@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 import { answerWithRag } from "./rag.mjs";
 import { searchRecords } from "./search/index.mjs";
+import { normalizeDocument, documentFilters } from "./documents/index.mjs";
 import { initializeStore } from "./db/store.mjs";
 import { startScheduler } from "./scheduler/hourly-scheduler.mjs";
 import { runNewsWorker } from "./workers/news-worker.mjs";
@@ -34,6 +35,7 @@ const wikiEquipmentPath = join(root, "wikipedia-equipment.json");
 const historyPath = join(root, "history.json");
 const equipmentCatalogPath = join(root, "equipment-catalog.json");
 const futureProcurementPath = join(root, "future-procurement.json");
+const documentsPath = join(root, "documents.json");
 const port = Number(process.env.PORT || 8787);
 const verificationStatuses = [
   "official",
@@ -754,6 +756,65 @@ const server = createServer(async (request, response) => {
     }
     return;
   }
+  if (url.pathname === "/api/documents" && request.method === "GET") {
+    const register = readDocuments();
+    const query = (url.searchParams.get("q") || "").trim().toLowerCase();
+    const service = url.searchParams.get("service");
+    const type = url.searchParams.get("type");
+    const extractionStatus = url.searchParams.get("extractionStatus");
+    const evidenceStatus = url.searchParams.get("evidenceStatus");
+    const requestedLimit = Number(url.searchParams.get("limit") || 50);
+    const requestedOffset = Number(url.searchParams.get("offset") || 0);
+    const limit = Number.isFinite(requestedLimit) ? Math.max(1, Math.min(100, Math.floor(requestedLimit))) : 50;
+    const offset = Number.isFinite(requestedOffset) ? Math.max(0, Math.floor(requestedOffset)) : 0;
+    const filtered = (register.records ?? []).filter((item) =>
+      (!service || item.service === service) &&
+      (!type || item.documentType === type) &&
+      (!extractionStatus || item.extractionStatus === extractionStatus) &&
+      (!evidenceStatus || item.evidenceStatus === evidenceStatus) &&
+      (!query || [item.title,item.publisher,item.summary,item.notes,item.service,item.documentType,item.sourceId].filter(Boolean).join(" ").toLowerCase().includes(query))
+    ).sort((a,b) => (b.publishedAt || "").localeCompare(a.publishedAt || "") || a.title.localeCompare(b.title));
+    send(response, 200, {
+      items: filtered.slice(offset, offset + limit),
+      count: Math.min(limit, Math.max(0, filtered.length - offset)),
+      total: filtered.length,
+      offset,
+      limit,
+      filters: { q: query || null, service, type, extractionStatus, evidenceStatus },
+      availableFilters: {
+        services: [...new Set((register.records ?? []).map((item) => item.service))].sort(),
+        types: documentFilters.documentTypes,
+        extractionStatuses: documentFilters.extractionStatuses,
+        evidenceStatuses: documentFilters.evidenceStatuses,
+      },
+      policy: register.policy,
+      updatedAt: register.updatedAt,
+    });
+    return;
+  }
+  if (url.pathname === "/api/documents" && request.method === "POST") {
+    let raw = "";
+    for await (const chunk of request) {
+      raw += chunk;
+      if (raw.length > 250000) break;
+    }
+    if (raw.length > 250000) {
+      send(response, 413, { error: "document metadata payload exceeds 250 KB" });
+      return;
+    }
+    try {
+      const input = JSON.parse(raw || "{}");
+      const register = readDocuments();
+      const document = normalizeDocument(input, register.records ?? []);
+      register.records = [...(register.records ?? []), document];
+      register.updatedAt = new Date().toISOString();
+      writeFileSync(documentsPath, JSON.stringify(register, null, 2));
+      send(response, 201, { item: document, count: register.records.length });
+    } catch (error) {
+      send(response, 400, { error: error.message || "invalid document metadata" });
+    }
+    return;
+  }
   if (request.method === "GET" && url.pathname === "/api/briefs") {
     send(response, 200, { items: data.briefs, updatedAt: data.updatedAt });
     return;
@@ -936,6 +997,9 @@ const server = createServer(async (request, response) => {
     });
     for (const item of data.briefs ?? []) add("Intelligence briefs", "briefs", item.id, item.title, item.summary, {
       category: item.status, body: JSON.stringify(item),
+    });
+    for (const item of (readDocuments().records ?? [])) add("Documents", "documents", item.id, item.title, item.summary || item.publisher, {
+      category: item.documentType, body: [item.publisher,item.service,item.documentType,item.evidenceStatus,item.extractionStatus,item.publishedAt,item.notes,item.extractedText,(item.pages ?? []).map((page) => page.text).join(" ")].join(" "),
     });
     for (const item of readPlatformRegister()) add("Platform classes", "register", item.className, item.className, item.role || item.platform, {
       category: item.category, body: [item.platform,item.service,item.origin,item.futureOrders].join(" "),
