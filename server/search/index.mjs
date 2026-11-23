@@ -9,7 +9,7 @@ const SEARCH_ALIASES = new Map([
   ["mrfa", ["multi role fighter aircraft"]],
   ["ssn", ["nuclear powered attack submarine"]],
   ["ssbn", ["nuclear powered ballistic missile submarine"]],
-  ["s-400", ["s400", "triumpf"]],
+  ["s400", ["s 400", "triumph", "triumpf"]],
   ["drdo", ["defence research and development organisation"]],
   ["hal", ["hindustan aeronautics limited"]],
   ["bel", ["bharat electronics limited"]],
