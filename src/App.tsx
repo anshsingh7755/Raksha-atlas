@@ -2510,7 +2510,7 @@ function App() {
       id: string; title: string; publisher: string; publishedAt: string | null;
       documentType: string; service: string; originalUrl: string; canonicalUrl: string;
       fileFormat: string; extractionStatus: string; evidenceStatus: string;
-      summary: string; notes: string; pages: Array<{page:number;text:string}>;
+      summary: string; notes: string; pages: Array<{page:number;text:string}>;\n      extractedText?: string; pageCount?: number | null; checksumSha256?: string | null;\n      extractionEngine?: string | null; extractionWarnings?: string[]; ocrPages?: number[]; fileSizeBytes?: number | null;
     };
     const [items, setItems] = useState<DocumentItem[]>([]);
     const [query, setQuery] = useState("");
@@ -2550,6 +2550,22 @@ function App() {
       (type === "all" || item.documentType === type) &&
       [item.title,item.publisher,item.service,item.documentType,item.summary,item.notes].join(" ").toLowerCase().includes(query.toLowerCase())
     );
+    const extractDocument = async (item: DocumentItem) => {
+      setExtractingId(item.id); setError("");
+      try {
+        const response = await fetch(`/api/documents/${encodeURIComponent(item.id)}/extract`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", ...(adminToken ? { Authorization: `Bearer ${adminToken}` } : {}) },
+          body: JSON.stringify({ ocr: item.extractionStatus === "needs_ocr" }),
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || "Document extraction failed.");
+        setItems((previous) => previous.map((record) => record.id === item.id ? data.item : record));
+        setSelected((previous) => previous?.id === item.id ? data.item : previous);
+      } catch (extractError) {
+        setError(extractError instanceof Error ? extractError.message : "Document extraction failed.");
+      } finally { setExtractingId(""); }
+    };
     const registerDocument = async () => {
       setSaving(true); setError("");
       try {
@@ -2596,7 +2612,7 @@ function App() {
           <button className="primary-btn" disabled={saving || !title.trim() || !publisher.trim() || !url.trim()} onClick={registerDocument}>{saving ? "Registering…" : "Save document metadata"}</button>
         </article>}
         {error && <div className="watch-warning">{error}</div>}
-        <div className="documents-count"><strong>{visible.length}</strong> documents in current view <span>· metadata-only ingestion; extraction is explicit</span></div>
+        <div className="documents-count"><strong>{visible.length}</strong> documents in current view <span>· PDF text extraction and OCR are available for approved public sources</span></div>
         {loading ? <div className="data-state">Loading public documents…</div> : visible.length === 0 ? <div className="data-state">{items.length === 0 ? "No public documents have been registered yet. Add a public source URL to begin the library." : "No documents match these filters."}</div> :
           <div className="document-grid">{visible.map((item) => <article className="document-card" key={item.id}>
             <div className="document-card-meta"><span>{item.documentType.replace(/_/g," ")}</span><span>{item.fileFormat.toUpperCase()}</span></div>
@@ -2604,7 +2620,7 @@ function App() {
             {item.publishedAt && <p className="document-date">Published {new Date(item.publishedAt).toLocaleDateString()}</p>}
             {item.summary && <p>{item.summary}</p>}
             <div className="document-status"><span>{item.evidenceStatus}</span><span>{item.extractionStatus.replace(/_/g," ")}</span></div>
-            <div className="document-actions"><button onClick={() => setSelected(item)}>View record</button><a href={item.originalUrl} target="_blank" rel="noreferrer">Open source <ArrowUpRight size={12}/></a></div>
+            <div className="document-actions">{item.fileFormat === "pdf" && <button disabled={extractingId === item.id || item.extractionStatus === "text_extracted"} onClick={() => extractDocument(item)}>{extractingId === item.id ? "Extracting…" : item.extractionStatus === "needs_ocr" ? "Run OCR" : item.extractionStatus === "text_extracted" ? "Extracted" : "Extract PDF text"}</button>}<button onClick={() => setSelected(item)}>View record</button><a href={item.originalUrl} target="_blank" rel="noreferrer">Open source <ArrowUpRight size={12}/></a></div>
           </article>)}</div>}
         {selected && <div className="modal-backdrop" onMouseDown={(event) => { if (event.target === event.currentTarget) setSelected(null); }}><section className="document-detail-modal">
           <button className="icon-btn" onClick={() => setSelected(null)} aria-label="Close document details"><X size={17}/></button>
