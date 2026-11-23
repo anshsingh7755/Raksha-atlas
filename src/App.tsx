@@ -1477,7 +1477,7 @@ function CommandDirectory({ records, compact = false }: { records: CommandRecord
   return (
     <div className={compact ? "command-grid command-grid-compact" : "command-grid"}>
       {groups.map((service) => {
-        const items = records.filter((record) => record.service === service);
+        const items = records.filter((record) => record.service === service && record.status === "established");
         if (!items.length) return null;
         return (
           <article className="command-card" key={service}>
@@ -1487,7 +1487,7 @@ function CommandDirectory({ records, compact = false }: { records: CommandRecord
               {items.map((record) => (
                 <div className="command-record" key={record.id}>
                   <strong>{record.name}</strong>
-                  <small>{record.structureType} · {record.status.replaceAll("_", " ")}</small>
+                  <small>{record.structureType} · {record.status.replace(/_/g, " ")}</small>
                   {record.headquarters && <small>HQ: {record.headquarters}</small>}
                   <a href={record.sourceUrl} target="_blank" rel="noreferrer">
                     {record.sourceName} <ArrowUpRight size={11} />
