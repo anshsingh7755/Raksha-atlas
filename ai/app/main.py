@@ -4,7 +4,7 @@ import secrets
 from fastapi import FastAPI, Header, HTTPException
 from pydantic import BaseModel, Field
 
-from .documents import extract_public_pdf
+from .documents import extract_public_document
 
 app = FastAPI(
     title="Raksha Atlas AI",
@@ -35,4 +35,4 @@ def health() -> dict[str, str]:
 @app.post("/documents/extract")
 async def extract_document(payload: DocumentExtractionRequest, authorization: str | None = Header(default=None)) -> dict:
     require_worker_token(authorization)
-    return await extract_public_pdf(payload.url, payload.ocr)
+    return await extract_public_document(payload.url, payload.ocr)
