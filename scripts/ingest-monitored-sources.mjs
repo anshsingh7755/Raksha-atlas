@@ -139,6 +139,7 @@ const officialSourceIds = new Set(
   sources.filter((source) => source.official === true).map((source) => source.id),
 );
 for (const article of state.articles) {
+  article.reviewState ??= "unreviewed";
   if (officialSourceIds.has(article.sourceId)) {
     article.publisherOfficial = true;
     // Older collector records used "official" as a publisher label. Keep claim
@@ -149,7 +150,6 @@ for (const article of state.articles) {
   if (configuredSources.has(article.sourceId)) {
     article.verificationStatus ??=
       configuredSources.get(article.sourceId) ?? "unverified";
-    article.reviewState ??= "unreviewed";
     article.confidence ??=
       article.publisherOfficial
         ? "official publisher provenance; claim remains unreviewed"
