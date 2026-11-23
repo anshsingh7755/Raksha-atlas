@@ -3,7 +3,7 @@
   "title": "Indian Defence Future Programmes Register",
   "researchCutoff": "2026-11-23",
   "generatedFrom": "docs/intelligence/FUTURE-PROGRAMMES-ACQUISITION-DOSSIER.md",
-  "recordCount": 101,
+  "recordCount": 103,
   "classificationPolicy": "Public-source research only. Heuristic labels are discovery aids, not verified acquisition status. AoN, proposal, trial, contract, construction, delivery and in-service are distinct states.",
   "records": [
     {
@@ -3251,6 +3251,95 @@
       "dossierText": "- Maintain separate records for ALH Dhruv, Rudra/ALH Mk-IV, LCH Prachand, LUH, IMRH, DBMRH/UH-M and NUH. A family page can link variants, but must not combine their users, quantities, roles or contract stages.",
       "lastVerifiedAt": null,
       "reviewNotes": "Initial structured extraction from the research dossier. Stage/service labels are heuristic; quantity, status, dates, developer and milestones require source-level verification."
+    },
+    {
+      "id": "rafale-iaf-36",
+      "name": "Rafale — IAF 36-aircraft acquisition",
+      "serviceDomain": "Air Force",
+      "category": "Combat aircraft",
+      "variant": "Rafale C/B",
+      "developer": "Dassault Aviation",
+      "manufacturers": [
+        "Dassault Aviation",
+        "MBDA"
+      ],
+      "status": "in_service",
+      "stageLabel": "Delivered / in service",
+      "stageClassification": "official_contract_and_induction",
+      "quantity": 36,
+      "quantityType": "contracted_aircraft",
+      "quantityConfidence": "high",
+      "announcedDate": "2015-04-10",
+      "milestones": [],
+      "sources": [
+        {
+          "url": "https://sansad.in/getFile/loksabhaquestions/annex/12/AS287.pdf?source=pqals",
+          "sourceId": "lok-sabha-rafale-2017",
+          "sourceName": "Lok Sabha — Rafale procurement chronology, 2017",
+          "sourceType": "Parliamentary reply",
+          "official": true
+        },
+        {
+          "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1513011&lang=2&reg=48",
+          "sourceId": "pib-rafale-iga-2016",
+          "sourceName": "PIB — Agreement with France for supply of Rafale Fighter Jets",
+          "sourceType": "Government release",
+          "official": true
+        },
+        {
+          "url": "https://www.pib.gov.in/PressNoteDetails.aspx?ModuleId=3&NoteId=154353&lang=1&reg=3",
+          "sourceId": "pib-rafale-arrival-2020",
+          "sourceName": "PIB — Rafale arrival and induction",
+          "sourceType": "Government release",
+          "official": true
+        }
+      ],
+      "evidenceQuality": "official_primary",
+      "summary": "The IAF's separate 36-aircraft fly-away Rafale acquisition, following the earlier 126-aircraft MMRCA competition. This record excludes the Navy's 26 Rafale Marine aircraft and any later MRFA proposal.",
+      "dossierText": "Service: Indian Air Force. Scope: 36 Rafale aircraft acquired in fly-away condition under the 23 September 2016 India-France Inter-Governmental Agreement. The 126-aircraft MMRCA RFP was an earlier competition and is not the final contracted quantity. Delivery schedule began in September 2019; first aircraft arrived in India in July 2020. The IAF acquisition is separate from the Indian Navy's 26 Rafale Marine contract signed in April 2025. See the linked milestone timeline for dated events and evidence.",
+      "lastVerifiedAt": "2026-11-23",
+      "reviewNotes": "Official government and parliamentary sources establish the contract and acquisition scope. Delivery completion by April 2022 is the original scheduled completion date; this register avoids inferring each aircraft's individual handover date."
+    },
+    {
+      "id": "rafale-marine-26",
+      "name": "Rafale Marine — Indian Navy 26-aircraft contract",
+      "serviceDomain": "Navy",
+      "category": "Carrier-borne fighter aircraft",
+      "variant": "Rafale M",
+      "developer": "Dassault Aviation",
+      "manufacturers": [
+        "Dassault Aviation",
+        "MBDA"
+      ],
+      "status": "contracted",
+      "stageLabel": "Contract signed / deliveries pending",
+      "stageClassification": "official_contract",
+      "quantity": 26,
+      "quantityType": "contracted_aircraft",
+      "quantityConfidence": "high",
+      "announcedDate": "2025-04-28",
+      "milestones": [],
+      "sources": [
+        {
+          "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2124851&lang=1&reg=1",
+          "sourceId": "pib-rafale-m-2025",
+          "sourceName": "PIB — IGA for 26 Rafale-Marine aircraft",
+          "sourceType": "Government release",
+          "official": true
+        },
+        {
+          "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2210154&lang=13&reg=22",
+          "sourceId": "pib-rafale-m-delivery-2030",
+          "sourceName": "PIB — Delivery completion target and contract scope",
+          "sourceType": "Government release",
+          "official": true
+        }
+      ],
+      "evidenceQuality": "official_primary",
+      "summary": "Indian Navy carrier-borne fighter acquisition: 22 single-seat and four twin-seat aircraft. This is a Navy-operated aviation platform and must not be counted within the IAF's 36-aircraft Rafale fleet.",
+      "dossierText": "Service: Indian Navy. Scope: 26 Rafale Marine aircraft, comprising 22 single-seat and four twin-seat aircraft. India and France signed the Inter-Governmental Agreement on 28 April 2025. The package includes training, simulators, associated equipment, weapons and performance-based logistics. Government reporting states that deliveries are to be completed by 2030. This record is distinct from the IAF's 36 Rafale aircraft.",
+      "lastVerifiedAt": "2026-11-23",
+      "reviewNotes": "Official PIB contract and follow-on programme statements. Delivery completion by 2030 is a target, not an achieved milestone."
     }
   ]
 }
