@@ -899,7 +899,20 @@ const server = createServer(async (request, response) => {
     const quantityStatus = url.searchParams.get("quantityStatus");
     const originCountry = url.searchParams.get("originCountry");
     const classImages = readPlatformRegister();
-    const items = readInventory().filter(
+    const inventory = readInventory();
+    const uniqueValues = (field) =>
+      [...new Set(inventory.map((item) => item[field]).filter(Boolean))].sort((a, b) =>
+        String(a).localeCompare(String(b)),
+      );
+    const availableFilters = {
+      services: uniqueValues("service"),
+      categories: uniqueValues("category"),
+      quantityStatuses: uniqueValues("quantityStatus"),
+      originCountries: uniqueValues("originCountry"),
+    };
+    const latestRecordAsOf =
+      inventory.map((item) => item.asOfDate).filter(Boolean).sort().at(-1) ?? null;
+    const items = inventory.filter(
       (item) =>
         (!service || item.service === service) &&
         (!category || item.category === category) &&
@@ -921,7 +934,9 @@ const server = createServer(async (request, response) => {
       items,
       count: items.length,
       filters: { service, category, quantityStatus, originCountry },
-      asOf: "2026-11-04",
+      availableFilters,
+      asOf: latestRecordAsOf,
+      latestRecordAsOf,
     });
     return;
   }
