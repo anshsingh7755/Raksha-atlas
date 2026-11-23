@@ -1,7 +1,6 @@
-import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   ArrowUpRight,
-  Bell,
   Bot,
   ChevronRight,
   CircleHelp,
@@ -9,7 +8,6 @@ import {
   FileText,
   Globe2,
   LayoutDashboard,
-  Menu,
   MessageSquareText,
   PenLine,
   Plus,
@@ -23,8 +21,6 @@ import {
   Plane,
   Crosshair,
   Clock3,
-  Sun,
-  Moon,
   Command,
 } from "lucide-react";
 import { fetchPlatformRegister, type PlatformRegisterItem } from "./services/inventory";
