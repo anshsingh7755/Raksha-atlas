@@ -148,7 +148,7 @@ Do not introduce Kafka, Spark, Kubernetes or other infrastructure until a real w
 
 Inventory is a shared service-independent module. The active `GET /api/inventory` endpoint filters `server/inventory.json` by exact service, category, lifecycle and origin values; the React `Inventory` component consumes this API for all listed domains. The UI defaults to All services when the user has not selected a service. Selecting a service from Commands preselects that service on the Inventory page.
 
-The unused Navy-specific frigate reader and `GET /api/inventory/frigates` route have been removed from the active API because the common inventory catalogue is the canonical UI data path. The legacy JSON file is temporarily retained as a rollback/reference artifact and is not loaded by the API. Detailed field definitions and acceptance checks are in [Inventory module specification](../roadmap/INVENTORY-MODULE.md).
+The unused Navy-specific frigate reader and `GET /api/inventory/frigates` route have been removed from the active API because the common inventory catalogue is the canonical UI data path. The legacy JSON file is temporarily retained as a rollback/reference artifact and is not loaded by the API. The inventory endpoint also returns service/category/lifecycle/origin filter options derived from the complete dataset and the latest record as-of date; the frontend consumes these options rather than maintaining duplicate hardcoded lists. Detailed field definitions and acceptance checks are in [Inventory module specification](../roadmap/INVENTORY-MODULE.md).
 
 ## 10. Where to find implementation details
 
