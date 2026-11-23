@@ -888,6 +888,7 @@ const server = createServer(async (request, response) => {
     for (const item of data.briefs ?? []) add("Intelligence briefs", "signals", item.id, item.title, item.summary, JSON.stringify(item));
     for (const item of readPlatformRegister()) add("Platform classes", "register", item.className, item.className, item.role || item.platform, [item.className,item.platform,item.category,item.role,item.origin,item.futureOrders].join(" "));
     for (const item of readSources()) add("Sources", "sources", item.id, item.name || item.title || item.id, item.description || item.publisher || item.url, [item.id,item.name,item.title,item.description,item.publisher,item.url].join(" "));
+    for (const item of JSON.parse(readFileSync(join(root, "commands.json"), "utf8")).records ?? []) add("Commands", "forces", item.id, item.name, item.description, [item.name,item.service,item.group,item.structureType,item.status,item.headquarters,item.description].join(" "));
     results.sort((a,b) => b.score-a.score || a.title.localeCompare(b.title));
     const limited = results.slice(0, 40).map(({score,...item}) => item);
     send(response, 200, { query, count: limited.length, results: limited });
