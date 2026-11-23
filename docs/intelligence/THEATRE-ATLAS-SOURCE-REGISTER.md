@@ -24,7 +24,11 @@ CFR's tracker combines an interactive map, search and filters, conflict profiles
   - Indian commands
   - Indian infrastructure
   - Partner access & ports
-- Selectable schematic map markers and a synchronized location list.
+- Selectable Leaflet map markers and a synchronized location list.
+- Structured records live in `server/theatre-locations.json` and are exposed by `GET /api/theatre-atlas` with service, type, country and text filters.
+- Atlas profiles are loaded from the API, with a bundled fallback for offline/API-failure display.
+- Each structured record carries a location type, service, status, approximate coordinate precision, evidence classification, source URL and review date.
+- Atlas records are included in global search.
 - Detail panel with source, status and caveat.
 - Map positions are deliberately schematic and are not navigational coordinates.
 
@@ -84,6 +88,12 @@ The public map intentionally uses regional markers. It does not display:
 - inferred operational boundaries.
 
 The purpose is public geography and defence-policy literacy, not operational targeting or facility tracking.
+
+## Data/API contract
+
+`GET /api/theatre-atlas` returns `items`, `count`, active `filters`, `availableFilters`, `asOf` and the public-location `policy`. Supported query parameters: `service`, `type`, `country` and `q`. The map only plots records with numeric latitude/longitude; records without defensible regional coordinates should remain unplotted rather than receiving guessed coordinates.
+
+The initial eight records are a first-pass public register, not a comprehensive inventory of overseas access or Indian defence geography. `evidenceStatus` describes the nature of the cited source; it is not a claim-verification verdict. The API does not convert an official publisher into automatic verification of every interpretation.
 
 ## Next data work
 
