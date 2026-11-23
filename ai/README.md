@@ -8,7 +8,7 @@ This service remains separate from the current Node.js RAG implementation. Phase
 cd ai
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
+pip install -r requirements-dev.txt
 $env:DOCUMENT_WORKER_TOKEN = "replace-with-a-long-random-secret"
 $env:DOCUMENT_ALLOWED_HOSTS = "mod.gov.in,pib.gov.in,drdo.gov.in"
 python -m uvicorn app.main:app --reload --port 8001
@@ -40,8 +40,8 @@ The response contains SHA-256, byte size, final URL, page count, page-numbered t
 ## Tests
 
 ```powershell
-pip install pytest
-pytest
+pip install -r requirements-dev.txt
+pytest -q -c pytest.ini tests
 ```
 
 Future responsibilities include RAG retrieval, embeddings, model routing and evaluation; this worker does not replace `server/rag.mjs`.
