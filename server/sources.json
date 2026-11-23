@@ -1593,5 +1593,181 @@
     "language": "en",
     "active": true,
     "reliabilityNotes": "Use to discover reports and then verify each claim against official primary sources. IDRW is not an official government or service publication; archive coverage is incomplete and changes over time."
+  },
+  {
+    "id": "mod-tedbf-capability-roadmap-2026",
+    "name": "MoD — Technology Perspective and Capability Roadmap / TEDBF programme listing",
+    "url": "https://www.dodmod.gov.in/static/uploads/2026/02/959e4c6cc6c9d38cbe6077d8739c584c.pdf",
+    "sourceType": "Official Ministry of Defence document",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Official MoD capability roadmap lists new-generation aircraft including TEDBF and LCA (Navy) with associated sensors and avionics. Listing establishes a stated programme/capability requirement, not approval, prototype contract, quantity or service induction."
+  },
+  {
+    "id": "idrw-orca-2026",
+    "name": "IDRW — ORCA proposal status, 3 June 2026",
+    "url": "https://idrw.org/indias-forgotten-fighter-why-the-orca-program-remains-in-limbo/",
+    "sourceType": "Unofficial defence reporting",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Reports ORCA as an IAF-oriented derivative/proposal related to TEDBF and explicitly says no formal approval or funding has been provided. Keep it a concept/proposal, not an approved aircraft programme."
+  },
+  {
+    "id": "pib-kaveri-development-2025",
+    "name": "PIB — DRDO indigenous defence technology development and Kaveri derivative projects, 25 July 2025",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2148337&lang=2&reg=48",
+    "sourceType": "Official government press release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Confirms two sanctioned Kaveri derivative projects: Flightworthy Kaveri Dry Engine Development ₹472.42 crore and Technology Demonstration of Kaveri Derivative Dry Engine ₹251.17 crore. Do not treat these as a completed engine or aircraft integration."
+  },
+  {
+    "id": "pib-kaveri-engine-review-2026",
+    "name": "PIB — GTRE indigenous military gas turbine engine review, 16 February 2026",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2228670&lang=1&reg=6",
+    "sourceType": "Official government press release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Confirms ongoing GTRE military gas turbine development projects and witnessed full afterburner Kaveri engine test; does not state that Kaveri is cleared for operational aircraft integration."
+  },
+  {
+    "id": "pib-kaveri-engine-rajya-sabha-2021",
+    "name": "PIB — Kaveri engine development status, 29 November 2021",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1776092&lang=2&reg=48",
+    "sourceType": "Official parliamentary reply",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Official history: CCS sanction in 1989, nine full prototype engines, four core engines, 3,217 testing hours, altitude and flying test-bed trials. Government stated then-current Kaveri architecture could not power Tejas FOC configuration."
+  },
+  {
+    "id": "idrw-tedbf-budget-2025",
+    "name": "IDRW — TEDBF budget and development reporting, 3 February 2025",
+    "url": "https://idrw.org/indian-defence-budget-confirms-capital-outlay-for-tedbf-and-ghatak-ucav-programs/",
+    "sourceType": "Unofficial defence reporting",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Secondary interpretation of budget allocations and reported Navy requirement; do not infer formal project sanction, CDR completion or order quantity from this article."
+  },
+  {
+    "id": "idrw-ghatak-fufa-cats-2025",
+    "name": "IDRW — CATS Warrior and FUFA/Ghatak terminology report",
+    "url": "https://idrw.org/indias-iaf-faces-fighter-jet-shortage-time-to-fast-track-cats-warrior-and-fufa-programs/",
+    "sourceType": "Unofficial defence reporting",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Discovery source only. FUFA/AURA/Ghatak terminology is inconsistently used in secondary reporting; do not count FUFA as a separate sanctioned platform without primary-source clarification."
+  },
+  {
+    "id": "janes-hal-cats-2021",
+    "name": "Janes — HAL CATS family revealed at Aero India 2021",
+    "url": "https://www.janes.com/defence-intelligence-insights/defence-news/aero-india-2021-hals-loyal-wingmen-break-cover",
+    "sourceType": "Defence industry reporting",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Reports HAL's CATS family including Warrior, Hunter and ALFA; mock-ups and programme concepts are not equivalent to flight-tested operational systems or procurement orders."
+  },
+  {
+    "id": "theprint-cats-warrior-2025",
+    "name": "ThePrint — HAL CATS Warrior demonstrator reporting, 11 February 2025",
+    "url": "https://theprint.in/defence/designed-for-assisting-fighter-aircraft-hal-cats-likely-to-take-first-flight-by-year-end/2488765/",
+    "sourceType": "Secondary defence reporting",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Reports full-scale demonstrator engine ground run and planned first flight. Planned flight timing is not confirmation of a completed flight; seek HAL/ADA official milestone."
+  },
+  {
+    "id": "drdo-whap-product",
+    "name": "DRDO — WhAP 8x8 product and programme listing",
+    "url": "https://drdo.gov.in/drdo/en/offerings/products",
+    "sourceType": "Official DRDO product catalogue",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "DRDO product catalogue lists Wheeled Armoured Platform (WhAP) 8x8 and paramilitary variant. Programme/product existence is official; fleet quantities and user-specific procurement contracts require separate evidence."
+  },
+  {
+    "id": "pib-advanced-armoured-platforms-2026",
+    "name": "PIB — Advanced Armoured Platforms tracked and wheeled unveiled, 25 April 2026",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2255538&lang=1&reg=1",
+    "sourceType": "Official government press release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Confirms VRDE-designed tracked and wheeled advanced armoured platforms, integrated 30mm crewless turret, 65% indigenous content with stated aim to reach 90%, and industry partners Tata Advanced Systems and Bharat Forge. No Army order quantity disclosed."
+  },
+  {
+    "id": "bharatforge-marg-2021",
+    "name": "Bharat Forge — MArG 155-BR unveiled, 23 December 2021",
+    "url": "https://www.kssl.in/press_releases_details_23rd_december_2021",
+    "sourceType": "Manufacturer press release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Manufacturer confirms unveiling of Multi-terrain Artillery Gun MArG 155-BR, a 155mm/39-calibre system mounted on a 4x4 high-mobility vehicle. This establishes a company-developed product, not an Indian Army order."
+  },
+  {
+    "id": "bharatforge-mgs-platforms-2022",
+    "name": "Bharat Forge — MGS 4x4 and MArG-T programme disclosures",
+    "url": "https://www.bharatforge.com/media/press-release/2022/83/press_page",
+    "sourceType": "Manufacturer press release",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Manufacturer describes 4x4 Mounted Gun System (MGS) 155mm/39-calibre, MArG Extended Range and MArG-T 155mm/39-calibre ultra-light howitzer. These are product/development disclosures; proof trials, export and Indian Army procurement must be evidenced separately."
+  },
+  {
+    "id": "bharatforge-marg-mgs-annual-report",
+    "name": "Bharat Forge — defence business progress and MGS reporting",
+    "url": "https://www.bharatforge.com/AR2022/defence-business-progresses-with-indias-journey-of-self-reliance.html",
+    "sourceType": "Manufacturer annual report",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Company annual report describes MArG, TC-20 MGS as a considered system, ATAGS trial status and Kalyani M4 production/delivery. Company statements do not establish Army procurement of MArG/MGS."
+  },
+  {
+    "id": "vf-jabalpur-matang-discovery",
+    "name": "Vehicle Factory Jabalpur — Matang utility vehicle discovery reference",
+    "url": "https://wiki.tyfsadik.org/content/wikipedia_en_all_maxi_2026-02/Directorate_of_Ordnance_%28Coordination_%26_Services%29",
+    "sourceType": "Secondary encyclopaedic discovery reference",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Secondary source identifies Matang as a Vehicle Factory Jabalpur-developed/manufactured vehicle. No current programme status, specifications, quantity, contract or active production evidence established; treat as legacy product pending factory/AVNL primary documentation."
+  },
+  {
+    "id": "idrw-cats-warrior-2025",
+    "name": "IDRW — CATS Warrior and unmanned teaming programme discovery",
+    "url": "https://idrw.org/category/news-beat/",
+    "sourceType": "Unofficial defence-news discovery source",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Archive discovery only. Individual claims about CATS demonstrator flight, payload, autonomy and schedule require HAL or official confirmation."
   }
 ]
