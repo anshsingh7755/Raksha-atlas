@@ -32,7 +32,6 @@ import AtlasHeader from "./components/AtlasHeader";
 import AccessibleDialog from "./components/AccessibleDialog";
 import Programmes from "./features/programmes/Programmes";
 import ArmedForcesHistory from "./features/history/ArmedForcesHistory";
-import { apiGet } from "./services/api";
 
 type View =
   | "overview"
