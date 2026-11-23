@@ -2634,9 +2634,9 @@ function App() {
           <dl><dt>Publication date</dt><dd>{selected.publishedAt ? new Date(selected.publishedAt).toLocaleDateString() : "Not supplied"}</dd><dt>Document type</dt><dd>{selected.documentType.replace(/_/g," ")}</dd><dt>Extraction</dt><dd>{selected.extractionStatus.replace(/_/g," ")}</dd><dt>Evidence status</dt><dd>{selected.evidenceStatus}</dd><dt>Format</dt><dd>{selected.fileFormat}</dd></dl>
           {selected.summary && <p>{selected.summary}</p>}
           {selected.extractedTitle && <p className="document-extraction-meta">Title found in source: {selected.extractedTitle}</p>}
-          <p className="document-extraction-meta">{selected.pageCount ? `${selected.pageCount} pages` : "Page count unavailable"}{selected.fileSizeBytes ? ` · ${(selected.fileSizeBytes / 1024 / 1024).toFixed(2)} MB` : ""}{selected.checksumSha256 ? ` · SHA-256 ${selected.checksumSha256.slice(0,16)}…` : ""}{selected.extractionEngine ? ` · ${selected.extractionEngine}` : ""}</p>
+          <p className="document-extraction-meta">{selected.pageCount ? `${selected.pageCount} pages` : selected.fileFormat === "html" ? "HTML text · no page references" : "Page count unavailable"}{selected.fileSizeBytes ? ` · ${(selected.fileSizeBytes / 1024 / 1024).toFixed(2)} MB` : ""}{selected.checksumSha256 ? ` · SHA-256 ${selected.checksumSha256.slice(0,16)}…` : ""}{selected.extractionEngine ? ` · ${selected.extractionEngine}` : ""}</p>
           {selected.extractionWarnings?.map((warning,index) => <p className="document-extraction-warning" key={index}>{warning}</p>)}
-          {selected.extractedText && <article className="document-full-text"><h3>Extracted text</h3><pre>{selected.extractedText}</pre></article>}
+          {selected.extractedText && !selected.pages?.length && <article className="document-full-text"><h3>Extracted text</h3><pre>{selected.extractedText}</pre></article>}
           {selected.pages?.length > 0 && <div className="document-extracted-pages">{selected.pages.map((page) => <article key={page.page}><strong>Page {page.page}</strong><p>{page.text}</p></article>)}</div>}
           <a href={selected.originalUrl} target="_blank" rel="noreferrer">Open original public document <ArrowUpRight size={13}/></a>
         </section></div>}
