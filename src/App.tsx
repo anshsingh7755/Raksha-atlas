@@ -1602,7 +1602,7 @@ function App() {
         ? {
             ...forces[0],
             id: "all",
-            label: "All services",
+            label: "All service domains",
             short: "ALL",
             description:
               "Explore public, source-linked records across every available service domain.",
@@ -2220,7 +2220,7 @@ function App() {
           <div className="inventory-filters">
             <label><span className="section-kicker">SERVICE / DOMAIN</span>
               <select value={serviceFilter} onChange={(event) => setServiceFilter(event.target.value)} aria-label="Filter by operating service">
-                <option value="all">All services</option>
+                <option value="all">All service domains</option>
                 {filterOptions.serviceDomains.map((value) => <option key={value}>{value}</option>)}
               </select>
             </label>
