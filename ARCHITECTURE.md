@@ -1,105 +1,85 @@
-# Raksha Atlas: simple project structure
+# Raksha Atlas — Project Structure (Quick Reference)
 
-This is a React + TypeScript website with a small Node.js API.
+The detailed architecture, service boundaries and request/data flows are documented in [docs/architecture/README.md](docs/architecture/README.md). The feature completion and technology migration sequence is in [docs/roadmap/README.md](docs/roadmap/README.md).
 
-## Project tree
-
-```text
-Defence/
-├── index.html              Browser entry HTML
-├── package.json            Commands and dependencies
-├── vite.config.ts          Frontend server and /api proxy
-│
-├── src/                    Frontend code
-│   ├── main.tsx            Starts React
-│   ├── App.tsx             Pages, navigation and API requests
-│   └── styles.css          Website styling
-│
-├── server/                 Backend code
-│   ├── index.mjs           HTTP API routes
-│   ├── rag.mjs             Atlas Assist retrieval/chat
-│   ├── *.json              Local website data
-│   ├── collectors/         RSS, YouTube and X collection
-│   ├── extractors/         Public article metadata extraction
-│   ├── processors/         Deduplication and enrichment
-│   ├── scheduler/          Hourly and daily jobs
-│   ├── workers/            Background workers
-│   └── db/                 Optional PostgreSQL storage
-│
-├── scripts/                Manual data and database commands
-├── deploy/                 Nginx production configuration
-├── Dockerfile              Production image instructions
-└── docker-compose.yml      Web + API + PostgreSQL services
-```
-
-## Runtime diagram
+## Current working application
 
 ```text
 Browser
-  ↓
-index.html
-  ↓
-src/main.tsx
-  ↓
-src/App.tsx ─── src/styles.css
-  │
-  │ fetch("/api/...")
-  ↓
-Vite :5173 ── proxy ──> Node API :8787
-                              │
-                              ├── server/*.json
-                              └── PostgreSQL when DATABASE_URL exists
+  |
+  v
+src/ (React + TypeScript + Vite)
+  |
+  | fetch /api/*
+  v
+server/index.mjs (Node.js API)
+  |-- server/*.json
+  |-- collectors / extractors / processors
+  |-- scheduler / workers
+  |-- server/rag.mjs
+  |-- optional PostgreSQL adapter
+
+Docker Compose: web + Node API + PostgreSQL 17
 ```
 
-## What to edit
-
-| Goal                                        | Edit                                                       |
-| ------------------------------------------- | ---------------------------------------------------------- |
-| Change text, page layout or API request     | `src/App.tsx`                                              |
-| Change colors, spacing or responsive design | `src/styles.css`                                           |
-| Change local inventory/news data            | Relevant file in `server/`                                 |
-| Add or change an API endpoint               | `server/index.mjs`                                         |
-| Change ingestion behavior                   | `server/collectors/`, `extractors/`, or `processors/`      |
-| Change scheduled jobs                       | `server/scheduler/`                                        |
-| Change database structure                   | `server/db/schema.sql` and `server/db/store.mjs`           |
-| Change deployment                           | `Dockerfile`, `docker-compose.yml`, or `deploy/nginx.conf` |
-
-## Main request flow
+## Target architecture
 
 ```text
-User opens a page
-  → App.tsx selects the hash route
-  → App.tsx requests /api/data
-  → server/index.mjs handles the route
-  → JSON file or PostgreSQL provides data
-  → API returns JSON
-  → React renders the page
+Next.js + React + TypeScript
+          |
+          | REST / WebSockets
+          v
+Spring Boot 4 + Java 21  <----->  FastAPI + Python
+          |                       AI / RAG / documents
+          |
+          v
+PostgreSQL + pgvector
+Redis (cache) | S3 (documents/media)
+
+Python data pipelines:
+public sources -> collect -> extract -> normalize -> deduplicate
+-> classify -> validate -> PostgreSQL / S3 -> AI indexing / events
+
+Docker + AWS + Terraform + GitHub Actions
+OpenTelemetry + Prometheus + Grafana
+Kafka / Airflow / dbt / Spark / Iceberg / Kubernetes as justified
 ```
+
+## Repository map
+
+```text
+src/                 Active Vite frontend
+server/              Active Node API, news ingestion, processors, scheduler and RAG
+frontend/            Next.js migration scaffold
+backend/             Spring Boot / Java migration scaffold
+ai/                  FastAPI service scaffold
+data-engineering/    Python pipeline boundary
+database/            PostgreSQL migrations
+infrastructure/      Docker and AWS migration notes
+docs/architecture/   Current and target architecture details
+docs/roadmap/        Website completion and technology migration plan
+docs/intelligence/   Public-source defence research dossiers
+scripts/              Ingestion, sync and database utilities
+```
+
+## What is active vs planned
+
+- Active website/API: root `src/` + `server/` (Vite + Node.js).
+- Next.js, Spring Boot and FastAPI folders are migration scaffolds; do not assume they have replaced the active application.
+- PostgreSQL Compose service and initial inventory schema exist; complete domain migration and runtime parity remain.
+- Python data engineering is an early migration boundary; existing Node collectors remain active.
+- AWS, Terraform, CI/CD and production Kubernetes/observability are future implementation work.
 
 ## Local development
 
 ```powershell
-cd "C:\Users\singh\OneDrive\Desktop\Defence"
 npm install
+npm run build
 npm run dev:full
 ```
 
-Open:
+Open `http://localhost:5173`.
 
-```text
-http://localhost:5173/#inventory
-```
+## Migration rule
 
-Useful commands:
-
-```powershell
-npm run format        # format source code
-npm run format:check  # check formatting
-npm run build         # type-check and production build
-```
-
-## Storage rule
-
-Local development uses JSON files. Docker production uses PostgreSQL when
-`DATABASE_URL` is configured. The frontend should communicate with data through
-the API, not read server files directly.
+Complete the agreed website features first. Then migrate the finished UI once to Next.js, move business APIs domain-by-domain to Spring Boot, migrate structured data to PostgreSQL, move AI/RAG to FastAPI and port ingestion to Python. Keep old implementations until feature parity, data reconciliation and tests pass. Do not build the same feature twice or remove working functionality prematurely.
