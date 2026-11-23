@@ -23,6 +23,9 @@ import {
   Plane,
   Crosshair,
   Clock3,
+  Sun,
+  Moon,
+  Command,
 } from "lucide-react";
 import { fetchPlatformRegister, type PlatformRegisterItem } from "./services/inventory";
 
@@ -1507,6 +1510,12 @@ function App() {
   const [composerError, setComposerError] = useState("");
   const [composerSaving, setComposerSaving] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<"dark" | "light">(() => {
+    const saved = localStorage.getItem("raksha-theme");
+    return saved === "light" ? "light" : "dark";
+  });
+  const [globalSearchOpen, setGlobalSearchOpen] = useState(false);
+  const [globalSearch, setGlobalSearch] = useState("");
   const [apiState, setApiState] = useState<"checking" | "online" | "offline">(
     "checking",
   );
@@ -1539,6 +1548,18 @@ function App() {
       })
       .catch(() => setLedgerCounts({ programmes: 0, sources: 0 }));
   }, []);
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem("raksha-theme", theme);
+  }, [theme]);
+  useEffect(() => {
+    if (!globalSearchOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setGlobalSearchOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [globalSearchOpen]);
   const selectedForce = useMemo(
     () => forces.find((f) => f.id === activeForce) ?? forces[0],
     [activeForce],
@@ -1740,20 +1761,13 @@ function App() {
         </button>
         <Nav />
         <div className="top-actions">
-          <button
-            className="icon-btn"
-            aria-label="Search register"
-            onClick={() => navigate("register")}
-          >
-            <Search size={17} />
+          <button className="global-search-trigger" onClick={() => { setGlobalSearchOpen(true); setGlobalSearch(""); }} aria-label="Search Raksha Atlas">
+            <Search size={16} /><span>Search Atlas</span><kbd>⌘ K</kbd>
           </button>
-          <button
-            className="icon-btn"
-            aria-label="Open PIB releases"
-            onClick={() => navigate("pib")}
-          >
-            <Bell size={17} />
+          <button className="icon-btn theme-toggle" aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"} title={theme === "dark" ? "Light mode" : "Dark mode"} onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+            {theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
           </button>
+          <button className="icon-btn" aria-label="Open PIB releases" onClick={() => navigate("pib")}><Bell size={17} /></button>
           <button
             className="menu-btn"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -1765,6 +1779,14 @@ function App() {
         </div>
         {menuOpen && <Nav mobile />}
       </header>
+      {globalSearchOpen && <div className="atlas-search-backdrop" onMouseDown={(event) => { if (event.target === event.currentTarget) setGlobalSearchOpen(false); }}>
+        <section className="atlas-search-dialog" role="dialog" aria-modal="true" aria-label="Search Raksha Atlas">
+          <div className="atlas-search-input"><Search size={19}/><input autoFocus value={globalSearch} onChange={(event) => setGlobalSearch(event.target.value)} placeholder="Search forces, programmes, inventory, news, sources…" onKeyDown={(event) => { if (event.key === "Enter") { const q=globalSearch.trim().toLowerCase(); const match=navigationItems.find(([view,label]) => (label+" "+view).toLowerCase().includes(q)); if(match){navigate(match[0]);setGlobalSearchOpen(false);} else {navigate("register");setGlobalSearchOpen(false);} } }}/><kbd>ESC</kbd></div>
+          <div className="atlas-search-hint">{globalSearch.trim() ? "Press Enter to open the closest matching section" : "Quick access to the Atlas"}</div>
+          <div className="atlas-search-links">{navigationItems.filter(([view,label]) => !globalSearch || (label+" "+view).toLowerCase().includes(globalSearch.toLowerCase())).map(([view,label]) => <button key={view} onClick={() => {navigate(view);setGlobalSearchOpen(false);}}><span>{label}</span><small>{view}</small><ArrowUpRight size={14}/></button>)}</div>
+          <div className="atlas-search-footer">Search across sections · Use the section filters for detailed records</div>
+        </section>
+      </div>}
       <div className="command-strip">
         <span>
           <i className="strip-status" /> SYSTEM ONLINE
