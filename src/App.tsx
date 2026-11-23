@@ -2162,13 +2162,13 @@ function App() {
         stageMeaning?: string; timeline?: Array<{ date: string; event: string; stage: string }> };
     };
     type InventoryFilterOptions = {
-      services: string[];
+      serviceDomains: string[];
       categories: string[];
       quantityStatuses: string[];
     };
     const [items, setItems] = useState<InventoryItem[]>([]);
     const [filterOptions, setFilterOptions] = useState<InventoryFilterOptions>({
-      services: [],
+      serviceDomains: [],
       categories: [],
       quantityStatuses: [],
     });
@@ -2214,14 +2214,14 @@ function App() {
         <div className="page-hero">
           <span className="section-kicker">INVENTORY / SERVICE-OWNED PUBLIC REFERENCE</span>
           <h1>Equipment, <em>properly classified.</em></h1>
-          <p>Browse equipment by its owning or operating service. Platform domain, service ownership, class, variant and lifecycle status are shown separately; source estimates are not silently combined.</p>
+          <p>Browse public inventory by the service or capability domain recorded for each item. The operator, platform domain, class, variant and lifecycle status remain distinct; source estimates are not silently combined.</p>
         </div>
         <div className="inventory-toolbar inventory-toolbar-v2">
           <div className="inventory-filters">
-            <label><span className="section-kicker">OPERATING SERVICE</span>
+            <label><span className="section-kicker">SERVICE / DOMAIN</span>
               <select value={serviceFilter} onChange={(event) => setServiceFilter(event.target.value)} aria-label="Filter by operating service">
                 <option value="all">All services</option>
-                {filterOptions.services.map((value) => <option key={value}>{value}</option>)}
+                {filterOptions.serviceDomains.map((value) => <option key={value}>{value}</option>)}
               </select>
             </label>
             <label><span className="section-kicker">EQUIPMENT TYPE</span>
