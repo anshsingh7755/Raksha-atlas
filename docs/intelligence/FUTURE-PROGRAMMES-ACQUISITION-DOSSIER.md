@@ -8,7 +8,7 @@
 
 ## 1. Executive summary
 
-This dossier records **60 programme entries** from this research pass, spanning strategic missiles, hypersonic technology, land systems, naval platforms, submarines, combat aircraft, radars, air defence, drones and support systems.
+This dossier records **78 working programme / acquisition records** from this research pass, spanning strategic missiles, hypersonic technology, land systems, naval platforms, submarines, combat aircraft, radars, air defence, drones and support systems.
 
 The source register has been expanded to include official PIB/DRDO/BrahMos Aerospace references and IDRW discovery/reporting references. IDRW is useful for discovering claims and following programme reporting, but claims based on unnamed sources or editorial estimates remain **reported / unverified** until confirmed by MoD, PIB, DRDO, service headquarters, Parliament, the named developer or shipyard.
 
@@ -907,3 +907,258 @@ These are discovery leads, not a claim that each has been fully researched in th
 The source register now includes the new official and secondary references for TEDBF, ORCA, Kaveri, Ghatak/FUFA terminology, CATS, WhAP, advanced armoured platforms, MArG, MGS and Matang. See `server/sources.json` for URLs, source class, official flag and reliability notes.
 
 **Important:** This extension deliberately preserves gaps. In particular, no primary-source evidence was found in this pass to confirm an ORCA sanction, FUFA as a distinct sanctioned programme, CATS Warrior operational flight status, Indian Army MArG/MGS orders, or a current Matang procurement programme.
+
+
+---
+
+## 6. Expanded acquisition and force-modernisation register — contracts, AoNs, negotiations and reported plans
+
+**Register extension:** This pass adds 18 programme records (some records are programme sub-lines or acquisition tranches). They are deliberately separated by acquisition stage. The dossier now contains **78 working programme / acquisition records**; this is not a count of sanctioned projects or ordered equipment.
+
+### 61. S-400 Triumf — original ten-system contract and five additional squadrons
+
+- **Service:** Indian Air Force.
+- **Original programme:** India signed the original S-400 contract in October 2018 for five regimental sets / systems (commonly described as five regiments); the original contract is separate from the 2026 follow-on AoN.
+- **Follow-on stage:** **AoN approved on 27 March 2026** for five additional S-400 long-range air-defence system squadrons, as reported by multiple outlets covering the DAC decision. The PIB primary release confirms a broad AoN package worth ₹2.38 lakh crore but does not enumerate the S-400 line item in the text retrieved here; therefore the five-squadron detail is attributed to press reporting.
+- **Quantity:** Five additional squadrons reported; do not convert this into five signed contracts or delivered units.
+- **Supplier / industrial partner:** Russia; Rosoboronexport / Almaz-Antey ecosystem reported for S-400. The follow-on contract and delivery schedule are not established.
+- **Further reported possibility:** ETDefence on 6 November 2026 relayed a report of a possible ten additional S-400 battalions and an S-500 technology offer. This is **unconfirmed secondary reporting**, not a government-approved requirement.
+- **Sources:** PIB DAC package: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2246125&lang=2&reg=48 ; The New Indian Express: https://www.newindianexpress.com/nation/2026/mar/27/defence-ministry-clears-major-buys-with-more-s-400s-medium-transport-aircraft-and-strike-drones ; ETDefence report: https://defence.economictimes.indiatimes.com/news/policy-partnerships/russia-signals-wider-missile-shield-cooperation-with-india/135574877
+- **Caveat:** Five additional squadrons at AoN stage are not “five regiments received”. Keep original 2018 contract, 2026 AoN and later ten-battalion speculation as three separate milestones.
+
+### 62. S-500 / Russian strategic missile-defence technology offer
+
+- **Service / domain:** Strategic air and missile defence; potential Russian cooperation.
+- **Stage:** Unconfirmed reported offer; no public Indian AoN, contract or acceptance identified.
+- **What is reported:** ETDefence on 6 November 2026 cites Military Watch Magazine for an alleged Russian offer of S-500-related technology in connection with a possible S-400 follow-on package.
+- **Quantity / scope:** Not established. Do not infer an S-500 purchase.
+- **Industrial partner:** Russian industry, reportedly Almaz-Antey; no confirmed Indian partner.
+- **Source:** https://defence.economictimes.indiatimes.com/news/policy-partnerships/russia-signals-wider-missile-shield-cooperation-with-india/135574877
+- **Caveat:** Discovery lead only. Do not add S-500 to approved acquisition totals.
+
+### 63. AH-64E Apache — Indian Army six helicopters
+
+- **Service:** Indian Army.
+- **Stage:** Contracted six-aircraft programme; Boeing's 2023 release confirms production and the total requirement. This is separate from the IAF's earlier 22 Apache aircraft.
+- **Quantity:** Six AH-64E for Army; earlier IAF programme 22 aircraft.
+- **Industrial partners:** Boeing; Tata Boeing Aerospace Limited (TBAL), Hyderabad, manufactured Apache fuselages.
+- **Milestones:** 2020 contract for six Army aircraft; Boeing announced production start on 16 August 2023.
+- **Source:** https://www.boeing.co.in/news/2023/e-model-apaches-for-indian-army
+- **Follow-on:** No additional Apache order is confirmed in the source reviewed. Treat further Army/IAF acquisition as a proposal only if a new dated source appears.
+- **Caveat:** Never aggregate the 22 IAF and six Army aircraft as a new 28-aircraft order; they are separate historical contracts.
+
+### 64. Six Boeing 767 aerial refuellers — IAI conversion proposal
+
+- **Service:** Indian Air Force.
+- **Stage:** Long-running six-tanker requirement; secondary reporting describes technical evaluation and a possible IAI-led conversion solution. Contract signature not confirmed in the sources reviewed.
+- **Quantity / configuration:** Six pre-owned Boeing 767 commercial airframes reportedly to be converted into aerial refuellers.
+- **Industrial partners:** Israel Aerospace Industries (IAI); NDTV's February 2026 report says HAL may partner in the conversion/industrial work. India Today reported IAI as the sole contender and an approximate ₹8,000 crore deal.
+- **Milestones:** DAC clearance reported in February 2024; technical evaluation reported June 2025; IAI selection / likely deal reported October 2025; IAI-HAL arrangement reported as likely in February 2026.
+- **Sources:** The Indian Express: https://indianexpress.com/article/india/scouting-for-6-mid-air-refuellers-iaf-begins-technical-evaluation-10096665/ ; India Today: https://www.indiatoday.in/india/story/israeli-firm-may-bag-indian-air-force-mid-air-refuelling-aircraft-deal-2809201-2025-10-27 ; NDTV: https://www.ndtv.com/india-news/pm-narendra-modi-pm-modi-visits-israel-benjamin-netanyahu-as-pm-modi-begins-israel-trip-a-much-awaited-defence-deal-in-the-works-11134169/amp/1
+- **Caveat:** This is not six new aircraft delivered. The reports describe used Boeing 767 airframes and conversion. Verify whether the project is a signed contract, a selected vendor or still under commercial negotiation before updating status.
+
+### 65. Medium Transport Aircraft (MTA) — 60-aircraft IAF programme
+
+- **Service:** Indian Air Force.
+- **Stage:** AoN / procurement process. The DAC's 27 March 2026 package is reported to have approved the 60-aircraft programme; competition and industrial planning continued during 2026.
+- **Quantity:** 60 aircraft reported. Secondary reports describe 12 flyaway aircraft and 48 domestically manufactured.
+- **Requirement:** Replace ageing AN-32 and IL-76 transport capacity in the medium transport category; published reports cite an 18–30 tonne payload class.
+- **Contenders / industrial partners:** Airbus (A400M), Lockheed Martin (C-130J), Embraer (C-390 Millennium). Embraer and Mahindra announced preparatory industrialisation planning and identified Nagpur as a potential final assembly location, conditional on selection.
+- **Milestones:** IAF RFI in December 2022 (up to 80 aircraft reported); DPB recommendation reported 3 March 2026; DAC AoN reported 27 March 2026; Embraer-Mahindra industrial planning announcement 1 October 2026.
+- **Sources:** Business Standard: https://www.business-standard.com/amp/external-affairs-defence-security/news/indian-air-force-s-medium-transport-aircraft-acquisition-gathers-pace-126030300858_1.html ; New Indian Express: https://www.newindianexpress.com/nation/2026/mar/27/defence-ministry-clears-major-buys-with-more-s-400s-medium-transport-aircraft-and-strike-drones ; Embraer: https://www.embraer.com/media-center/en/?detail=32843&mediatype=NEWS
+- **Caveat:** No platform winner established by the cited sources. Nagpur assembly planning does not mean C-390 selection.
+
+### 66. LCA Tejas Mk1A — first 83-aircraft contract
+
+- **Service:** Indian Air Force.
+- **Stage:** Contracted programme; production and delivery schedule subject to delay and engine/supply-chain constraints reported in public sources.
+- **Quantity:** 83 aircraft under the first contract (73 fighters + 10 twin-seat trainers, as originally announced).
+- **Industrial partner:** HAL, with GE engine supply and a broad Indian supplier ecosystem.
+- **Milestones:** Contract signed February 2021; original delivery schedule began 2024; 2026 reporting stated the first 83-aircraft batch remained undelivered as of September 2026.
+- **Source for follow-on programme context:** PIB's September 2025 97-aircraft contract release: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2171108&lang=2&reg=3
+- **Caveat:** This section records the original 83-aircraft tranche separately from the second 97-aircraft contract. Update delivered/tendered numbers only from HAL/MoD dated release.
+
+### 67. LCA Tejas Mk1A — second 97-aircraft contract
+
+- **Service:** Indian Air Force.
+- **Stage:** Signed contract on 25 September 2025.
+- **Quantity:** 97 aircraft: 68 fighters and 29 twin-seaters.
+- **Value:** ₹62,370 crore excluding taxes.
+- **Industrial partner:** HAL; PIB states indigenous content above 64% and approximately 105 Indian companies directly engaged.
+- **Delivery schedule:** PIB says deliveries commence during 2027–28 and complete over six years. September 2026 media reporting citing the MoD annual report described a schedule from September 2027 to September 2033; retain the exact annual-report schedule as secondary until the report itself is cited.
+- **Source:** https://www.pib.gov.in/PressReleasePage.aspx?PRID=2171108&lang=2&reg=3
+- **Caveat:** Do not combine the 83 + 97 into delivered aircraft. They are contracted quantities across two tranches.
+
+### 68. LCA Tejas Mk2
+
+- **Service:** Indian Air Force.
+- **Stage:** Development / prototype programme; not a production order.
+- **Lead:** ADA / DRDO; HAL as development and production partner.
+- **Quantity:** No production quantity established by sources in this pass.
+- **Evidence gap:** The present source sweep did not retrieve a current dated primary source for prototype rollout, first flight or production sanction. Add milestone dates only after HAL/ADA/DRDO annual report or official press release confirmation.
+- **Caveat:** Keep Mk2 separate from the Mk1A 97-aircraft contract and AMCA.
+
+### 69. LCH Prachand — 156 contracted helicopters
+
+- **Services:** Indian Air Force and Indian Army.
+- **Stage:** Signed production contracts on 28 March 2025.
+- **Quantity:** 156 total — 66 IAF and 90 Army.
+- **Value:** ₹62,700 crore excluding taxes.
+- **Industrial partner:** HAL.
+- **Delivery schedule:** Supply to commence from the third year and be spread over five years, according to PIB.
+- **Source:** https://www.pib.gov.in/PressReleasePage.aspx?PRID=2116411&lang=1&reg=20
+- **Caveat:** These are contracted aircraft, not all delivered. Record IAF and Army tranches separately in service-level inventory views.
+
+### 70. Dhruv Advanced Light Helicopter / Dhruv NG
+
+- **Services / users:** ALH Dhruv is a multi-service helicopter family; Dhruv NG handover mentioned in the cited 2026 release is to Pawan Hans Limited, a civil operator.
+- **Stage:** Existing ALH family in service; NG variant handover milestone announced for September 2026.
+- **Industrial partner:** HAL.
+- **Quantity:** The cited PIB release does not state a military Dhruv NG order quantity.
+- **Source:** https://www.pib.gov.in/PressReleasePage.aspx?PRID=2311348&lang=1&reg=19
+- **Caveat:** Do not treat Pawan Hans Dhruv NG deliveries as Indian Armed Forces procurement. Track ALH military orders and Dhruv NG civil deliveries separately.
+
+### 71. MPATGM — Man Portable Anti-Tank Guided Missile
+
+- **Service:** Indian Army.
+- **Stage:** DRDO developmental test milestone followed by AoN for Army procurement.
+- **Milestones:** DRDO successfully flight-tested the third-generation fire-and-forget MPATGM against a moving target on 11 January 2026; PIB release dated 12 January. DAC accorded AoN for MPATGM systems on 3 July 2026.
+- **Lead / industrial ecosystem:** DRDO DRDL, RCI, TBRL, HEMRL and IRDE; production partner and final contract quantity not established by these releases.
+- **Quantity:** Not disclosed.
+- **Sources:** https://www.pib.gov.in/PressReleasePage.aspx?PRID=2213690&lang=2&reg=3 ; https://www.pib.gov.in/PressReleasePage.aspx?PRID=2280728&lang=1&reg=1
+- **Caveat:** A successful test and AoN are separate milestones; no production contract is established here.
+
+### 72. Spike ATGM — KRAS supply contract
+
+- **Service:** Indian Armed Forces; service allocation and exact missile variant not stated in the cited report.
+- **Stage:** Contract reported as signed by MoD with Kalyani Rafael Advanced Systems.
+- **Value / quantity:** ₹2.87 billion reported; exact missile count and variant undisclosed. Janes assesses Spike SR, but that is its own assessment, not a confirmed version.
+- **Industrial partners:** Kalyani Strategic Systems / Bharat Forge (51%) and Rafael Advanced Defense Systems (49%); Hyderabad production facility reported.
+- **Source:** https://www.janes.com/defence-intelligence-insights/defence-news/defence/india-orders-spike-atgms
+- **Caveat:** Keep Spike distinct from indigenous MPATGM, Nag, HELINA/Dhruvastra and other ATGM families. Do not infer a quantity from contract value.
+
+### 73. Tunguska air-defence missile system — Russian contract
+
+- **Service:** Indian Army.
+- **Stage:** Contract signed 27 March 2026.
+- **Value:** ₹445 crore.
+- **Supplier:** JSC Rosoboronexport, Russia.
+- **Quantity:** Not disclosed by PIB.
+- **Source:** https://www.pib.gov.in/PressReleasePage.aspx?PRID=2246008&lang=1&reg=1
+- **Caveat:** This is a confirmed contract. Do not confuse it with the unconfirmed S-500 offer or the five-squadron S-400 AoN.
+
+### 74. Akash-NG — Next Generation Akash
+
+- **Service:** Indian Air Force user-evaluation context; future induction pathway.
+- **Stage:** User Evaluation Trials successfully completed on 23 December 2025; PIB says the milestone paves the way for induction.
+- **Lead / industrial partners:** DRDO laboratories and Indian industry; PIB identifies the multi-function radar, command-and-control unit and missile launch vehicle as indigenously designed.
+- **Quantity / contract:** No production contract quantity established by the cited test release.
+- **Source:** https://www.pib.gov.in/PressReleasePage.aspx?PRID=2207971&lang=2&reg=48
+- **Caveat:** UET completion is not the same as a signed production contract or operational deployment.
+
+### 75. RPSA — Remotely Piloted Strike Aircraft squadrons
+
+- **Service:** Indian Air Force.
+- **Stage:** AoN reported in the 27 March 2026 DAC package.
+- **Quantity:** Four squadrons reported by The New Indian Express; the report estimates 8–10 systems per squadron. The squadron composition is secondary reporting and not in the PIB summary.
+- **Industrial route:** Reported indigenous route; exact development-cum-production partner and contract award not established.
+- **Relationship to Ghatak:** IDSA's September 2026 analysis describes RPSA/Ghatak as a programme with the SWiFT demonstrator history. Confirm whether the four-squadron RPSA AoN maps directly to the same programme configuration before merging.
+- **Sources:** https://www.newindianexpress.com/nation/2026/mar/27/defence-ministry-clears-major-buys-with-more-s-400s-medium-transport-aircraft-and-strike-drones ; https://idsa.in/publisher/comments/rpsa-ghatak-and-indias-stealth-ucav-programme
+- **Caveat:** AoN is not a prototype contract or production order. Do not count the reported 32–40 aircraft as confirmed.
+
+### 76. Su-30MKI aero-engine overhaul / life extension
+
+- **Service:** Indian Air Force.
+- **Stage:** AoN / approval reported in the 27 March 2026 DAC package for overhaul of Su-30MKI aero engines.
+- **Purpose:** Sustain fleet availability and extend engine service life.
+- **Industrial partners:** HAL and original engine OEM ecosystem need specific contract confirmation.
+- **Quantity / value:** Not stated in the retrieved primary release.
+- **Source:** https://www.pib.gov.in/PressReleasePage.aspx?PRID=2246125&lang=2&reg=48
+- **Caveat:** This is a sustainment/overhaul programme, not a new fighter engine development project.
+
+### 77. Dhanush 155mm towed artillery gun — reported 300-gun follow-on
+
+- **Service:** Indian Army.
+- **Stage:** Follow-on acquisition AoN reported in the 27 March 2026 DAC package.
+- **Quantity:** 300 guns reported by The New Indian Express; the article says this would bring the total to 444. The PIB summary retrieved here does not enumerate this line-item quantity, so retain it as media-attributed until official contract disclosure.
+- **Industrial ecosystem:** Ordnance Factory Board legacy production organisation / Advanced Weapons and Equipment India Ltd (AWEIL) and Indian suppliers; verify the current contract manufacturer in the relevant order.
+- **Source:** https://www.newindianexpress.com/nation/2026/mar/27/defence-ministry-clears-major-buys-with-more-s-400s-medium-transport-aircraft-and-strike-drones
+- **Caveat:** AoN is not a contract. Keep existing delivered Dhanush guns separate from the reported 300-gun follow-on.
+
+### 78. Israeli intelligence, surveillance and unmanned systems cooperation — capability cluster
+
+- **Domain:** ISR, UAVs, sensors, electronic intelligence and airborne surveillance.
+- **Stage:** A cluster of separate programmes and long-running supplier relationships, not one umbrella procurement.
+- **Public evidence:** Janes reports the Indian Army leased four Heron TP UAVs from IAI; India operates Heron-family UAVs across services; the six-aircraft tanker conversion proposal is separately reported as an IAI/HAL project. India-Israel cooperation also includes Barak-8/MRSAM, radars, sensors and other jointly developed systems, each requiring its own programme record.
+- **Industrial partners:** Israel Aerospace Industries, Rafael, Elta Systems and Indian partners such as DRDO, BEL, BDL, HAL and private-sector JVs where specific programme evidence exists.
+- **Sources:** Heron TP lease: https://www.janes.com/defence-intelligence-insights/defence-news/indian-army-leases-four-heron-tp-uavs-from-israel ; tanker proposal: https://www.ndtv.com/india-news/pm-narendra-modi-pm-modi-visits-israel-benjamin-netanyahu-as-pm-modi-begins-israel-trip-a-much-awaited-defence-deal-in-the-works-11134169/amp/1
+- **Caveat:** Do not describe “Israeli intelligence help” as a single acquisition or infer intelligence-sharing arrangements. Record only publicly documented equipment, contracts, leases, technology partnerships and named industrial work.
+
+## 7. Strategic missile and submarine reporting — strict confidence treatment
+
+The following programmes are included because you specifically asked to preserve unofficial expert estimates. These entries must not be represented as official range declarations, approved procurement or operational capability.
+
+### K-5 submarine-launched ballistic missile (SLBM)
+
+- **Stage:** Reported development programme; no public official test/induction confirmation identified in this source pass.
+- **Range:** Public secondary literature commonly reports an estimated range around 5,000 km. The 2026 Bulletin of the Atomic Scientists assessment notes that no K-5 launch had taken place publicly by July 2026.
+- **Evidence:** The same assessment describes a former BrahMos Aerospace scientist's June 2025 statement that K-5 development was complete, followed by reports of a second-stage motor test in September 2025 and cold-launch ejection test in March 2026. These remain attributed secondary claims unless independently confirmed by DRDO/MoD.
+- **Source:** https://www.tandfonline.com/doi/full/10.1080/00963402.2026.2718785
+- **Caveat:** Do not publish “8,000+ km” as an established K-5 range. If retaining that figure from an expert, cite the exact speaker/publication and label it as an estimate.
+
+### K-6 submarine-launched ballistic missile (SLBM)
+
+- **Stage:** Reported follow-on development concept/programme; public official sanction and test record not established here.
+- **Range:** Expert and secondary-source estimates vary. This pass does not establish an authoritative 8,000+ km specification.
+- **Evidence:** The 2026 Bulletin of the Atomic Scientists article reports a former scientist's claim that DRDO was moving forward with a follow-on K-6 after K-5. This is not equivalent to an official DRDO programme announcement.
+- **Source:** https://www.tandfonline.com/doi/full/10.1080/00963402.2026.2718785
+- **Caveat:** Preserve any range estimate with speaker, date and source. If attribution cannot be traced, leave range “unverified / not publicly established”.
+
+### Project-77 — nuclear-powered attack submarine (SSN)
+
+- **Stage:** Publicly reported SSN development/acquisition programme; not the same as the Arihant-class SSBN programme or Project-75/75I conventional submarines.
+- **Quantity / schedule:** Do not publish a number of boats or commissioning timeline as confirmed without a dated government or parliamentary source. Public reporting has discussed a multi-boat SSN programme and design work, but details remain limited.
+- **Industrial partners:** Indian Navy, DRDO and Indian shipbuilding/engineering ecosystem; named construction and system partners require primary confirmation.
+- **Source trail:** Existing IDRW Project-76/77 references in the dossier; official public source required for sanction, cost, boat count and construction milestone.
+- **Caveat:** Avoid publishing detailed acoustic, reactor, sensor, weapons-load or patrol-performance estimates. Programme-level public status only.
+
+### Agni-VI — strategic missile concept
+
+- **Stage:** Unconfirmed concept / unofficial reporting. No public official final sanction or confirmed development programme found in the reviewed material.
+- **Range:** “10,000+ km” appears in unofficial commentary and speculative reporting, but no authoritative public government specification was identified. Record it only as an attributed estimate if a specific expert/source is cited.
+- **Caveat:** Do not publish the 10,000+ km figure as a DRDO specification or confirmed capability. Keep the range field null in the verified dataset.
+
+## 8. Acquisition-stage rules for the website
+
+Use separate fields rather than one generic “planned” status:
+
+1. **Requirement / concept** — service need, concept study or proposal.
+2. **RFI issued** — information request; no selection.
+3. **RFP issued / tender** — formal competition; no contract.
+4. **AoN** — in-principle approval; procurement not concluded.
+5. **DPB recommendation** — proposal advanced for DAC consideration; not AoN.
+6. **DAC approval / CCS approval** — record the exact body and date; do not collapse into contract.
+7. **Negotiation / L1 / vendor selection** — commercial process; not necessarily signed.
+8. **Contract signed** — procurement commitment.
+9. **Prototype / development** — developer work; not production.
+10. **Trials / user evaluation** — distinguish developmental, user and acceptance trials.
+11. **Production / delivery** — record annual delivery and cumulative delivered counts separately.
+12. **In service / commissioned** — operational status only with service/government confirmation.
+13. **Lease / wet lease** — separate from owned fleet.
+14. **Upgrade / overhaul / MRO** — separate from new acquisitions.
+15. **Unconfirmed report / expert estimate** — never count in official totals.
+
+## 9. Research limitations and next source sweep
+
+This is a substantive expansion, not an exhaustive census. The next phase should obtain the underlying MoD Annual Report 2025–26 and 2026–27, Parliamentary Standing Committee on Defence reports and demand-for-grants annexures, DAC/DPB/CCS notices, HAL annual report and investor disclosures, DRDO laboratory annual reports, BEL/BDL/BEML/AVNL/AWEIL disclosures, and IAI/Rafael/Boeing/Embraer/Lockheed/Airbus releases.
+
+Specific open items to verify next:
+- S-400 five-squadron AoN exact wording and any subsequent contract negotiation/CCS approval.
+- Whether IAI/HAL tanker conversion has a signed contract, selected vendor or only negotiations.
+- MTA RFP, shortlisted platform, domestic production model and current selection stage.
+- Tejas Mk1A delivery status from HAL's dated production releases; Mk2 prototype milestones from ADA/HAL.
+- Apache Army delivery acceptance and any follow-on requirement.
+- Dhruv military order quantities by service and variant; keep Dhruv NG civil programme separate.
+- ATGM programme quantities and production contracts for MPATGM, Spike, Nag, HELINA/Dhruvastra and other variants.
+- Exact RPSA relationship to Ghatak and whether the four-squadron reported figure is officially stated.
+- Official evidence for K-5/K-6 test milestones, Project-77 sanction and Agni-VI existence. Until then retain confidence labels and no verified performance values.
