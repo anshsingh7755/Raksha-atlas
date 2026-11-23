@@ -42,7 +42,7 @@ type AtlasHeaderProps = {
   navigationItems: Array<[View, string]>;
   navigate: (view: View) => void;
   theme: string;
-  setTheme: (theme: string) => void;
+  setTheme: (theme: "dark" | "light") => void;
   menuOpen: boolean;
   setMenuOpen: Dispatch<SetStateAction<boolean>>;
   globalSearchOpen: boolean;
