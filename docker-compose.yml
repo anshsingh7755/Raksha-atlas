@@ -40,10 +40,29 @@ services:
       YOUTUBE_SEARCHES_PER_RUN: ${YOUTUBE_SEARCHES_PER_RUN:-1}
       YOUTUBE_API_KEY: ${YOUTUBE_API_KEY:-}
       X_BEARER_TOKEN: ${X_BEARER_TOKEN:-}
+      DOCUMENT_EXTRACTION_URL: http://ai:8001
+      DOCUMENT_WORKER_TOKEN: ${DOCUMENT_WORKER_TOKEN:-}
     depends_on:
       db:
         condition: service_healthy
+      ai:
+        condition: service_started
     expose: ["8787"]
+    networks: [private]
+
+  ai:
+    build:
+      context: ./ai
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      DOCUMENT_WORKER_TOKEN: ${DOCUMENT_WORKER_TOKEN:-}
+      DOCUMENT_ALLOWED_HOSTS: ${DOCUMENT_ALLOWED_HOSTS:-}
+      DOCUMENT_MAX_FILE_BYTES: ${DOCUMENT_MAX_FILE_BYTES:-26214400}
+      DOCUMENT_MAX_PAGES: ${DOCUMENT_MAX_PAGES:-300}
+      DOCUMENT_MAX_TEXT_CHARS: ${DOCUMENT_MAX_TEXT_CHARS:-200000}
+      DOCUMENT_MAX_OCR_PAGES: ${DOCUMENT_MAX_OCR_PAGES:-20}
+    expose: ["8001"]
     networks: [private]
 
   web:
