@@ -3,7 +3,7 @@ import { Anchor, ArrowUpRight, Info, MapPin, Shield, X, LocateFixed } from "luci
 
 type Place = {
   id:string; name:string; country:string; kind:string; status:string; detail:string;
-  source:string; sourceLabel:string; lat:number; lng:number; group:"india"|"partner";
+  source:string; sourceLabel:string; lat:number; lng:number; group:"india"|"partner"; evidenceStatus?:string; lastReviewed?:string; coordinatePrecision?:string;
 };
 type LeafletMap = any;
 declare global { interface Window { L?: any } }
@@ -32,7 +32,7 @@ const fallbackPlaces:Place[] = [
  {id:"seychelles",name:"Port Victoria",country:"Seychelles",kind:"Partner port / naval visits",status:"Port calls and maritime cooperation",detail:"Indian naval and Coast Guard deployments have made public port calls in Seychelles. A port call or EEZ mission is not a listening post or permanent base.",source:"https://www.pib.gov.in/PressReleasePage.aspx?PRID=2126198&lang=2&reg=48",sourceLabel:"PIB — IOS SAGAR, May 2025",lat:-4.62,lng:55.45,group:"partner"},
  {id:"bagram",name:"Bagram Air Base",country:"Afghanistan",kind:"External reference / not an Indian facility",status:"Not an Indian base",detail:"Shown only as an excluded external reference. It is not listed as an Indian overseas base.",source:"https://factcheck.afp.com/doc.afp.com.39VY2ZP",sourceLabel:"AFP Fact Check",lat:34.94,lng:69.26,group:"partner"}
 ];
-const layers=["All locations","Indian commands","Indian infrastructure","Partner access & ports"];
+const layers=["All locations","Indian commands","Indian infrastructure","Partner access, ports & exclusions"];
 const markerIcon=(L:any,group:string,active:boolean)=>L.divIcon({className:"raksha-map-marker-wrap",html:`<span class="raksha-map-marker ${group} ${active?"active":""}"></span>`,iconSize:[24,24],iconAnchor:[12,12]});
 export default function TheatreAtlas(){
  const [places,setPlaces]=useState<Place[]>(fallbackPlaces);
@@ -55,7 +55,7 @@ export default function TheatreAtlas(){
   return()=>{active=false;};
  },[]);
  const mapNode=useRef<HTMLDivElement|null>(null);const mapRef=useRef<LeafletMap|null>(null);const markerRefs=useRef<Record<string,any>>({});
- const visible=useMemo(()=>places.filter(p=>(layer==="All locations"||(layer==="Indian commands"&&p.id==="anc")||(layer==="Indian infrastructure"&&p.group==="india"&&p.id!=="anc")||(layer==="Partner access & ports"&&p.group==="partner"))&&[p.name,p.country,p.kind,p.status].join(" ").toLowerCase().includes(query.toLowerCase())),[layer,query]);
+ const visible=useMemo(()=>places.filter(p=>(layer==="All locations"||(layer==="Indian commands"&&p.id==="anc")||(layer==="Indian infrastructure"&&p.group==="india"&&p.id!=="anc")||(layer==="Partner access, ports & exclusions"&&p.group==="partner"))&&[p.name,p.country,p.kind,p.status].join(" ").toLowerCase().includes(query.toLowerCase())),[layer,query]);
  const active=places.find(p=>p.id===selected);
  useEffect(()=>{
   let disposed=false;
@@ -96,7 +96,7 @@ export default function TheatreAtlas(){
    </div>
    <aside className="theatre-place-panel">
     <div className="theatre-place-list">{visible.map(p=><button key={p.id} className={selected===p.id?"selected":""} onClick={()=>focus(p)}><span className={p.group==="india"?"place-symbol india":"place-symbol partner"}>{p.group==="india"?<Shield size={14}/>:<Anchor size={14}/>}</span><span><strong>{p.name}</strong><small>{p.country} · {p.kind}</small></span></button>)}</div>
-    {active&&<div className="theatre-place-detail"><button className="theatre-detail-close" onClick={()=>setSelected("")} aria-label="Close detail"><X size={14}/></button><span className="section-kicker">LOCATION PROFILE</span><h3>{active.name}</h3><p className="place-status">{active.status}</p><p>{active.detail}</p><a href={active.source} target="_blank" rel="noreferrer">Source: {active.sourceLabel} <ArrowUpRight size={13}/></a></div>}
+    {active&&<div className="theatre-place-detail"><button className="theatre-detail-close" onClick={()=>setSelected("")} aria-label="Close detail"><X size={14}/></button><span className="section-kicker">LOCATION PROFILE</span><h3>{active.name}</h3><p className="place-status">{active.status}</p><p>{active.detail}</p><p className="place-status">Evidence: {(active.evidenceStatus||"source-linked").replaceAll("_"," ")} · {active.coordinatePrecision?.replaceAll("_"," ")||"approximate public marker"}{active.lastReviewed?` · reviewed ${active.lastReviewed}`:""}</p><a href={active.source} target="_blank" rel="noreferrer">Source: {active.sourceLabel} <ArrowUpRight size={13}/></a></div>}
    </aside>
   </div>
   <div className="theatre-status-note"><Shield size={17}/><p><strong>Classification and location policy.</strong> India’s Andaman & Nicobar Command is an established tri-service command. Proposed theatre structures are not depicted as active commands. {registerPolicy} {registerAsOf&&<span> Register reviewed: {registerAsOf}.</span>}</p></div>
