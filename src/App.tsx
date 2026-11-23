@@ -729,7 +729,8 @@ type ProgrammeDossierItem = {
 };
 
 function ProgrammeHistoryNotes({ text }: { text: string }) {
-  const lines = text.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+  const lines = text.split(/\r?
+/).map((line) => line.trim()).filter(Boolean);
   return <div className="programme-history-notes">{lines.map((raw, index) => {
     const line = raw.replace(/^-\s*/, "").replace(/\*\*/g, "");
     const splitAt = line.indexOf(":");
@@ -1661,7 +1662,8 @@ function App({
   const [activeView, setActiveView] = useState<View>(resolvedInitialView);
   useEffect(() => {
     setActiveView(resolvedInitialView);
-  }, [resolvedInitialView]);\n  const [activeForce, setActiveForce] = useState("all");
+  }, [resolvedInitialView]);
+  const [activeForce, setActiveForce] = useState("all");
   const [chatOpen, setChatOpen] = useState(false);
   const [question, setQuestion] = useState("");
   const [chatAnswer, setChatAnswer] = useState("");
@@ -1872,7 +1874,8 @@ function App({
   const navigate = (view: View) => {
     setActiveView(view);
     setMenuOpen(false);
-    if (onNavigate) onNavigate(view);\n    else window.location.hash = view;
+    if (onNavigate) onNavigate(view);
+    else window.location.hash = view;
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
   const ask = async () => {
