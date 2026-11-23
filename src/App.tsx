@@ -31,6 +31,8 @@ import AtlasNavigation from "./components/AtlasNavigation";
 import AtlasHeader from "./components/AtlasHeader";
 import AccessibleDialog from "./components/AccessibleDialog";
 import Programmes from "./features/programmes/Programmes";
+import ArmedForcesHistory from "./features/history/ArmedForcesHistory";
+import { apiGet } from "./services/api";
 
 type View =
   | "overview"
@@ -718,67 +720,6 @@ function EquipmentDataExplorer() {
 
 
 
-function ArmedForcesHistory() {
-  const [items, setItems] = useState<
-    Array<{
-      id: string;
-      date: string;
-      title: string;
-      summary: string;
-      sourceUrl: string;
-      verificationStatus: string;
-      confidence: string;
-    }>
-  >([]);
-  useEffect(() => {
-    fetch("/api/history")
-      .then((r) => r.json())
-      .then((d) => setItems(d.items ?? []))
-      .catch(() => setItems([]));
-  }, []);
-  return (
-    <section className="page-section">
-      <div className="page-hero">
-        <span className="section-kicker">HISTORY / PUBLIC REFERENCE</span>
-        <h1>
-          Institutions, conflicts, <em>change.</em>
-        </h1>
-        <p>
-          A selected chronology of the armed forces from independence to the present. It
-          is a research index, not a complete history; secondary references require
-          primary-source corroboration.
-        </p>
-      </div>
-      <div className="timeline-list">
-        {items.map((item) => (
-          <article className="timeline-card" key={item.id}>
-            <div className="timeline-card-heading">
-              <div>
-                <span className={`verification-chip ${item.verificationStatus}`}>
-                  {item.verificationStatus}
-                </span>
-                <h2>
-                  {item.date} · {item.title}
-                </h2>
-              </div>
-              <span>Confidence: {item.confidence}</span>
-            </div>
-            <p>{item.summary}</p>
-            <a
-              className="read-link"
-              href={item.sourceUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Source / reference <ArrowUpRight size={13} />
-            </a>
-          </article>
-        ))}
-      </div>
-      <WikipediaEquipmentTables allowedSourceIds={["wiki-army-regiments"]} />
-    </section>
-  );
-}
 
 
 
@@ -3031,7 +2972,7 @@ function App({
         {activeView === "inventory" && <Inventory />}
         {activeView === "register" && <PlatformRegister />}
         {activeView === "timeline" && <Timeline />}
-        {activeView === "history" && <ArmedForcesHistory />}
+        {activeView === "history" && <ArmedForcesHistory ReferenceTables={WikipediaEquipmentTables} />}
         {activeView === "watch" && <Watch />}
         {activeView === "pib" && <PibDefence />}
         {activeView === "sources" && <Sources />}
