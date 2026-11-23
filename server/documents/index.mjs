@@ -25,7 +25,8 @@ export function normalizeDocument(input, existing = []) {
   if (!title || !publisher) throw new Error("title and publisher are required.");
   if (title.length > 300 || publisher.length > 160) throw new Error("title or publisher exceeds the allowed length.");
   const originalUrl = String(input.originalUrl ?? input.url ?? "").trim();
-  if (originalUrl.length > 2048) throw new Error("document URL exceeds the allowed length.");\n  const canonicalUrl = canonicalizeDocumentUrl(originalUrl);
+  if (originalUrl.length > 2048) throw new Error("document URL exceeds the allowed length.");
+  const canonicalUrl = canonicalizeDocumentUrl(originalUrl);
   const duplicate = existing.find((item) => item.canonicalUrl === canonicalUrl);
   if (duplicate) throw new Error("This document URL is already registered.");
   const documentType = DOCUMENT_TYPES.includes(input.documentType) ? input.documentType : "other";
