@@ -37,7 +37,7 @@ The active website currently uses React, TypeScript, Vite and a Node.js API. The
 | [News pipeline](NEWS-PIPELINE.md) | Existing news collection and processing |
 | [RAG chatbot](RAG-CHATBOT.md) | Existing retrieval and assistant implementation |
 | [Theatre Atlas source register](docs/intelligence/THEATRE-ATLAS-SOURCE-REGISTER.md) | Public geography records and classification rules |
-| [Global Search module](docs/roadmap/SEARCH-MODULE.md) | Search API, relevance ranking, acronym expansion and frontend behavior |
+| [Global Search module](docs/roadmap/SEARCH-MODULE.md) | Search API, relevance ranking, acronym expansion and frontend behavior |\n| [Documents module](docs/roadmap/DOCUMENTS-MODULE.md) | Public document register, metadata model, extraction states and source provenance |
 | [Future programmes dossier](docs/intelligence/FUTURE-PROGRAMMES-ACQUISITION-DOSSIER.md) | Programme and acquisition research |
 
 ## Repository map
