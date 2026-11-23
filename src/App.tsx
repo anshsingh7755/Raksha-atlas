@@ -2543,6 +2543,7 @@ function App() {
     );
   };
   const Watch = () => {
+    const [query, setQuery] = useState("");
     const [items, setItems] = useState<
       Array<{
         id: string;
@@ -2557,10 +2558,19 @@ function App() {
       }>
     >([]);
     useEffect(() => {
+      const saved = sessionStorage.getItem("raksha-search-query");
+      const section = sessionStorage.getItem("raksha-search-section");
+      if (saved && section === "Procurement") {
+        setQuery(saved);
+        sessionStorage.removeItem("raksha-search-query");
+        sessionStorage.removeItem("raksha-search-target");
+        sessionStorage.removeItem("raksha-search-section");
+      }
       fetch("/api/procurement-2026")
         .then((r) => r.json())
         .then((data: { items: typeof items }) => setItems(data.items));
     }, []);
+    const visibleItems = items.filter((item) => [item.title,item.reference,item.sourceId,item.scope,item.status,item.verificationStatus].join(" ").toLowerCase().includes(query.toLowerCase()));
     return (
       <section className="page-section">
         <div className="page-hero">
@@ -2581,8 +2591,9 @@ function App() {
             portal records below are not a complete list of all 2026 defence activity.
           </span>
         </div>
+        <label className="command-search"><Search size={15}/><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search tender title, portal or scope"/></label>
         <div className="watch-list">
-          {items.map((item) => (
+          {visibleItems.map((item) => (
             <article className="watch-card" key={item.id}>
               <div>
                 <span className={`verification-chip ${item.verificationStatus}`}>
