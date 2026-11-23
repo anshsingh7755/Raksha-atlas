@@ -45,7 +45,8 @@ type View =
   | "pib"
   | "register"
   | "history"
-  | "briefs"\n  | "documents";
+  | "briefs"
+  | "documents";
 type Icon = typeof Shield;
 type Force = {
   id: string;
@@ -727,7 +728,8 @@ type ProgrammeDossierItem = {
 };
 
 function ProgrammeHistoryNotes({ text }: { text: string }) {
-  const lines = text.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+  const lines = text.split(/\r?
+/).map((line) => line.trim()).filter(Boolean);
   return <div className="programme-history-notes">{lines.map((raw, index) => {
     const line = raw.replace(/^-\s*/, "").replace(/\*\*/g, "");
     const splitAt = line.indexOf(":");
@@ -1879,7 +1881,8 @@ function App() {
     ["inventory", "Inventory"],
     ["programmes", "Programmes"],
     ["signals", "Articles"],
-    ["briefs", "Briefs"],\n    ["documents", "Documents"],
+    ["briefs", "Briefs"],
+    ["documents", "Documents"],
     ["sources", "Sources"],
   ];
   const Nav = ({ mobile = false }: { mobile?: boolean }) => (
@@ -2510,7 +2513,9 @@ function App() {
       id: string; title: string; publisher: string; publishedAt: string | null;
       documentType: string; service: string; originalUrl: string; canonicalUrl: string;
       fileFormat: string; extractionStatus: string; evidenceStatus: string;
-      summary: string; notes: string; pages: Array<{page:number;text:string}>;\n      extractedText?: string; pageCount?: number | null; checksumSha256?: string | null;\n      extractionEngine?: string | null; extractionWarnings?: string[]; ocrPages?: number[]; fileSizeBytes?: number | null;
+      summary: string; notes: string; pages: Array<{page:number;text:string}>;
+      extractedText?: string; pageCount?: number | null; checksumSha256?: string | null;
+      extractionEngine?: string | null; extractionWarnings?: string[]; ocrPages?: number[]; fileSizeBytes?: number | null;
     };
     const [items, setItems] = useState<DocumentItem[]>([]);
     const [query, setQuery] = useState("");
@@ -2518,7 +2523,8 @@ function App() {
     const [loading, setLoading] = useState(true);
     const [selected, setSelected] = useState<DocumentItem | null>(null);
     const [showForm, setShowForm] = useState(false);
-    const [saving, setSaving] = useState(false);\n    const [extractingId, setExtractingId] = useState("");
+    const [saving, setSaving] = useState(false);
+    const [extractingId, setExtractingId] = useState("");
     const [error, setError] = useState("");
     const [title, setTitle] = useState("");
     const [publisher, setPublisher] = useState("");
@@ -3224,7 +3230,8 @@ function App() {
         {activeView === "programmes" && <Programmes />}
         {activeView === "pipeline" && <Pipeline />}
         {activeView === "signals" && <Signals />}
-        {activeView === "briefs" && <Briefs />}\n        {activeView === "documents" && <Documents />}
+        {activeView === "briefs" && <Briefs />}
+        {activeView === "documents" && <Documents />}
         {activeView === "inventory" && <Inventory />}
         {activeView === "register" && <PlatformRegister />}
         {activeView === "timeline" && <Timeline />}
