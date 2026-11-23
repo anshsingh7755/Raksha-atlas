@@ -31,7 +31,9 @@ Provide a source-led register for publicly accessible defence and government doc
 | extractionStatus | not_extracted, metadata_only, text_extracted, needs_ocr, failed |
 | extractedText / pages | Optional bounded text and page-level PDF references; HTML text has no invented page references |
 | evidenceStatus | unreviewed, official, verified, reported, disputed or withdrawn |
-| pageCount / ocrPages / extractionEngine / extractionWarnings | Extraction provenance and diagnostics |\n| extractedTitle | Title parsed from the HTML document, when available |\n| summary / notes | Editorial context, not a substitute for the source |
+| pageCount / ocrPages / extractionEngine / extractionWarnings | Extraction provenance and diagnostics |
+| extractedTitle | Title parsed from the HTML document, when available |
+| summary / notes | Editorial context, not a substitute for the source |
 
 ## API
 
