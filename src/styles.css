@@ -4176,3 +4176,42 @@ html[data-theme="light"] .atlas-search-filters button { color:var(--muted); }
 .document-full-text{margin:18px 0;padding:14px;border:1px solid var(--line);border-radius:12px}
 .document-full-text h3{font-size:14px;margin:0 0 10px}
 .document-full-text pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:480px;overflow:auto;font:12px/1.7 "DM Mono",monospace;color:var(--muted)}
+
+
+/* Phase 0.9 accessibility: keyboard entry point and visible focus. */
+.skip-link {
+  position: fixed;
+  z-index: 10000;
+  top: 12px;
+  left: 12px;
+  transform: translateY(calc(-100% - 16px));
+  padding: 11px 16px;
+  border: 2px solid #72e5dc;
+  border-radius: 8px;
+  color: #071421;
+  background: #d7fffa;
+  font-weight: 700;
+  text-decoration: none;
+}
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+[role="dialog"]:focus {
+  outline: none;
+}
+:focus-visible {
+  scroll-margin-block: 1rem;
+}
+@media (forced-colors: active) {
+  :focus-visible {
+    outline: 2px solid Highlight;
+    outline-offset: 3px;
+  }
+  .skip-link {
+    color: LinkText;
+    background: Canvas;
+    border-color: LinkText;
+  }
+}
