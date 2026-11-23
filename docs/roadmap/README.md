@@ -99,3 +99,13 @@ Complete Week 3 in a separate step:
 9. Compare both responses before migrating any frontend request.
 
 The Spring inventory slice is not complete until steps 6–9 pass.
+
+
+## Defence programmes intelligence documentation
+
+The public-source programme and acquisition research dossier is maintained separately from the active equipment inventory:
+
+- [Indian Armed Forces equipment, fleet and acquisition catalogue](../intelligence/INDIAN-ARMED-FORCES-CATALOGUE.md)
+- [Future programmes and acquisition intelligence dossier](../intelligence/FUTURE-PROGRAMMES-ACQUISITION-DOSSIER.md)
+
+The future-programmes dossier deliberately distinguishes official approvals and test milestones from unofficial reporting, proposed concepts and forecast timelines. Do not copy an unofficial claim into the verified inventory without attaching a primary source and preserving its confidence level.
