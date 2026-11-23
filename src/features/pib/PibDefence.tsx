@@ -12,32 +12,19 @@ type PibRelease = {
 };
 
 export default function PibDefence() {
-      const [items, setItems] = useState<
-        Array<{
-          id: string;
-          title: string;
-          canonicalUrl: string;
-          publishedAt: string | null;
-          reviewState: string;
-          verificationStatus: string;
-        }>
-      >([]);
+      const [items, setItems] = useState<PibRelease[]>([]);
       const [year, setYear] = useState("2026");
       const [state, setState] = useState<"loading" | "ready" | "error">("loading");
       useEffect(() => {
         setState("loading");
-        fetch(
-          `/api/articles?sourceId=pib-defence-security${year ? `&from=${year}-01-01&to=${year}-12-31T23:59:59.999Z` : ""}`,
-        )
-          .then((r) => {
-            if (!r.ok) throw new Error("Unable to load PIB releases");
-            return r.json();
-          })
-          .then((data: { items: typeof items }) => {
-            setItems(data.items);
-            setState("ready");
-          })
-          .catch(() => setState("error"));
+        apiGet<{ items?: PibRelease[] }>(
+        `/api/articles?sourceId=pib-defence-security${year ? `&from=${year}-01-01&to=${year}-12-31T23:59:59.999Z` : ""}`,
+      )
+        .then((data) => {
+          setItems(data.items ?? []);
+          setState("ready");
+        })
+        .catch(() => setState("error"));
       }, [year]);
       return (
         <section className="page-section">
