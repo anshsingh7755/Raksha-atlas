@@ -1,9 +1,8 @@
 import asyncio
-import asyncio
 import fitz
 import httpx
-import httpx
 import pytest
+
 from fastapi import HTTPException
 
 from app.documents import _allowed_host, _download_public_document, _extract_pdf, _extract_html, _validate_url
