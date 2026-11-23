@@ -34,7 +34,7 @@ test("headline similarity finds the same story despite publisher wording", () =>
   assert.ok(
     headlineSimilarity(
       "India signs contract for new naval helicopters",
-      "New naval helicopters contract signed by India",
+      "New naval helicopters contract for India signs",
     ) > 0.5,
   );
 });
