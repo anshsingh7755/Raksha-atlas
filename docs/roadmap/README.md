@@ -152,7 +152,7 @@ This phase is the immediate priority. Complete and verify the product before the
 
 ## 5. Phase 1 — one-time frontend migration
 
-**Target:** Next.js + React + TypeScript. **Status: Phase 1.5 in progress — shared shell, Programmes, Armed Forces History, Intelligence Briefs, Procurement Watch and PIB Defence feature boundaries are extracted. Phase 1.6 has started with a shared typed API client used by inventory and history.** See [Phase 1 frontend migration plan](PHASE-1-FRONTEND-MIGRATION.md) for the ten sub-phases and completion notes.
+**Target:** Next.js + React + TypeScript. **Status: Phase 1.5 in progress — shared shell, Programmes, Armed Forces History, Intelligence Briefs, Procurement Watch, PIB Defence and programme Timeline feature boundaries are extracted. Phase 1.6 has started with a shared typed API client used by inventory and history.** See [Phase 1 frontend migration plan](PHASE-1-FRONTEND-MIGRATION.md) for the ten sub-phases and completion notes.
 
 | Sub-phase | Workstream |
 |---|---|
