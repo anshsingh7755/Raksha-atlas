@@ -2653,6 +2653,44 @@ h2 em {
   font-size: 11px;
   line-height: 1.6;
 }
+.command-record-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+}
+.command-record {
+  display: grid;
+  gap: 4px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+.command-record strong {
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 600;
+}
+.command-record small {
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+.command-record a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+  color: #d7d5d1;
+  font: 9px "DM Mono";
+  text-decoration: none;
+}
+.command-record a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+.command-grid-compact .command-card {
+  max-height: 520px;
+  overflow-y: auto;
+}
 .command-card > a {
   display: inline-flex;
   align-items: center;
