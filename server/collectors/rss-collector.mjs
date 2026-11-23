@@ -25,8 +25,18 @@ export function parseFeed(xml) {
   return blocks
     .map((item) => {
       const title = field(item, "title");
-      let link = field(item, "link") || field(item, "guid");
-      if (!link) link = item.match(/<link\b[^>]*href=["']([^"']+)["']/i)?.[1] ?? "";
+      const atomLinks = [...item.matchAll(/<link\b([^>]*)\/?>/gi)].map((match) => {
+        const attributes = match[1];
+        const href = attributes.match(/\bhref=["']([^"']+)["']/i)?.[1] ?? "";
+        const rel = attributes.match(/\brel=["']([^"']+)["']/i)?.[1] ?? "alternate";
+        const type = attributes.match(/\btype=["']([^"']+)["']/i)?.[1] ?? "";
+        return { href, rel, type };
+      });
+      const preferredAtomLink = atomLinks.find(
+        (candidate) => candidate.href && candidate.rel.toLowerCase() === "alternate" &&
+          (!candidate.type || /html/i.test(candidate.type)),
+      );
+      let link = field(item, "link") || preferredAtomLink?.href || atomLinks.find((candidate) => candidate.href)?.href || field(item, "guid");
       const summary =
         field(item, "description") ||
         field(item, "summary") ||
