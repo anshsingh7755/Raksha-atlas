@@ -49,7 +49,7 @@ A multi-token query must match every query concept, while each acronym can match
 - Search across all sections or narrow to one section without closing the modal.
 - Loading, API error and no-results states are distinct.
 - Enter opens the highest-ranked result; clicking a result opens its owning module.
-- The query is passed into the destination module's existing search/filter where available. Command, source, platform-register, Theatre Atlas and Briefs destinations accept the carried query.
+- The query is passed into the destination module's existing search/filter where available. Command, source, platform-register, Theatre Atlas, Briefs and tender-watchlist destinations accept the carried query. Current and future procurement records route to their respective watchlist and pipeline views.
 
 ## Validation
 
