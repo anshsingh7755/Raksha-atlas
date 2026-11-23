@@ -851,7 +851,7 @@ const server = createServer(async (request, response) => {
       (!type || item.documentType === type) &&
       (!extractionStatus || item.extractionStatus === extractionStatus) &&
       (!evidenceStatus || item.evidenceStatus === evidenceStatus) &&
-      (!query || [item.title,item.publisher,item.summary,item.notes,item.service,item.documentType,item.sourceId].filter(Boolean).join(" ").toLowerCase().includes(query))
+      (!query || [item.title,item.extractedTitle,item.publisher,item.summary,item.notes,item.service,item.documentType,item.sourceId,item.extractedText,(item.pages ?? []).map((page) => page.text).join(" ")].filter(Boolean).join(" ").toLowerCase().includes(query))
     ).sort((a,b) => (b.publishedAt || "").localeCompare(a.publishedAt || "") || a.title.localeCompare(b.title));
     send(response, 200, {
       items: filtered.slice(offset, offset + limit),
@@ -1078,7 +1078,7 @@ const server = createServer(async (request, response) => {
       category: item.status, body: JSON.stringify(item),
     });
     for (const item of (readDocuments().records ?? [])) add("Documents", "documents", item.id, item.title, item.summary || item.publisher, {
-      category: item.documentType, body: [item.publisher,item.service,item.documentType,item.evidenceStatus,item.extractionStatus,item.publishedAt,item.notes,item.extractedText,(item.pages ?? []).map((page) => page.text).join(" ")].join(" "),
+      category: item.documentType, body: [item.extractedTitle,item.publisher,item.service,item.documentType,item.fileFormat,item.evidenceStatus,item.extractionStatus,item.publishedAt,item.notes,item.extractedText,(item.pages ?? []).map((page) => page.text).join(" ")].join(" "),
     });
     for (const item of readPlatformRegister()) add("Platform classes", "register", item.className, item.className, item.role || item.platform, {
       category: item.category, body: [item.platform,item.service,item.origin,item.futureOrders].join(" "),
