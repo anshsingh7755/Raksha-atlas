@@ -774,10 +774,6 @@ const server = createServer(async (request, response) => {
       send(response, 404, { error: "document not found" });
       return;
     }
-    if (document.fileFormat !== "pdf") {
-      send(response, 415, { error: "Only registered PDF documents can be extracted." });
-      return;
-    }
     const workerToken = process.env.DOCUMENT_WORKER_TOKEN;
     if (!workerToken) {
       send(response, 503, { error: "Document extraction is not configured. Set DOCUMENT_WORKER_TOKEN and start the FastAPI worker." });
