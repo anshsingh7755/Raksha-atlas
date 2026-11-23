@@ -25,3 +25,25 @@ test("preserves page-level extraction references", () => {
   assert.equal(item.extractionStatus, "text_extracted");
   assert.deepEqual(item.pages, [{ page: 4, text: "Public text" }]);
 });
+
+test("persists extraction engine, OCR pages, warnings and page count", () => {
+  const item = normalizeDocument({
+    title: "Public report",
+    publisher: "Ministry",
+    url: "https://example.gov.in/report.pdf",
+    extractionStatus: "text_extracted",
+    pageCount: 2,
+    ocrPages: [2],
+    extractionEngine: "PyMuPDF 1.24",
+    extractionWarnings: ["OCR used on page 2"],
+    checksumSha256: "a".repeat(64),
+    fileSizeBytes: 1024,
+    pages: [{ page: 1, text: "First page" }, { page: 2, text: "Second page" }],
+  });
+  assert.equal(item.pageCount, 2);
+  assert.deepEqual(item.ocrPages, [2]);
+  assert.equal(item.extractionEngine, "PyMuPDF 1.24");
+  assert.deepEqual(item.extractionWarnings, ["OCR used on page 2"]);
+  assert.equal(item.checksumSha256, "a".repeat(64));
+  assert.equal(item.fileSizeBytes, 1024);
+});
