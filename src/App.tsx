@@ -1970,6 +1970,7 @@ function App() {
     <nav
       className={mobile ? "mobile-nav" : "topnav"}
       aria-label={mobile ? "Mobile navigation" : "Primary navigation"}
+      id={mobile ? "mobile-navigation" : undefined}
     >
       {navigationItems.map(([item, label]) => (
         <button
@@ -1997,7 +1998,7 @@ function App() {
         </button>
         <Nav />
         <div className="top-actions">
-          <button className="global-search-trigger" onClick={() => { setGlobalSearchOpen(true); setGlobalSearch(""); setGlobalSearchSection("all"); setGlobalSearchError(""); }} aria-label="Search Raksha Atlas">
+          <button className="global-search-trigger" aria-keyshortcuts="Control+K Meta+K" onClick={() => { setGlobalSearchOpen(true); setGlobalSearch(""); setGlobalSearchSection("all"); setGlobalSearchError(""); }} aria-label="Search Raksha Atlas">
             <Search size={16} /><span>Search Atlas</span><kbd>⌘ K</kbd>
           </button>
           <button className="icon-btn theme-toggle" aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"} title={theme === "dark" ? "Light mode" : "Dark mode"} onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
@@ -2008,6 +2009,7 @@ function App() {
             className="menu-btn"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
             onClick={() => setMenuOpen((open) => !open)}
           >
             <Menu size={18} />
@@ -2017,7 +2019,7 @@ function App() {
       </header>
       {globalSearchOpen && <AccessibleDialog onClose={() => setGlobalSearchOpen(false)} ariaLabel="Search Raksha Atlas" contentClassName="atlas-search-dialog" backdropClassName="atlas-search-backdrop">
           <div className="atlas-search-input"><Search size={19}/><input aria-label="Search all Raksha Atlas records" autoFocus value={globalSearch} onChange={(event) => setGlobalSearch(event.target.value)} placeholder="Search AMCA, Apache, destroyer, Tejas…" onKeyDown={(event) => { if (event.key === "Enter" && globalSearchResults[0]) { sessionStorage.setItem("raksha-search-query", globalSearch.trim()); sessionStorage.setItem("raksha-search-target", globalSearchResults[0].id); sessionStorage.setItem("raksha-search-section", globalSearchResults[0].section); if (globalSearchResults[0].view === "pipeline") sessionStorage.setItem("raksha-search-mode", "pipeline"); navigate(globalSearchResults[0].view); setGlobalSearchOpen(false); } }}/><kbd>ESC</kbd></div>
-          <div className="atlas-search-hint">{globalSearch.trim().length < 2 ? "Search inventory, commands, programmes, news, procurement, sources and geography" : globalSearchLoading ? "Searching across Raksha Atlas…" : `${globalSearchResults.length} results · ${globalSearchSection === "all" ? "All sections" : globalSearchSection}`}</div>
+          <div className="atlas-search-hint" aria-live="polite" aria-atomic="true">{globalSearch.trim().length < 2 ? "Search inventory, commands, programmes, news, procurement, sources and geography" : globalSearchLoading ? "Searching across Raksha Atlas…" : `${globalSearchResults.length} results · ${globalSearchSection === "all" ? "All sections" : globalSearchSection}`}</div>
           {globalSearch.trim().length >= 2 && <div className="atlas-search-filters"><button className={globalSearchSection === "all" ? "active" : ""} onClick={() => setGlobalSearchSection("all")}>All sections</button>{globalSearchSections.map((section) => <button key={section} className={globalSearchSection === section ? "active" : ""} onClick={() => setGlobalSearchSection(section)}>{section}</button>)}</div>}
           {globalSearch.trim().length < 2 ? <div className="atlas-search-links">{navigationItems.map(([view,label]) => <button key={view} onClick={() => {navigate(view);setGlobalSearchOpen(false);}}><span>{label}</span><small>{view}</small><ArrowUpRight size={14}/></button>)}</div> :
             <div className="atlas-search-results">{globalSearchResults.map((result,index) => <button key={result.view+"-"+result.id+"-"+index} onClick={() => { sessionStorage.setItem("raksha-search-query", globalSearch.trim()); sessionStorage.setItem("raksha-search-target", result.id); sessionStorage.setItem("raksha-search-section", result.section); if (result.view === "pipeline") sessionStorage.setItem("raksha-search-mode", "pipeline"); navigate(result.view); setGlobalSearchOpen(false); }}><span className="atlas-result-section">{result.section}</span><strong>{result.title}</strong><small>{result.summary || "Open this record"}</small><ArrowUpRight size={14}/></button>)}
