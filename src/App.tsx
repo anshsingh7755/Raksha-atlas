@@ -2518,7 +2518,7 @@ function App() {
     const [loading, setLoading] = useState(true);
     const [selected, setSelected] = useState<DocumentItem | null>(null);
     const [showForm, setShowForm] = useState(false);
-    const [saving, setSaving] = useState(false);
+    const [saving, setSaving] = useState(false);\n    const [extractingId, setExtractingId] = useState("");
     const [error, setError] = useState("");
     const [title, setTitle] = useState("");
     const [publisher, setPublisher] = useState("");
