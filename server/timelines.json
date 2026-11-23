@@ -471,7 +471,15 @@
         "sourceUrl": "https://idrw.org/amca-first-flight-2029-iaf-official/"
       },
       {
-        "stage": "Prototype build / first flight target",
+        "stage": "Prototype fabrication",
+        "date": null,
+        "label": "The development phase is structured around five flying prototypes and one structural test aircraft. Public reporting at the research cut-off described the partner selection / contract process as still pending; prototype fabrication is therefore not marked as started.",
+        "verificationStatus": "reported",
+        "sourceId": "ndtv-amca-shortlist-2026",
+        "sourceUrl": "https://www.ndtv.com/india-news/ndtv-defence-summit-2026-hindustan-aeronautics-failed-bid-to-build-indias-stealth-jet-on-fairly-routine-technical-grounds-defence-secretary-rk-singh-12108545"
+      },
+      {
+        "stage": "First flight target",
         "date": "2028-09-01",
         "label": "September 2028 is the Defence Secretary's publicly reported first-flight target as of September 2026. IDRW reported that a delayed partner selection could move the first flight towards August 2029. Neither date is a completed event or guaranteed schedule.",
         "verificationStatus": "reported",
