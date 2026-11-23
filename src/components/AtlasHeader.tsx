@@ -13,7 +13,22 @@ import {
 import AtlasNavigation from "./AtlasNavigation";
 import AccessibleDialog from "./AccessibleDialog";
 
-type View = string;
+type View =
+  | "overview"
+  | "forces"
+  | "atlas"
+  | "programmes"
+  | "pipeline"
+  | "signals"
+  | "sources"
+  | "inventory"
+  | "timeline"
+  | "watch"
+  | "pib"
+  | "register"
+  | "history"
+  | "briefs"
+  | "documents";
 type SearchResult = {
   section: string;
   view: View;
