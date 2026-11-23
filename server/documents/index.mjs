@@ -13,6 +13,11 @@ export function canonicalizeDocumentUrl(rawUrl) {
   return url.href;
 }
 
+export function findDuplicateByChecksum(records, checksumSha256, excludeId = null) {
+  if (!/^[a-f0-9]{64}$/i.test(checksumSha256 ?? "")) return null;
+  return records.find((item) => item.id !== excludeId && item.checksumSha256 === checksumSha256.toLowerCase()) ?? null;
+}
+
 export function normalizeDocument(input, existing = []) {
   const title = String(input.title ?? "").trim();
   const publisher = String(input.publisher ?? "").trim();
