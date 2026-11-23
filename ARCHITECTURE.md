@@ -57,7 +57,7 @@ data-engineering/    Python pipeline boundary
 database/            PostgreSQL migrations
 infrastructure/      Docker and AWS migration notes
 docs/architecture/   Current and target architecture details
-docs/roadmap/        Website completion and technology migration plan
+docs/roadmap/        Website completion and technology migration plan\n  INVENTORY-MODULE.md Shared inventory model and module implementation checklist
 docs/intelligence/   Public-source defence research dossiers
 scripts/              Ingestion, sync and database utilities
 ```
@@ -82,4 +82,4 @@ Open `http://localhost:5173`.
 
 ## Migration rule
 
-Complete the agreed website features first. Then migrate the finished UI once to Next.js, move business APIs domain-by-domain to Spring Boot, migrate structured data to PostgreSQL, move AI/RAG to FastAPI and port ingestion to Python. Keep old implementations until feature parity, data reconciliation and tests pass. Do not build the same feature twice or remove working functionality prematurely.
+Inventory is one cross-service module. The service, equipment domain/category, class, platform and variant are separate dimensions. The current inventory API reads server/inventory.json and filters by exact service/category/lifecycle/origin values. The UI defaults to All services unless a user enters from a selected service card. The legacy Navy-only frigate reader/route has been removed from the active API; its JSON file is retained temporarily as a reference artifact. See docs/roadmap/INVENTORY-MODULE.md for fields and acceptance checks.\n\nComplete the agreed website features first. Then migrate the finished UI once to Next.js, move business APIs domain-by-domain to Spring Boot, migrate structured data to PostgreSQL, move AI/RAG to FastAPI and port ingestion to Python. Keep old implementations until feature parity, data reconciliation and tests pass. Do not build the same feature twice or remove working functionality prematurely.
