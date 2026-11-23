@@ -1,4 +1,6 @@
+import asyncio
 import fitz
+import httpx
 import pytest
 from fastapi import HTTPException
 
