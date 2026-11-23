@@ -905,7 +905,7 @@ const server = createServer(async (request, response) => {
         String(a).localeCompare(String(b)),
       );
     const availableFilters = {
-      services: uniqueValues("service"),
+      serviceDomains: uniqueValues("service"),
       categories: uniqueValues("category"),
       quantityStatuses: uniqueValues("quantityStatus"),
       originCountries: uniqueValues("originCountry"),
