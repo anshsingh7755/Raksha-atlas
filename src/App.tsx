@@ -2553,7 +2553,7 @@ function App() {
     }, []);
     const visible = items.filter((item) =>
       (type === "all" || item.documentType === type) &&
-      [item.title,item.publisher,item.service,item.documentType,item.summary,item.notes].join(" ").toLowerCase().includes(query.toLowerCase())
+      [item.title,item.extractedTitle,item.publisher,item.service,item.documentType,item.summary,item.notes,item.extractedText,(item.pages ?? []).map((page) => page.text).join(" ")].join(" ").toLowerCase().includes(query.toLowerCase())
     );
     const extractDocument = async (item: DocumentItem) => {
       setExtractingId(item.id); setError("");
