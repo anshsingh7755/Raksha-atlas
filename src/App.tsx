@@ -784,7 +784,7 @@ function ProgrammeDossierExplorer() {
           <header className="programme-modal-header"><div><span className="section-kicker">PROGRAMME INTELLIGENCE RECORD · {selected.id}</span><h2 id="programme-modal-title">{selected.title}</h2></div><button className="icon-btn" onClick={() => setSelected(null)} aria-label="Close programme record"><X size={18} /></button></header>
           <div className="programme-modal-grid">
             <div><span>Service / domain</span><strong>{selected.service}</strong></div>
-            <div><span>Reported stage</span><strong>{selected.stage.replace(/\\s*\\(text match; verify\\)/i, "")}</strong></div>
+            <div><span>Reported stage</span><strong>{selected.stage.replace(/\s*\(text match; verify\)/i, "")}</strong></div>
             <div><span>Record status</span><strong>{selected.status ?? "Needs verification"}</strong></div>
             <div><span>Quantity</span><strong>{selected.quantity ?? "Not established in structured data"}</strong></div>
             <div><span>Quantity confidence</span><strong>{selected.quantityConfidence ?? "Not assessed"}</strong></div>
