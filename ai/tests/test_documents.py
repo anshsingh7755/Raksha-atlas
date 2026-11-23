@@ -47,3 +47,8 @@ def test_empty_text_pdf_is_marked_for_ocr():
     result = _extract_pdf(content, ocr=False)
     assert result["extractionStatus"] == "needs_ocr"
     assert result["pages"][0]["text"] == ""
+
+def test_nonstandard_https_port_is_rejected(monkeypatch):
+    monkeypatch.setattr("app.documents.ALLOWED_HOSTS", ("mod.gov.in",))
+    with pytest.raises(HTTPException):
+        _validate_url("https://mod.gov.in:8443/report.pdf")
