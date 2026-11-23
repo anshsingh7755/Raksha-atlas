@@ -44,11 +44,20 @@ The current `server/inventory.json` schema is retained for this implementation s
 
 The inventory API may enrich a record with a representative image from the platform register. The source inventory JSON remains the record source until PostgreSQL migration and reconciliation are complete.
 
-## Service domains
+## Service and domain classification
 
-The current UI exposes Army, Navy, Air Force, Joint, Space, Cyber and Intelligence. These are navigation/filter domains, not a claim that each is a conventional armed service. Only records actually present in the public dataset should appear. An empty domain must show an honest empty state rather than fabricated records or counts.
+The existing `service` field currently contains a mixture of actual operating services (Army, Navy, Air Force), Joint records, and separate public capability domains or organisations (Space, Cyber, Intelligence). The filter is therefore labelled **Service / Domain** in the UI and the API exposes the list as `availableFilters.serviceDomains`. The existing `service` data field and `?service=` query parameter are retained for backward compatibility; do not bulk rename or reinterpret existing values without row-level source review.
 
-**Default behaviour:** when the user opens Inventory without first choosing a service, show **All services**. Selecting a service in the Commands view can still open Inventory with that service preselected. The service cards should not visually imply a default selection when the active filter is All services.
+Use the repository's [Inventory classification and reconciliation rules](../data/INVENTORY-CLASSIFICATION-AND-RECONCILIATION.md) as the authority for attribution:
+- Attribute equipment to its actual owning or operating service, not by generic platform domain or source publisher.
+- Use Joint only when the record is genuinely tri-service, centrally controlled, or cannot be reliably assigned to one service from public evidence.
+- Keep Coast Guard separately attributable when it is the actual operator.
+- Retain Space, Cyber and Intelligence as domains/organisations only where public evidence supports the record.
+- Keep commands and headquarters separate from inventory ownership.
+
+Only records actually present in the public dataset should appear. An empty domain must show an honest empty state rather than fabricated records or counts.
+
+**Default behaviour:** when the user opens Inventory without first choosing a service/domain, show **All service domains**. Selecting a service from the Commands view can still open Inventory with that filter preselected. The service/domain cards should not imply a default selection when the active filter is All service domains.
 
 ## Current implementation audit
 
@@ -67,10 +76,10 @@ The current UI exposes Army, Navy, Air Force, Joint, Space, Cyber and Intelligen
 2. Added an explicit neutral All services selection descriptor for the Commands view.
 3. Removed `frigatesPath`, `readFrigates()` and `GET /api/inventory/frigates` from `server/index.mjs`.
 4. Kept the common `GET /api/inventory` API, its filters, image enrichment and existing inventory records intact.
-7. Added `availableFilters` metadata (services, categories, lifecycle statuses and origin countries) derived from the full dataset, so the UI no longer maintains hardcoded filter option lists.
-8. Updated the inventory response date to the latest `asOfDate` among the source records (`asOf` remains as a compatibility alias and `latestRecordAsOf` is explicit).
 5. Kept `server/frigates.json` in the repository for now as a rollback/reference artifact. It is no longer loaded by the API. Do not delete it until local build/smoke verification and a repository-wide usage check confirm it is safe to remove.
 6. No inventory dataset records were intentionally changed by this slice.
+7. Added `availableFilters` metadata derived from the full dataset: `serviceDomains`, categories, lifecycle statuses and origin countries. The UI no longer maintains hardcoded option lists.
+8. Updated the inventory response date to the latest `asOfDate` among the source records (`asOf` remains as a compatibility alias and `latestRecordAsOf` is explicit).
 
 ## API contract
 
@@ -89,7 +98,7 @@ Response:
     "originCountry": null
   },
   "availableFilters": {
-    "services": ["Army", "Air Force", "Cyber", "Intelligence", "Joint", "Navy", "Space"],
+    "serviceDomains": ["Army", "Air Force", "Cyber", "Intelligence", "Joint", "Navy", "Space"],
     "categories": ["..."],
     "quantityStatuses": ["AoN", "contract_signed", "in_service", "..."],
     "originCountries": ["..."]
@@ -99,7 +108,7 @@ Response:
 }
 ```
 
-Each query parameter is optional and combines with the others using AND semantics. Service and category comparisons currently use exact string matching. Preserve source labels; add canonical enum mapping only through a reviewed migration that retains original values.
+Each query parameter is optional and combines with the others using AND semantics. The `service` query parameter continues to filter the existing `service` field using exact string matching. `availableFilters.serviceDomains` returns the distinct labels found in that field. Preserve source labels; add canonical enum mapping only through a reviewed migration that retains original values.
 
 ## Acceptance checks
 
@@ -107,14 +116,14 @@ Each query parameter is optional and combines with the others using AND semantic
 - [ ] `npm run dev:full` starts the frontend and API.
 - [ ] `GET /api/health` returns HTTP 200.
 - [ ] `GET /api/inventory` returns items and `count` equals the array length.
-- [ ] Service filters for Army, Navy and Air Force return only matching service values.
+- [ ] Service/domain filters return only records with the requested existing `service` value; the current snapshot has 8 Joint records.
 - [ ] Service, category and lifecycle dropdown options are derived from the complete data response, not hardcoded arrays.
 - [ ] Every lifecycle value present in the source data is available in the lifecycle dropdown.
 - [ ] `GET /api/inventory?service=Joint` returns a valid empty list when there are no Joint rows; no dummy records are added.
 - [ ] Category, lifecycle and origin filters compose correctly with service.
-- [ ] Opening Inventory directly defaults to All services.
+- [ ] Opening Inventory directly defaults to All service domains.
 - [ ] Selecting a service from Commands opens Inventory with that service selected.
-- [ ] Selecting All services shows the common catalogue across domains.
+- [ ] Selecting All service domains shows the common catalogue across the actual services and public capability domains.
 - [ ] Cards preserve quantity context, lifecycle, verification status and source links.
 - [ ] Global search returns inventory records and opens Inventory with the query populated.
 - [ ] No frontend or backend code calls `/api/inventory/frigates`.
