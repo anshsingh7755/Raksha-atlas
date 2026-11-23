@@ -55,6 +55,19 @@ type Force = {
   accent: string;
   icon: Icon;
 };
+type CommandRecord = {
+  id: string;
+  name: string;
+  service: string;
+  group: string;
+  structureType: string;
+  status: string;
+  headquarters: string | null;
+  description: string;
+  sourceUrl: string;
+  sourceName: string;
+  verificationStatus: string;
+};
 type ChatSource = {
   ref?: string;
   title: string;
@@ -121,38 +134,6 @@ const forces: Force[] = [
     metric: "Source-led research",
     accent: "#e890a5",
     icon: Shield,
-  },
-];
-
-const commandGroups = [
-  {
-    service: "Indian Army",
-    type: "6 operational · 1 training",
-    commands:
-      "Northern · Western · Eastern · Central · Southern · South Western · Army Training Command",
-    source:
-      "https://digital.nios.ac.in/content/374en/MILITARY-STUDIES-1/files/basic-html/page35.html",
-  },
-  {
-    service: "Indian Navy",
-    type: "2 operational · 1 training",
-    commands: "Western Naval Command · Eastern Naval Command · Southern Naval Command",
-    source:
-      "https://www.joinindiannavy.gov.in/en/page/indian-navy-organisation-and-bases.html",
-  },
-  {
-    service: "Indian Air Force",
-    type: "5 operational · 2 functional",
-    commands:
-      "Western · Eastern · Central · South Western · Southern Air Commands · Training Command · Maintenance Command",
-    source: "https://www.cgda.nic.in/ifa/manuals/airforce.pdf",
-  },
-  {
-    service: "Joint command",
-    type: "Tri-service",
-    commands:
-      "Andaman and Nicobar Command · Strategic Forces Command · Headquarters Integrated Defence Staff",
-    source: "https://www.pib.gov.in/",
   },
 ];
 
@@ -1491,6 +1472,54 @@ function SourceRegistry({
   );
 }
 
+function CommandDirectory({ records, compact = false }: { records: CommandRecord[]; compact?: boolean }) {
+  const groups = ["Indian Army", "Indian Navy", "Indian Air Force", "Joint"];
+  return (
+    <div className={compact ? "command-grid command-grid-compact" : "command-grid"}>
+      {groups.map((service) => {
+        const items = records.filter((record) => record.service === service);
+        if (!items.length) return null;
+        return (
+          <article className="command-card" key={service}>
+            <span className="section-kicker">{items.length} REGISTERED STRUCTURES</span>
+            <h3>{service === "Joint" ? "Joint structures" : service}</h3>
+            <div className="command-record-list">
+              {items.map((record) => (
+                <div className="command-record" key={record.id}>
+                  <strong>{record.name}</strong>
+                  <small>{record.structureType} · {record.status.replaceAll("_", " ")}</small>
+                  {record.headquarters && <small>HQ: {record.headquarters}</small>}
+                  <a href={record.sourceUrl} target="_blank" rel="noreferrer">
+                    {record.sourceName} <ArrowUpRight size={11} />
+                  </a>
+                </div>
+              ))}
+            </div>
+          </article>
+        );
+      })}
+      {records.some((record) => record.status !== "established") && (
+        <article className="command-card">
+          <span className="section-kicker">NOT ESTABLISHED</span>
+          <h3>Proposed / under-study structures</h3>
+          <div className="command-record-list">
+            {records.filter((record) => record.status !== "established").map((record) => (
+              <div className="command-record" key={record.id}>
+                <strong>{record.name}</strong>
+                <small>{record.structureType} · {record.status.replaceAll("_", " ")}</small>
+                <p>{record.description}</p>
+                <a href={record.sourceUrl} target="_blank" rel="noreferrer">
+                  {record.sourceName} <ArrowUpRight size={11} />
+                </a>
+              </div>
+            ))}
+          </div>
+        </article>
+      )}
+    </div>
+  );
+}
+
 function App() {
   const [activeView, setActiveView] = useState<View>(() => {
     const hash = window.location.hash.slice(1) as View;
@@ -1553,19 +1582,30 @@ function App() {
     sources: 0,
   });
   const [sourceRegistry, setSourceRegistry] = useState<RegistrySource[]>([]);
+  const [commandRecords, setCommandRecords] = useState<CommandRecord[]>([]);
+  const [commandState, setCommandState] = useState<"loading" | "ready" | "error">("loading");
   useEffect(() => {
     Promise.all([
       fetch("/api/timelines").then((r) => r.json()),
       fetch("/api/sources").then((r) => r.json()),
+      fetch("/api/commands").then((response) => {
+        if (!response.ok) throw new Error("Command directory unavailable");
+        return response.json();
+      }),
     ])
-      .then(([programmesData, sourcesData]) => {
+      .then(([programmesData, sourcesData, commandsData]) => {
         setLedgerCounts({
           programmes: programmesData.count ?? 0,
           sources: sourcesData.items?.length ?? 0,
         });
         setSourceRegistry(sourcesData.items ?? []);
+        setCommandRecords(commandsData.items ?? []);
+        setCommandState("ready");
       })
-      .catch(() => setLedgerCounts({ programmes: 0, sources: 0 }));
+      .catch(() => {
+        setLedgerCounts({ programmes: 0, sources: 0 });
+        setCommandState("error");
+      });
   }, []);
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -1979,18 +2019,13 @@ function App() {
           }
         />
         <ForceCards />
-        <div className="command-grid">
-          {commandGroups.map((group) => (
-            <article className="command-card" key={group.service}>
-              <span className="section-kicker">{group.type}</span>
-              <h3>{group.service}</h3>
-              <p>{group.commands}</p>
-              <a href={group.source} target="_blank" rel="noreferrer">
-                Organisation reference <ArrowUpRight size={12} />
-              </a>
-            </article>
-          ))}
-        </div>
+        {commandState === "loading" ? (
+          <p className="equipment-note">Loading public command records…</p>
+        ) : commandState === "error" ? (
+          <p className="equipment-note">Command directory is temporarily unavailable.</p>
+        ) : (
+          <CommandDirectory records={commandRecords} compact />
+        )}
       </section>
       <section className="content-section">
         <SectionTitle
@@ -2066,6 +2101,18 @@ function App() {
         </p>
       </div>
       <ForceCards />
+      <section className="content-section">
+        <SectionTitle
+          kicker="COMMAND DIRECTORY / PUBLIC RECORD"
+          title={<>Established and <em>joint structures.</em></>}
+        />
+        <p className="equipment-note">
+          Service commands, joint operational commands, headquarters and agencies are kept in separate classifications.
+          Proposed theatre-command structures are labelled as under study, not established.
+        </p>
+        {commandState === "ready" && <CommandDirectory records={commandRecords} />}
+        {commandState === "error" && <p className="equipment-note">Command directory is temporarily unavailable.</p>}
+      </section>
       <article className="force-detail-panel">
         <div className="timeline-card-heading">
           <div>
