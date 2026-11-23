@@ -888,6 +888,9 @@ const server = createServer(async (request, response) => {
     for (const item of data.articles ?? []) if (item.reviewState !== "rejected") add("News & articles", "signals", item.id, item.title, item.summary, [item.title,item.summary,item.sourceId,item.topic,(item.keywords ?? []).join(" ")].join(" "));
     for (const item of readTimelines()) add("Programme timelines", "timeline", item.id, item.programme, item.summary || item.description, [item.programme,item.service,item.stage,item.summary,item.description].join(" "));
     for (const item of readProcurement()) add("Procurement", "pipeline", item.id, item.title || item.programme || item.name, item.summary || item.notes, JSON.stringify(item));
+    for (const item of readFutureProcurement().records ?? []) add("Future procurement", "pipeline", item.id, item.system, item.notes || item.deliveryWindow || item.quantityText, JSON.stringify(item));
+    for (const item of readEquipmentCatalog().records ?? []) add("Reference equipment catalogue", "register", item.id, item.platform || item.name || item.system, item.role || item.description, JSON.stringify(item));
+    for (const item of data.briefs ?? []) add("Intelligence briefs", "signals", item.id, item.title, item.summary, JSON.stringify(item));
     for (const item of readPlatformRegister()) add("Platform classes", "register", item.className, item.className, item.role || item.platform, [item.className,item.platform,item.category,item.role,item.origin,item.futureOrders].join(" "));
     for (const item of readSources()) add("Sources", "sources", item.id, item.name || item.title || item.id, item.description || item.publisher || item.url, [item.id,item.name,item.title,item.description,item.publisher,item.url].join(" "));
     results.sort((a,b) => b.score-a.score || a.title.localeCompare(b.title));
