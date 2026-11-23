@@ -103,13 +103,13 @@ async def _download_public_document(raw_url: str) -> tuple[bytes, str, str]:
                     except ValueError as exc:
                         raise HTTPException(status_code=502, detail="Publisher returned an invalid content length.") from exc
                     if declared_size > MAX_FILE_BYTES:
-                        raise HTTPException(status_code=413, detail="PDF exceeds the configured download size limit.")
+                        raise HTTPException(status_code=413, detail="Document exceeds the configured download size limit.")
                     chunks = []
                     size = 0
                     async for chunk in response.aiter_bytes():
                         size += len(chunk)
                         if size > MAX_FILE_BYTES:
-                            raise HTTPException(status_code=413, detail="PDF exceeds the configured download size limit.")
+                            raise HTTPException(status_code=413, detail="Document exceeds the configured download size limit.")
                         chunks.append(chunk)
                     content = b"".join(chunks)
                     if content_type in ("application/pdf", "application/octet-stream", "binary/octet-stream") and not content.startswith(b"%PDF-"):
@@ -118,7 +118,7 @@ async def _download_public_document(raw_url: str) -> tuple[bytes, str, str]:
                         content_type = "application/pdf"
                     return content, current, content_type
             except httpx.HTTPError as exc:
-                raise HTTPException(status_code=502, detail="Could not retrieve the public PDF.") from exc
+                raise HTTPException(status_code=502, detail="Could not retrieve the public document.") from exc
     raise HTTPException(status_code=502, detail="Document redirect limit exceeded.")
 
 
