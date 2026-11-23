@@ -22,7 +22,7 @@ function loadLeaflet(){
  }
  return leafletPromise;
 }
-const places:Place[] = [
+const fallbackPlaces:Place[] = [
  {id:"anc",name:"Andaman & Nicobar Command",country:"Port Blair, India",kind:"Established tri-service command",status:"Established",detail:"India's only geographically organised tri-service command. Marker indicates the public city-level location, not a facility perimeter.",source:"https://www.indiannavy.nic.in/",sourceLabel:"Indian Navy",lat:11.67,lng:92.75,group:"india"},
  {id:"varsha",name:"Project Varsha / NAOB",country:"Rambilli region, Andhra Pradesh, India",kind:"Naval infrastructure programme",status:"Under development / public reporting",detail:"Public parliamentary material identifies the project in the Rambilli region. Marker is deliberately approximate and does not identify installation boundaries or layouts.",source:"https://sansad.nic.in/getFile/debatestextmk/17/X/16.12.2022.pdf?source=loksabhadocs",sourceLabel:"Lok Sabha debate, 16 Dec 2022",lat:17.55,lng:83.08,group:"india"},
  {id:"port-blair",name:"Port Blair",country:"Andaman & Nicobar Islands, India",kind:"Joint logistics / command city",status:"Established",detail:"Publicly identified city associated with the Andaman and Nicobar Command and Joint Logistics Node. This is a city-level marker.",source:"https://eparlib.sansad.in/bitstream/123456789/3019267/1/18_Defence_19.pdf",sourceLabel:"Standing Committee on Defence 2025–26",lat:11.62,lng:92.73,group:"india"},
@@ -35,7 +35,25 @@ const places:Place[] = [
 const layers=["All locations","Indian commands","Indian infrastructure","Partner access & ports"];
 const markerIcon=(L:any,group:string,active:boolean)=>L.divIcon({className:"raksha-map-marker-wrap",html:`<span class="raksha-map-marker ${group} ${active?"active":""}"></span>`,iconSize:[24,24],iconAnchor:[12,12]});
 export default function TheatreAtlas(){
+ const [places,setPlaces]=useState<Place[]>(fallbackPlaces);
  const [layer,setLayer]=useState(layers[0]);const [query,setQuery]=useState("");const [selected,setSelected]=useState("anc");const [mapError,setMapError]=useState("");const [mapReady,setMapReady]=useState(false);
+ const [registerAsOf,setRegisterAsOf]=useState<string|null>(null);
+ const [registerPolicy,setRegisterPolicy]=useState("");
+ useEffect(()=>{
+  let active=true;
+  fetch("/api/theatre-atlas").then(response=>{if(!response.ok)throw new Error("Theatre Atlas register unavailable");return response.json();}).then(payload=>{
+   if(!active||!Array.isArray(payload.items))return;
+   const mapped:Place[]=payload.items.filter((item:any)=>Number.isFinite(item.latitude)&&Number.isFinite(item.longitude)).map((item:any)=>({
+    id:item.id,name:item.name,country:item.city?item.city+", "+item.country:item.country,
+    kind:item.locationType.replaceAll("_"," "),status:item.status,detail:item.description,
+    source:item.sourceUrl,sourceLabel:item.sourceName,lat:item.latitude,lng:item.longitude,
+    group:item.country==="India"?"india":"partner"
+   }));
+   if(mapped.length){setPlaces(mapped);setSelected(mapped[0].id);}
+   setRegisterAsOf(payload.asOf??null);setRegisterPolicy(payload.policy??"");
+  }).catch(()=>{if(active)setMapError("Using bundled fallback records because the location register could not be loaded");});
+  return()=>{active=false;};
+ },[]);
  const mapNode=useRef<HTMLDivElement|null>(null);const mapRef=useRef<LeafletMap|null>(null);const markerRefs=useRef<Record<string,any>>({});
  const visible=useMemo(()=>places.filter(p=>(layer==="All locations"||(layer==="Indian commands"&&p.id==="anc")||(layer==="Indian infrastructure"&&p.group==="india"&&p.id!=="anc")||(layer==="Partner access & ports"&&p.group==="partner"))&&[p.name,p.country,p.kind,p.status].join(" ").toLowerCase().includes(query.toLowerCase())),[layer,query]);
  const active=places.find(p=>p.id===selected);
@@ -81,6 +99,6 @@ export default function TheatreAtlas(){
     {active&&<div className="theatre-place-detail"><button className="theatre-detail-close" onClick={()=>setSelected("")} aria-label="Close detail"><X size={14}/></button><span className="section-kicker">LOCATION PROFILE</span><h3>{active.name}</h3><p className="place-status">{active.status}</p><p>{active.detail}</p><a href={active.source} target="_blank" rel="noreferrer">Source: {active.sourceLabel} <ArrowUpRight size={13}/></a></div>}
    </aside>
   </div>
-  <div className="theatre-status-note"><Shield size={17}/><p><strong>Theatre commands vs existing commands.</strong> India’s Andaman & Nicobar Command is an established tri-service command. Proposed Northern, Western and Maritime theatre structures must be labelled as proposals until formally notified. The map does not depict them as active commands.</p></div>
+  <div className="theatre-status-note"><Shield size={17}/><p><strong>Classification and location policy.</strong> India’s Andaman & Nicobar Command is an established tri-service command. Proposed theatre structures are not depicted as active commands. {registerPolicy} {registerAsOf&&<span> Register reviewed: {registerAsOf}.</span>}</p></div>
  </section>;
 }
