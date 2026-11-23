@@ -38,7 +38,7 @@ Move the existing Raksha Atlas user interface from the root Vite application int
 | 1.1 | Audit and baseline | Inventory the existing UI, routes, styles, assets, API usage and runtime dependencies; retain Vite as the reference. **Recorded.** |
 | 1.2 | Next.js foundation | Configure the API proxy through environment variables and add Next.js typecheck/build CI. **Implemented; local checks passed.** |
 | 1.3 | Route integration | Map supported URLs to existing views, preserve navigation callbacks and support direct route refreshes. **Implemented; browser parity checks pending.** |
-| 1.4 | Shared shell extraction | Extract reusable layout elements and navigation without duplicating the Vite UI. **In progress: shared footer extracted.** |
+| 1.4 | Shared shell extraction | Extract reusable layout elements, navigation, header, search dialog and accessible dialog primitive without duplicating the Vite UI. **Implemented; CI validation in progress.** |
 | 1.5 | Feature boundary extraction | Move one feature at a time into reusable modules and App Router route modules; preserve existing feature behavior and API contracts. |
 | 1.6 | Typed API layer | Centralize typed API requests and response models; remove duplicated request logic only where parity is proven. |
 | 1.7 | Rendering and states | Define server/client boundaries and retain loading, empty, error and browser-only behavior. |
@@ -50,6 +50,8 @@ Move the existing Raksha Atlas user interface from the root Vite application int
 - Shared footer: `src/components/AtlasFooter.tsx`, consumed by `src/App.tsx`.
 - Shared section heading: `src/components/SectionTitle.tsx`, consumed by existing feature sections.
 - Shared navigation: `src/components/AtlasNavigation.tsx`, receives the active view, navigation items and navigation callback as props.
+- Shared header/search shell: `src/components/AtlasHeader.tsx`, receives state and callbacks through typed props; search-result session handoff and keyboard-accessible dialog behavior are preserved.
+- Accessible dialog primitive: `src/components/AccessibleDialog.tsx`, retains focus management, Escape handling, focus trapping and focus restoration.
 - These components remain in the shared root `src/` tree so Vite and Next.js can reuse one implementation.
 - The large application component remains the feature source of truth. Extract only components with clear ownership and limited dependencies; do not split nested components blindly.
 - Existing Node API endpoints, server JSON data and the Vite runtime remain unchanged during Phase 1.
@@ -90,4 +92,4 @@ The Next.js API rewrite currently expects the Node API at `http://127.0.0.1:8787
 
 ## 8. Current decision
 
-Phase 1.1 audit is recorded. Phase 1.2 API-proxy configuration and CI checks are committed; local typecheck and production build have passed. Phase 1.3 route integration is committed; browser navigation and deep-link verification remain pending. Phase 1.4 is in progress: shared footer, section heading and navigation have been extracted into `src/components/` and reused by the existing app. The remaining header is state-heavy because it owns search, theme and mobile-menu interactions; keep those behaviors intact and extract it only with explicit props. The Vite application remains the active reference until Phase 1 acceptance criteria are met. Phase 0 manual validation also remains open; this Phase 1 work does not mark Phase 0 as closed.
+Phase 1.1 audit is recorded. Phase 1.2 API-proxy configuration and CI checks are committed; local typecheck and production build have passed. Phase 1.3 route integration is committed; browser navigation and deep-link verification remain pending. Phase 1.4 implementation is complete: shared footer, section heading, navigation, header/search shell and accessible dialog primitive are extracted into `src/components/` and reused by the existing app. The extracted header receives its state and callbacks through typed props; feature behavior remains in the shared app. Automated CI validation is running before Phase 1.5 proceeds. The Vite application remains the active reference until Phase 1 acceptance criteria are met. Phase 0 manual validation also remains open; this Phase 1 work does not mark Phase 0 as closed.
