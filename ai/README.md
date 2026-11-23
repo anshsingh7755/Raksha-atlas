@@ -24,7 +24,7 @@ The Node API must use the same `DOCUMENT_WORKER_TOKEN` and `DOCUMENT_EXTRACTION_
 {"url":"https://approved-public-host.example/report.pdf","ocr":false}
 ```
 
-The response contains SHA-256, byte size, final URL, extraction status, engine and warnings. PDF output includes page count and page-numbered text; HTML output includes readable text and the source title without invented page references. If a PDF is image-only, it is marked `needs_ocr`. Retry with `ocr: true` to use English Tesseract OCR (installed in the container image). OCR is capped by `DOCUMENT_MAX_OCR_PAGES`.
+The response contains SHA-256, byte size, final URL, extraction status, engine and warnings. PDF output includes page count and page-numbered text; HTML output includes readable text and the source title without invented page references. If a PDF is image-only, it is marked `needs_ocr`. Retry with `ocr: true` to use English Tesseract OCR (installed in the container image). OCR is capped by `DOCUMENT_MAX_OCR_PAGES`. For local runs outside Docker, install the Tesseract binary and English language data separately to enable OCR.
 
 ## Safety and limits
 
