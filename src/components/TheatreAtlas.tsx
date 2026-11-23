@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Anchor, ArrowUpRight, Info, MapPin, Shield, X, Layers, LocateFixed } from "lucide-react";
+import { Anchor, ArrowUpRight, Info, MapPin, Shield, X, LocateFixed } from "lucide-react";
 
 type Place = {
   id:string; name:string; country:string; kind:string; status:string; detail:string;
@@ -40,13 +40,13 @@ export default function TheatreAtlas(){
  const visible=useMemo(()=>places.filter(p=>(layer==="All locations"||(layer==="Indian commands"&&p.id==="anc")||(layer==="Indian infrastructure"&&p.group==="india"&&p.id!=="anc")||(layer==="Partner access & ports"&&p.group==="partner"))&&[p.name,p.country,p.kind,p.status].join(" ").toLowerCase().includes(query.toLowerCase())),[layer,query]);
  const active=places.find(p=>p.id===selected);
  useEffect(()=>{
-  let disposed=false;let map:LeafletMap|null=null;
+  let disposed=false;
   loadLeaflet().then(L=>{
    if(disposed||!mapNode.current)return;
-   map=L.map(mapNode.current,{center:[5,76],zoom:4,scrollWheelZoom:true,worldCopyJump:true,zoomControl:true});
-   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',crossOrigin:true}).addTo(map);
-   mapRef.current=map;setMapReady(true);
-   requestAnimationFrame(()=>map&&map.invalidateSize());
+   const mapInstance:LeafletMap=L.map(mapNode.current,{center:[5,76],zoom:4,scrollWheelZoom:true,worldCopyJump:true,zoomControl:true});
+   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',crossOrigin:true}).addTo(mapInstance);
+   mapRef.current=mapInstance;setMapReady(true);
+   requestAnimationFrame(()=>mapInstance.invalidateSize());
   }).catch(e=>{if(!disposed)setMapError(e instanceof Error?e.message:"Unable to load map");});
   return()=>{disposed=true;if(mapRef.current){mapRef.current.remove();mapRef.current=null;}markerRefs.current={};setMapReady(false);};
  },[]);
