@@ -1004,6 +1004,12 @@ const server = createServer(async (request, response) => {
     const evidenceQuality = url.searchParams.get("evidenceQuality");
     const query = (url.searchParams.get("q") ?? "").trim().toLowerCase();
     const allItems = readProgrammeDossier();
+    const timelineRecords = readTimelines();
+    const dossierIdsWithMilestones = new Set(
+      timelineRecords
+        .filter((timeline) => (timeline.milestones ?? []).length > 0)
+        .flatMap((timeline) => timeline.dossierRecordIds ?? []),
+    );
     const items = allItems.filter((item) =>
       (!service || service === "all" || item.service === service) &&
       (!status || status === "all" || item.status === status) &&
@@ -1026,7 +1032,8 @@ const server = createServer(async (request, response) => {
         total: allItems.length,
         needsVerification: allItems.filter((item) => item.status === "needs_verification").length,
         structuredStageRecords: allItems.filter((item) => item.stageClassification !== "heuristic_from_dossier_text").length,
-        recordsWithMilestones: allItems.filter((item) => item.milestones.length > 0).length,
+        recordsWithMilestones: allItems.filter((item) => item.milestones.length > 0 || dossierIdsWithMilestones.has(item.id)).length,
+        timelineRecords: timelineRecords.filter((timeline) => (timeline.milestones ?? []).length > 0).length,
         officialSourceRecords: allItems.filter((item) => item.sourceRecords.some((source) => source.official === true)).length,
       },
       asOf: register.researchCutoff ?? null,
