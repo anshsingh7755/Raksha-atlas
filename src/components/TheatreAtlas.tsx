@@ -45,7 +45,7 @@ export default function TheatreAtlas(){
    if(!active||!Array.isArray(payload.items))return;
    const mapped:Place[]=payload.items.filter((item:any)=>Number.isFinite(item.latitude)&&Number.isFinite(item.longitude)).map((item:any)=>({
     id:item.id,name:item.name,country:item.city?item.city+", "+item.country:item.country,
-    kind:item.locationType.replaceAll("_"," "),status:item.status,detail:item.description,
+    kind:item.locationType.replace(/_/g," "),status:item.status,detail:item.description,
     source:item.sourceUrl,sourceLabel:item.sourceName,lat:item.latitude,lng:item.longitude,
     group:item.country==="India"?"india":"partner"
    }));
@@ -96,7 +96,7 @@ export default function TheatreAtlas(){
    </div>
    <aside className="theatre-place-panel">
     <div className="theatre-place-list">{visible.map(p=><button key={p.id} className={selected===p.id?"selected":""} onClick={()=>focus(p)}><span className={p.group==="india"?"place-symbol india":"place-symbol partner"}>{p.group==="india"?<Shield size={14}/>:<Anchor size={14}/>}</span><span><strong>{p.name}</strong><small>{p.country} · {p.kind}</small></span></button>)}</div>
-    {active&&<div className="theatre-place-detail"><button className="theatre-detail-close" onClick={()=>setSelected("")} aria-label="Close detail"><X size={14}/></button><span className="section-kicker">LOCATION PROFILE</span><h3>{active.name}</h3><p className="place-status">{active.status}</p><p>{active.detail}</p><p className="place-status">Evidence: {(active.evidenceStatus||"source-linked").replaceAll("_"," ")} · {active.coordinatePrecision?.replaceAll("_"," ")||"approximate public marker"}{active.lastReviewed?` · reviewed ${active.lastReviewed}`:""}</p><a href={active.source} target="_blank" rel="noreferrer">Source: {active.sourceLabel} <ArrowUpRight size={13}/></a></div>}
+    {active&&<div className="theatre-place-detail"><button className="theatre-detail-close" onClick={()=>setSelected("")} aria-label="Close detail"><X size={14}/></button><span className="section-kicker">LOCATION PROFILE</span><h3>{active.name}</h3><p className="place-status">{active.status}</p><p>{active.detail}</p><p className="place-status">Evidence: {(active.evidenceStatus||"source-linked").replace(/_/g," ")} · {active.coordinatePrecision?.replace(/_/g," ")||"approximate public marker"}{active.lastReviewed?` · reviewed ${active.lastReviewed}`:""}</p><a href={active.source} target="_blank" rel="noreferrer">Source: {active.sourceLabel} <ArrowUpRight size={13}/></a></div>}
    </aside>
   </div>
   <div className="theatre-status-note"><Shield size={17}/><p><strong>Classification and location policy.</strong> India’s Andaman & Nicobar Command is an established tri-service command. Proposed theatre structures are not depicted as active commands. {registerPolicy} {registerAsOf&&<span> Register reviewed: {registerAsOf}.</span>}</p></div>
