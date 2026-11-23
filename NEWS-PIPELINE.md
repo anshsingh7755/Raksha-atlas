@@ -4,7 +4,7 @@
 
 - Initial coverage: Indian defence and security, with categories structured so other beats can be added without separate collectors.
 - Collection: allowlisted RSS/Atom feeds, Google News discovery feeds, PIB metadata, and optional official YouTube/X APIs. Public endpoints only.
-- Publishing: new leads are shown automatically with source, date, category, and verification/review labels. Collection never upgrades a claim to `verified`.
+- Publishing: new leads are shown automatically with source, date, category, and verification/review labels. Publisher provenance is separate from claim verification: an official government publisher does not make every release claim editor-verified. Newly collected records remain `unverified` until reviewed.
 - Review: weekly human review can approve, correct, or reject leads. Rejected records stay in the audit history and are excluded from public feeds and RAG retrieval.
 - Backend: Node.js modular workers and API, matching the existing repository. PostgreSQL is the durable deployment store; JSON remains the no-configuration local fallback.
 - Schedule: news collection at every hour boundary in Asia/Kolkata; PIB and reference data refresh at 04:00 IST. Both require the API process to remain running.
@@ -25,7 +25,7 @@ Hourly scheduler ──> RSS / discovery / optional YouTube & X collectors
 
 ### Modules
 
-- `server/collectors/` — source adapters are separated by source family. Feed polling is in `scripts/ingest-monitored-sources.mjs` today and can be split into more adapters without changing the UI contract.
+- `server/collectors/` — source adapters are separated by source family. RSS/Atom parsing prefers an alternate HTML link over an Atom self link. Feed polling is in `scripts/ingest-monitored-sources.mjs` today and can be split into more adapters without changing the UI contract.
 - `server/extractors/article-metadata.mjs` — validates HTTPS/public hosts and extracts Open Graph title, description, image URL, author and date. It does not copy full article bodies and blocks local/private network destinations.
 - `server/processors/ai-article-enricher.mjs` — produces a short non-verbatim summary and category/tags from the source excerpt. With no OpenAI key it uses deterministic keyword classification. It cannot change the verification label.
 - `server/db/schema.sql` and `server/db/store.mjs` — PostgreSQL schema/store for sources, dynamically managed RSS feeds, categories, article records, related source links, image attribution, editorial revisions, pipeline logs and failed jobs. `DATABASE_URL` enables Postgres; otherwise JSON files are used.
@@ -40,8 +40,8 @@ Hourly scheduler ──> RSS / discovery / optional YouTube & X collectors
 1. Canonical URL identity removes common tracking parameters and deduplicates exact links.
 2. Normalized headline token similarity groups close reports into one lead.
 3. High-overlap source excerpts provide a third lexical content-similarity check.
-4. Grouped articles retain every additional publisher URL in `relatedSources` and PostgreSQL `article_sources`.
-5. A story cluster is not proof of truth. Each source maintains its own publisher and verification label.
+5. Grouped articles retain every additional publisher URL in `relatedSources` and PostgreSQL `article_sources`.
+6. A story cluster is not proof of truth. Each source maintains its own publisher and verification label.
 
 The current duplicate detector is lexical headline similarity, not semantic embeddings. Review grouped-source records when titles are generic or the cluster looks wrong.
 
@@ -104,3 +104,14 @@ The Compose stack runs PostgreSQL, the API/worker scheduler and the static React
 3. **Editorial/search step:** authenticated multi-user audit trail, corrections/version history, semantic retrieval and story clustering evaluation.
 4. **Media step:** licensed image provider or object storage with verified attribution/permission records.
 5. **Broader coverage:** configurable regions/languages and category source packs, with source coverage measured rather than claiming completeness.
+
+
+## News pipeline tests
+
+Run the focused parser and deduplication tests with:
+
+```powershell
+npm test
+```
+
+The current Node test suite covers canonical URL normalization, PIB release identity, headline matching, RSS parsing, Atom alternate-link selection and malformed feed entries. Add regression tests whenever collector or editorial-state behavior changes.
