@@ -463,6 +463,14 @@
         "sourceUrl": "https://www.ndtv.com/india-news/ndtv-defence-summit-2026-hindustan-aeronautics-failed-bid-to-build-indias-stealth-jet-on-fairly-routine-technical-grounds-defence-secretary-rk-singh-12108545"
       },
       {
+        "stage": "Partner selection — pending at research cut-off",
+        "date": "2026-11-09",
+        "label": "IDRW reported that the development-cum-production partner had not yet been appointed and argued that a March 2027 contract could push first flight towards August 2029. This is secondary reporting; no partner award is recorded as completed.",
+        "verificationStatus": "reported",
+        "sourceId": "idrw-amca-first-flight-2029",
+        "sourceUrl": "https://idrw.org/amca-first-flight-2029-iaf-official/"
+      },
+      {
         "stage": "Prototype build / first flight target",
         "date": "2028-09-01",
         "label": "September 2028 is the Defence Secretary's publicly reported first-flight target as of September 2026. IDRW reported that a delayed partner selection could move the first flight towards August 2029. Neither date is a completed event or guaranteed schedule.",
@@ -474,6 +482,14 @@
         "stage": "Testing, certification and production",
         "date": null,
         "label": "The 2026 reporting describes five flying prototypes and a structural test aircraft, followed by testing and certification. A firm series-production start or IAF induction date is not treated as contracted or assured in this timeline.",
+        "verificationStatus": "unverified",
+        "sourceId": "ndtv-amca-shortlist-2026",
+        "sourceUrl": "https://www.ndtv.com/india-news/ndtv-defence-summit-2026-hindustan-aeronautics-failed-bid-to-build-indias-stealth-jet-on-fairly-routine-technical-grounds-defence-secretary-rk-singh-12108545"
+      },
+      {
+        "stage": "Engine ground run / first engine-on",
+        "date": null,
+        "label": "No verified public date or completion announcement for an AMCA prototype engine-on / ground-run milestone was identified by 23 November 2026. This stage remains unconfirmed.",
         "verificationStatus": "unverified",
         "sourceId": "ndtv-amca-shortlist-2026",
         "sourceUrl": "https://www.ndtv.com/india-news/ndtv-defence-summit-2026-hindustan-aeronautics-failed-bid-to-build-indias-stealth-jet-on-fairly-routine-technical-grounds-defence-secretary-rk-singh-12108545"
@@ -538,6 +554,14 @@
         "verificationStatus": "unverified",
         "sourceId": "idrw-project76-2026",
         "sourceUrl": "https://idrw.org/indian-navy-pushes-for-faster-clearance-of-project-76-submarines/"
+      },
+      {
+        "stage": "Prototype / keel-laying / first launch",
+        "date": null,
+        "label": "No publicly verified prototype completion, keel-laying or launch date was identified. Do not present design targets as construction milestones.",
+        "verificationStatus": "unverified",
+        "sourceId": "idrw-project76-2026",
+        "sourceUrl": "https://idrw.org/indian-navy-pushes-for-faster-clearance-of-project-76-submarines/"
       }
     ]
   },
@@ -592,6 +616,14 @@
         "verificationStatus": "reported",
         "sourceId": "navy-chief-ssn-2036",
         "sourceUrl": "https://drdo.gov.in/drdo/sites/default/files/drdo-news/NPC03to04Dec2024.pdf"
+      },
+      {
+        "stage": "Keel laying, launch and sea trials",
+        "date": null,
+        "label": "Public reporting does not establish completed keel laying, launch or sea-trial milestones for the first indigenous SSN. Dates remain unannounced.",
+        "verificationStatus": "unverified",
+        "sourceId": "indiatoday-project77-2026",
+        "sourceUrl": "https://www.indiatoday.in/india/story/india-navy-project-76-project-77-submarine-programme-maritime-power-2914064-2026-05-20"
       }
     ]
   },
