@@ -28,7 +28,6 @@ const revisionsPath = join(root, "revisions.json");
 const inventoryPath = join(root, "inventory.json");
 const timelinesPath = join(root, "timelines.json");
 const procurementPath = join(root, "procurement-2026.json");
-const frigatesPath = join(root, "frigates.json");
 const platformRegisterPath = join(root, "platform-register.json");
 const wikiEquipmentPath = join(root, "wikipedia-equipment.json");
 const historyPath = join(root, "history.json");
@@ -194,10 +193,6 @@ function readProgrammeDossier() {
 
 function readProcurement() {
   return JSON.parse(readFileSync(procurementPath, "utf8"));
-}
-
-function readFrigates() {
-  return JSON.parse(readFileSync(frigatesPath, "utf8"));
 }
 
 function readPlatformRegister() {
@@ -926,17 +921,6 @@ const server = createServer(async (request, response) => {
       items,
       count: items.length,
       filters: { service, category, quantityStatus, originCountry },
-      asOf: "2026-11-04",
-    });
-    return;
-  }
-  if (request.method === "GET" && url.pathname === "/api/inventory/frigates") {
-    const items = readFrigates();
-    send(response, 200, {
-      items,
-      count: items.reduce((total, item) => total + item.ships.length, 0),
-      classCount: items.length,
-      source: "wiki-active-navy-ships",
       asOf: "2026-11-04",
     });
     return;
