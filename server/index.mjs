@@ -226,6 +226,9 @@ function readFutureProcurement() {
 function readHistory() {
   return JSON.parse(readFileSync(historyPath, "utf8"));
 }
+function readDocuments() {
+  return JSON.parse(readFileSync(documentsPath, "utf8"));
+}
 
 async function saveSources(sources) {
   writeFileSync(sourcesPath, JSON.stringify(sources, null, 2));
