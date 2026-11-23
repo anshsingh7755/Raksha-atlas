@@ -38,13 +38,6 @@ Move the existing Raksha Atlas user interface from the root Vite application int
 - Record the current Next.js bridge and its limitations.
 - Keep Vite as the reference implementation.
 
-### 1.2 — Run and validate the Next.js bridge
-- Install dependencies from `frontend/`.
-- Run the Next.js development server on port 3000.
-- Verify API proxying to the existing Node API.
-- Run a production Next.js build and TypeScript check.
-- Fix only migration-specific issues; do not change business behavior.
-
 ### 1.3 — Route and API contract map
 - Map every current application view/navigation destination to a Next.js route.
 - Identify shared layouts, client-only components (for example, interactive maps), loading/error states and API calls.
@@ -62,7 +55,7 @@ Move the existing Raksha Atlas user interface from the root Vite application int
 - Make Next.js the primary local runtime only after all agreed routes pass.
 - Retire Vite only after parity, data integrity and rollback checks pass.
 
-## 5. Acceptance criteria
+## 6. Acceptance criteria
 
 - [ ] Next.js development server starts reliably.
 - [ ] Next.js production build and TypeScript checks pass.
@@ -74,7 +67,7 @@ Move the existing Raksha Atlas user interface from the root Vite application int
 - [ ] No existing data, API or Vite implementation is removed before cutover approval.
 - [ ] CI validates the Next.js application before it becomes the primary frontend.
 
-## 6. Local commands
+## 7. Local commands
 
 Run these from the repository root in PowerShell:
 
@@ -95,6 +88,6 @@ npm run build
 
 The Next.js API rewrite currently expects the Node API at `http://127.0.0.1:8787`.
 
-## 7. Current decision
+## 8. Current decision
 
-Phase 1.1 audit is recorded. The next task is to validate the existing Next.js bridge locally and in CI. The Vite application remains the active reference until Phase 1 acceptance criteria are met. Phase 0 manual validation also remains open; this Phase 1 preparation does not mark Phase 0 as closed.
+Phase 1.1 audit is recorded. Phase 1.2 API-proxy configuration and CI checks are committed; the user has confirmed that the Next.js homepage runs locally. The new CI result and local typecheck/production build remain to be verified. The Vite application remains the active reference until Phase 1 acceptance criteria are met. Phase 0 manual validation also remains open; this Phase 1 preparation does not mark Phase 0 as closed.
