@@ -56,7 +56,7 @@ export default function TheatreAtlas(){
     source:item.sourceUrl,sourceLabel:item.sourceName,lat:item.latitude,lng:item.longitude,
     group:item.country==="India"?"india":"partner"
    }));
-   if(mapped.length){setPlaces(mapped);setSelected(mapped[0].id);}
+   if(mapped.length){setPlaces(mapped);setSelected(current=>mapped.some(item=>item.id===current)?current:mapped[0].id);}
    setRegisterAsOf(payload.asOf??null);setRegisterPolicy(payload.policy??"");
   }).catch(()=>{if(active)setMapError("Using bundled fallback records because the location register could not be loaded");});
   return()=>{active=false;};
