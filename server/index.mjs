@@ -170,6 +170,60 @@ function readTimelines() {
   return JSON.parse(readFileSync(timelinesPath, "utf8"));
 }
 
+function readProgrammeDossier() {
+  const file = join(root, "..", "docs", "intelligence", "FUTURE-PROGRAMMES-ACQUISITION-DOSSIER.md");
+  const markdown = readFileSync(file, "utf8");
+  const lines = markdown.split(/\r?\n/);
+  const sections = [];
+  let capture = false;
+  let current = null;
+  const flush = () => {
+    if (!current) return;
+    const body = current.lines.join("\n").trim();
+    const sourceUrls = [...new Set(body.match(/https?:\/\/[^\s)]+/g) ?? [])];
+    const text = body.replace(/\[[^\]]*\]\([^)]*\)/g, "").replace(/https?:\/\/[^\s)]+/g, "").replace(/^[-*]\s*/gm, "").replace(/\*\*/g, "").replace(/\s+/g, " ").trim();
+    const service = /navy|submarine|carrier|ship|corvette|frigate|destroyer|naval/i.test(current.title) ? "Navy"
+      : /army|tank|artillery|atgm|rifle|shotgun|armou?red|infantry|atags|dhanush/i.test(current.title) ? "Army"
+      : /air force|fighter|tejas|amca|aircraft|helicopter|apache|prachand|refueller|transport|su-30|radar|missile|ak?ash|s-400|s-500|astra|rudra|lch|luh|imrh|drone|uav|ucav|ghatak|aew/i.test(current.title) ? "Air Force / Joint"
+      : "Joint / Strategic";
+    const stage = /contract signed|signed contract|contracted/i.test(body) ? "Contracted"
+      : /AoN|acceptance of necessity/i.test(body) ? "AoN / approval"
+      : /under construction|construction/i.test(body) ? "Under construction"
+      : /trial|flight-test|tested/i.test(body) ? "Trials / testing"
+      : /prototype|development|design/i.test(body) ? "Development"
+      : /proposal|proposed|reported|unconfirmed|estimate/i.test(body) ? "Reported / proposed"
+      : "Research / status to verify";
+    sections.push({
+      id: current.id, title: current.title, service, stage,
+      summary: text.slice(0, 680), details: body.slice(0, 9000),
+      sourceUrls, sourceCount: sourceUrls.length,
+    });
+    current = null;
+  };
+  for (const line of lines) {
+    if (line.startsWith("## 2. Programme register")) { capture = true; continue; }
+    if (capture && line.startsWith("## 3. Official acquisition approvals")) { flush(); capture = false; }
+    const numbered = line.match(/^##\s+(\d+)\.\s+(.+)$/);
+    const extended = line.match(/^###\s+(\d+)\.\s+(.+)$/);
+    const named = line.match(/^###\s+(K-5|K-6|Project-77|Agni-VI)\b(.*)$/);
+    if (capture && numbered && Number(numbered[1]) >= 1 && Number(numbered[1]) <= 46) {
+      flush(); current = { id: "programme-" + numbered[1], title: numbered[2], lines: [] }; continue;
+    }
+    if (extended && Number(extended[1]) >= 47) {
+      flush(); current = { id: "programme-" + extended[1] + "-" + sections.length, title: extended[2], lines: [] }; continue;
+    }
+    if (named) {
+      flush(); current = { id: "programme-" + named[1].toLowerCase(), title: named[1] + named[2], lines: [] }; continue;
+    }
+    if (current) {
+      if (/^#{1,2}\s/.test(line)) { flush(); }
+      else current.lines.push(line);
+    }
+  }
+  flush();
+  return sections;
+}
+
 function readProcurement() {
   return JSON.parse(readFileSync(procurementPath, "utf8"));
 }
@@ -891,6 +945,16 @@ const server = createServer(async (request, response) => {
       filters: { category, service },
       asOf: "2026-11-04",
     });
+    return;
+  }
+  if (request.method === "GET" && url.pathname === "/api/programmes") {
+    const service = url.searchParams.get("service");
+    const query = (url.searchParams.get("q") ?? "").toLowerCase();
+    const items = readProgrammeDossier().filter((item) =>
+      (!service || service === "all" || item.service === service) &&
+      (!query || (item.title + " " + item.summary + " " + item.details).toLowerCase().includes(query)),
+    );
+    send(response, 200, { items, count: items.length, asOf: "2026-11-23", sourceDocument: "/docs/intelligence/FUTURE-PROGRAMMES-ACQUISITION-DOSSIER.md" });
     return;
   }
   if (request.method === "GET" && url.pathname === "/api/timelines") {
