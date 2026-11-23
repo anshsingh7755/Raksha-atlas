@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { canonicalizeDocumentUrl, normalizeDocument } from "./index.mjs";
+import { canonicalizeDocumentUrl, normalizeDocument, findDuplicateByChecksum } from "./index.mjs";
 
 test("canonical URL removes tracking parameters and fragments", () => {
   assert.equal(canonicalizeDocumentUrl("https://example.gov.in/report.pdf?utm_source=x&b=2#page=4"), "https://example.gov.in/report.pdf?b=2");
@@ -46,4 +46,12 @@ test("persists extraction engine, OCR pages, warnings and page count", () => {
   assert.deepEqual(item.extractionWarnings, ["OCR used on page 2"]);
   assert.equal(item.checksumSha256, "a".repeat(64));
   assert.equal(item.fileSizeBytes, 1024);
+});
+
+test("detects duplicate downloaded PDF content by SHA-256", () => {
+  const checksum = "b".repeat(64);
+  const existing = [{ id: "document-existing", title: "Existing report", checksumSha256: checksum }];
+  assert.equal(findDuplicateByChecksum(existing, checksum).id, "document-existing");
+  assert.equal(findDuplicateByChecksum(existing, checksum, "document-existing"), null);
+  assert.equal(findDuplicateByChecksum(existing, "not-a-checksum"), null);
 });
