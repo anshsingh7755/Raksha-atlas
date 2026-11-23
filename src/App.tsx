@@ -739,7 +739,7 @@ function ProgrammeHistoryNotes({ text }: { text: string }) {
     const splitAt = line.indexOf(":");
     const label = splitAt > 0 ? line.slice(0, splitAt).trim() : "";
     const value = splitAt > 0 ? line.slice(splitAt + 1).trim() : line;
-    if (/^primary discovery\\/source link$/i.test(label)) return null;
+    if (label.toLowerCase() === "primary discovery/source link") return null;
     return <div className="programme-history-note" key={index}>
       {label && <strong>{label}</strong>}
       <p>{value}</p>
