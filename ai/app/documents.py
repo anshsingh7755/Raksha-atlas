@@ -96,7 +96,11 @@ async def _download_pdf(raw_url: str) -> tuple[bytes, str]:
                     if content_type not in ("application/pdf", "application/octet-stream", "binary/octet-stream"):
                         raise HTTPException(status_code=415, detail="Publisher did not return a PDF file.")
                     declared_length = response.headers.get("content-length")
-                    if declared_length and int(declared_length) > MAX_FILE_BYTES:
+                    try:
+                        declared_size = int(declared_length) if declared_length else 0
+                    except ValueError as exc:
+                        raise HTTPException(status_code=502, detail="Publisher returned an invalid content length.") from exc
+                    if declared_size > MAX_FILE_BYTES:
                         raise HTTPException(status_code=413, detail="PDF exceeds the configured download size limit.")
                     chunks = []
                     size = 0
