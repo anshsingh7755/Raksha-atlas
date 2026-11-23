@@ -176,18 +176,30 @@ function readProgrammeDossier() {
     id: record.id,
     title: record.name,
     service: record.serviceDomain,
-    stage: record.stageLabel,
+    category: record.category ?? null,
+    variant: record.variant ?? null,
+    developer: record.developer ?? null,
+    manufacturers: record.manufacturers ?? [],
+    // Text-derived stage guesses are not promoted to acquisition facts.
+    stage: record.stageClassification === "heuristic_from_dossier_text"
+      ? "Needs verification"
+      : record.stageLabel,
+    reportedStage: record.stageLabel,
+    stageClassification: record.stageClassification ?? "unclassified",
     summary: record.summary,
     details: record.dossierText,
     sourceUrls: (record.sources ?? []).map((source) => source.url),
     sourceCount: (record.sources ?? []).length,
-    status: record.status,
+    status: record.status ?? "needs_verification",
     quantity: record.quantity,
     quantityType: record.quantityType,
     quantityConfidence: record.quantityConfidence,
-    evidenceQuality: record.evidenceQuality,
+    announcedDate: record.announcedDate ?? null,
+    milestones: record.milestones ?? [],
+    evidenceQuality: record.evidenceQuality ?? "not_normalized",
     sourceRecords: record.sources ?? [],
     lastVerifiedAt: record.lastVerifiedAt,
+    reviewNotes: record.reviewNotes ?? null,
   }));
 }
 
@@ -985,13 +997,42 @@ const server = createServer(async (request, response) => {
     return;
   }
   if (request.method === "GET" && url.pathname === "/api/programmes") {
+    const register = JSON.parse(readFileSync(join(root, "programmes.json"), "utf8"));
     const service = url.searchParams.get("service");
-    const query = (url.searchParams.get("q") ?? "").toLowerCase();
-    const items = readProgrammeDossier().filter((item) =>
+    const status = url.searchParams.get("status");
+    const stageClassification = url.searchParams.get("stageClassification");
+    const evidenceQuality = url.searchParams.get("evidenceQuality");
+    const query = (url.searchParams.get("q") ?? "").trim().toLowerCase();
+    const allItems = readProgrammeDossier();
+    const items = allItems.filter((item) =>
       (!service || service === "all" || item.service === service) &&
-      (!query || (item.title + " " + item.summary + " " + item.details).toLowerCase().includes(query)),
+      (!status || status === "all" || item.status === status) &&
+      (!stageClassification || stageClassification === "all" || item.stageClassification === stageClassification) &&
+      (!evidenceQuality || evidenceQuality === "all" || item.evidenceQuality === evidenceQuality) &&
+      (!query || [item.title, item.service, item.category, item.summary, item.details, item.reportedStage]
+        .filter(Boolean).join(" ").toLowerCase().includes(query)),
     );
-    send(response, 200, { items, count: items.length, asOf: "2026-11-23", sourceDocument: "/docs/intelligence/FUTURE-PROGRAMMES-ACQUISITION-DOSSIER.md" });
+    send(response, 200, {
+      items,
+      count: items.length,
+      filters: { service, status, stageClassification, evidenceQuality, q: query || null },
+      availableFilters: {
+        services: [...new Set(allItems.map((item) => item.service).filter(Boolean))].sort(),
+        statuses: [...new Set(allItems.map((item) => item.status).filter(Boolean))].sort(),
+        stageClassifications: [...new Set(allItems.map((item) => item.stageClassification).filter(Boolean))].sort(),
+        evidenceQualities: [...new Set(allItems.map((item) => item.evidenceQuality).filter(Boolean))].sort(),
+      },
+      summary: {
+        total: allItems.length,
+        needsVerification: allItems.filter((item) => item.status === "needs_verification").length,
+        structuredStageRecords: allItems.filter((item) => item.stageClassification !== "heuristic_from_dossier_text").length,
+        recordsWithMilestones: allItems.filter((item) => item.milestones.length > 0).length,
+        officialSourceRecords: allItems.filter((item) => item.sourceRecords.some((source) => source.official === true)).length,
+      },
+      asOf: register.researchCutoff ?? null,
+      sourceDocument: "/docs/intelligence/FUTURE-PROGRAMMES-ACQUISITION-DOSSIER.md",
+      classificationPolicy: register.classificationPolicy ?? null,
+    });
     return;
   }
   if (request.method === "GET" && url.pathname === "/api/timelines") {
