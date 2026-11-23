@@ -783,7 +783,7 @@ function ProgrammeDossierExplorer() {
       </div>
       <p className="equipment-note">This view is generated from the Future Programmes & Acquisition Intelligence dossier. Reported plans, official approvals, development, contracts and deliveries are not interchangeable. Text-derived stage guesses remain marked as needing verification and are never presented as confirmed acquisition milestones.</p>
       <div className="programme-register-summary">
-        <div><strong>{registerSummary.total || items.length}</strong><span>Total records</span></div>
+        <div><strong>{registerSummary.total || items.length}</strong><span>Register entries</span></div>
         <div><strong>{registerSummary.needsVerification}</strong><span>Need verification</span></div>
         <div><strong>{registerSummary.structuredStageRecords}</strong><span>Structured stage records</span></div>
         <div><strong>{registerSummary.recordsWithMilestones}</strong><span>With dated milestones</span></div>
