@@ -29,6 +29,7 @@ CFR's tracker combines an interactive map, search and filters, conflict profiles
 - Atlas profiles are loaded from the API, with a bundled fallback for offline/API-failure display.
 - Each structured record carries a location type, service, status, approximate coordinate precision, evidence classification, source URL and review date.
 - Atlas records are included in global search.
+- Register integrity tests validate unique IDs, HTTPS source links, coordinate bounds, approximate precision metadata and the exclusion policy (`node --test server/theatre-locations.test.mjs`).
 - Detail panel with source, status and caveat.
 - Map positions are deliberately schematic and are not navigational coordinates.
 
