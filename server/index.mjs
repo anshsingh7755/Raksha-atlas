@@ -822,7 +822,7 @@ const server = createServer(async (request, response) => {
         page: Math.max(1, Math.floor(Number(page.page) || 1)),
         text: String(page.text || "").slice(0, 20000),
       })) : [];
-      document.pageCount = Number(extraction.pageCount) || document.pages.length;
+      document.pageCount = extraction.pageCount === null || extraction.pageCount === undefined ? null : Number(extraction.pageCount) || null;\n      document.extractedTitle = extraction.documentTitle || null;
       document.ocrPages = Array.isArray(extraction.ocrPages) ? extraction.ocrPages : [];
       document.extractionEngine = extraction.extractionEngine || null;
       document.extractionWarnings = Array.isArray(extraction.warnings) ? extraction.warnings : [];
