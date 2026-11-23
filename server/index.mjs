@@ -759,6 +759,70 @@ const server = createServer(async (request, response) => {
     }
     return;
   }
+  const documentExtractionMatch = url.pathname.match(/^\/api\/documents\/([^/]+)\/extract$/);
+  if (request.method === "POST" && documentExtractionMatch) {
+    const documentId = decodeURIComponent(documentExtractionMatch[1]);
+    const register = readDocuments();
+    const document = (register.records ?? []).find((item) => item.id === documentId);
+    if (!document) {
+      send(response, 404, { error: "document not found" });
+      return;
+    }
+    if (document.fileFormat !== "pdf") {
+      send(response, 415, { error: "Only registered PDF documents can be extracted." });
+      return;
+    }
+    const workerToken = process.env.DOCUMENT_WORKER_TOKEN;
+    if (!workerToken) {
+      send(response, 503, { error: "Document extraction is not configured. Set DOCUMENT_WORKER_TOKEN and start the FastAPI worker." });
+      return;
+    }
+    let raw = "";
+    for await (const chunk of request) {
+      raw += chunk;
+      if (raw.length > 4000) break;
+    }
+    if (raw.length > 4000) {
+      send(response, 413, { error: "Extraction request is too large." });
+      return;
+    }
+    try {
+      const input = JSON.parse(raw || "{}");
+      const workerBase = process.env.DOCUMENT_EXTRACTION_URL || "http://127.0.0.1:8001";
+      const workerResponse = await fetch(new URL("/documents/extract", workerBase), {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: "Bearer " + workerToken },
+        body: JSON.stringify({ url: document.originalUrl, ocr: input.ocr === true }),
+        signal: AbortSignal.timeout(180000),
+      });
+      const extraction = await workerResponse.json().catch(() => ({}));
+      if (!workerResponse.ok) {
+        send(response, workerResponse.status, { error: extraction.detail || extraction.error || "Document extraction failed." });
+        return;
+      }
+      document.canonicalUrl = extraction.canonicalUrl || document.canonicalUrl;
+      document.fileFormat = extraction.fileFormat || "pdf";
+      document.fileSizeBytes = extraction.fileSizeBytes ?? document.fileSizeBytes;
+      document.checksumSha256 = extraction.checksumSha256 || document.checksumSha256;
+      document.retrievedAt = extraction.retrievedAt || new Date().toISOString();
+      document.extractionStatus = extraction.extractionStatus || "failed";
+      document.extractedText = String(extraction.extractedText || "").slice(0, 200000);
+      document.pages = Array.isArray(extraction.pages) ? extraction.pages.slice(0, 300).map((page) => ({
+        page: Math.max(1, Math.floor(Number(page.page) || 1)),
+        text: String(page.text || "").slice(0, 20000),
+      })) : [];
+      document.pageCount = Number(extraction.pageCount) || document.pages.length;
+      document.ocrPages = Array.isArray(extraction.ocrPages) ? extraction.ocrPages : [];
+      document.extractionEngine = extraction.extractionEngine || null;
+      document.extractionWarnings = Array.isArray(extraction.warnings) ? extraction.warnings : [];
+      register.updatedAt = new Date().toISOString();
+      writeFileSync(documentsPath, JSON.stringify(register, null, 2));
+      send(response, 200, { item: document, count: register.records.length });
+    } catch (error) {
+      send(response, 502, { error: error.message || "Document extraction worker is unavailable." });
+    }
+    return;
+  }
   if (url.pathname === "/api/documents" && request.method === "GET") {
     const register = readDocuments();
     const query = (url.searchParams.get("q") || "").trim().toLowerCase();
