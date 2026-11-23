@@ -1595,6 +1595,9 @@ function App() {
   const [globalSearchOpen, setGlobalSearchOpen] = useState(false);
   const [globalSearch, setGlobalSearch] = useState("");
   const [globalSearchResults, setGlobalSearchResults] = useState<Array<{section:string;view:View;id:string;title:string;summary:string}>>([]);
+  const [globalSearchSections, setGlobalSearchSections] = useState<string[]>([]);
+  const [globalSearchSection, setGlobalSearchSection] = useState("all");
+  const [globalSearchError, setGlobalSearchError] = useState("");
   const [globalSearchLoading, setGlobalSearchLoading] = useState(false);
   const [apiState, setApiState] = useState<"checking" | "online" | "offline">(
     "checking",
@@ -1656,18 +1659,36 @@ function App() {
   }, []);
   useEffect(() => {
     const q = globalSearch.trim();
-    if (q.length < 2) { setGlobalSearchResults([]); setGlobalSearchLoading(false); return; }
+    if (q.length < 2) {
+      setGlobalSearchResults([]);
+      setGlobalSearchSections([]);
+      setGlobalSearchError("");
+      setGlobalSearchLoading(false);
+      return;
+    }
     const controller = new AbortController();
     const timer = window.setTimeout(() => {
       setGlobalSearchLoading(true);
-      fetch(`/api/search?q=${encodeURIComponent(q)}`, { signal: controller.signal })
-        .then((response) => { if (!response.ok) throw new Error("Search unavailable"); return response.json(); })
-        .then((data: { results?: Array<{section:string;view:View;id:string;title:string;summary:string}> }) => setGlobalSearchResults(data.results ?? []))
-        .catch((error) => { if (error.name !== "AbortError") setGlobalSearchResults([]); })
+      setGlobalSearchError("");
+      fetch(`/api/search?q=${encodeURIComponent(q)}&section=${encodeURIComponent(globalSearchSection)}&limit=60`, { signal: controller.signal })
+        .then(async (response) => {
+          if (!response.ok) throw new Error("Search service is temporarily unavailable.");
+          return response.json();
+        })
+        .then((data: { results?: Array<{section:string;view:View;id:string;title:string;summary:string}>; sections?: string[] }) => {
+          setGlobalSearchResults(data.results ?? []);
+          setGlobalSearchSections(data.sections ?? []);
+        })
+        .catch((error) => {
+          if (error.name !== "AbortError") {
+            setGlobalSearchResults([]);
+            setGlobalSearchError(error instanceof Error ? error.message : "Could not search Raksha Atlas.");
+          }
+        })
         .finally(() => { if (!controller.signal.aborted) setGlobalSearchLoading(false); });
-    }, 160);
+    }, 180);
     return () => { window.clearTimeout(timer); controller.abort(); };
-  }, [globalSearch]);
+  }, [globalSearch, globalSearchSection]);
   const selectedForce = useMemo(
     () =>
       activeForce === "all"
@@ -1881,7 +1902,7 @@ function App() {
         </button>
         <Nav />
         <div className="top-actions">
-          <button className="global-search-trigger" onClick={() => { setGlobalSearchOpen(true); setGlobalSearch(""); }} aria-label="Search Raksha Atlas">
+          <button className="global-search-trigger" onClick={() => { setGlobalSearchOpen(true); setGlobalSearch(""); setGlobalSearchSection("all"); setGlobalSearchError(""); }} aria-label="Search Raksha Atlas">
             <Search size={16} /><span>Search Atlas</span><kbd>⌘ K</kbd>
           </button>
           <button className="icon-btn theme-toggle" aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"} title={theme === "dark" ? "Light mode" : "Dark mode"} onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
@@ -1901,13 +1922,15 @@ function App() {
       </header>
       {globalSearchOpen && <div className="atlas-search-backdrop" onMouseDown={(event) => { if (event.target === event.currentTarget) setGlobalSearchOpen(false); }}>
         <section className="atlas-search-dialog" role="dialog" aria-modal="true" aria-label="Search Raksha Atlas">
-          <div className="atlas-search-input"><Search size={19}/><input autoFocus value={globalSearch} onChange={(event) => setGlobalSearch(event.target.value)} placeholder="Search AMCA, Apache, destroyer, Tejas…" onKeyDown={(event) => { if (event.key === "Enter" && globalSearchResults[0]) { navigate(globalSearchResults[0].view); setGlobalSearchOpen(false); } }}/><kbd>ESC</kbd></div>
-          <div className="atlas-search-hint">{globalSearch.trim().length < 2 ? "Search inventory, programmes, articles, procurement, timelines and sources" : globalSearchLoading ? "Searching across Raksha Atlas…" : `${globalSearchResults.length} matching records across the Atlas`}</div>
+          <div className="atlas-search-input"><Search size={19}/><input autoFocus value={globalSearch} onChange={(event) => setGlobalSearch(event.target.value)} placeholder="Search AMCA, Apache, destroyer, Tejas…" onKeyDown={(event) => { if (event.key === "Enter" && globalSearchResults[0]) { sessionStorage.setItem("raksha-search-query", globalSearch.trim()); if (globalSearchResults[0].view === "pipeline") sessionStorage.setItem("raksha-search-mode", "pipeline"); navigate(globalSearchResults[0].view); setGlobalSearchOpen(false); } }}/><kbd>ESC</kbd></div>
+          <div className="atlas-search-hint">{globalSearch.trim().length < 2 ? "Search inventory, commands, programmes, news, procurement, sources and geography" : globalSearchLoading ? "Searching across Raksha Atlas…" : `${globalSearchResults.length} results · ${globalSearchSection === "all" ? "All sections" : globalSearchSection}`}</div>
+          {globalSearch.trim().length >= 2 && <div className="atlas-search-filters"><button className={globalSearchSection === "all" ? "active" : ""} onClick={() => setGlobalSearchSection("all")}>All sections</button>{globalSearchSections.map((section) => <button key={section} className={globalSearchSection === section ? "active" : ""} onClick={() => setGlobalSearchSection(section)}>{section}</button>)}</div>}
           {globalSearch.trim().length < 2 ? <div className="atlas-search-links">{navigationItems.map(([view,label]) => <button key={view} onClick={() => {navigate(view);setGlobalSearchOpen(false);}}><span>{label}</span><small>{view}</small><ArrowUpRight size={14}/></button>)}</div> :
-            <div className="atlas-search-results">{globalSearchResults.map((result,index) => <button key={result.view+"-"+result.id+"-"+index} onClick={() => { sessionStorage.setItem("raksha-search-query", globalSearch.trim()); if (result.view === "pipeline") sessionStorage.setItem("raksha-search-mode", "pipeline"); navigate(result.view); setGlobalSearchOpen(false); }}><span className="atlas-result-section">{result.section}</span><strong>{result.title}</strong><small>{result.summary || "Open this record"}</small><ArrowUpRight size={14}/></button>)}
-              {!globalSearchLoading && globalSearchResults.length === 0 && <div className="atlas-search-empty">No exact matches found. Try a shorter platform name, acronym or variant.</div>}
+            <div className="atlas-search-results">{globalSearchResults.map((result,index) => <button key={result.view+"-"+result.id+"-"+index} onClick={() => { sessionStorage.setItem("raksha-search-query", globalSearch.trim()); sessionStorage.setItem("raksha-search-target", result.id); sessionStorage.setItem("raksha-search-section", result.section); if (result.view === "pipeline") sessionStorage.setItem("raksha-search-mode", "pipeline"); navigate(result.view); setGlobalSearchOpen(false); }}><span className="atlas-result-section">{result.section}</span><strong>{result.title}</strong><small>{result.summary || "Open this record"}</small><ArrowUpRight size={14}/></button>)}
+              {globalSearchError && <div className="atlas-search-empty">{globalSearchError}</div>}
+              {!globalSearchLoading && !globalSearchError && globalSearchResults.length === 0 && <div className="atlas-search-empty">No matching records. Try a full platform name, acronym or a broader term.</div>}
             </div>}
-          <div className="atlas-search-footer">Results are grouped by the section that owns each record · Enter opens the first result</div>
+          <div className="atlas-search-footer">Results are ranked by title relevance and matching fields · Enter opens the first result</div>
         </section>
       </div>}
       <div className="command-strip">
