@@ -3059,3 +3059,126 @@ body {
     align-items: flex-start;
   }
 }
+
+
+/* Programme record detail view */
+.programme-open-detail {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 2px 0 8px;
+  padding: 0;
+  border: 0;
+  color: var(--accent, #8aa8ff);
+  background: transparent;
+  font: 600 0.72rem "DM Mono";
+  cursor: pointer;
+}
+.programme-open-detail:hover { text-decoration: underline; }
+.programme-modal-backdrop {
+  z-index: 1000;
+  align-items: flex-start;
+  overflow-y: auto;
+  padding: 4vh 16px;
+}
+.programme-modal {
+  width: min(860px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: clamp(18px, 3vw, 30px);
+  border: 1px solid var(--line);
+  background: #0b1114;
+  color: var(--text, #e8e5df);
+  box-shadow: 0 24px 90px rgba(0,0,0,.55);
+}
+.programme-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+.programme-modal-header h2 {
+  margin: 10px 0 0;
+  font: 500 clamp(1.4rem, 3vw, 2rem) "Space Grotesk";
+  line-height: 1.2;
+}
+.programme-modal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+  margin: 18px 0;
+}
+.programme-modal-grid > div {
+  display: grid;
+  align-content: start;
+  gap: 7px;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.025);
+  overflow-wrap: anywhere;
+}
+.programme-modal-grid span,
+.programme-modal-footer {
+  color: var(--muted);
+  font: 9px "DM Mono";
+  text-transform: uppercase;
+}
+.programme-modal-grid strong {
+  font-size: .82rem;
+  font-weight: 550;
+}
+.programme-modal-caveat {
+  padding: 12px 14px;
+  border-left: 2px solid var(--accent, #8aa8ff);
+  color: var(--muted);
+  background: rgba(255,255,255,.025);
+  font-size: .78rem;
+  line-height: 1.55;
+}
+.programme-modal-section {
+  margin-top: 22px;
+}
+.programme-modal-section h3 {
+  margin: 0 0 10px;
+  font: 500 1rem "Space Grotesk";
+}
+.programme-modal-section > p {
+  color: var(--muted);
+  font-size: .82rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+.programme-modal-section .programme-detail-text {
+  max-height: 260px;
+  overflow-y: auto;
+}
+.programme-modal-source {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 0;
+  border-top: 1px solid var(--line);
+  overflow-wrap: anywhere;
+}
+.programme-modal-source span {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+.programme-modal-source strong { font-size: .78rem; }
+.programme-modal-source small {
+  color: var(--muted);
+  font: 9px "DM Mono";
+}
+.programme-modal-footer {
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 640px) {
+  .programme-modal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
