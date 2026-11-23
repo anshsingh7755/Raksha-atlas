@@ -2187,5 +2187,31 @@
     "language": "en",
     "active": true,
     "reliabilityNotes": "Confirms Rudra is weaponised ALH for Army/IAF; product page does not state current fleet quantity."
+  },
+  {
+    "id": "et-defence",
+    "name": "ETDefence — The Economic Times",
+    "url": "https://defence.economictimes.indiatimes.com/",
+    "sourceType": "publisher",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Secondary publisher and aggregator covering defence policy, partnerships, manufacturing, military systems, advanced technologies, research/security and industry. RSS terms prohibit redistribution/hosting/aggregation without express permission; use link-out/minimal metadata only unless written permission is obtained.",
+    "termsReviewedAt": "2026-11-23",
+    "lastCheckedAt": null
+  },
+  {
+    "id": "indian-defence-news",
+    "name": "Indian Defence News (IDN)",
+    "url": "https://www.indiandefensenews.in/",
+    "sourceType": "publisher",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Secondary curated defence news publisher covering policy, national security, diplomacy, aerospace, cyberspace, reconnaissance, defence infrastructure/business, technology and indigenous manufacturing. Preserve bylines, labels and underlying source attribution; corroborate consequential claims.",
+    "termsReviewedAt": null,
+    "lastCheckedAt": null
   }
 ]
