@@ -28,8 +28,12 @@ def _allowed_host(host: str) -> bool:
 
 def _validate_url(raw_url: str) -> str:
     parsed = urlparse(raw_url)
-    if parsed.scheme != "https" or not parsed.hostname or parsed.username or parsed.password:
-        raise HTTPException(status_code=400, detail="Only public HTTPS document URLs are allowed.")
+    try:
+        port = parsed.port
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail="Document URL contains an invalid port.") from exc
+    if parsed.scheme != "https" or not parsed.hostname or parsed.username or parsed.password or port not in (None, 443):
+        raise HTTPException(status_code=400, detail="Only public HTTPS document URLs on port 443 are allowed.")
     host = parsed.hostname.encode("idna").decode("ascii").lower()
     if not _allowed_host(host):
         raise HTTPException(status_code=403, detail="Document host is not in DOCUMENT_ALLOWED_HOSTS.")
