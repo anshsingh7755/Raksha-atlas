@@ -32,6 +32,7 @@ import ProgrammeTimelinePanel, { type ProgrammeMilestone } from "./components/Pr
 import TheatreAtlas from "./components/TheatreAtlas";
 import AtlasFooter from "./components/AtlasFooter";
 import SectionTitle from "./components/SectionTitle";
+import AtlasNavigation from "./components/AtlasNavigation";
 
 type View =
   | "overview"
@@ -1967,24 +1968,6 @@ function App({
     ["documents", "Documents"],
     ["sources", "Sources"],
   ];
-  const Nav = ({ mobile = false }: { mobile?: boolean }) => (
-    <nav
-      className={mobile ? "mobile-nav" : "topnav"}
-      aria-label={mobile ? "Mobile navigation" : "Primary navigation"}
-      id={mobile ? "mobile-navigation" : undefined}
-    >
-      {navigationItems.map(([item, label]) => (
-        <button
-          className={activeView === item ? "nav-link active" : "nav-link"}
-          aria-current={activeView === item ? "page" : undefined}
-          key={item}
-          onClick={() => navigate(item)}
-        >
-          {label}
-        </button>
-      ))}
-    </nav>
-  );
   const Header = () => (
     <>
       <header className="topbar">
@@ -1997,7 +1980,7 @@ function App({
             <span>ATLAS / 01</span>
           </div>
         </button>
-        <Nav />
+        <AtlasNavigation activeView={activeView} items={navigationItems} onNavigate={navigate} />
         <div className="top-actions">
           <button className="global-search-trigger" aria-keyshortcuts="Control+K Meta+K" onClick={() => { setGlobalSearchOpen(true); setGlobalSearch(""); setGlobalSearchSection("all"); setGlobalSearchError(""); }} aria-label="Search Raksha Atlas">
             <Search size={16} /><span>Search Atlas</span><kbd>⌘ K</kbd>
@@ -2016,7 +1999,7 @@ function App({
             <Menu size={18} />
           </button>
         </div>
-        {menuOpen && <Nav mobile />}
+        {menuOpen && <AtlasNavigation mobile activeView={activeView} items={navigationItems} onNavigate={navigate} />}
       </header>
       {globalSearchOpen && <AccessibleDialog onClose={() => setGlobalSearchOpen(false)} ariaLabel="Search Raksha Atlas" contentClassName="atlas-search-dialog" backdropClassName="atlas-search-backdrop">
           <div className="atlas-search-input"><Search size={19}/><input aria-label="Search all Raksha Atlas records" autoFocus value={globalSearch} onChange={(event) => setGlobalSearch(event.target.value)} placeholder="Search AMCA, Apache, destroyer, Tejas…" onKeyDown={(event) => { if (event.key === "Enter" && globalSearchResults[0]) { sessionStorage.setItem("raksha-search-query", globalSearch.trim()); sessionStorage.setItem("raksha-search-target", globalSearchResults[0].id); sessionStorage.setItem("raksha-search-section", globalSearchResults[0].section); if (globalSearchResults[0].view === "pipeline") sessionStorage.setItem("raksha-search-mode", "pipeline"); navigate(globalSearchResults[0].view); setGlobalSearchOpen(false); } }}/><kbd>ESC</kbd></div>
