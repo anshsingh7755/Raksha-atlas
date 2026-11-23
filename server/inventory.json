@@ -10270,5 +10270,27 @@
       "quantity": null,
       "quantityUnit": "not disclosed"
     }
+  },
+  {
+    "id": "apache-ah64e-army",
+    "service": "Army",
+    "category": "Attack helicopter",
+    "platform": "Boeing AH-64E Apache Guardian — Army",
+    "quantity": 6,
+    "quantityStatus": "in_service",
+    "originCountry": "United States",
+    "procurementYear": 2020,
+    "inductedYear": 2025,
+    "role": "Army Aviation attack helicopter",
+    "variant": "AH-64E Apache Guardian",
+    "manufacturer": "Boeing",
+    "asOfDate": "2025-12-16",
+    "definition": "Separate Indian Army contract for six AH-64E Apache helicopters, distinct from the Indian Air Force's 22-aircraft fleet. The final three Army aircraft were reported delivered in December 2025; this record represents the Army fleet only.",
+    "capabilitySummary": "Attack helicopter operated by Army Aviation. Do not combine this six-aircraft Army record with the separate 22-aircraft IAF contract record.",
+    "confidence": "medium",
+    "verificationStatus": "reported",
+    "sourceId": "indiatoday-army-apache-delivery-2025",
+    "sourceUrl": "https://www.indiatoday.in/india/story/final-batch-of-3-us-made-apache-ah-64e-attack-helicopters-land-at-hindon-will-join-armys-jodhpur-squadron-2836759-2025-12-16",
+    "dataLimitations": "Delivery completion is reported by India Today citing the Army's December 2025 receipt of the final three aircraft. This is not an independently audited availability figure."
   }
 ]
