@@ -23,6 +23,11 @@ jobs:
         run: npm test
       - name: Build website
         run: npm run build
+      - name: Validate Docker Compose configuration
+        env:
+          DB_PASSWORD: test-database-password
+          RAKSHA_ADMIN_TOKEN: test-admin-token
+        run: docker compose config --quiet
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
