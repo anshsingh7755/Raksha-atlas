@@ -16,19 +16,7 @@ type ProcurementRecord = {
 
 export default function Watch() {
       const [query, setQuery] = useState("");
-      const [items, setItems] = useState<
-        Array<{
-          id: string;
-          title: string;
-          reference: string;
-          sourceId: string;
-          sourceUrl: string;
-          closingAt: string;
-          status: string;
-          scope: string;
-          verificationStatus: string;
-        }>
-      >([]);
+      const [items, setItems] = useState<ProcurementRecord[]>([]);
       useEffect(() => {
         const saved = sessionStorage.getItem("raksha-search-query");
         const section = sessionStorage.getItem("raksha-search-section");
@@ -38,9 +26,12 @@ export default function Watch() {
           sessionStorage.removeItem("raksha-search-target");
           sessionStorage.removeItem("raksha-search-section");
         }
-        fetch("/api/procurement-2026")
-          .then((r) => r.json())
-          .then((data: { items: typeof items }) => setItems(data.items));
+        apiGet<{ items?: ProcurementRecord[] }>("/api/procurement-2026")
+          .then((data) => setItems(data.items ?? []))
+          .catch((error: unknown) => {
+            console.error("Could not load procurement watchlist.", error);
+            setItems([]);
+          });
       }, []);
       const visibleItems = items.filter((item) => [item.title,item.reference,item.sourceId,item.scope,item.status,item.verificationStatus].join(" ").toLowerCase().includes(query.toLowerCase()));
       return (
