@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import {
   ArrowUpRight,
   Bell,
@@ -909,6 +909,89 @@ function ArmedForcesHistory() {
   );
 }
 
+
+function AccessibleDialog({
+  children,
+  onClose,
+  labelledBy,
+  ariaLabel,
+  contentClassName,
+  backdropClassName = "modal-backdrop",
+  dismissOnBackdrop = true,
+}: {
+  children: ReactNode;
+  onClose: () => void;
+  labelledBy?: string;
+  ariaLabel?: string;
+  contentClassName: string;
+  backdropClassName?: string;
+  dismissOnBackdrop?: boolean;
+}) {
+  const dialogRef = useRef<HTMLElement>(null);
+  const closeRef = useRef(onClose);
+  useEffect(() => { closeRef.current = onClose; }, [onClose]);
+  useEffect(() => {
+    const previousFocus = document.activeElement instanceof HTMLElement
+      ? document.activeElement : null;
+    const dialog = dialogRef.current;
+    const first = dialog?.querySelector<HTMLElement>(
+      'input:not([disabled]), button:not([disabled]), select:not([disabled]), textarea:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])',
+    );
+    (first ?? dialog)?.focus();
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeRef.current();
+        return;
+      }
+      if (event.key !== "Tab" || !dialog) return;
+      const focusable = Array.from(dialog.querySelectorAll<HTMLElement>(
+        'input:not([disabled]), button:not([disabled]), select:not([disabled]), textarea:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])',
+      )).filter((element) => element.offsetParent !== null);
+      if (!focusable.length) {
+        event.preventDefault();
+        dialog.focus();
+        return;
+      }
+      const firstItem = focusable[0];
+      const lastItem = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === firstItem) {
+        event.preventDefault();
+        lastItem.focus();
+      } else if (!event.shiftKey && document.activeElement === lastItem) {
+        event.preventDefault();
+        firstItem.focus();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      previousFocus?.focus();
+    };
+  }, []);
+  return (
+    <div
+      className={backdropClassName}
+      onMouseDown={(event) => {
+        if (dismissOnBackdrop && event.target === event.currentTarget) closeRef.current();
+      }}
+    >
+      <section
+        ref={dialogRef}
+        className={contentClassName}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={labelledBy}
+        aria-label={ariaLabel}
+        tabIndex={-1}
+        onMouseDown={(event) => event.stopPropagation()}
+      >
+        {children}
+      </section>
+    </div>
+  );
+}
+
 function ChatDialog({
   question,
   setQuestion,
@@ -931,12 +1014,11 @@ function ChatDialog({
   needsModelKey: boolean;
 }) {
   return (
-    <div className="modal-backdrop" onClick={onClose}>
-      <div className="chat-panel" onClick={(event) => event.stopPropagation()}>
+    <AccessibleDialog onClose={onClose} labelledBy="chat-dialog-title" contentClassName="chat-panel">
         <div className="chat-header">
           <div>
             <span className="section-kicker">ATLAS ASSIST / SOURCE-GROUNDED</span>
-            <h2>
+            <h2 id="chat-dialog-title">
               Ask the <em>open-source</em> analyst
             </h2>
           </div>
@@ -974,10 +1056,10 @@ function ChatDialog({
               </div>
             </div>
           ) : (
-            <div className="answer">
+            <div className="answer" aria-live="polite" aria-busy={loading}>
               {loading ? (
                 <div className="answer-label">
-                  <span className="live-dot" /> RETRIEVING SOURCES AND GENERATING
+                  <span className="live-dot" aria-hidden="true" /> RETRIEVING SOURCES AND GENERATING
                   ANSWER…
                 </div>
               ) : error ? (
@@ -1031,6 +1113,7 @@ function ChatDialog({
         </div>
         <div className="chat-input">
           <input
+            aria-label="Ask the Raksha Atlas assistant"
             value={question}
             onChange={(event) => setQuestion(event.target.value)}
             onKeyDown={(event) => event.key === "Enter" && onAsk()}
@@ -1045,8 +1128,7 @@ function ChatDialog({
             {loading ? "…" : <ArrowUpRight size={17} />}
           </button>
         </div>
-      </div>
-    </div>
+    </AccessibleDialog>
   );
 }
 
@@ -1894,6 +1976,7 @@ function App() {
       {navigationItems.map(([item, label]) => (
         <button
           className={activeView === item ? "nav-link active" : "nav-link"}
+          aria-current={activeView === item ? "page" : undefined}
           key={item}
           onClick={() => navigate(item)}
         >
@@ -1935,8 +2018,8 @@ function App() {
         {menuOpen && <Nav mobile />}
       </header>
       {globalSearchOpen && <div className="atlas-search-backdrop" onMouseDown={(event) => { if (event.target === event.currentTarget) setGlobalSearchOpen(false); }}>
-        <section className="atlas-search-dialog" role="dialog" aria-modal="true" aria-label="Search Raksha Atlas">
-          <div className="atlas-search-input"><Search size={19}/><input autoFocus value={globalSearch} onChange={(event) => setGlobalSearch(event.target.value)} placeholder="Search AMCA, Apache, destroyer, Tejas…" onKeyDown={(event) => { if (event.key === "Enter" && globalSearchResults[0]) { sessionStorage.setItem("raksha-search-query", globalSearch.trim()); sessionStorage.setItem("raksha-search-target", globalSearchResults[0].id); sessionStorage.setItem("raksha-search-section", globalSearchResults[0].section); if (globalSearchResults[0].view === "pipeline") sessionStorage.setItem("raksha-search-mode", "pipeline"); navigate(globalSearchResults[0].view); setGlobalSearchOpen(false); } }}/><kbd>ESC</kbd></div>
+        <section className="atlas-search-dialog" role="dialog" aria-modal="true" aria-label="Search Raksha Atlas" tabIndex={-1}>
+          <div className="atlas-search-input"><Search size={19}/><input aria-label="Search all Raksha Atlas records" autoFocus value={globalSearch} onChange={(event) => setGlobalSearch(event.target.value)} placeholder="Search AMCA, Apache, destroyer, Tejas…" onKeyDown={(event) => { if (event.key === "Enter" && globalSearchResults[0]) { sessionStorage.setItem("raksha-search-query", globalSearch.trim()); sessionStorage.setItem("raksha-search-target", globalSearchResults[0].id); sessionStorage.setItem("raksha-search-section", globalSearchResults[0].section); if (globalSearchResults[0].view === "pipeline") sessionStorage.setItem("raksha-search-mode", "pipeline"); navigate(globalSearchResults[0].view); setGlobalSearchOpen(false); } }}/><kbd>ESC</kbd></div>
           <div className="atlas-search-hint">{globalSearch.trim().length < 2 ? "Search inventory, commands, programmes, news, procurement, sources and geography" : globalSearchLoading ? "Searching across Raksha Atlas…" : `${globalSearchResults.length} results · ${globalSearchSection === "all" ? "All sections" : globalSearchSection}`}</div>
           {globalSearch.trim().length >= 2 && <div className="atlas-search-filters"><button className={globalSearchSection === "all" ? "active" : ""} onClick={() => setGlobalSearchSection("all")}>All sections</button>{globalSearchSections.map((section) => <button key={section} className={globalSearchSection === section ? "active" : ""} onClick={() => setGlobalSearchSection(section)}>{section}</button>)}</div>}
           {globalSearch.trim().length < 2 ? <div className="atlas-search-links">{navigationItems.map(([view,label]) => <button key={view} onClick={() => {navigate(view);setGlobalSearchOpen(false);}}><span>{label}</span><small>{view}</small><ArrowUpRight size={14}/></button>)}</div> :
@@ -3228,7 +3311,8 @@ function App() {
   return (
     <div className="app-shell">
       <Header />
-      <main>
+      <a className="skip-link" href="#main-content">Skip to main content</a>
+      <main id="main-content" tabIndex={-1}>
         {activeView === "overview" && <Overview />}
         {activeView === "forces" && <Forces />}
         {activeView === "atlas" && <TheatreAtlas />}
