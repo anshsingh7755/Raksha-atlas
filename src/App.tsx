@@ -1553,13 +1553,16 @@ function App() {
     localStorage.setItem("raksha-theme", theme);
   }, [theme]);
   useEffect(() => {
-    if (!globalSearchOpen) return;
     const onKey = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        setGlobalSearchOpen((open) => !open);
+      }
       if (event.key === "Escape") setGlobalSearchOpen(false);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [globalSearchOpen]);
+  }, []);
   const selectedForce = useMemo(
     () => forces.find((f) => f.id === activeForce) ?? forces[0],
     [activeForce],
