@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 import { answerWithRag } from "./rag.mjs";
 import { searchRecords } from "./search/index.mjs";
-import { normalizeDocument, documentFilters, findDuplicateByChecksum } from "./documents/index.mjs";
+import { normalizeDocument, documentFilters, findDuplicateByChecksum, canonicalizeDocumentUrl } from "./documents/index.mjs";
 import { initializeStore } from "./db/store.mjs";
 import { startScheduler } from "./scheduler/hourly-scheduler.mjs";
 import { runNewsWorker } from "./workers/news-worker.mjs";
@@ -815,7 +815,7 @@ const server = createServer(async (request, response) => {
         });
         return;
       }
-      document.canonicalUrl = extraction.canonicalUrl || document.canonicalUrl;
+      document.canonicalUrl = extraction.canonicalUrl ? canonicalizeDocumentUrl(extraction.canonicalUrl) : document.canonicalUrl;
       document.fileFormat = extraction.fileFormat || "pdf";
       document.fileSizeBytes = extraction.fileSizeBytes ?? document.fileSizeBytes;
       document.checksumSha256 = extraction.checksumSha256 || document.checksumSha256;
