@@ -2952,3 +2952,56 @@ body {
   color: var(--muted);
   font-size: .72rem;
 }
+
+
+/* Future programme dossier explorer */
+.programme-grid {
+  align-items: start;
+}
+.programme-card h3 {
+  margin: 14px 0 8px;
+  font-size: 1.02rem;
+  line-height: 1.35;
+}
+.programme-summary {
+  color: var(--muted, #9aa4b2);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+.programme-meta {
+  margin-top: 12px;
+  font-size: 0.78rem;
+  color: var(--accent, #8aa8ff);
+}
+.programme-details {
+  margin-top: 14px;
+  border-top: 1px solid var(--line, rgba(255,255,255,.12));
+  padding-top: 12px;
+}
+.programme-details summary {
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+.programme-detail-text {
+  margin-top: 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--muted, #aab3c0);
+  font-size: 0.8rem;
+  line-height: 1.65;
+}
+.programme-source-links {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line, rgba(255,255,255,.12));
+  font-size: 0.8rem;
+}
+.programme-source-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  overflow-wrap: anywhere;
+}
