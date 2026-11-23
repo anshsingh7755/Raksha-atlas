@@ -38,10 +38,13 @@ Move the existing Raksha Atlas user interface from the root Vite application int
 - Record the current Next.js bridge and its limitations.
 - Keep Vite as the reference implementation.
 
-### 1.3 — Route and API contract map
-- Map every current application view/navigation destination to a Next.js route.
-- Identify shared layouts, client-only components (for example, interactive maps), loading/error states and API calls.
-- Add typed API clients while preserving endpoint response contracts.
+### 1.3 — Route and API contract map (initial implementation committed; validation pending)
+- Added a route-aware Next.js shell that maps URL paths to the existing application view state.
+- Added route destinations for overview, commands, Theatre Atlas, inventory, programmes, articles, briefs, documents, sources, procurement, timeline, watch, PIB releases, register and history.
+- Updated the shared React application to accept an initial view and a navigation callback. Vite continues using its existing hash navigation when no callback is supplied.
+- Added the Next.js catch-all section route so direct navigation and refreshes can resolve the supported section paths.
+- Existing feature components and API calls remain shared; this is an incremental route integration, not a duplicate UI.
+- Remaining: local typecheck/build, direct URL refresh checks, browser back/forward checks, and route-by-route feature verification.
 
 ### 1.4 — Incremental App Router migration
 - Move one route/feature at a time.
@@ -90,4 +93,4 @@ The Next.js API rewrite currently expects the Node API at `http://127.0.0.1:8787
 
 ## 8. Current decision
 
-Phase 1.1 audit is recorded. Phase 1.2 API-proxy configuration and CI checks are committed; the user has confirmed that the Next.js homepage runs locally. The new CI result and local typecheck/production build remain to be verified. The Vite application remains the active reference until Phase 1 acceptance criteria are met. Phase 0 manual validation also remains open; this Phase 1 preparation does not mark Phase 0 as closed.
+Phase 1.1 audit is recorded. Phase 1.2 API-proxy configuration and CI checks are committed; the user has confirmed that the Next.js homepage runs locally. The new CI result and local typecheck/production build remain to be verified. Phase 1.3 route integration is committed; browser navigation and deep-link verification remain pending. The Vite application remains the active reference until Phase 1 acceptance criteria are met. Phase 0 manual validation also remains open; this Phase 1 preparation does not mark Phase 0 as closed.
