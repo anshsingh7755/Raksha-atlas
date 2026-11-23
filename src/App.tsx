@@ -1512,7 +1512,7 @@ function App() {
       ? hash
       : "overview";
   });
-  const [activeForce, setActiveForce] = useState("navy");
+  const [activeForce, setActiveForce] = useState("all");
   const [chatOpen, setChatOpen] = useState(false);
   const [question, setQuestion] = useState("");
   const [chatAnswer, setChatAnswer] = useState("");
@@ -1597,7 +1597,18 @@ function App() {
     return () => { window.clearTimeout(timer); controller.abort(); };
   }, [globalSearch]);
   const selectedForce = useMemo(
-    () => forces.find((f) => f.id === activeForce) ?? forces[0],
+    () =>
+      activeForce === "all"
+        ? {
+            ...forces[0],
+            id: "all",
+            label: "All services",
+            short: "ALL",
+            description:
+              "Explore public, source-linked records across every available service domain.",
+            metric: "Unified public catalogue",
+          }
+        : forces.find((force) => force.id === activeForce) ?? forces[0],
     [activeForce],
   );
   const todayIst = new Intl.DateTimeFormat("en-IN", {
