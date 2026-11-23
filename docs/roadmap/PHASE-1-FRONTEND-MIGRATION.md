@@ -31,32 +31,26 @@ Move the existing Raksha Atlas user interface from the root Vite application int
 6. Do not delete root `src/`, Vite configuration or the current development scripts until parity, tests and rollback are demonstrated.
 7. Keep the existing Node backend and current data sources unchanged during Phase 1.
 
-## 4. Migration sequence
+## 4. Phase 1 — ten sub-phases (no nested tasks)
 
-### 1.1 — Audit and baseline (current task)
-- Record current UI entry points, components, styles, API usage and runtime dependencies.
-- Record the current Next.js bridge and its limitations.
-- Keep Vite as the reference implementation.
+| Sub-phase | Workstream | Scope and completion result |
+|---|---|---|
+| 1.1 | Audit and baseline | Inventory the existing UI, routes, styles, assets, API usage and runtime dependencies; retain Vite as the reference. **Recorded.** |
+| 1.2 | Next.js foundation | Configure the API proxy through environment variables and add Next.js typecheck/build CI. **Implemented; local checks passed.** |
+| 1.3 | Route integration | Map supported URLs to existing views, preserve navigation callbacks and support direct route refreshes. **Implemented; browser parity checks pending.** |
+| 1.4 | Shared shell extraction | Extract reusable layout elements and navigation without duplicating the Vite UI. **In progress: shared footer extracted.** |
+| 1.5 | Feature boundary extraction | Move one feature at a time into reusable modules and App Router route modules; preserve existing feature behavior and API contracts. |
+| 1.6 | Typed API layer | Centralize typed API requests and response models; remove duplicated request logic only where parity is proven. |
+| 1.7 | Rendering and states | Define server/client boundaries and retain loading, empty, error and browser-only behavior. |
+| 1.8 | UX parity | Preserve responsive layouts, theme, keyboard access, dialogs, reduced-motion and accessibility behavior. |
+| 1.9 | Automated parity gate | Add route/interaction coverage and verify API contracts, production build and feature parity against Vite. |
+| 1.10 | Controlled cutover | Make Next.js primary only after acceptance; keep rollback available and retire Vite only after explicit parity approval. |
 
-### 1.3 — Route and API contract map (initial implementation committed; validation pending)
-- Added a route-aware Next.js shell that maps URL paths to the existing application view state.
-- Added route destinations for overview, commands, Theatre Atlas, inventory, programmes, articles, briefs, documents, sources, procurement, timeline, watch, PIB releases, register and history.
-- Updated the shared React application to accept an initial view and a navigation callback. Vite continues using its existing hash navigation when no callback is supplied.
-- Added the Next.js catch-all section route so direct navigation and refreshes can resolve the supported section paths.
-- Existing feature components and API calls remain shared; this is an incremental route integration, not a duplicate UI.
-- Remaining: local typecheck/build, direct URL refresh checks, browser back/forward checks, and route-by-route feature verification.
-
-### 1.4 — Incremental App Router migration
-- Move one route/feature at a time.
-- Extract shared navigation, layout, dialogs, search and feature components.
-- Keep browser-only functionality in focused client components rather than making the entire application client-only.
-- Verify feature parity against Vite after each route.
-
-### 1.5 — Cutover
-- Add automated route and interaction checks.
-- Compare API behavior and user-visible features.
-- Make Next.js the primary local runtime only after all agreed routes pass.
-- Retire Vite only after parity, data integrity and rollback checks pass.
+### Current implementation notes
+- The shared footer now lives in `src/components/AtlasFooter.tsx` and is consumed by the existing `src/App.tsx`; this keeps one implementation available to both frontends.
+- The large application component remains the feature source of truth. Extract only components with clear ownership and limited dependencies; do not split nested components blindly.
+- Existing Node API endpoints, server JSON data and the Vite runtime remain unchanged during Phase 1.
+- A successful build is not proof of route or interaction parity.
 
 ## 6. Acceptance criteria
 
@@ -93,4 +87,4 @@ The Next.js API rewrite currently expects the Node API at `http://127.0.0.1:8787
 
 ## 8. Current decision
 
-Phase 1.1 audit is recorded. Phase 1.2 API-proxy configuration and CI checks are committed; the user has confirmed that the Next.js homepage runs locally. The new CI result and local typecheck/production build remain to be verified. Phase 1.3 route integration is committed; browser navigation and deep-link verification remain pending. The Vite application remains the active reference until Phase 1 acceptance criteria are met. Phase 0 manual validation also remains open; this Phase 1 preparation does not mark Phase 0 as closed.
+Phase 1.1 audit is recorded. Phase 1.2 API-proxy configuration and CI checks are committed; local typecheck and production build have passed. Phase 1.3 route integration is committed; browser navigation and deep-link verification remain pending. Phase 1.4 has started: the shared footer was extracted into `src/components/AtlasFooter.tsx` and the existing app now reuses it. Next, extract the shared navigation/header only after its state and search dependencies have clear interfaces. The Vite application remains the active reference until Phase 1 acceptance criteria are met. Phase 0 manual validation also remains open; this Phase 1 work does not mark Phase 0 as closed.
