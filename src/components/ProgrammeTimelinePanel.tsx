@@ -40,7 +40,7 @@ export default function ProgrammeTimelinePanel({ programme, milestones }: Props)
               <time>{formatMilestoneDate(milestone.date)}</time>
               <strong>{milestone.stage}</strong>
               <p>{milestone.label}</p>
-              <span className={"programme-milestone-status " + (milestone.verificationStatus ?? "unverified")}>{(milestone.verificationStatus ?? "unverified").replaceAll("_", " ")}</span>
+              <span className={"programme-milestone-status " + (milestone.verificationStatus ?? "unverified")}>{(milestone.verificationStatus ?? "unverified").replace(/_/g, " ")}</span>
               {milestone.sourceUrl && <a href={milestone.sourceUrl} target="_blank" rel="noreferrer">Evidence <ArrowUpRight size={12}/></a>}
             </div>
           </li>
