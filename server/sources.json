@@ -2000,5 +2000,192 @@
     "language": "en",
     "active": true,
     "reliabilityNotes": "Discovery portal only; use specific contract and delivery releases for any quantities or milestone claims."
+  },
+  {
+    "id": "theweek-tejas-mk2-120-2026",
+    "name": "The Week — Defence Secretary on 120 Tejas Mk2 projected requirement",
+    "url": "https://www.theweek.in/news/defence/2026/10/01/lca-tejas-mk2-set-for-mid-2027-first-flight-decision-on-iaf-acquiring-120-fighters-only-after-prototype-evaluation.html",
+    "sourceType": "Secondary defence reporting or analysis",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Reports Defence Secretary's statement that IAF initially projected 120; decision follows prototype evaluation. No confirmed 300-aircraft requirement."
+  },
+  {
+    "id": "idrw-amca-tejas-fleet-2026",
+    "name": "IDRW — Reported Tejas Mk2 and AMCA fleet planning",
+    "url": "https://idrw.org/114-rafale-deal-will-not-derail-amca-and-tejas-mk2-programs-iaf-plans-fleet-of-over-400-indigenous-fighters/",
+    "sourceType": "Secondary defence reporting or analysis",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Unofficial report of at least 120 Tejas Mk2 and 120 AMCA, with AMCA 80/40 split in one account. Not sanctioned order quantities."
+  },
+  {
+    "id": "orfonline-fighter-engine-2025",
+    "name": "ORF — Addressing the IAF Fighter Engine Conundrum",
+    "url": "https://www.orfonline.org/research/addressing-the-iaf-s-fighter-engine-conundrum",
+    "sourceType": "Secondary defence reporting or analysis",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Analytical estimates for fighter engine and aircraft demand; not official orders."
+  },
+  {
+    "id": "ge-f404-99-engines-2025",
+    "name": "GE Aerospace — First of 99 F404-IN20 engines delivered",
+    "url": "https://www.geaerospace.com/news/articles/delivering-india-today-and-future",
+    "sourceType": "Official / manufacturer / parliamentary source",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "GE confirms first of 99 F404-IN20 engines for Tejas Mk1A delivered March 2025; order placed in 2021."
+  },
+  {
+    "id": "ge-hal-f414-mou-2023",
+    "name": "GE Aerospace — HAL F414 co-production MoU",
+    "url": "https://www.geaerospace.com/news/press-releases/ge-aerospace-signs-memorandum-understanding-hindustan-aeronautics-limited-produce-fighter-jet-engines",
+    "sourceType": "Official / manufacturer / parliamentary source",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Confirms MoU for potential Indian production of F414 engines; not a final production contract."
+  },
+  {
+    "id": "rollsroyce-reliance-amca-engine-2026",
+    "name": "Rolls-Royce and Reliance — AMCA engine strategic intent",
+    "url": "https://www.rolls-royce.com/media/press-releases/2026/14-08-2026-reliance-industries-and-rolls-royce-announce-strategic-intent-to-partner-and-develop-indias-indigenous-combat-engine-for-the-amca-programme.aspx",
+    "sourceType": "Official / manufacturer / parliamentary source",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Strategic intent to offer joint engine design/development/manufacture; not government selection or contract."
+  },
+  {
+    "id": "defensenews-amca-engine-race-2026",
+    "name": "Defense News — Rolls-Royce and Safran vie for Indian fighter engine",
+    "url": "https://www.defensenews.com/global/asia-pacific/2026/08/27/rolls-royce-safran-vie-for-indias-next-generation-fighter-engine/",
+    "sourceType": "Secondary defence reporting or analysis",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Reports Safran-GTRE proposal and Rolls-Royce-Reliance intent; neither identified as selected."
+  },
+  {
+    "id": "hal-su30-upgrade-84-transcript-2025",
+    "name": "HAL investor call — 84-aircraft Su-30MKI upgrade discussion",
+    "url": "https://nsearchives.nseindia.com/corporate/HAL_22052025141004_ConferenceCallTranscript22052025.pdf",
+    "sourceType": "Official / manufacturer / parliamentary source",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "HAL management describes 84-aircraft upgrade development and indicative value/timing; not a signed upgrade contract."
+  },
+  {
+    "id": "newindianexpress-su30-russian-upgrade-2026",
+    "name": "New Indian Express — Parallel Russian Su-30MKI upgrade report",
+    "url": "https://www.newindianexpress.com/nation/2026/feb/25/as-super-sukhoi-awaits-clearance-iaf-turns-to-russia-for-parallel-su-30mki-upgrade",
+    "sourceType": "Secondary defence reporting or analysis",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Reports possible similar/larger parallel upgrade while 84-aircraft plan awaited CCS; no 200+ commitment."
+  },
+  {
+    "id": "theprint-sss-t12-shotguns-2026",
+    "name": "ThePrint — SSS Defence T-12 Army shotgun contracts",
+    "url": "https://theprint.in/defence/homegrown-sss-defence-makes-its-debut-in-the-indian-army-its-shotgun-to-tackle-drones/2969646/",
+    "sourceType": "Secondary defence reporting or analysis",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Reports multiple Army unit/directorate contracts; quantity/value not disclosed."
+  },
+  {
+    "id": "theprint-sss-kalyani-aviation-gun-2026",
+    "name": "ThePrint — SSS Defence and Kalyani aviation gun DcPP selection",
+    "url": "https://theprint.in/defence/drdo-shortlists-sss-defence-kalyani-group-to-develop-indigenous-aviation-gun-for-rudra-lch-helicopters/3075974/",
+    "sourceType": "Secondary defence reporting or analysis",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Reports two DcPPs; conditional 60:40 future split after development and acceptance, not final production order."
+  },
+  {
+    "id": "pib-atags-184-contract-2025",
+    "name": "PIB — ATAGS and gun towing vehicle contracts",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2115365&lang=2&reg=48",
+    "sourceType": "Official / manufacturer / parliamentary source",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Confirms contracts with Bharat Forge for ATAGS and Tata Advanced Systems for 6x6 towing vehicles; combined approx ₹6,900 crore."
+  },
+  {
+    "id": "bharatforge-atags-184-2025",
+    "name": "Bharat Forge — 184 ATAGS contract disclosure",
+    "url": "https://www.bharatforge.com/assets/pdf/investors/notice/SE_intimation-Press-release.pdf",
+    "sourceType": "Official / manufacturer / parliamentary source",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Company confirms its share of 184 ATAGS, 60% of package; not necessarily total programme quantity."
+  },
+  {
+    "id": "bel-gbmes-army-2026",
+    "name": "BEL — ₹1,251 crore Ground Based Mobile ELINT System contract",
+    "url": "https://bel-india.in/news-bel/bel-receives-rs-1251-cr-order-for-supply-of-ground-based-mobile-elint-system-gbmes-to-indian-army/",
+    "sourceType": "Official / manufacturer / parliamentary source",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Confirms Army GBMES contract; designed by DLRL, manufactured by BEL; quantity undisclosed."
+  },
+  {
+    "id": "bel-atulya-radar-2025",
+    "name": "BEL — ₹1,640 crore Atulya radar contract",
+    "url": "https://bel-india.in/news-bel/bel-receives-rs-1640-cr-order-for-air-defence-fire-control-radars-atulya-from-indian-army/",
+    "sourceType": "Official / manufacturer / parliamentary source",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Confirms Army air-defence fire-control radar contract; quantity undisclosed."
+  },
+  {
+    "id": "sansad-defence-dfg-2025-26",
+    "name": "Lok Sabha Defence Committee — helicopter programme annexures",
+    "url": "https://sansad.in/getFile/lsscommittee/Defence/18_Defence_2.pdf?source=loksabhadocs",
+    "sourceType": "Official / manufacturer / parliamentary source",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Records LUH 12-aircraft case, IMRH 353 and DBMRH 66 requirements in the committee snapshot; not all contracted."
+  },
+  {
+    "id": "hal-rudra-official",
+    "name": "HAL — Rudra weaponised ALH product page",
+    "url": "https://hal-india.co.in/product/rudra",
+    "sourceType": "Official / manufacturer / parliamentary source",
+    "official": true,
+    "defaultStatus": "official",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Confirms Rudra is weaponised ALH for Army/IAF; product page does not state current fleet quantity."
   }
 ]
