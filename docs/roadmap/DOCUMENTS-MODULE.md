@@ -45,6 +45,10 @@ Returns `items`, `count`, `total`, `filters`, `availableFilters`, `policy` and p
 
 Registers metadata and optional already-extracted public text. In production, write access requires `RAKSHA_ADMIN_TOKEN` as a bearer token. URL validation is syntactic at registration time; the API does not fetch the submitted URL or download a file. Duplicate canonical URLs are rejected.
 
+### `POST /api/documents/:id/extract`
+
+Starts extraction for a registered PDF. The Node API calls the private FastAPI worker using `DOCUMENT_WORKER_TOKEN`, then persists page text, SHA-256, file size, final URL, page count, engine version, OCR page numbers, warnings and extraction status. The request body accepts `{ "ocr": true }` for an explicit OCR retry. The endpoint returns 503 if the worker is not configured and 415 for non-PDF records.
+
 ## PDF extraction worker
 
 The FastAPI service in `ai/` implements the extraction path using HTTPX and PyMuPDF:
