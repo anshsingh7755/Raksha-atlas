@@ -2161,7 +2161,17 @@ function App() {
         quantityUnit?: string; deliveryStart?: string | null; deliveryEnd?: string | null;
         stageMeaning?: string; timeline?: Array<{ date: string; event: string; stage: string }> };
     };
+    type InventoryFilterOptions = {
+      services: string[];
+      categories: string[];
+      quantityStatuses: string[];
+    };
     const [items, setItems] = useState<InventoryItem[]>([]);
+    const [filterOptions, setFilterOptions] = useState<InventoryFilterOptions>({
+      services: [],
+      categories: [],
+      quantityStatuses: [],
+    });
     const [serviceFilter, setServiceFilter] = useState(
       () => ({ navy: "Navy", "air-force": "Air Force", army: "Army", space: "Space", cyber: "Cyber", intelligence: "Intelligence" })[activeForce] ?? "all",
     );
@@ -2179,7 +2189,10 @@ function App() {
       setLoading(true);
       fetch(`/api/inventory?${params}`, { signal: controller.signal })
         .then((r) => { if (!r.ok) throw new Error("Inventory unavailable"); return r.json(); })
-        .then((data: { items: InventoryItem[] }) => setItems(data.items ?? []))
+        .then((data: { items: InventoryItem[]; availableFilters?: InventoryFilterOptions }) => {
+          setItems(data.items ?? []);
+          if (data.availableFilters) setFilterOptions(data.availableFilters);
+        })
         .catch((error) => { if (error.name !== "AbortError") console.error(error); })
         .finally(() => { if (!controller.signal.aborted) setLoading(false); });
       return () => controller.abort();
@@ -2208,19 +2221,19 @@ function App() {
             <label><span className="section-kicker">OPERATING SERVICE</span>
               <select value={serviceFilter} onChange={(event) => setServiceFilter(event.target.value)} aria-label="Filter by operating service">
                 <option value="all">All services</option>
-                {["Army", "Navy", "Air Force", "Joint", "Space", "Cyber", "Intelligence"].map((value) => <option key={value}>{value}</option>)}
+                {filterOptions.services.map((value) => <option key={value}>{value}</option>)}
               </select>
             </label>
             <label><span className="section-kicker">EQUIPMENT TYPE</span>
               <select value={categoryFilter} onChange={(event) => setCategoryFilter(event.target.value)} aria-label="Filter by equipment type">
                 <option value="all">All equipment types</option>
-                {[...new Set(items.map((item) => item.category))].sort().map((value) => <option key={value}>{value}</option>)}
+                {filterOptions.categories.map((value) => <option key={value}>{value}</option>)}
               </select>
             </label>
             <label><span className="section-kicker">LIFECYCLE</span>
               <select value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)} aria-label="Filter by lifecycle status">
                 <option value="all">All statuses</option>
-                {["in_service", "ordered", "planned", "programme_total", "development", "trials", "under_construction", "contract_signed", "phasing_out"].map((value) => <option key={value} value={value}>{value.replace(/_/g, " ")}</option>)}
+                {filterOptions.quantityStatuses.map((value) => <option key={value} value={value}>{value.replace(/_/g, " ")}</option>)}
               </select>
             </label>
           </div>
