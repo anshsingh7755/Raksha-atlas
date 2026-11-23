@@ -2101,202 +2101,126 @@ function App() {
     <SignalFeed articles={articles} onReview={() => navigate("sources")} />
   );
   const Inventory = () => {
-    const [items, setItems] = useState<
-      Array<{
-        id: string;
-        service: string;
-        category: string;
-        platform: string;
-        quantity: number | null;
-        quantityStatus: string;
-        definition: string;
-        confidence: string;
-        verificationStatus: string;
-        sourceId: string;
-        supportingSourceIds?: string[];
-        originCountry: string;
-        procurementYear: number | null;
-        inductedYear: number | null;
-        role: string;
-        variant?: string;
-        manufacturer?: string;
-        capabilitySummary?: string;
-        dataLimitations?: string;
-        technicalProfile?: Record<string, string>;
-        acquisition?: {
-          stage: string;
-          stageDate?: string | null;
-          quantity?: number | null;
-          quantityUnit?: string;
-          deliveryStart?: string | null;
-          deliveryEnd?: string | null;
-          stageMeaning?: string;
-          timeline?: Array<{ date: string; event: string; stage: string }>;
-        };
-      }>
-    >([]);
+    type InventoryItem = {
+      id: string; service: string; category: string; platform: string;
+      quantity: number | null; quantityStatus: string; definition: string;
+      confidence: string; verificationStatus: string; sourceId: string;
+      sourceUrl?: string; supportingSourceIds?: string[]; originCountry: string;
+      procurementYear: number | null; inductedYear: number | null; role: string;
+      variant?: string; manufacturer?: string; capabilitySummary?: string;
+      dataLimitations?: string; imageUrl?: string; technicalProfile?: Record<string, string>;
+      acquisition?: { stage: string; stageDate?: string | null; quantity?: number | null;
+        quantityUnit?: string; deliveryStart?: string | null; deliveryEnd?: string | null;
+        stageMeaning?: string; timeline?: Array<{ date: string; event: string; stage: string }> };
+    };
+    const [items, setItems] = useState<InventoryItem[]>([]);
     const [serviceFilter, setServiceFilter] = useState(
-      () =>
-        ({
-          navy: "Navy",
-          "air-force": "Air Force",
-          army: "Army",
-          space: "Space",
-          cyber: "Cyber",
-          intelligence: "Intelligence",
-        })[activeForce] ?? "all",
+      () => ({ navy: "Navy", "air-force": "Air Force", army: "Army", space: "Space", cyber: "Cyber", intelligence: "Intelligence" })[activeForce] ?? "all",
     );
     const [categoryFilter, setCategoryFilter] = useState("all");
     const [statusFilter, setStatusFilter] = useState("all");
+    const [query, setQuery] = useState("");
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
+      const controller = new AbortController();
       const params = new URLSearchParams();
       if (serviceFilter !== "all") params.set("service", serviceFilter);
       if (categoryFilter !== "all") params.set("category", categoryFilter);
       if (statusFilter !== "all") params.set("quantityStatus", statusFilter);
-      fetch(`/api/inventory${params.toString() ? `?${params}` : ""}`)
-        .then((r) => r.json())
-        .then((data: { items: typeof items }) => setItems(data.items));
+      setLoading(true);
+      fetch(`/api/inventory?${params}`, { signal: controller.signal })
+        .then((r) => { if (!r.ok) throw new Error("Inventory unavailable"); return r.json(); })
+        .then((data: { items: InventoryItem[] }) => setItems(data.items ?? []))
+        .catch((error) => { if (error.name !== "AbortError") console.error(error); })
+        .finally(() => { if (!controller.signal.aborted) setLoading(false); });
+      return () => controller.abort();
     }, [serviceFilter, categoryFilter, statusFilter]);
+    const visibleItems = useMemo(() => {
+      const q = query.trim().toLowerCase();
+      if (!q) return items;
+      return items.filter((item) => [
+        item.platform, item.service, item.category, item.role, item.variant ?? "",
+        item.manufacturer ?? "", item.originCountry, item.definition,
+        item.capabilitySummary ?? "", item.technicalProfile?.platformType ?? "",
+        ...Object.values(item.technicalProfile ?? {}),
+      ].join(" ").toLowerCase().includes(q));
+    }, [items, query]);
+    const subcategory = (item: InventoryItem) => item.technicalProfile?.platformType || item.category;
+    const iconFor = (item: InventoryItem) => /ship|submarine|corvette|destroyer|frigate|carrier/i.test(item.category) ? Ship : /aircraft|helicopter|fighter|trainer|aviation|drone|uav|missile|air defence/i.test(item.category) ? Plane : Shield;
     return (
       <section className="page-section">
         <div className="page-hero">
-          <span className="section-kicker">INVENTORY / PUBLIC REFERENCE BASELINE</span>
-          <h1>
-            Know what is <em>counted.</em>
-          </h1>
-          <p>
-            Browse a curated equipment baseline, then open the source catalogues for
-            ship-by-ship, aircraft, Army systems, drones and future programmes. Active,
-            contracted, planned, trial and estimated figures remain separate.
-          </p>
+          <span className="section-kicker">INVENTORY / SERVICE-OWNED PUBLIC REFERENCE</span>
+          <h1>Equipment, <em>properly classified.</em></h1>
+          <p>Browse equipment by its owning or operating service. Platform domain, service ownership, class, variant and lifecycle status are shown separately; source estimates are not silently combined.</p>
         </div>
-        <div className="inventory-toolbar">
+        <div className="inventory-toolbar inventory-toolbar-v2">
           <div className="inventory-filters">
-            <label>
-              <span className="section-kicker">SERVICE</span>
-              <select
-                value={serviceFilter}
-                onChange={(event) => setServiceFilter(event.target.value)}
-                aria-label="Filter inventory by service"
-              >
+            <label><span className="section-kicker">OPERATING SERVICE</span>
+              <select value={serviceFilter} onChange={(event) => setServiceFilter(event.target.value)} aria-label="Filter by operating service">
                 <option value="all">All services</option>
-                {[...new Set(items.map((item) => item.service))].sort().map((service) => (
-                  <option key={service} value={service}>{service}</option>
-                ))}
+                {["Army", "Navy", "Air Force", "Joint", "Space", "Cyber", "Intelligence"].map((value) => <option key={value}>{value}</option>)}
               </select>
             </label>
-            <label>
-              <span className="section-kicker">CATEGORY</span>
-              <select
-                value={categoryFilter}
-                onChange={(event) => setCategoryFilter(event.target.value)}
-                aria-label="Filter inventory by category"
-              >
-                <option value="all">All categories</option>
-                {[...new Set(items.map((item) => item.category))].sort().map((category) => (
-                  <option key={category} value={category}>{category}</option>
-                ))}
+            <label><span className="section-kicker">EQUIPMENT TYPE</span>
+              <select value={categoryFilter} onChange={(event) => setCategoryFilter(event.target.value)} aria-label="Filter by equipment type">
+                <option value="all">All equipment types</option>
+                {[...new Set(items.map((item) => item.category))].sort().map((value) => <option key={value}>{value}</option>)}
               </select>
             </label>
-            <label>
-              <span className="section-kicker">STATUS</span>
-              <select
-                value={statusFilter}
-                onChange={(event) => setStatusFilter(event.target.value)}
-                aria-label="Filter inventory by quantity status"
-              >
+            <label><span className="section-kicker">LIFECYCLE</span>
+              <select value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)} aria-label="Filter by lifecycle status">
                 <option value="all">All statuses</option>
-                <option value="in_service">In service</option>
-                <option value="ordered">Ordered</option>
-                <option value="planned">Planned</option>
-                <option value="programme_total">Programme total / mixed status</option>
+                {["in_service", "ordered", "planned", "programme_total", "development", "trials", "under_construction", "contract_signed", "phasing_out"].map((value) => <option key={value} value={value}>{value.replace(/_/g, " ")}</option>)}
               </select>
             </label>
           </div>
-          <strong className="inventory-count">{items.length} records</strong>
+          <strong className="inventory-count">{loading ? "Loading…" : `${visibleItems.length} / ${items.length} records`}</strong>
         </div>
-
-        <div className="inventory-grid">
-          {items.map((item) => (
-            <article className="inventory-card" key={item.id}>
-              <div className="inventory-card-top">
-                <span className={`verification-chip ${item.verificationStatus}`}>
-                  {item.verificationStatus}
-                </span>
-                <span>{item.service}</span>
+        <div className="inventory-search-row">
+          <Search size={17}/><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Find a platform, class, variant, role or manufacturer…" aria-label="Search inventory records"/>
+          {query && <button className="quiet-btn" onClick={() => setQuery("")}>Clear</button>}
+        </div>
+        <div className="inventory-profile-grid">
+          {visibleItems.map((item) => {
+            const PlatformIcon = iconFor(item);
+            return <article className="equipment-profile" key={item.id}>
+              <div className="equipment-profile-visual">
+                {item.imageUrl ? <img src={item.imageUrl} alt={item.platform} loading="lazy" /> : <div className="equipment-visual-placeholder"><PlatformIcon size={42}/><span>{item.category}</span></div>}
+                <span className="equipment-service-tag">{item.service}</span>
               </div>
-              <h3>{item.platform}</h3>
-              <div className="inventory-number">
-                {item.quantity ?? "—"}{" "}
-                <small>{item.quantityStatus.replace("_", " ")}</small>
-              </div>
-              <p>{item.definition}</p>
-              {item.capabilitySummary && (
-                <p className="inventory-capability">{item.capabilitySummary}</p>
-              )}
-              <div className="inventory-meta">
-                <span>{item.category}</span>
-                <span>Origin: {item.originCountry}</span>
-                <span>Procured: {item.procurementYear ?? "—"}</span>
-                <span>Inducted: {item.inductedYear ?? "—"}</span>
-              </div>
-              <small>
-                Role: {item.role} · Confidence: {item.confidence} · Sources:{" "}
-                {[item.sourceId, ...(item.supportingSourceIds ?? [])].map(
-                  (sourceId, index) => (
-                    <span key={sourceId}>
-                      {index > 0 && " · "}
-                      {inventorySourceLinks[sourceId] ? (
-                        <a
-                          href={inventorySourceLinks[sourceId]}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          {sourceId}
-                        </a>
-                      ) : (
-                        sourceId
-                      )}
-                    </span>
-                  ),
-                )}
-              </small>
-              {(item.variant || item.manufacturer || item.technicalProfile || item.dataLimitations || item.acquisition) && (
-                <details className="inventory-detail">
-                  <summary>Technical profile, acquisition &amp; data notes</summary>
+              <div className="equipment-profile-body">
+                <div className="equipment-profile-kicker">{item.category} · {subcategory(item)}</div>
+                <h3>{item.platform}</h3>
+                {item.variant && <p className="equipment-variant">{item.variant}</p>}
+                <p className="equipment-description">{item.capabilitySummary || item.definition}</p>
+                <div className="equipment-profile-facts">
+                  <div><span>Quantity / claim</span><strong>{item.quantity == null ? "Not stated" : item.quantity.toLocaleString()}</strong></div>
+                  <div><span>Lifecycle</span><strong>{item.quantityStatus.replace(/_/g, " ")}</strong></div>
+                  <div><span>Origin</span><strong>{item.originCountry || "Not stated"}</strong></div>
+                  <div><span>Manufacturer</span><strong>{item.manufacturer || item.technicalProfile?.manufacturer || "Not stated"}</strong></div>
+                  <div><span>Procurement</span><strong>{item.procurementYear ?? "—"}</strong></div>
+                  <div><span>Inducted</span><strong>{item.inductedYear ?? "—"}</strong></div>
+                </div>
+                <div className="equipment-profile-role"><b>Role</b><span>{item.role}</span></div>
+                <div className="equipment-profile-footer">
+                  <span className={`verification-chip ${item.verificationStatus}`}>{item.verificationStatus.replace(/_/g, " ")}</span>
+                  <span>Confidence: {item.confidence}</span>
+                  {item.sourceUrl ? <a href={item.sourceUrl} target="_blank" rel="noreferrer">Evidence <ArrowUpRight size={12}/></a> : <span>Source: {item.sourceId}</span>}
+                </div>
+                {(item.technicalProfile || item.acquisition || item.dataLimitations) && <details className="inventory-detail">
+                  <summary>Technical profile &amp; acquisition notes</summary>
                   <div className="inventory-detail-grid">
-                    {item.variant && <span><b>Variant</b>{item.variant}</span>}
-                    {item.manufacturer && <span><b>Manufacturer</b>{item.manufacturer}</span>}
-                    {Object.entries(item.technicalProfile ?? {}).map(([label, value]) => (
-                      <span key={label}><b>{label.replace(/([A-Z])/g, " $1")}</b>{value}</span>
-                    ))}
+                    {Object.entries(item.technicalProfile ?? {}).map(([label, value]) => <span key={label}><b>{label.replace(/([A-Z])/g, " $1")}</b>{value}</span>)}
                   </div>
-                  {item.acquisition && (
-                    <div className="inventory-acquisition">
-                      <b>Acquisition stage</b>
-                      <span>{item.acquisition.stage}{item.acquisition.stageDate ? ` · ${item.acquisition.stageDate}` : ""}</span>
-                      {item.acquisition.quantity != null && (
-                        <span>Programme quantity: {item.acquisition.quantity.toLocaleString()} {item.acquisition.quantityUnit ?? "units"}</span>
-                      )}
-                      {(item.acquisition.deliveryStart || item.acquisition.deliveryEnd) && (
-                        <span>Delivery window: {item.acquisition.deliveryStart ?? "Not stated"} – {item.acquisition.deliveryEnd ?? "Not stated"}</span>
-                      )}
-                      {item.acquisition.stageMeaning && <p>{item.acquisition.stageMeaning}</p>}
-                      {item.acquisition.timeline?.map((event, index) => (
-                        <span key={`${event.date}-${index}`}>{event.date} — {event.event}</span>
-                      ))}
-                    </div>
-                  )}
+                  {item.acquisition && <div className="inventory-acquisition"><b>Acquisition stage</b><span>{item.acquisition.stage}{item.acquisition.stageDate ? ` · ${item.acquisition.stageDate}` : ""}</span>{item.acquisition.stageMeaning && <p>{item.acquisition.stageMeaning}</p>}{item.acquisition.timeline?.map((event,index) => <span key={index}>{event.date} — {event.event}</span>)}</div>}
                   {item.dataLimitations && <p className="inventory-data-note">{item.dataLimitations}</p>}
-                </details>
-              )}
-            </article>
-          ))}
+                </details>}
+              </div>
+            </article>;
+          })}
         </div>
-        {items.length === 0 && (
-          <div className="data-state">No inventory records match these filters.</div>
-        )}
- 
+        {!loading && visibleItems.length === 0 && <div className="data-state">No equipment matches “{query}”. Try a platform name, service or equipment type.</div>}
         <EquipmentDataExplorer />
         <WikipediaEquipmentTables />
       </section>
