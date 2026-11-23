@@ -23,30 +23,11 @@ type ProgrammeTimelineRecord = {
 
 export default function Timeline() {
       const [service, setService] = useState("all");
-      const [items, setItems] = useState<
-        Array<{
-          id: string;
-          programme: string;
-          service: string;
-          confidence: string;
-          verificationStatus: string;
-          sourceId: string;
-          milestones: Array<{
-            stage: string;
-            date: string | null;
-            label: string;
-            verificationStatus?: string;
-            sourceId?: string;
-            sourceUrl?: string;
-          }>;
-        }>
-      >([]);
+      const [items, setItems] = useState<ProgrammeTimelineRecord[]>([]);
       useEffect(() => {
-        fetch(
+        apiGet<{ items?: ProgrammeTimelineRecord[] }>(
           `/api/timelines${service === "all" ? "" : `?service=${encodeURIComponent(service)}`}`,
-        )
-          .then((r) => r.json())
-          .then((data: { items: typeof items }) => setItems(data.items));
+        ).then((data) => setItems(data.items ?? []));
       }, [service]);
       return (
         <section className="page-section">
