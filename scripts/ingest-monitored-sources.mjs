@@ -80,11 +80,14 @@ function toCandidate(item, source) {
     publishedAt: item.publishedAt || null,
     eventAt: null,
     ingestedAt: now,
-    verificationStatus:
-      source.defaultVerification ?? source.defaultStatus ?? "unverified",
+    // Publisher provenance and claim verification are separate dimensions.
+    publisherOfficial: Boolean(source.official),
+    verificationStatus: source.official
+      ? "unverified"
+      : source.defaultVerification ?? source.defaultStatus ?? "unverified",
     reviewState: "unreviewed",
     confidence: source.official
-      ? "high publisher provenance; claim still needs review"
+      ? "official publisher provenance; claim remains unreviewed"
       : "unreviewed discovery lead",
     reviewedAt: null,
     correctionOfId: null,
@@ -132,16 +135,27 @@ const configuredSources = new Map([
   ["youtube-public-search", "reported"],
   ["x-public-search", "reported"],
 ]);
-for (const article of state.articles)
+const officialSourceIds = new Set(
+  sources.filter((source) => source.official === true).map((source) => source.id),
+);
+for (const article of state.articles) {
+  if (officialSourceIds.has(article.sourceId)) {
+    article.publisherOfficial = true;
+    // Older collector records used "official" as a publisher label. Keep claim
+    // verification unverified unless an editor has reviewed the record.
+    if (article.reviewState === "unreviewed" && article.verificationStatus === "official")
+      article.verificationStatus = "unverified";
+  }
   if (configuredSources.has(article.sourceId)) {
     article.verificationStatus ??=
       configuredSources.get(article.sourceId) ?? "unverified";
     article.reviewState ??= "unreviewed";
     article.confidence ??=
-      article.verificationStatus === "official"
-        ? "official publisher; claim needs review"
+      article.publisherOfficial
+        ? "official publisher provenance; claim remains unreviewed"
         : "unreviewed discovery lead";
   }
+}
 const freshCandidates = candidates
   .sort((a, b) => (b.publishedAt ?? "").localeCompare(a.publishedAt ?? ""))
   .filter((candidate) => !seen.has(canonicalArticleKey(candidate)));
