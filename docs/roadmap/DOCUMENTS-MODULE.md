@@ -49,7 +49,7 @@ Registers metadata and optional already-extracted public text. In production, wr
 
 ### `POST /api/documents/:id/extract`
 
-Starts extraction for a registered PDF. The Node API calls the private FastAPI worker using `DOCUMENT_WORKER_TOKEN`, then persists page text, SHA-256, file size, final URL, page count, engine version, OCR page numbers, warnings and extraction status. The request body accepts `{ "ocr": true }` for an explicit OCR retry. The endpoint returns 503 if the worker is not configured and 415 for non-PDF records.
+Starts extraction for a registered public document. The Node API calls the private FastAPI worker using `DOCUMENT_WORKER_TOKEN`, which detects PDF or HTML/XHTML from the response content type and signature. It persists page text, SHA-256, file size, final URL, page count (PDF only), extracted HTML title, engine version, OCR page numbers, warnings and extraction status. The request body accepts `{ "ocr": true }` for an explicit PDF OCR retry. The endpoint returns 503 if the worker is not configured and 415 for unsupported content types.
 
 ## PDF extraction worker
 
