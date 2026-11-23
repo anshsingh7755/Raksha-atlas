@@ -398,5 +398,301 @@
         "sourceUrl": "https://www.drdo.gov.in/drdo/sites/default/files/drdo-news-documents/NPC10Oct2024.pdf"
       }
     ]
+  },
+  {
+    "id": "amca",
+    "programme": "AMCA — Advanced Medium Combat Aircraft",
+    "service": "Air Force",
+    "confidence": "mixed",
+    "verificationStatus": "mixed",
+    "sourceId": "pib-amca-execution-model-2025",
+    "dossierRecordIds": [
+      "programme-15",
+      "programme-80-83",
+      "programme-83-86",
+      "programme-84-87"
+    ],
+    "summary": "Indian Air Force fighter programme led by ADA/DRDO. This chronology separates confirmed programme decisions from reported targets. First flight and production dates remain targets, not completed milestones.",
+    "milestones": [
+      {
+        "stage": "Programme initiation (reported)",
+        "date": "2008-01-01",
+        "label": "Janes reports ADA/DRDO AMCA development activity began in 2008. The exact internal start date is not published in the official sources reviewed.",
+        "verificationStatus": "reported",
+        "sourceId": "janes-amca-2008",
+        "sourceUrl": "https://www.janes.com/defence-intelligence-insights/defence-news/defence/india-approves-fifth-generation-amca-fighter-project"
+      },
+      {
+        "stage": "Feasibility study completed",
+        "date": "2018-04-04",
+        "label": "Government told Lok Sabha that the feasibility study was complete; IAF had asked ADA to begin a technology-demonstrator phase before full-scale engineering development.",
+        "verificationStatus": "official",
+        "sourceId": "lok-sabha-amca-2018",
+        "sourceUrl": "https://sansad.in/getFile/loksabhaquestions/annex/14/AU6004.pdf?source=pqals"
+      },
+      {
+        "stage": "Technology demonstrator / EoI",
+        "date": "2018-04-04",
+        "label": "The same parliamentary reply stated that an EoI had been floated for industry participation in manufacturing two technology demonstrators. Do not treat this as the later five-prototype development phase.",
+        "verificationStatus": "official",
+        "sourceId": "lok-sabha-amca-2018",
+        "sourceUrl": "https://sansad.in/getFile/loksabhaquestions/annex/14/AU6004.pdf?source=pqals"
+      },
+      {
+        "stage": "CCS approval for development phase",
+        "date": "2024-03-07",
+        "label": "CCS approval for the AMCA development phase was reported by Janes, with a five-prototype programme and an initial target of 2028–29. This is approval to develop, not production clearance.",
+        "verificationStatus": "reported",
+        "sourceId": "janes-amca-approval-2024",
+        "sourceUrl": "https://www.janes.com/defence-intelligence-insights/defence-news/defence/india-approves-fifth-generation-amca-fighter-project"
+      },
+      {
+        "stage": "Industry execution model approved",
+        "date": "2025-05-27",
+        "label": "Raksha Mantri approved an execution model in which eligible Indian public/private companies may bid independently, as JVs or consortia. ADA remains the programme design agency; EoI/RFP and partner selection are separate steps.",
+        "verificationStatus": "official",
+        "sourceId": "pib-amca-execution-model-2025",
+        "sourceUrl": "https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=2131528&lang=2&reg=48"
+      },
+      {
+        "stage": "Industry partner competition",
+        "date": "2025-06-01",
+        "label": "ADA's industry-partner EoI process began in 2025. By September 2026, public reporting described three technically qualified bidding teams; no final development-cum-production partner award is asserted here.",
+        "verificationStatus": "reported",
+        "sourceId": "ndtv-amca-shortlist-2026",
+        "sourceUrl": "https://www.ndtv.com/india-news/ndtv-defence-summit-2026-hindustan-aeronautics-failed-bid-to-build-indias-stealth-jet-on-fairly-routine-technical-grounds-defence-secretary-rk-singh-12108545"
+      },
+      {
+        "stage": "Prototype build / first flight target",
+        "date": "2028-09-01",
+        "label": "September 2028 is the Defence Secretary's publicly reported first-flight target as of September 2026. IDRW reported that a delayed partner selection could move the first flight towards August 2029. Neither date is a completed event or guaranteed schedule.",
+        "verificationStatus": "reported",
+        "sourceId": "ndtv-amca-shortlist-2026",
+        "sourceUrl": "https://www.ndtv.com/india-news/ndtv-defence-summit-2026-hindustan-aeronautics-failed-bid-to-build-indias-stealth-jet-on-fairly-routine-technical-grounds-defence-secretary-rk-singh-12108545"
+      },
+      {
+        "stage": "Testing, certification and production",
+        "date": null,
+        "label": "The 2026 reporting describes five flying prototypes and a structural test aircraft, followed by testing and certification. A firm series-production start or IAF induction date is not treated as contracted or assured in this timeline.",
+        "verificationStatus": "unverified",
+        "sourceId": "ndtv-amca-shortlist-2026",
+        "sourceUrl": "https://www.ndtv.com/india-news/ndtv-defence-summit-2026-hindustan-aeronautics-failed-bid-to-build-indias-stealth-jet-on-fairly-routine-technical-grounds-defence-secretary-rk-singh-12108545"
+      }
+    ]
+  },
+  {
+    "id": "project-76",
+    "programme": "Project 76 — indigenous conventional submarines",
+    "service": "Navy",
+    "confidence": "mixed",
+    "verificationStatus": "reported",
+    "dossierRecordIds": [
+      "programme-11"
+    ],
+    "summary": "A proposed Indian-designed conventional diesel-electric submarine programme. Keep it distinct from Project 75, Project 75(I) and the nuclear-powered Project 77 SSN programme.",
+    "milestones": [
+      {
+        "stage": "In-principle approval (reported historical)",
+        "date": "1998-01-01",
+        "label": "India Today reported that Project 76 had received in-principle government approval in 1998. This is a secondary-source historical claim; no primary approval document is linked here.",
+        "verificationStatus": "reported",
+        "sourceId": "indiatoday-project76-2021",
+        "sourceUrl": "https://www.indiatoday.in/amp/magazine/defence/story/20210426-india-s-nuclear-sharks-1791817-2021-04-17"
+      },
+      {
+        "stage": "30-year submarine plan context",
+        "date": "1999-01-01",
+        "label": "The 30-Year Submarine Plan set out a long-term indigenous submarine-building ambition. Project 76's exact relationship to the staged Project 75 / P-75(I) sequence has been described differently across secondary accounts; this is context, not a Project 76 construction approval.",
+        "verificationStatus": "reported",
+        "sourceId": "indiatoday-project76-2026",
+        "sourceUrl": "https://www.indiatoday.in/india/story/india-navy-project-76-project-77-submarine-programme-maritime-power-2914064-2026-05-20"
+      },
+      {
+        "stage": "Indigenous design effort reported",
+        "date": "2026-05-20",
+        "label": "India Today reported that the Navy's Submarine Design Group and the Advanced Technology Vessel ecosystem were working on an indigenous conventional design, with design completion targeted around 2028. This remains reported programme planning.",
+        "verificationStatus": "reported",
+        "sourceId": "indiatoday-project76-2026",
+        "sourceUrl": "https://www.indiatoday.in/india/story/india-navy-project-76-project-77-submarine-programme-maritime-power-2914064-2026-05-20"
+      },
+      {
+        "stage": "Design freeze target",
+        "date": "2028-12-31",
+        "label": "IDRW reported a possible design freeze by end-2028 or early-2029. The report also describes AIP and lithium-ion battery ambitions; these are not confirmed final specifications.",
+        "verificationStatus": "reported",
+        "sourceId": "idrw-project76-2026",
+        "sourceUrl": "https://idrw.org/indian-navy-pushes-for-faster-clearance-of-project-76-submarines/"
+      },
+      {
+        "stage": "Funding / approval target",
+        "date": "2030-01-01",
+        "label": "IDRW reports a plan to seek programme funding clearance by 2030. No final cost, contract, production yard award or approved quantity is asserted.",
+        "verificationStatus": "reported",
+        "sourceId": "idrw-project76-2026",
+        "sourceUrl": "https://idrw.org/indian-navy-pushes-for-faster-clearance-of-project-76-submarines/"
+      },
+      {
+        "stage": "Construction, launch, trials and induction",
+        "date": null,
+        "label": "No verified public contract or construction-start date for Project 76 was identified in the sources reviewed. Future build, launch, sea trials and commissioning dates remain unannounced.",
+        "verificationStatus": "unverified",
+        "sourceId": "idrw-project76-2026",
+        "sourceUrl": "https://idrw.org/indian-navy-pushes-for-faster-clearance-of-project-76-submarines/"
+      }
+    ]
+  },
+  {
+    "id": "project-77",
+    "programme": "Project 77 — indigenous nuclear-powered attack submarines (SSN)",
+    "service": "Navy",
+    "confidence": "mixed",
+    "verificationStatus": "official",
+    "dossierRecordIds": [
+      "programme-12",
+      "programme-project-77"
+    ],
+    "summary": "Indigenous nuclear-powered attack submarine programme. The 2024 approval was for the first two boats; the Navy has publicly discussed a larger six-boat requirement. Do not confuse SSNs with Arihant-class SSBNs.",
+    "milestones": [
+      {
+        "stage": "SSN requirement / design work (reported history)",
+        "date": "2015-02-01",
+        "label": "Secondary reporting traces an in-principle SSN design-study approval to 2015. The detailed programme remained non-public; this is historical context, not a construction contract.",
+        "verificationStatus": "reported",
+        "sourceId": "indiatoday-project77-history",
+        "sourceUrl": "https://www.indiatoday.in/amp/magazine/defence/story/20210426-india-s-nuclear-sharks-1791817-2021-04-17"
+      },
+      {
+        "stage": "CCS approval — first two SSNs",
+        "date": "2024-10-09",
+        "label": "The Cabinet Committee on Security approved construction of two indigenous nuclear-powered attack submarines, reported at approximately ₹35,000 crore. This is an approval milestone, not keel-laying or delivery.",
+        "verificationStatus": "reported",
+        "sourceId": "reuters-ssn-approval-2024",
+        "sourceUrl": "https://www.reuters.com/world/india/india-prepares-build-two-nuclear-powered-attack-submarines-2024-10-10/"
+      },
+      {
+        "stage": "Navy Chief states delivery outlook",
+        "date": "2024-12-03",
+        "label": "The Navy Chief publicly stated that the first indigenous SSN was expected around 2036, with a follow-on about two years later, and described a six-boat requirement. Treat these as stated programme expectations.",
+        "verificationStatus": "reported",
+        "sourceId": "navy-chief-ssn-2036",
+        "sourceUrl": "https://drdo.gov.in/drdo/sites/default/files/drdo-news/NPC03to04Dec2024.pdf"
+      },
+      {
+        "stage": "Design phase and construction planning",
+        "date": "2026-05-20",
+        "label": "India Today reported the Navy's Submarine Design Group was designing the SSN and that construction of the first boat was expected to begin in the late 2020s. Detailed design and build milestones remain non-public.",
+        "verificationStatus": "reported",
+        "sourceId": "indiatoday-project77-2026",
+        "sourceUrl": "https://www.indiatoday.in/india/story/india-navy-project-76-project-77-submarine-programme-maritime-power-2914064-2026-05-20"
+      },
+      {
+        "stage": "First induction outlook",
+        "date": "2036-12-31",
+        "label": "The Navy Chief's 2036–37 outlook is a planning expectation, not a fixed delivery commitment. Later reporting describes a mid-to-late-2030s induction window.",
+        "verificationStatus": "reported",
+        "sourceId": "navy-chief-ssn-2036",
+        "sourceUrl": "https://drdo.gov.in/drdo/sites/default/files/drdo-news/NPC03to04Dec2024.pdf"
+      }
+    ]
+  },
+  {
+    "id": "rafale-iaf-36",
+    "programme": "Rafale — IAF 36-aircraft acquisition",
+    "service": "Air Force",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "summary": "Separate Air Force acquisition of 36 fly-away Rafale fighters. Do not merge with the later 26-aircraft Rafale Marine contract or the separate MRFA proposal.",
+    "milestones": [
+      {
+        "stage": "Original MMRCA RFP",
+        "date": "2007-08-28",
+        "label": "India issued the RFP for 126 Medium Multi-Role Combat Aircraft. This was the earlier competition, not the final 36-aircraft IGA.",
+        "verificationStatus": "official",
+        "sourceId": "lok-sabha-rafale-2017",
+        "sourceUrl": "https://sansad.in/getFile/loksabhaquestions/annex/12/AS287.pdf?source=pqals"
+      },
+      {
+        "stage": "36-aircraft government intent",
+        "date": "2015-04-10",
+        "label": "India-France joint statement announced the intention to acquire 36 Rafale aircraft in fly-away condition for the IAF; the 126-aircraft MMRCA process was subsequently withdrawn.",
+        "verificationStatus": "official",
+        "sourceId": "pib-rafale-intent-2015",
+        "sourceUrl": "https://www.pib.gov.in/newsite/PrintRelease.aspx?lang=2&reg=48&relid=123947"
+      },
+      {
+        "stage": "MoU",
+        "date": "2016-01-25",
+        "label": "India and France signed an MoU for procurement of 36 Rafale aircraft, as recorded in a Ministry of Defence parliamentary reply.",
+        "verificationStatus": "official",
+        "sourceId": "pib-rafale-mou-2016",
+        "sourceUrl": "https://www.pib.gov.in/newsite/PrintRelease.aspx?lang=2&reg=48&relid=148175"
+      },
+      {
+        "stage": "Inter-governmental agreement",
+        "date": "2016-09-23",
+        "label": "IGA signed for 36 aircraft in fly-away condition with associated weapons, training and support arrangements.",
+        "verificationStatus": "official",
+        "sourceId": "pib-rafale-iga-2016",
+        "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1513011&lang=2&reg=48"
+      },
+      {
+        "stage": "Delivery schedule begins",
+        "date": "2019-09-01",
+        "label": "The official agreement schedule stated deliveries would commence from September 2019. This date is the planned start, not the arrival date of the first aircraft in India.",
+        "verificationStatus": "official",
+        "sourceId": "pib-rafale-delivery-schedule",
+        "sourceUrl": "https://www.pib.gov.in/newsite/PrintRelease.aspx?lang=2&reg=48&relid=153877"
+      },
+      {
+        "stage": "First aircraft arrive in India",
+        "date": "2020-07-29",
+        "label": "The first five Rafale aircraft arrived in India in July 2020 and entered the IAF induction process.",
+        "verificationStatus": "official",
+        "sourceId": "pib-rafale-arrival-2020",
+        "sourceUrl": "https://www.pib.gov.in/PressNoteDetails.aspx?ModuleId=3&NoteId=154353&lang=1&reg=3"
+      },
+      {
+        "stage": "Fleet delivery completion",
+        "date": "2022-04-01",
+        "label": "The original official delivery plan targeted completion by April 2022. The IAF's 36-aircraft acquisition is treated separately from subsequent proposals.",
+        "verificationStatus": "official",
+        "sourceId": "lok-sabha-rafale-2017",
+        "sourceUrl": "https://sansad.in/getFile/loksabhaquestions/annex/12/AS287.pdf?source=pqals"
+      }
+    ]
+  },
+  {
+    "id": "rafale-marine-26",
+    "programme": "Rafale Marine — Indian Navy 26-aircraft contract",
+    "service": "Navy",
+    "confidence": "high",
+    "verificationStatus": "official",
+    "summary": "Separate naval fighter acquisition: 22 single-seat and four twin-seat Rafale Marine aircraft. This is carrier aviation equipment operated by the Indian Navy, not the IAF fleet.",
+    "milestones": [
+      {
+        "stage": "Inter-governmental agreement signed",
+        "date": "2025-04-28",
+        "label": "India and France signed the IGA for 26 Rafale Marine aircraft (22 single-seat, four twin-seat), including training, simulators, weapons, associated equipment and performance-based logistics.",
+        "verificationStatus": "official",
+        "sourceId": "pib-rafale-m-2025",
+        "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2124851&lang=1&reg=1"
+      },
+      {
+        "stage": "Industrial and support package",
+        "date": "2025-04-29",
+        "label": "PIB's programme explainer described the naval aircraft package and associated transfer-of-technology and support elements. These are contract scope elements, not additional aircraft.",
+        "verificationStatus": "official",
+        "sourceId": "pib-rafale-m-explainer-2025",
+        "sourceUrl": "https://www.pib.gov.in/PressNoteDetails.aspx?ModuleId=3&NoteId=154353&lang=2&reg=3"
+      },
+      {
+        "stage": "Delivery completion target",
+        "date": "2030-12-31",
+        "label": "The Government's later public statement says delivery of the 26 aircraft is to be completed by 2030. This is a target window, not completed induction.",
+        "verificationStatus": "official",
+        "sourceId": "pib-rafale-m-delivery-2030",
+        "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2210154&lang=13&reg=22"
+      }
+    ]
   }
 ]
