@@ -8,7 +8,7 @@
 
 ## 1. Executive summary
 
-This dossier records **78 working programme / acquisition records** from this research pass, spanning strategic missiles, hypersonic technology, land systems, naval platforms, submarines, combat aircraft, radars, air defence, drones and support systems.
+This dossier records **97 working programme / acquisition records** from this research pass, spanning strategic missiles, hypersonic technology, land systems, naval platforms, submarines, combat aircraft, radars, air defence, drones and support systems.
 
 The source register has been expanded to include official PIB/DRDO/BrahMos Aerospace references and IDRW discovery/reporting references. IDRW is useful for discovering claims and following programme reporting, but claims based on unnamed sources or editorial estimates remain **reported / unverified** until confirmed by MoD, PIB, DRDO, service headquarters, Parliament, the named developer or shipyard.
 
@@ -1162,3 +1162,132 @@ Specific open items to verify next:
 - ATGM programme quantities and production contracts for MPATGM, Spike, Nag, HELINA/Dhruvastra and other variants.
 - Exact RPSA relationship to Ghatak and whether the four-squadron reported figure is officially stated.
 - Official evidence for K-5/K-6 test milestones, Project-77 sanction and Agni-VI existence. Until then retain confidence labels and no verified performance values.
+
+
+---
+
+## 10. Force-structure planning, engine supply chains and indigenous industrial awards
+
+This section records service aspirations and industry selection signals separately from sanctioned procurement. Planning numbers are not orders.
+
+### 79. Tejas Mk2 — initial IAF planning baseline and possible expansion
+- ADA/DRDO programme with HAL as principal aircraft industrial partner. Development sanctioned; prototype evaluation precedes procurement.
+- The Defence Secretary's October 2026 statement, reported by The Week, confirms an initial IAF projected requirement of 120 aircraft, with final decision after prototype delivery and evaluation.
+- A 300-aircraft expansion figure was not corroborated as an official commitment. Keep it as an unverified scenario only if an attributable source is supplied.
+- Janes earlier reported approximately 108 aircraft as a six-squadron initial requirement. This supports a roughly 120 planning baseline, not an order.
+- Sources: https://www.theweek.in/news/defence/2026/10/01/lca-tejas-mk2-set-for-mid-2027-first-flight-decision-on-iaf-acquiring-120-fighters-only-after-prototype-evaluation.html ; https://www.janes.com/defence-intelligence-insights/defence-news/defence/update-india-sanctions-tejas-mk-2-fighter-project
+- Website fields: projected requirement 120; expansion scenario 300 unverified; contracted production quantity not established.
+
+### 80. AMCA Mk1 and Mk2 — reported force-planning numbers
+- ADA/DRDO leads AMCA; Raksha Mantri approved an industry-partnership execution model on 27 May 2025, allowing eligible Indian public/private companies or consortia to bid for prototype development.
+- A 120-aircraft AMCA planning figure appears in IDRW and analytical reporting; an 80/40 Mk1/Mk2 split is reported in one account. Neither is a production order.
+- The requested Mk1 120 / Mk2 180 split was not corroborated by primary official sources in this pass. Preserve 180 as an unverified estimate, not confirmed IAF requirement.
+- IDRW reports a combined Tejas Mk2 + AMCA fleet could exceed 400; this is a secondary force-structure estimate.
+- Sources: https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=2131528&lang=2&reg=48 ; https://idrw.org/114-rafale-deal-will-not-derail-amca-and-tejas-mk2-programs-iaf-plans-fleet-of-over-400-indigenous-fighters/ ; https://www.orfonline.org/research/addressing-the-iaf-s-fighter-engine-conundrum
+
+### 81. Tejas Mk1A propulsion — GE F404-IN20
+- GE confirms the first of 99 F404-IN20 engines for HAL's Tejas Mk1A was delivered on 25 March 2025; the 99-engine order was placed in 2021.
+- GE previously delivered 65 F404 engines for earlier Tejas production. Keep that earlier cohort separate from the 99 Mk1A engines.
+- Partners: GE Aerospace and HAL. Source: https://www.geaerospace.com/news/articles/delivering-india-today-and-future
+
+### 82. F414 engine — GE-HAL co-production pathway
+- GE and HAL signed an MoU in June 2023 for potential F414 engine production in India, associated in the GE release with the LCA Mk2 programme.
+- Later reporting discusses F414 for initial AMCA variants, but this is not the same as a confirmed AMCA engine production contract. No AMCA engine quantity established.
+- Source: https://www.geaerospace.com/news/press-releases/ge-aerospace-signs-memorandum-understanding-hindustan-aeronautics-limited-produce-fighter-jet-engines
+
+### 83. AMCA Mk2 / future fighter engine — Safran-GTRE proposal
+- Specialist reporting says Safran proposed co-development with DRDO-GTRE and that the offer was under evaluation as of 27 August 2026.
+- The 120 kN class figure is a reported target, not an official released engine specification. Safran is not recorded as selected.
+- Source: https://www.defensenews.com/global/asia-pacific/2026/08/27/rolls-royce-safran-vie-for-indias-next-generation-fighter-engine/
+
+### 84. AMCA indigenous engine proposal — Reliance and Rolls-Royce
+- Reliance Industries and Rolls-Royce announced strategic intent on 14 August 2026 to offer joint design, development, manufacturing and delivery capability for an AMCA engine and explore an Indian aerospace gas-turbine complex.
+- The announcement does not establish government selection, a signed engine development contract or final AMCA engine configuration.
+- Source: https://www.rolls-royce.com/media/press-releases/2026/14-08-2026-reliance-industries-and-rolls-royce-announce-strategic-intent-to-partner-and-develop-indias-indigenous-combat-engine-for-the-amca-programme.aspx
+
+### 85. Su-30MKI Super Sukhoi — 84-aircraft upgrade proposal
+- HAL's May 2025 investor-call transcript describes an 84-aircraft upgrade design/development effort, estimated programme value and a future aircraft upgrade order after development maturity.
+- October 2025 reporting said the proposal was under MoD examination and moving toward CCS approval. This is a mid-life upgrade, not 84 new aircraft.
+- Reported scope includes radar, mission computers, cockpit displays, IR sensors and electronic warfare systems. Partners include HAL, Russian OEM ecosystem and Indian suppliers; exact workshare requires contract evidence.
+- Sources: https://nsearchives.nseindia.com/corporate/HAL_22052025141004_ConferenceCallTranscript22052025.pdf ; https://indianexpress.com/article/india/combat-squadron-strength-dwindles-govt-looks-at-plan-to-upgrade-su-30mkis-10327147/
+
+### 86. Su-30MKI parallel Russian upgrade proposal
+- New Indian Express reported in February 2026 that a parallel Russian upgrade for a similar or larger number of aircraft was being considered while the 84-aircraft Super Sukhoi proposal awaited CCS clearance.
+- No exact quantity or signed contract is established. The claim that India has committed to upgrade 200+ Su-30MKI aircraft is not supported by the sources reviewed.
+- Source: https://www.newindianexpress.com/nation/2026/feb/25/as-super-sukhoi-awaits-clearance-iaf-turns-to-russia-for-parallel-su-30mki-upgrade
+
+### 87. Indigenous 20mm aviation gun and turret for Rudra / Prachand
+- ThePrint reported on 19 October 2026 that DRDO-ARDE and HAL had shortlisted SSS Defence and Kalyani Group as development-cum-production partners for an indigenous 20mm gun/turret for ALH Mk-IV/Rudra and LCH Prachand.
+- The report describes a development period of about two years, followed by acceptance; it says a possible 60:40 allocation would depend on later cost calculations. The final L1 ranking, gun quantity and production order are not disclosed.
+- The current LCH turret is described in the report as a KNDS system. Source: https://theprint.in/defence/drdo-shortlists-sss-defence-kalyani-group-to-develop-indigenous-aviation-gun-for-rudra-lch-helicopters/3075974/
+
+### 88. SSS Defence T-12 shotgun — Army unit-level procurement
+- ThePrint reported multiple Army unit/directorate contracts in June 2026 and quoted the company's CEO saying deliveries were due to begin the following month. Quantity and value are not public in the report.
+- Supplier: SSS Defence. Company says it manufactures compatible ammunition. This is distinct from assault-rifle and LMG procurement.
+- Source: https://theprint.in/defence/homegrown-sss-defence-makes-its-debut-in-the-indian-army-its-shotgun-to-tackle-drones/2969646/
+
+### 89. SSS Defence sniper rifles and small-arms portfolio
+- SSS Defence's product portfolio and export activity are reported by ThePrint; the source does not establish an Indian Army sniper-rifle contract. Record product availability separately from user selection, trial, contract and delivery.
+- Source: https://theprint.in/defence/homegrown-sss-defence-makes-its-debut-in-the-indian-army-its-shotgun-to-tackle-drones/2969646/
+
+### 90. ATAGS — 155mm/52-calibre Advanced Towed Artillery Gun System
+- MoD signed contracts in March 2025 with Bharat Forge for ATAGS and Tata Advanced Systems for 6x6 gun-towing vehicles, total package about ₹6,900 crore.
+- Bharat Forge separately disclosed its share as 184 ATAGS, representing 60% of the package. Do not assume 184 is the entire programme quantity.
+- DRDO ARDE developed the gun; Bharat Forge manufactures the guns; Tata Advanced Systems supplies the towing vehicles.
+- Sources: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2115365&lang=2&reg=48 ; https://www.bharatforge.com/assets/pdf/investors/notice/SE_intimation-Press-release.pdf
+
+### 91. Army Ground Based Mobile ELINT System (GBMES)
+- BEL announced a ₹1,251 crore contract on 5 May 2026 for the Indian Army. System designed by DRDO's DLRL and manufactured by BEL. Quantity not disclosed.
+- Public description: ground-based electronic intelligence system for detection, classification and location of radars and interception/analysis of communications signals. Avoid sensitive deployment or operational details.
+- Source: https://bel-india.in/news-bel/bel-receives-rs-1251-cr-order-for-supply-of-ground-based-mobile-elint-system-gbmes-to-indian-army/
+
+### 92. Atulya — Army Air Defence Fire Control Radar
+- BEL announced a ₹1,640 crore contract on 25 July 2025 for DRDO-designed, BEL-manufactured Air Defence Fire Control Radars. Quantity not disclosed.
+- Source: https://bel-india.in/news-bel/bel-receives-rs-1640-cr-order-for-air-defence-fire-control-radars-atulya-from-indian-army/
+
+### 93. HAL Rudra — weaponised ALH Mk-IV
+- HAL identifies Rudra as the weaponised Advanced Light Helicopter designed for Army and Air Force requirements. Publicly listed roles include anti-tank, scout, fire support, armed reconnaissance, escort and EW platform.
+- HAL lists a 20mm turret gun, 70mm rocket system and air-to-air missile among the weapons. The product page does not state current fleet quantity.
+- Source: https://hal-india.co.in/product/rudra
+
+### 94. LUH — Light Utility Helicopter
+- Lok Sabha Standing Committee report records a joint 12-helicopter case, six each for Army and IAF; AoN 23 November 2021, technical evaluation and CNC stage in the report snapshot.
+- Manufacturer: HAL. The 12-aircraft case is not to be confused with a larger fleet replacement estimate.
+- Source: https://sansad.in/getFile/lsscommittee/Defence/18_Defence_2.pdf?source=loksabhadocs
+
+### 95. IMRH — Indian Multi Role Helicopter
+- The parliamentary committee snapshot records an IAF-led case for 353 IMRH, with Army use also envisaged; HAL is undertaking design and development.
+- The 353 figure is a requirement under processing, not a signed production contract.
+- Source: https://sansad.in/getFile/lsscommittee/Defence/18_Defence_2.pdf?source=loksabhadocs
+
+### 96. DBMRH / naval utility helicopter
+- The parliamentary committee report records a 66-aircraft Deck Based Multi Role Helicopter requirement for the Navy with HAL design/development work. Vayu Aerospace later describes a Navy Utility Helicopter-Marine design-and-development case with HAL.
+- Verify whether UH-M and DBMRH are the same formal requirement before merging. The 66 is not established as a signed contract.
+- Sources: https://sansad.in/getFile/lsscommittee/Defence/18_Defence_2.pdf?source=loksabhadocs ; https://www.vayuaerospace.in/Issue/202601281018541358.pdf
+
+### 97. HAL helicopter family taxonomy
+- Maintain separate records for ALH Dhruv, Rudra/ALH Mk-IV, LCH Prachand, LUH, IMRH, DBMRH/UH-M and NUH. A family page can link variants, but must not combine their users, quantities, roles or contract stages.
+
+## 11. L1, L2 and Development-cum-Production Partner terminology
+- L1 means the lowest evaluated bidder among technically qualified bids under the applicable procurement method; it does not itself prove contract signature or delivery.
+- L2 is the next-ranked bidder and is not automatically entitled to a share. Quantity splitting must be explicitly allowed by tender conditions or procurement decision.
+- DcPP means Development-cum-Production Partner. Selection for development does not automatically mean a serial production contract has been signed.
+- In the reported ARDE aviation-gun case, a 60:40 future split is conditional on development, acceptance and cost calculations. Do not label either partner L1 until an authoritative source names the ranking.
+
+## 12. Corrections and treatment of requested planning figures
+| Claim | Evidence assessment | Website treatment |
+|---|---|---|
+| Tejas Mk2 120 | Defence Secretary statement reported 1 Oct 2026 | Projected requirement, not order |
+| Tejas Mk2 300 | Not corroborated as official | Unverified expansion scenario |
+| Su-30MKI 200+ upgrades committed | Not corroborated; 84 first batch documented, parallel proposal unquantified | Do not show as committed |
+| AMCA Mk1 120 | Secondary planning reports | Reported estimate, not order |
+| AMCA Mk2 180 | No primary confirmation found | Unverified estimate only |
+| F404 | 99 engines for Tejas Mk1A; first delivered March 2025 | Confirmed engine cohort |
+| F414 | GE-HAL MoU for potential production; Mk2 association official, AMCA initial fit reported | MoU / prospective co-production |
+| Safran-GTRE | Proposal reported under evaluation | Candidate, not selected |
+| Rolls-Royce-Reliance | Strategic intent announced 14 Aug 2026 | Proposed partnership, not selected |
+| SSS Defence + Kalyani aviation gun | DcPP selection reported; future split conditional | Development partner stage |
+| SSS Defence T-12 | Multiple Army unit contracts reported; quantity undisclosed | Reported contract; quantity unknown |
+
+## 13. Source register additions
+The source register has been extended with 17 references for fighter planning, engine partnerships, Su-30MKI upgrades, SSS Defence, Kalyani, ATAGS, BEL systems and HAL helicopters.
