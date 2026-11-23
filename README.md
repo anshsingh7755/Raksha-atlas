@@ -30,6 +30,8 @@ The active website currently uses React, TypeScript, Vite and a Node.js API. The
 | [Implementation roadmap](docs/roadmap/README.md) | Website completion phase, six-month learning plan, migration order and acceptance criteria |
 | [Project architecture summary](ARCHITECTURE.md) | Concise current project structure and development commands |
 | [Inventory data notes](INVENTORY-DATA.md) | Inventory data conventions and provenance |
+| [Inventory classification policy](docs/data/INVENTORY-CLASSIFICATION-AND-RECONCILIATION.md) | Operator attribution, domain classification and quantity reconciliation |
+
 | [Inventory module specification](docs/roadmap/INVENTORY-MODULE.md) | Shared inventory model, API contract, implementation record and acceptance checks |
 | [News pipeline](NEWS-PIPELINE.md) | Existing news collection and processing |
 | [RAG chatbot](RAG-CHATBOT.md) | Existing retrieval and assistant implementation |
