@@ -523,6 +523,10 @@ async function ingestPibDefenceMetadata() {
         existingArticle.title = release.title;
         existingArticle.publishedAt = release.publishedAt;
         existingArticle.eventAt = release.publishedAt;
+        existingArticle.publisherOfficial = true;
+        existingArticle.reviewState ??= "unreviewed";
+        if (existingArticle.reviewState === "unreviewed" && existingArticle.verificationStatus === "official")
+          existingArticle.verificationStatus = "unverified";
       }
     }
     data.articles.unshift(...created);
