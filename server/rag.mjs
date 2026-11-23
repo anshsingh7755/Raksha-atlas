@@ -22,7 +22,7 @@ const tokens = (value) =>
       .match(/[\p{L}\p{N}]+/gu) ?? []
   ).map((token) => token.replace(/ies$/, "y").replace(/s$/, ""));
 
-async function collectDocuments(articleOverride) {
+export async function collectDocuments(articleOverride) {
   const [
     data,
     catalog,
