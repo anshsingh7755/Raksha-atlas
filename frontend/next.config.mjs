@@ -1,10 +1,13 @@
-/** @type {import("next").NextConfig} */
+/** @type {import('next').NextConfig} */
+const apiTarget =
+  process.env.RAKSHA_API_PROXY_TARGET || "http://127.0.0.1:8787";
+
 const nextConfig = {
   async rewrites() {
     return [
       {
         source: "/api/:path*",
-        destination: "http://127.0.0.1:8787/api/:path*",
+        destination: `${apiTarget}/api/:path*`,
       },
     ];
   },
