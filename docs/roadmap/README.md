@@ -137,7 +137,7 @@ This phase is the immediate priority. Complete and verify the product before the
 
 | Order | Workstream | Acceptance criteria |
 |---|---|---|
-| 0.1 | Inventory | Service ownership, equipment category, class/subclass, variant, role, origin, quantity, lifecycle, image and source are reconciled |
+| 0.1 | Inventory | Shared service-independent catalogue, neutral All services default, no service-specific duplicate API, source attribution and filters validated. See [Inventory module specification](INVENTORY-MODULE.md). |
 | 0.2 | Commands | Established service commands and tri-service structures are correctly distinguished; proposals are labelled separately |
 | 0.3 | Programmes | Programme histories, acquisition stage, milestones, dates, quantities and evidence are source-linked |
 | 0.4 | News | Three defence-news sources plus official sources; publication date, publisher, canonical URL, deduplication and attribution visible |
@@ -258,4 +258,4 @@ For each technology, use the same learning loop:
 
 ## 12. Current next action
 
-**Finish Phase 0 — website completion.** Maintain a feature-by-feature checklist and close the acceptance criteria before beginning the main Next.js/Spring Boot cutover. The first migration slice after website completion should be the Next.js frontend, followed by Spring Boot + PostgreSQL.
+**Current task: finish Phase 0.1 — Inventory.** The first code slice now defaults the inventory experience to All services and removes the unused Navy-only frigate API reader/route while preserving the shared inventory API and dataset. Follow [Inventory module specification](INVENTORY-MODULE.md), run its local build/API acceptance checks, and proceed to data-driven filters and record details. Do not start the main Next.js/Spring Boot cutover until the Phase 0 acceptance criteria are closed.
