@@ -29,10 +29,12 @@ import {
 } from "lucide-react";
 import { fetchPlatformRegister, type PlatformRegisterItem } from "./services/inventory";
 import ProgrammeTimelinePanel, { type ProgrammeMilestone } from "./components/ProgrammeTimelinePanel";
+import TheatreAtlas from "./components/TheatreAtlas";
 
 type View =
   | "overview"
   | "forces"
+  | "atlas"
   | "programmes"
   | "pipeline"
   | "signals"
@@ -1495,6 +1497,7 @@ function App() {
     return [
       "overview",
       "forces",
+      "atlas",
       "programmes",
       "pipeline",
       "signals",
@@ -1759,6 +1762,7 @@ function App() {
   const navigationItems: Array<[View, string]> = [
     ["overview", "Overview"],
     ["forces", "Commands"],
+    ["atlas", "Theatre Atlas"],
     ["inventory", "Inventory"],
     ["programmes", "Programmes"],
     ["signals", "Articles"],
@@ -2894,6 +2898,7 @@ function App() {
       <main>
         {activeView === "overview" && <Overview />}
         {activeView === "forces" && <Forces />}
+        {activeView === "atlas" && <TheatreAtlas />}
         {activeView === "programmes" && <Programmes />}
         {activeView === "pipeline" && <Pipeline />}
         {activeView === "signals" && <Signals />}
