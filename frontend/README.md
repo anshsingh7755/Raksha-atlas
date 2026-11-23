@@ -20,7 +20,7 @@ npm run dev
 
 Open `http://localhost:3000`.
 
-The Next.js rewrite forwards `/api/*` requests to the existing Node API at port 8787. Do not stop the existing API while testing the Next.js frontend.
+The Next.js rewrite forwards `/api/*` requests to the existing Node API. By default it uses `http://127.0.0.1:8787`. Copy `.env.example` to `.env.local` and set `RAKSHA_API_PROXY_TARGET` when using a different API origin. Do not expose secrets through `NEXT_PUBLIC_*` variables. Do not stop the existing API while testing the Next.js frontend.
 
 ## Validate
 
