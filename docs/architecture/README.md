@@ -150,10 +150,22 @@ Inventory is a shared service-independent module. The active `GET /api/inventory
 
 The unused Navy-specific frigate reader and `GET /api/inventory/frigates` route have been removed from the active API because the common inventory catalogue is the canonical UI data path. The legacy JSON file is temporarily retained as a rollback/reference artifact and is not loaded by the API. The inventory endpoint also returns service/domain/category/lifecycle/origin filter options derived from the complete dataset and the latest record as-of date; the frontend consumes these options rather than maintaining duplicate hardcoded lists. The current `service` field includes operating-service values plus Joint and separately labelled public domains; follow the inventory classification policy before changing these labels. Detailed field definitions and acceptance checks are in [Inventory module specification](../roadmap/INVENTORY-MODULE.md).
 
-## 10. Where to find implementation details
+## 10. Commands module boundary
+
+The active `GET /api/commands` endpoint reads the structured public register in `server/commands.json`. It supports exact-match filtering by service, group, structure type and status, and returns available filter values. The React overview and Forces pages consume this API; the browser does not read the JSON file directly.
+
+The register separates:
+- service operational, training and maintenance commands;
+- joint operational commands;
+- joint headquarters and tri-service agencies; and
+- proposed / under-study theatre-command structures.
+
+A command's headquarters is populated only when the linked source supports it; otherwise it remains null. This is a public organisational directory, not an operational order of battle. Do not add deployment, readiness or sensitive unit-location information.
+
+## 11. Where to find implementation details
 
 - [Delivery roadmap](../roadmap/README.md) — phases, sequence, acceptance criteria and learning plan.
-- [Inventory module specification](../roadmap/INVENTORY-MODULE.md) — canonical model, API contract, current implementation and acceptance checklist.
+- [Inventory module specification](../roadmap/INVENTORY-MODULE.md) — canonical model, API contract, current implementation and acceptance checklist.\n- [Commands module specification](../roadmap/COMMANDS-MODULE.md) — command classification, API contract, source policy and acceptance checklist.
 - [Inventory classification policy](../data/INVENTORY-CLASSIFICATION-AND-RECONCILIATION.md) — operator attribution, domain classification and quantity reconciliation rules.
 - [Inventory data notes](../../INVENTORY-DATA.md) — inventory provenance and data handling.
 - [News pipeline](../../NEWS-PIPELINE.md) — current ingestion implementation.
