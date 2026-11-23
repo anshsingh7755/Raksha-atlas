@@ -6,6 +6,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 import { answerWithRag } from "./rag.mjs";
+import { searchRecords } from "./search/index.mjs";
 import { initializeStore } from "./db/store.mjs";
 import { startScheduler } from "./scheduler/hourly-scheduler.mjs";
 import { runNewsWorker } from "./workers/news-worker.mjs";
@@ -883,35 +884,82 @@ const server = createServer(async (request, response) => {
     return;
   }
   if (request.method === "GET" && url.pathname === "/api/search") {
-    const query = (url.searchParams.get("q") ?? "").trim().toLowerCase();
+    const query = (url.searchParams.get("q") ?? "").trim();
+    const section = url.searchParams.get("section") || "all";
+    const requestedLimit = Number(url.searchParams.get("limit") || 40);
+    const limit = Number.isFinite(requestedLimit) ? Math.max(1, Math.min(100, Math.floor(requestedLimit))) : 40;
     if (query.length < 2) {
-      send(response, 200, { query, count: 0, results: [] });
+      send(response, 200, { query, section, count: 0, results: [], sections: [] });
       return;
     }
-    const terms = query.split(/\\s+/).filter(Boolean);
-    const results = [];
-    const add = (section, view, id, title, summary, haystack) => {
-      const textValue = String(haystack ?? "").toLowerCase();
-      if (!terms.every((term) => textValue.includes(term))) return;
-      const titleValue = String(title ?? "").toLowerCase();
-      const score = (titleValue === query ? 100 : titleValue.startsWith(query) ? 60 : titleValue.includes(query) ? 35 : 0) + terms.length * 3;
-      results.push({ section, view, id: String(id ?? title), title: String(title ?? "Untitled"), summary: String(summary ?? "").slice(0, 220), score });
+
+    const records = [];
+    const add = (sectionName, view, id, title, summary, searchFields) => {
+      if (!title || id === undefined || id === null) return;
+      records.push({
+        section: sectionName,
+        view,
+        id: String(id),
+        title: String(title),
+        summary: String(summary ?? "").slice(0, 220),
+        searchFields: {
+          title,
+          name: searchFields.name ?? title,
+          category: searchFields.category ?? "",
+          section: sectionName,
+          summary: summary ?? "",
+          body: searchFields.body ?? "",
+        },
+      });
     };
-    for (const item of readInventory()) add("Inventory", "inventory", item.id, item.platform, item.definition || item.role, [item.platform,item.service,item.category,item.role,item.variant,item.manufacturer,item.originCountry,item.definition,item.capabilitySummary,Object.values(item.technicalProfile ?? {}).join(" ")].join(" "));
-    for (const item of readProgrammeDossier()) add("Programmes", "programmes", item.id, item.title, item.summary, [item.title,item.service,item.stage,item.summary,item.details].join(" "));
-    for (const item of data.articles ?? []) if (item.reviewState !== "rejected") add("News & articles", "signals", item.id, item.title, item.summary, [item.title,item.summary,item.sourceId,item.topic,(item.keywords ?? []).join(" ")].join(" "));
-    for (const item of readTimelines()) add("Programme timelines", "timeline", item.id, item.programme, item.summary || item.description, [item.programme,item.service,item.stage,item.summary,item.description].join(" "));
-    for (const item of readProcurement()) add("Procurement", "pipeline", item.id, item.title || item.programme || item.name, item.summary || item.notes, JSON.stringify(item));
-    for (const item of readFutureProcurement().records ?? []) add("Future procurement", "pipeline", item.id, item.system, item.notes || item.deliveryWindow || item.quantityText, JSON.stringify(item));
-    for (const item of readEquipmentCatalog().records ?? []) add("Reference equipment catalogue", "register", item.id, item.platform || item.name || item.system, item.role || item.description, JSON.stringify(item));
-    for (const item of data.briefs ?? []) add("Intelligence briefs", "signals", item.id, item.title, item.summary, JSON.stringify(item));
-    for (const item of readPlatformRegister()) add("Platform classes", "register", item.className, item.className, item.role || item.platform, [item.className,item.platform,item.category,item.role,item.origin,item.futureOrders].join(" "));
-    for (const item of readSources()) add("Sources", "sources", item.id, item.name || item.title || item.id, item.description || item.publisher || item.url, [item.id,item.name,item.title,item.description,item.publisher,item.url].join(" "));
-    for (const item of JSON.parse(readFileSync(join(root, "commands.json"), "utf8")).records ?? []) add("Commands", "forces", item.id, item.name, item.description, [item.name,item.service,item.group,item.structureType,item.status,item.headquarters,item.description].join(" "));
-    for (const item of JSON.parse(readFileSync(join(root, "theatre-locations.json"), "utf8")).records ?? []) add("Theatre Atlas", "atlas", item.id, item.name, item.description, [item.name,item.country,item.region,item.city,item.locationType,item.service,item.status,item.description].join(" "));
-    results.sort((a,b) => b.score-a.score || a.title.localeCompare(b.title));
-    const limited = results.slice(0, 40).map(({score,...item}) => item);
-    send(response, 200, { query, count: limited.length, results: limited });
+
+    for (const item of readInventory()) add("Inventory", "inventory", item.id, item.platform, item.definition || item.role, {
+      category: item.category, body: [item.service,item.role,item.variant,item.manufacturer,item.originCountry,item.definition,item.capabilitySummary,Object.values(item.technicalProfile ?? {}).join(" ")].join(" "),
+    });
+    for (const item of readProgrammeDossier()) add("Programmes", "programmes", item.id, item.title, item.summary, {
+      category: item.category, body: [item.service,item.stage,item.summary,item.details,item.reportedStage].join(" "),
+    });
+    for (const item of data.articles ?? []) if (item.reviewState !== "rejected") add("News & articles", "signals", item.id, item.title, item.summary, {
+      category: item.topic, body: [item.sourceId,item.topic,item.category,(item.keywords ?? []).join(" "),item.contentExcerpt].join(" "),
+    });
+    for (const item of readTimelines()) add("Programme timelines", "timeline", item.id, item.programme, item.summary || item.description, {
+      category: item.service, body: [item.service,item.stage,item.summary,item.description].join(" "),
+    });
+    for (const item of readProcurement()) add("Procurement", "pipeline", item.id, item.title || item.programme || item.name, item.summary || item.notes, {
+      category: item.service, body: JSON.stringify(item),
+    });
+    for (const item of (readFutureProcurement().records ?? [])) add("Future procurement", "pipeline", item.id, item.system, item.notes || item.deliveryWindow || item.quantityText, {
+      category: item.service, body: JSON.stringify(item),
+    });
+    for (const item of (readEquipmentCatalog().records ?? [])) add("Reference equipment catalogue", "register", item.id, item.platform || item.name || item.system, item.role || item.description, {
+      category: item.category, body: JSON.stringify(item),
+    });
+    for (const item of data.briefs ?? []) add("Intelligence briefs", "signals", item.id, item.title, item.summary, {
+      category: item.status, body: JSON.stringify(item),
+    });
+    for (const item of readPlatformRegister()) add("Platform classes", "register", item.className, item.className, item.role || item.platform, {
+      category: item.category, body: [item.platform,item.service,item.origin,item.futureOrders].join(" "),
+    });
+    for (const item of readSources()) add("Sources", "sources", item.id, item.name || item.title || item.id, item.description || item.publisher || item.url, {
+      category: item.sourceType, body: [item.id,item.name,item.title,item.description,item.publisher,item.url,item.reliabilityNotes].join(" "),
+    });
+    for (const item of (JSON.parse(readFileSync(join(root, "commands.json"), "utf8")).records ?? [])) add("Commands", "forces", item.id, item.name, item.description, {
+      category: item.structureType, body: [item.service,item.group,item.structureType,item.status,item.headquarters,item.sourceName].join(" "),
+    });
+    for (const item of (JSON.parse(readFileSync(join(root, "theatre-locations.json"), "utf8")).records ?? [])) add("Theatre Atlas", "atlas", item.id, item.name, item.description, {
+      category: item.locationType, body: [item.country,item.region,item.city,item.service,item.status,item.statusDetail,item.sourceName].join(" "),
+    });
+
+    const results = searchRecords(records, query, { section, limit });
+    const sections = [...new Set(records.map((record) => record.section))].sort();
+    send(response, 200, {
+      query,
+      section,
+      count: results.length,
+      totalIndexed: records.length,
+      sections,
+      results,
+    });
     return;
   }
   if (request.method === "GET" && url.pathname === "/api/theatre-atlas") {
