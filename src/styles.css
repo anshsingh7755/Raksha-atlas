@@ -3005,3 +3005,57 @@ body {
   gap: 5px;
   overflow-wrap: anywhere;
 }
+
+
+/* Programme explorer: constrain wide content and keep cards responsive */
+.catalog-explorer {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+.catalog-explorer .section-heading {
+  min-width: 0;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+.catalog-explorer .section-heading > strong {
+  max-width: 100%;
+  white-space: normal;
+}
+.catalog-explorer .catalog-controls {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.catalog-explorer .catalog-controls label {
+  min-width: 0;
+  flex: 1 1 190px;
+}
+.catalog-explorer .catalog-controls input,
+.catalog-explorer .catalog-controls select {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.catalog-explorer .programme-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-width: 0;
+}
+.catalog-explorer .programme-card {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.catalog-explorer .inventory-card-top {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+@media (max-width: 760px) {
+  .catalog-explorer .programme-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .catalog-explorer .section-heading {
+    align-items: flex-start;
+  }
+}
