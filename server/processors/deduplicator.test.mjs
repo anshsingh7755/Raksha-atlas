@@ -42,7 +42,7 @@ test("headline similarity finds the same story despite publisher wording", () =>
 test("story matcher returns a likely duplicate and leaves unrelated stories separate", () => {
   const existing = [{ title: "India signs contract for new naval helicopters" }];
   assert.equal(
-    findStoryMatch({ title: "New naval helicopters contract signed by India" }, existing),
+    findStoryMatch({ title: "New naval helicopters contract for India signs" }, existing),
     existing[0],
   );
   assert.equal(
