@@ -1643,29 +1643,23 @@ function CommandDirectory({ records, compact = false, query = "" }: { records: C
   );
 }
 
-function App() {
-  const [activeView, setActiveView] = useState<View>(() => {
-    const hash = window.location.hash.slice(1) as View;
-    return [
-      "overview",
-      "forces",
-      "atlas",
-      "programmes",
-      "pipeline",
-      "signals",
-      "sources",
-      "inventory",
-      "timeline",
-      "watch",
-      "pib",
-      "register",
-      "history",
-      "briefs",
-    ].includes(hash)
-      ? hash
-      : "overview";
-  });
-  const [activeForce, setActiveForce] = useState("all");
+function App({
+  initialView = "overview",
+  onNavigate,
+}: {
+  initialView?: string;
+  onNavigate?: (view: string) => void;
+}) {
+  const validViews: View[] = [
+    "overview", "forces", "atlas", "programmes", "pipeline", "signals",
+    "sources", "inventory", "timeline", "watch", "pib", "register",
+    "history", "briefs", "documents",
+  ];
+  const resolvedInitialView = validViews.includes(initialView as View)
+    ? (initialView as View)
+    : "overview";
+  const [activeView, setActiveView] = useState<View>(resolvedInitialView);
+  useEffect(() => {\n    setActiveView(resolvedInitialView);\n  }, [resolvedInitialView]);\n  const [activeForce, setActiveForce] = useState("all");
   const [chatOpen, setChatOpen] = useState(false);
   const [question, setQuestion] = useState("");
   const [chatAnswer, setChatAnswer] = useState("");
@@ -1876,7 +1870,7 @@ function App() {
   const navigate = (view: View) => {
     setActiveView(view);
     setMenuOpen(false);
-    window.location.hash = view;
+    if (onNavigate) onNavigate(view);\n    else window.location.hash = view;
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
   const ask = async () => {
