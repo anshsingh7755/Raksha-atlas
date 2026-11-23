@@ -24,7 +24,7 @@ def test_extract_calls_pdf_worker_after_auth(monkeypatch):
     async def fake_extract(url, ocr=False):
         return {"extractionStatus": "text_extracted", "pages": [{"page": 1, "text": "public text"}], "ocrPages": []}
 
-    monkeypatch.setattr(main, "extract_public_pdf", fake_extract)
+    monkeypatch.setattr(main, "extract_public_document", fake_extract)
     response = client.post(
         "/documents/extract",
         headers={"Authorization": "Bearer test-secret"},
