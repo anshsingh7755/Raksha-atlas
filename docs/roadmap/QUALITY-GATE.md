@@ -42,3 +42,13 @@ These are deliberately not represented as automated passes:
 A green CI run establishes that the automated checks listed above passed for that exact commit. It does not establish WCAG 2.2 AA conformance, production readiness, external-source availability, model answer quality, PostgreSQL migration parity or full browser end-to-end coverage.
 
 Do not close the overall Phase 0 exit gate while earlier module-specific validation or manual checks remain open. Record the exact CI run and commit in the roadmap when available.
+
+
+## Recorded CI result
+
+- **Status:** Passed
+- **Workflow run:** [#159 — validation](https://github.com/anshsingh7755/Raksha-atlas/actions/runs/45169665834)
+- **Validated commit:** `ff1a75c479a24473cfc8d755ecccf3d260fb0f10`
+- **Result:** Node automated test suite (including the API smoke test), production build, Docker Compose validation, document-worker image build and Python document-worker tests all completed successfully.
+
+The README documentation link was committed afterward; it does not change application code or the validated quality-gate implementation. Follow the branch's latest workflow for that documentation-only commit separately.
