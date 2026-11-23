@@ -40,6 +40,13 @@ export default function TheatreAtlas(){
  const [registerAsOf,setRegisterAsOf]=useState<string|null>(null);
  const [registerPolicy,setRegisterPolicy]=useState("");
  useEffect(()=>{
+  const savedQuery=sessionStorage.getItem("raksha-search-query");
+  const target=sessionStorage.getItem("raksha-search-target");
+  const targetSection=sessionStorage.getItem("raksha-search-section");
+  if(savedQuery){setQuery(savedQuery);sessionStorage.removeItem("raksha-search-query");}
+  if(target&&targetSection==="Theatre Atlas"){setSelected(target);sessionStorage.removeItem("raksha-search-target");sessionStorage.removeItem("raksha-search-section");}
+ },[]);
+ useEffect(()=>{
   let active=true;
   fetch("/api/theatre-atlas").then(response=>{if(!response.ok)throw new Error("Theatre Atlas register unavailable");return response.json();}).then(payload=>{
    if(!active||!Array.isArray(payload.items))return;
