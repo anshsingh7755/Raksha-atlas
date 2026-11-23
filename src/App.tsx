@@ -722,6 +722,62 @@ function EquipmentDataExplorer() {
   );
 }
 
+
+type ProgrammeDossierItem = {
+  id: string; title: string; service: string; stage: string;
+  summary: string; details: string; sourceUrls: string[]; sourceCount: number;
+};
+
+function ProgrammeDossierExplorer() {
+  const [items, setItems] = useState<ProgrammeDossierItem[]>([]);
+  const [query, setQuery] = useState("");
+  const [service, setService] = useState("all");
+  const [stage, setStage] = useState("all");
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    fetch("/api/programmes")
+      .then((response) => { if (!response.ok) throw new Error("Programme dossier API unavailable"); return response.json(); })
+      .then((data: { items?: ProgrammeDossierItem[] }) => setItems(data.items ?? []))
+      .catch((error) => { console.error("Could not load programme dossier.", error); setItems([]); })
+      .finally(() => setLoading(false));
+  }, []);
+  const services = [...new Set(items.map((item) => item.service))].sort();
+  const stages = [...new Set(items.map((item) => item.stage))].sort();
+  const filtered = items.filter((item) =>
+    (service === "all" || item.service === service) &&
+    (stage === "all" || item.stage === stage) &&
+    (!query || `${item.title} ${item.summary} ${item.details}`.toLowerCase().includes(query.toLowerCase())),
+  );
+  return (
+    <section className="class-table-section catalog-explorer">
+      <div className="section-heading">
+        <div><span className="section-kicker">RESEARCH DOSSIER / SOURCE-LED PROGRAMME REGISTER</span><h2>Every programme, <em>with its evidence.</em></h2></div>
+        <strong>{loading ? "Loading…" : `${filtered.length} / ${items.length} records`}</strong>
+      </div>
+      <p className="equipment-note">This view is generated from the Future Programmes & Acquisition Intelligence dossier. Reported plans, official approvals, development, contracts and deliveries are not interchangeable. Open each record for detailed notes and source links.</p>
+      <div className="catalog-controls">
+        <label>Search <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Tejas, S-400, Kaveri, ATAGS…" /></label>
+        <label>Service / domain <select value={service} onChange={(event) => setService(event.target.value)}><option value="all">All services</option>{services.map((value) => <option key={value}>{value}</option>)}</select></label>
+        <label>Evidence stage <select value={stage} onChange={(event) => setStage(event.target.value)}><option value="all">All stages</option>{stages.map((value) => <option key={value}>{value}</option>)}</select></label>
+      </div>
+      <div className="inventory-grid programme-grid">
+        {filtered.map((item) => (
+          <article className="inventory-card programme-card" key={item.id}>
+            <div className="inventory-card-top"><span className="verification-chip reported">{item.service}</span><span>{item.sourceCount} source links</span></div>
+            <h3>{item.title}</h3><p className="programme-summary">{item.summary || "Open the record for its research notes and source references."}</p>
+            <div className="programme-meta"><strong>{item.stage}</strong></div>
+            <details className="programme-details"><summary>Programme history and evidence</summary><div className="programme-detail-text">{item.details}</div>
+              {item.sourceUrls.length > 0 && <div className="programme-source-links"><strong>Source references</strong>{item.sourceUrls.map((url) => <a key={url} href={url} target="_blank" rel="noreferrer">{new URL(url).hostname} <ArrowUpRight size={12} /></a>)}</div>}
+            </details>
+          </article>
+        ))}
+      </div>
+      {!loading && filtered.length === 0 && <div className="empty-state">No programme records match these filters.</div>}
+      <div className="equipment-note"><a href="/docs/intelligence/FUTURE-PROGRAMMES-ACQUISITION-DOSSIER.md" target="_blank" rel="noreferrer">Open the full research dossier <ArrowUpRight size={12} /></a></div>
+    </section>
+  );
+}
+
 function ArmedForcesHistory() {
   const [items, setItems] = useState<
     Array<{
@@ -1930,7 +1986,7 @@ function App() {
           unknown.
         </p>
       </div>
-      <EquipmentDataExplorer />
+      <ProgrammeDossierExplorer />
     </section>
   );
   const Pipeline = () => (
