@@ -35,3 +35,4 @@ raksha:
   cache:
     redis-enabled: ${RAKSHA_REDIS_CACHE_ENABLED:false}
 
+  ai:\n    base-url: ${RAKSHA_AI_BASE_URL:http://localhost:8001}\n    service-token: ${RAKSHA_AI_SERVICE_TOKEN:}\n    enabled: ${RAKSHA_AI_ENABLED:false}\n
