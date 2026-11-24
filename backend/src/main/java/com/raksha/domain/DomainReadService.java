@@ -1,6 +1,5 @@
 package com.raksha.domain;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,7 +64,7 @@ public class DomainReadService {
     }
 
     public Map<String, Object> sources() {
-        return Map.of("items", records("sources", " WHERE active = TRUE"),
+        return Map.of("items", records("sources", ""),
                 "verificationStatuses", List.of("official", "verified", "reported", "unverified", "disputed", "corrected", "withdrawn"));
     }
 
