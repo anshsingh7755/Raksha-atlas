@@ -20,7 +20,8 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtValidators;
 import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
 import org.springframework.security.oauth2.core.OAuth2TokenValidator;
-import org.springframework.security.oauth2.core.validator.JwtClaimValidator;
+import org.springframework.security.oauth2.core.OAuth2Error;
+import org.springframework.security.oauth2.core.OAuth2TokenValidatorResult;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -56,7 +57,9 @@ public class SecurityConfiguration {
                 org.springframework.security.oauth2.jose.jws.MacAlgorithm.HS256).build();
         OAuth2TokenValidator<Jwt> validator = new DelegatingOAuth2TokenValidator<>(
                 JwtValidators.createDefaultWithIssuer(issuer),
-                new JwtClaimValidator<List<String>>("aud", audiences -> audiences != null && audiences.contains(audience)));
+                jwt -> jwt.getAudience().contains(audience)
+                        ? OAuth2TokenValidatorResult.success()
+                        : OAuth2TokenValidatorResult.failure(new OAuth2Error("invalid_token", "Required audience is missing", null)));
         decoder.setJwtValidator(validator);
         return decoder;
     }
