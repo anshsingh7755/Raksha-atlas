@@ -31,6 +31,7 @@ raksha:
   security:
     jwt-secret: ${RAKSHA_JWT_SECRET:}
     issuer: ${RAKSHA_JWT_ISSUER:raksha-atlas}
+    audience: ${RAKSHA_JWT_AUDIENCE:raksha-atlas-api}
   cache:
     redis-enabled: ${RAKSHA_REDIS_CACHE_ENABLED:false}
 
