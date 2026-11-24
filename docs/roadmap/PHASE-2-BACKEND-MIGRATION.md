@@ -46,6 +46,7 @@ The remaining domain write workflows are intentionally not exposed until validat
 Configuration:
 - `RAKSHA_JWT_SECRET`: secret shared with the trusted token issuer; at least 32 bytes.
 - `RAKSHA_JWT_ISSUER`: expected `iss` claim (default `raksha-atlas`).
+- `RAKSHA_JWT_AUDIENCE`: required `aud` claim (default `raksha-atlas-api`).
 
 No login endpoint or token issuer is fabricated in this API. Connect the organization-approved identity provider before public activation. Do not reuse the existing Node admin token as a JWT signing secret.
 
@@ -94,6 +95,7 @@ $env:DB_USERNAME = "raksha"
 $env:DB_PASSWORD = "<local database password>"
 $env:RAKSHA_JWT_SECRET = "<at least 32 random bytes>"
 $env:RAKSHA_JWT_ISSUER = "raksha-atlas"
+$env:RAKSHA_JWT_AUDIENCE = "raksha-atlas-api"
 mvn -f backend/pom.xml test
 mvn -f backend/pom.xml spring-boot:run
 ```
