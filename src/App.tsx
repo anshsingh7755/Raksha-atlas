@@ -24,6 +24,7 @@ import {
   Command,
 } from "lucide-react";
 import { fetchPlatformRegister, type PlatformRegisterItem } from "./services/inventory";
+import { apiGet, apiPatch, apiPost } from "./services/api";
 import TheatreAtlas from "./components/TheatreAtlas";
 import AtlasFooter from "./components/AtlasFooter";
 import SectionTitle from "./components/SectionTitle";
@@ -889,8 +890,7 @@ function RagMonitorStatus() {
     };
   } | null>(null);
   useEffect(() => {
-    fetch("/api/rag/status")
-      .then((response) => response.json())
+    apiGet<typeof status>("/api/rag/status")
       .then(setStatus)
       .catch(() => setStatus(null));
   }, []);
@@ -977,26 +977,21 @@ function ReviewControls({
     setBusy(true);
     setError("");
     try {
-      const response = await fetch(
-        `/api/articles/${encodeURIComponent(article.id)}/review`,
+      const result = await apiPost<
+        ReviewArticle,
         {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            ...(adminToken ? { Authorization: `Bearer ${adminToken}` } : {}),
-          },
-          body: JSON.stringify({
-            reviewState,
-            verificationStatus,
-            reviewerNote,
-            imageReusePermitted,
-            imageLicense,
-            imageAttribution,
-          }),
-        },
+          reviewState: string;
+          verificationStatus: string;
+          reviewerNote: string;
+          imageReusePermitted: boolean;
+          imageLicense: string;
+          imageAttribution: string;
+        }
+      >(
+        `/api/articles/${encodeURIComponent(article.id)}/review`,
+        { reviewState, verificationStatus, reviewerNote, imageReusePermitted, imageLicense, imageAttribution },
+        { headers: adminToken ? { Authorization: `Bearer ${adminToken}` } : {} },
       );
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.error || "Review could not be saved.");
       onSaved(result);
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "Review could not be saved.");
@@ -1091,19 +1086,11 @@ function SourceRegistry({
     setBusyId(source.id);
     setError("");
     try {
-      const response = await fetch(
+      const result = await apiPatch<{ source: { active: boolean } }, { active: boolean }>(
         `/api/monitor-sources/${encodeURIComponent(source.id)}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            ...(adminToken ? { Authorization: `Bearer ${adminToken}` } : {}),
-          },
-          body: JSON.stringify({ active: source.active === false }),
-        },
+        { active: source.active === false },
+        { headers: adminToken ? { Authorization: `Bearer ${adminToken}` } : {} },
       );
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.error || "Could not update source.");
       onUpdated({ ...source, active: result.source.active });
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "Could not update source.");
