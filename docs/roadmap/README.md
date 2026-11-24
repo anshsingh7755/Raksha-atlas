@@ -171,7 +171,7 @@ The Vite app remains the reference and must not be retired before feature parity
 
 ## 6. Phase 2 — Spring Boot backend and PostgreSQL
 
-**Target:** Java 21, Spring Boot 4, Spring Data JPA, Flyway and PostgreSQL. **Current status:** Phase 2.1–2.9 implementation and 2.10 reconciliation/cutover controls are committed: JWT resource-server security, role mapping, validation/pagination, optional Redis cache, Testcontainers integration tests, API response contracts and a row-level reconciliation utility. Final GitHub CI, local PostgreSQL import/reconciliation, external identity-provider verification and rollback rehearsal remain release gates. See [Phase 2 backend migration plan](PHASE-2-BACKEND-MIGRATION.md).
+**Target:** Java 21, Spring Boot 4, Spring Data JPA, Flyway and PostgreSQL. **Current status:** Phase 2.1–2.10 implementation and CI are committed; latest validation run [#340](https://github.com/anshsingh7755/Raksha-atlas/actions/runs/45350043252) passed. Local PostgreSQL migration/import, row-level reconciliation, external identity-provider verification, populated-data API parity and rollback rehearsal are deliberately deferred to the Phase 10 final acceptance window. Keep Node API active until then. See [Phase 2 backend migration plan](PHASE-2-BACKEND-MIGRATION.md).
 
 | Sub-phase | Workstream | Status |
 |---|---|---|
@@ -191,17 +191,17 @@ Remaining Phase 2 work: authentication, authorization, expanded API validation/p
 
 ## 7. Phase 3 — AI service
 
-**Target:** Python 3.11+, FastAPI, Pydantic, LangGraph, LiteLLM, pgvector and model providers.
+**Target:** Python 3.11+, FastAPI, Pydantic, LangGraph, LiteLLM, pgvector and approved model providers. **Current status:** 3.1–3.5 implementation foundations committed; vector persistence/search, gateway integration and runtime acceptance remain deferred. Existing Node RAG remains active.
 
-1. Define AI service API contracts and access boundaries.
-2. Move document extraction and chunking into Python.
-3. Build embedding generation and vector indexing.
-4. Implement retrieval with source metadata and citation references.
-5. Add LLM model routing and provider configuration.
-6. Build LangGraph workflows for research, summarization and question answering.
-7. Add evaluation datasets, RAGAS metrics, regression tests and cost/latency tracking.
-8. Route user requests through Spring Boot; do not expose privileged AI/data operations directly to the browser.
-9. Retire Node RAG only after answer quality, citations and API parity are verified.
+| Sub-phase | Workstream | Status |
+|---|---|---|
+| 3.1 | Versioned AI API contracts and access boundaries | Pydantic v2 contracts, bounded request schemas, internal service-token boundary and gateway-only policy implemented |
+| 3.2 | Python document chunking | Deterministic page-aware chunking with stable IDs, overlap and source provenance implemented; worker-to-chunker end-to-end validation pending |
+| 3.3 | Embeddings and vector-index boundary | Configurable OpenAI-compatible embedding client implemented; pgvector schema, persistence and indexing deferred |
+| 3.4 | Evidence retrieval and citations | Typed retrieval contract and source/page citation metadata implemented; pgvector similarity-search adapter deferred and fails closed |
+| 3.5 | Model routing | Optional LiteLLM adapter, explicit model allow-list and bounded completion request implemented; provider credentials/runtime validation pending |
+
+Remaining Phase 3 work: persistent pgvector chunk/vector upsert and similarity search, dedicated service identity, Spring Boot gateway forwarding, LangGraph workflows, evaluation datasets/RAGAS, citation entailment, regression tests, and cost/latency telemetry. Do not expose FastAPI directly to the browser or retire Node RAG until quality, provenance and parity are demonstrated.
 
 ## 8. Phase 4 — data engineering
 
@@ -268,4 +268,4 @@ For each technology, use the same learning loop:
 
 ## 12. Current next action
 
-**Current task: perform manual browser/device and feature-interaction parity checks after the passing [Phase 1 CI run #276](https://github.com/anshsingh7755/Raksha-atlas/actions/runs/45337574653), then seek explicit approval before public Next.js promotion.** The Next.js bridge must be validated before route migration or cutover. Do not retire Vite until feature parity, tests and rollback are demonstrated. See [Phase 1 frontend migration plan](PHASE-1-FRONTEND-MIGRATION.md).  The Phase 0.10 automated API smoke test and CI gate have passed; see [Quality Gate](QUALITY-GATE.md) for exact coverage and environment-dependent checks. Live document extraction requires a deliberately configured trusted-host allowlist and worker token. Model-backed answer quality and live web citations require separately configured credentials and an evaluation dataset. Do not start the main Next.js/Spring Boot cutover until the Phase 0 exit criteria are closed.
+**Current execution point:** Phase 3.1–3.5 AI service foundations are implemented. Continue with Phase 3.6–3.10 without waiting for local database imports or manual cutover checks. Keep the Phase 1 browser/device parity, Phase 2 PostgreSQL import/reconciliation, identity-provider verification, API parity and rollback rehearsal as explicit Phase 10 final acceptance gates. Do not retire Vite, Node RAG or legacy APIs before those gates pass and release approval is given.
