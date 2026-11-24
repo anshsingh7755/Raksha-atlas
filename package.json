@@ -17,6 +17,7 @@
     "news:run": "node scripts/ingest-monitored-sources.mjs",
     "db:migrate": "node scripts/migrate-db.mjs",
     "db:import": "node scripts/import-domain-data-to-postgres.mjs",
+    "db:reconcile": "node scripts/reconcile-domain-data.mjs",
     "test": "node --test",
     "dev:next": "npm run dev --prefix frontend",
     "build:next": "npm run build --prefix frontend",
