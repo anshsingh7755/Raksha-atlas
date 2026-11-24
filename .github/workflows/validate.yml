@@ -76,6 +76,11 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Test Python data-engineering pipeline
+        run: |
+          cd data-engineering
+          python -m unittest discover -s tests -v
+          python -m pipeline.main --check
       - name: Install AI service test dependencies
         run: pip install -r ai/requirements-dev.txt
       - name: Test document extraction worker
