@@ -24,7 +24,13 @@ public class DomainReadService {
 
     private List<JsonNode> records(String table, String where, Object... args) {
         String sql = "SELECT raw_record FROM " + table + where + " ORDER BY id";
-        return jdbc.query(sql, (rs, row) -> mapper.readTree(rs.getString(1)), args);
+        return jdbc.query(sql, (rs, row) -> {
+            try {
+                return mapper.readTree(rs.getString(1));
+            } catch (java.io.IOException exception) {
+                throw new java.sql.SQLException("Stored raw_record is not valid JSON", exception);
+            }
+        }, args);
     }
 
     public Map<String, Object> sources() {
