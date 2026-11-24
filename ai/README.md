@@ -45,3 +45,34 @@ pytest -q -c pytest.ini tests
 ```
 
 Phase 3.1–3.5 also add versioned internal contracts, page-aware chunking, an explicitly configured embedding client, a fail-closed pgvector retrieval boundary and optional LiteLLM model routing. See [Phase 3 AI service architecture](../docs/architecture/PHASE-3-AI-SERVICE.md). The current vector retrieval endpoint deliberately returns 503 until the pgvector adapter and populated index are provisioned; it does not return fabricated evidence. This service does not replace `server/rag.mjs` yet.
+
+
+## Phase 3 AI/RAG APIs
+
+The internal v1 endpoints are service-to-service only and require AI_SERVICE_TOKEN:
+
+- GET /v1/ai/capabilities
+- POST /v1/documents/chunk
+- POST /v1/embeddings
+- POST /v1/index/upsert
+- POST /v1/retrieval/search
+- POST /v1/assistant/answer
+- POST /v1/models/completions
+
+The document extraction endpoint remains protected by the separate DOCUMENT_WORKER_TOKEN. Do not reuse user JWT signing keys for either internal token.
+
+The vector store schema is in sql/001_ai_document_chunks.sql and requires PostgreSQL with pgvector installed. The current schema is fixed at 1536 dimensions to match the default text-embedding-3-small model. Use a matching model or create a separately reviewed migration before changing dimensions.
+
+Install the full AI runtime with:
+
+```powershell
+pip install -r requirements.txt -r requirements-ai.txt
+```
+
+The Docker image installs both runtime files. Optional semantic evaluation dependencies are in requirements-evaluation.txt. The starter deterministic evaluation and Node-vs-FastAPI comparison harness live under evaluation/.
+
+## Spring Boot gateway
+
+Spring Boot exposes authenticated POST /api/ai/answer. It is disabled by default. Configure RAKSHA_AI_ENABLED=true, RAKSHA_AI_BASE_URL, and RAKSHA_AI_SERVICE_TOKEN only after the private FastAPI service is deployed and its AI_SERVICE_TOKEN is set to the same random value. The browser never receives this token and must not call the AI service directly.
+
+See docs/roadmap/PHASE-3-CUTOVER-RUNBOOK.md. Node RAG remains active until final parity and release approval.
