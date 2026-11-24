@@ -17,6 +17,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.security.oauth2.jwt.JwtValidators;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -37,12 +38,10 @@ public class SecurityConfiguration {
                         .requestMatchers("/actuator/health").permitAll()
                         .anyRequest().authenticated())
                 .oauth2ResourceServer(oauth -> oauth.jwt(jwt -> jwt.jwtAuthenticationConverter(rolesConverter())))
-                .httpBasic(Customizer.withDefaults())
                 .build();
     }
 
     @Bean
-    @ConditionalOnProperty(name = "raksha.security.jwt-secret")
     JwtDecoder jwtDecoder(@Value("${raksha.security.jwt-secret}") String secret,
                           @Value("${raksha.security.issuer:raksha-atlas}") String issuer) {
         if (secret.getBytes(StandardCharsets.UTF_8).length < 32) {
@@ -50,7 +49,8 @@ public class SecurityConfiguration {
         }
         SecretKey key = new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
         return NimbusJwtDecoder.withSecretKey(key).macAlgorithm(
-                org.springframework.security.oauth2.jose.jws.MacAlgorithm.HS256).build();
+                org.springframework.security.oauth2.jose.jws.MacAlgorithm.HS256)
+                .jwtValidator(JwtValidators.createDefaultWithIssuer(issuer)).build();
     }
 
     private Converter<Jwt, ? extends AbstractAuthenticationToken> rolesConverter() {
