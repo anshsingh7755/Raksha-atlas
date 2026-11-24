@@ -29,8 +29,10 @@ jobs:
         run: npm ci
       - name: Run automated test suite
         run: npm test
-      - name: Validate PostgreSQL import dry-run
-        run: npm run db:import
+      - name: Validate PostgreSQL import and reconciliation scripts
+        run: |
+          npm run db:import
+          node --check scripts/reconcile-domain-data.mjs
       - name: Test frontend route and API response contracts
         run: node --test frontend/tests/*.test.mjs src/services/*.test.mjs
       - name: Build website
