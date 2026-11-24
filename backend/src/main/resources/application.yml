@@ -21,3 +21,17 @@ spring:
 
 server:
   port: ${SERVER_PORT:8081}
+
+# JWT is mandatory for protected API routes. Supply a secret of at least 32 bytes.
+raksha:
+  security:
+    jwt-secret: ${RAKSHA_JWT_SECRET:}
+    issuer: ${RAKSHA_JWT_ISSUER:raksha-atlas}
+  cache:
+    redis-enabled: ${RAKSHA_REDIS_CACHE_ENABLED:false}
+
+spring:
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
