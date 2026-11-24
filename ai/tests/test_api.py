@@ -46,7 +46,7 @@ def test_phase3_capabilities_are_safe_and_versioned(monkeypatch):
 
 
 def test_chunk_endpoint_requires_service_token(monkeypatch):
-    monkeypatch.setenv("DOCUMENT_WORKER_TOKEN", "test-secret")
+    monkeypatch.setenv("AI_SERVICE_TOKEN", "test-secret")
     response = client.post("/v1/documents/chunk", json={
         "document_id": "doc-1",
         "pages": [{"page": 1, "text": "Public evidence text"}],
@@ -59,7 +59,7 @@ def test_chunk_endpoint_requires_service_token(monkeypatch):
 
 
 def test_chunk_endpoint_returns_source_linked_chunks(monkeypatch):
-    monkeypatch.setenv("DOCUMENT_WORKER_TOKEN", "test-secret")
+    monkeypatch.setenv("AI_SERVICE_TOKEN", "test-secret")
     response = client.post(
         "/v1/documents/chunk",
         headers={"Authorization": "Bearer test-secret"},
@@ -79,7 +79,7 @@ def test_chunk_endpoint_returns_source_linked_chunks(monkeypatch):
 
 
 def test_chunk_endpoint_rejects_overlap_larger_than_chunk(monkeypatch):
-    monkeypatch.setenv("DOCUMENT_WORKER_TOKEN", "test-secret")
+    monkeypatch.setenv("AI_SERVICE_TOKEN", "test-secret")
     response = client.post(
         "/v1/documents/chunk",
         headers={"Authorization": "Bearer test-secret"},
@@ -96,12 +96,12 @@ def test_chunk_endpoint_rejects_overlap_larger_than_chunk(monkeypatch):
 
 
 def test_answer_endpoint_requires_service_token(monkeypatch):
-    monkeypatch.setenv("DOCUMENT_WORKER_TOKEN", "test-secret")
+    monkeypatch.setenv("AI_SERVICE_TOKEN", "test-secret")
     response = client.post("/v1/assistant/answer", json={"query": "What is the evidence?"})
     assert response.status_code == 401
 
 
 def test_index_endpoint_requires_service_token(monkeypatch):
-    monkeypatch.setenv("DOCUMENT_WORKER_TOKEN", "test-secret")
+    monkeypatch.setenv("AI_SERVICE_TOKEN", "test-secret")
     response = client.post("/v1/index/upsert", json={"chunks": []})
     assert response.status_code in (401, 422)
