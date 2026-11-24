@@ -5,6 +5,7 @@ import { ArrowUpRight, X } from "lucide-react";
 import AccessibleDialog from "../../components/AccessibleDialog";
 import ProgrammeHistoryNotes from "./ProgrammeHistoryNotes";
 import ProgrammeTimelinePanel, { type ProgrammeMilestone } from "../../components/ProgrammeTimelinePanel";
+import { apiGet } from "../../services/api";
 
 type ProgrammeSourceRecord = { url: string; sourceId: string | null; sourceName: string | null; sourceType: string; official: boolean | null };
 type ProgrammeDossierItem = {
@@ -31,15 +32,13 @@ function ProgrammeDossierExplorer() {
   const [selected, setSelected] = useState<ProgrammeDossierItem | null>(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch("/api/timelines")
-      .then((response) => { if (!response.ok) throw new Error("Timeline API unavailable"); return response.json(); })
-      .then((data: { items?: Array<{id:string;programme:string;service:string;dossierRecordIds?:string[];milestones:ProgrammeMilestone[]}> }) => setProgrammeTimelines(data.items ?? []))
+    apiGet<{ items?: Array<{id:string;programme:string;service:string;dossierRecordIds?:string[];milestones:ProgrammeMilestone[]}> }>("/api/timelines")
+      .then((data) => setProgrammeTimelines(data.items ?? []))
       .catch((error) => console.error("Could not load programme milestones.", error));
   }, []);
   useEffect(() => {
-    fetch("/api/programmes")
-      .then((response) => { if (!response.ok) throw new Error("Programme dossier API unavailable"); return response.json(); })
-      .then((data: { items?: ProgrammeDossierItem[]; summary?: typeof registerSummary }) => {
+    apiGet<{ items?: ProgrammeDossierItem[]; summary?: typeof registerSummary }>("/api/programmes")
+      .then((data) => {
         setItems(data.items ?? []);
         if (data.summary) setRegisterSummary(data.summary);
       })
