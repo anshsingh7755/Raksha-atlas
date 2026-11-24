@@ -1,9 +1,6 @@
 """pgvector persistence and cosine-similarity retrieval."""
-import json
 import os
 from fastapi import HTTPException
-import psycopg
-from pgvector.psycopg import register_vector
 
 
 def _connection():
@@ -11,6 +8,8 @@ def _connection():
     if not dsn:
         raise HTTPException(status_code=503, detail="Vector database is not configured.")
     try:
+        import psycopg
+        from pgvector.psycopg import register_vector
         conn = psycopg.connect(dsn, connect_timeout=5)
         register_vector(conn)
         return conn
@@ -22,12 +21,11 @@ def upsert_chunks(chunks: list[dict], vectors: list[list[float]], model: str) ->
     if not chunks or len(chunks) != len(vectors):
         raise HTTPException(status_code=422, detail="Chunk and vector counts must match.")
     dimensions = len(vectors[0]) if vectors else 0
-    if not dimensions or any(len(vector) != dimensions for vector in vectors):
-        raise HTTPException(status_code=422, detail="Embedding dimensions are inconsistent.")
+    if dimensions != 1536 or any(len(vector) != dimensions for vector in vectors):
+        raise HTTPException(status_code=422, detail="The current pgvector schema requires consistent 1536-dimensional embeddings.")
     try:
         with _connection() as conn:
             with conn.cursor() as cur:
-                if dimensions != 1536:\n                    raise ValueError("The current pgvector schema requires 1536-dimensional embeddings.")
                 for chunk, vector in zip(chunks, vectors):
                     source = chunk["source"]
                     cur.execute("""
@@ -42,7 +40,8 @@ def upsert_chunks(chunks: list[dict], vectors: list[list[float]], model: str) ->
                           publisher=EXCLUDED.publisher, source_title=EXCLUDED.source_title,
                           published_at=EXCLUDED.published_at, collected_at=EXCLUDED.collected_at,
                           verification_status=EXCLUDED.verification_status,
-                          embedding_model=EXCLUDED.embedding_model, embedding=EXCLUDED.embedding
+                          embedding_model=EXCLUDED.embedding_model, embedding=EXCLUDED.embedding,
+                          updated_at=NOW()
                     """, (
                         chunk["chunk_id"], chunk["document_id"], chunk["ordinal"], chunk.get("page_number"),
                         chunk["text"], source["source_id"], str(source["url"]), source["publisher"],
@@ -57,6 +56,8 @@ def upsert_chunks(chunks: list[dict], vectors: list[list[float]], model: str) ->
 
 
 def search_vectors(vector: list[float], limit: int, source_ids: list[str]) -> list[dict]:
+    if len(vector) != 1536:
+        raise HTTPException(status_code=422, detail="Query embedding must contain 1536 dimensions.")
     try:
         with _connection() as conn:
             with conn.cursor() as cur:
@@ -79,5 +80,7 @@ def search_vectors(vector: list[float], limit: int, source_ids: list[str]) -> li
         keys = ["chunk_id","document_id","ordinal","page_number","content","source_id","source_url",
                 "publisher","source_title","published_at","collected_at","verification_status","score"]
         return [dict(zip(keys, row)) for row in rows]
+    except HTTPException:
+        raise
     except Exception as exc:
         raise HTTPException(status_code=503, detail="Vector search failed; verify pgvector schema and index.") from exc
