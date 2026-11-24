@@ -16,7 +16,10 @@
     "rag:sync": "node scripts/ingest-monitored-sources.mjs",
     "news:run": "node scripts/ingest-monitored-sources.mjs",
     "db:migrate": "node scripts/migrate-db.mjs",
-    "test": "node --test"
+    "test": "node --test",
+    "dev:next": "npm run dev --prefix frontend",
+    "build:next": "npm run build --prefix frontend",
+    "start:next": "npm run start --prefix frontend"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",
