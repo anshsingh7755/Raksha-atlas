@@ -1,0 +1,9 @@
+name: raksha_atlas_analytics
+version: "1.0.0"
+config-version: 2
+profile: raksha_atlas
+model-paths: ["models"]
+test-paths: ["tests"]
+models:
+  raksha_atlas_analytics:
+    +materialized: view
