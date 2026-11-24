@@ -10,6 +10,19 @@ export class ApiError extends Error {
   }
 }
 
+function readErrorMessage(payload: unknown, status: number): string {
+  if (
+    typeof payload === "object" &&
+    payload !== null &&
+    "error" in payload &&
+    typeof payload.error === "string"
+  ) {
+    return payload.error;
+  }
+  if (typeof payload === "string" && payload.trim()) return payload;
+  return `Request failed with status ${status}`;
+}
+
 export async function apiRequest<T>(
   path: string,
   init: RequestInit = {},
@@ -22,26 +35,37 @@ export async function apiRequest<T>(
     },
   });
 
+  if (response.status === 204 || response.status === 205) {
+    return undefined as T;
+  }
+
   const contentType = response.headers.get("content-type") ?? "";
-  const payload: unknown = contentType.includes("application/json")
-    ? await response.json()
-    : await response.text();
+  const raw = await response.text();
+  let payload: unknown = raw;
+
+  if (raw && contentType.includes("application/json")) {
+    try {
+      payload = JSON.parse(raw);
+    } catch {
+      if (response.ok) {
+        throw new ApiError("The server returned invalid JSON.", response.status, raw);
+      }
+    }
+  } else if (!raw) {
+    payload = undefined;
+  }
 
   if (!response.ok) {
-    const message =
-      typeof payload === "object" &&
-      payload !== null &&
-      "error" in payload &&
-      typeof payload.error === "string"
-        ? payload.error
-        : `Request failed with status ${response.status}`;
-    throw new ApiError(message, response.status, payload);
+    throw new ApiError(readErrorMessage(payload, response.status), response.status, payload);
   }
 
   return payload as T;
 }
 
-export function apiGet<T>(path: string, init: Omit<RequestInit, "method"> = {}) {
+export function apiGet<T>(
+  path: string,
+  init: Omit<RequestInit, "method"> = {},
+): Promise<T> {
   return apiRequest<T>(path, { ...init, method: "GET" });
 }
 
@@ -49,10 +73,23 @@ export function apiPost<T, TBody>(
   path: string,
   body: TBody,
   init: Omit<RequestInit, "method" | "body"> = {},
-) {
+): Promise<T> {
   return apiRequest<T>(path, {
     ...init,
     method: "POST",
+    headers: { "Content-Type": "application/json", ...init.headers },
+    body: JSON.stringify(body),
+  });
+}
+
+export function apiPatch<T, TBody>(
+  path: string,
+  body: TBody,
+  init: Omit<RequestInit, "method" | "body"> = {},
+): Promise<T> {
+  return apiRequest<T>(path, {
+    ...init,
+    method: "PATCH",
     headers: { "Content-Type": "application/json", ...init.headers },
     body: JSON.stringify(body),
   });
