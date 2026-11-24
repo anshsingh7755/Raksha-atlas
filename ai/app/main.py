@@ -5,20 +5,21 @@ from fastapi import FastAPI, Header, HTTPException
 from pydantic import BaseModel, Field, model_validator
 
 from .chunking import chunk_document
-from .contracts import EmbeddingRequest, RetrievalRequest, SourceReference
+from .contracts import DocumentChunk, EmbeddingRequest, RetrievalRequest, SourceReference
 from .documents import extract_public_document
 from .embeddings import create_embeddings
 from .model_router import allowed_models, complete
+from .observability import RequestMetricsMiddleware
 from .retrieval import search_evidence
 from .vector_store import upsert_chunks
 from .workflows import run_research_workflow
-from .observability import RequestMetricsMiddleware
 
 app = FastAPI(
     title="Raksha Atlas AI",
-    version="0.3.0",
+    version="0.4.0",
     description="Private AI, RAG foundation and public-document extraction service.",
 )
+app.add_middleware(RequestMetricsMiddleware)
 
 
 class DocumentExtractionRequest(BaseModel):
@@ -40,23 +41,44 @@ class ChunkRequest(BaseModel):
         return self
 
 
-class IndexRequest(BaseModel):\n    chunks: list[dict] = Field(min_length=1, max_length=64)\n    model: str | None = Field(default=None, max_length=120)\n\n\nclass ResearchRequest(BaseModel):\n    query: str = Field(min_length=3, max_length=2000)\n    limit: int = Field(default=5, ge=1, le=20)\n    source_ids: list[str] = Field(default_factory=list, max_length=50)\n    model: str | None = Field(default=None, max_length=120)\n\n\nclass CompletionRequest(BaseModel):
+class IndexRequest(BaseModel):
+    chunks: list[DocumentChunk] = Field(min_length=1, max_length=64)
+    model: str | None = Field(default=None, max_length=120)
+
+
+class ResearchRequest(BaseModel):
+    query: str = Field(min_length=3, max_length=2000)
+    limit: int = Field(default=5, ge=1, le=20)
+    source_ids: list[str] = Field(default_factory=list, max_length=50)
+    model: str | None = Field(default=None, max_length=120)
+
+
+class CompletionRequest(BaseModel):
     model: str | None = Field(default=None, max_length=120)
     messages: list[dict] = Field(min_length=1, max_length=40)
 
 
 def require_worker_token(authorization: str | None) -> None:
-    expected = os.getenv("DOCUMENT_WORKER_TOKEN", "")
+    expected = os.getenv("AI_SERVICE_TOKEN", "")
     if not expected:
-        raise HTTPException(status_code=503, detail="AI service-to-service token is not configured.")
+        raise HTTPException(status_code=503, detail="AI service identity is not configured.")
     supplied = authorization.removeprefix("Bearer ").strip() if authorization else ""
     if not secrets.compare_digest(supplied, expected):
         raise HTTPException(status_code=401, detail="Service authorization required.")
 
 
+def require_document_token(authorization: str | None) -> None:
+    expected = os.getenv("DOCUMENT_WORKER_TOKEN", "")
+    if not expected:
+        raise HTTPException(status_code=503, detail="Document worker token is not configured.")
+    supplied = authorization.removeprefix("Bearer ").strip() if authorization else ""
+    if not secrets.compare_digest(supplied, expected):
+        raise HTTPException(status_code=401, detail="Document worker authorization required.")
+
+
 @app.get("/health")
 def health() -> dict[str, str]:
-    return {"status": "ok", "service": "ai-service", "migration": "phase-3-foundation"}
+    return {"status": "ok", "service": "ai-service", "migration": "phase-3"}
 
 
 @app.get("/v1/ai/capabilities")
@@ -66,7 +88,8 @@ def capabilities() -> dict:
         "document_extraction": True,
         "page_aware_chunking": True,
         "embeddings_configured": bool(os.getenv("EMBEDDING_API_KEY") or os.getenv("OPENAI_API_KEY")),
-        "vector_retrieval": bool(os.getenv("DATABASE_URL") and (os.getenv("EMBEDDING_API_KEY") or os.getenv("OPENAI_API_KEY"))),\n        "research_workflow": True,
+        "vector_retrieval_configured": bool(os.getenv("DATABASE_URL") and (os.getenv("EMBEDDING_API_KEY") or os.getenv("OPENAI_API_KEY"))),
+        "research_workflow": True,
         "model_routing_configured": bool(allowed_models()),
         "allowed_models": allowed_models(),
         "gateway_only": True,
@@ -75,7 +98,7 @@ def capabilities() -> dict:
 
 @app.post("/documents/extract")
 async def extract_document(payload: DocumentExtractionRequest, authorization: str | None = Header(default=None)) -> dict:
-    require_worker_token(authorization)
+    require_document_token(authorization)
     return await extract_public_document(payload.url, payload.ocr)
 
 
@@ -86,7 +109,8 @@ def chunk_extracted_document(payload: ChunkRequest, authorization: str | None = 
         document_id=payload.document_id, pages=payload.pages, source=payload.source,
         max_chars=payload.max_chars, overlap=payload.overlap,
     )
-    return {"document_id": payload.document_id, "count": len(chunks), "chunks": [item.model_dump(mode="json") for item in chunks]}
+    return {"document_id": payload.document_id, "count": len(chunks),
+            "chunks": [item.model_dump(mode="json") for item in chunks]}
 
 
 @app.post("/v1/embeddings")
@@ -95,10 +119,25 @@ async def embed_text(payload: EmbeddingRequest, authorization: str | None = Head
     return await create_embeddings(payload.texts, payload.model)
 
 
-@app.post("/v1/index/upsert")\nasync def index_chunks(payload: IndexRequest, authorization: str | None = Header(default=None)) -> dict:\n    require_worker_token(authorization)\n    texts = [chunk["text"] for chunk in payload.chunks]\n    embedded = await create_embeddings(texts, payload.model)\n    count = upsert_chunks(payload.chunks, embedded["vectors"], embedded["model"])\n    return {"indexed": count, "model": embedded["model"], "dimensions": embedded["dimensions"]}\n\n\n@app.post("/v1/assistant/answer")\nasync def research_answer(payload: ResearchRequest, authorization: str | None = Header(default=None)) -> dict:\n    require_worker_token(authorization)\n    return await run_research_workflow(payload.query, payload.limit, payload.source_ids, payload.model)\n\n\n@app.post("/v1/retrieval/search")
+@app.post("/v1/index/upsert")
+async def index_chunks(payload: IndexRequest, authorization: str | None = Header(default=None)) -> dict:
+    require_worker_token(authorization)
+    chunks = [chunk.model_dump(mode="json") for chunk in payload.chunks]
+    embedded = await create_embeddings([chunk["text"] for chunk in chunks], payload.model)
+    count = upsert_chunks(chunks, embedded["vectors"], embedded["model"])
+    return {"indexed": count, "model": embedded["model"], "dimensions": embedded["dimensions"]}
+
+
+@app.post("/v1/retrieval/search")
 async def retrieve_evidence(payload: RetrievalRequest, authorization: str | None = Header(default=None)) -> dict:
     require_worker_token(authorization)
     return await search_evidence(payload.query, payload.limit, payload.source_ids)
+
+
+@app.post("/v1/assistant/answer")
+async def research_answer(payload: ResearchRequest, authorization: str | None = Header(default=None)) -> dict:
+    require_worker_token(authorization)
+    return await run_research_workflow(payload.query, payload.limit, payload.source_ids, payload.model)
 
 
 @app.post("/v1/models/completions")
