@@ -20,7 +20,7 @@ Open `http://localhost:5173`.
 
 The active website currently uses React, TypeScript, Vite and a Node.js API. The repository also contains migration scaffolds for Next.js, Spring Boot, FastAPI, Python data engineering and PostgreSQL. These scaffolds are not all production replacements yet.
 
-**Immediate priority:** complete and validate the website features first. Then migrate once to the target architecture without building the same feature twice.
+**Immediate priority:** complete browser/device acceptance for the Next.js bridge while establishing the Phase 2 Spring Boot/PostgreSQL backend in parallel. Node remains the active API until data and endpoint parity are proven.
 
 ## Main documentation
 
