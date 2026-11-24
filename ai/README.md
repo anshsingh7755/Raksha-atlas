@@ -44,4 +44,4 @@ pip install -r requirements-dev.txt
 pytest -q -c pytest.ini tests
 ```
 
-Future responsibilities include RAG retrieval, embeddings, model routing and evaluation; this worker does not replace `server/rag.mjs`.
+Phase 3.1–3.5 also add versioned internal contracts, page-aware chunking, an explicitly configured embedding client, a fail-closed pgvector retrieval boundary and optional LiteLLM model routing. See [Phase 3 AI service architecture](../docs/architecture/PHASE-3-AI-SERVICE.md). The current vector retrieval endpoint deliberately returns 503 until the pgvector adapter and populated index are provisioned; it does not return fabricated evidence. This service does not replace `server/rag.mjs` yet.
