@@ -31,6 +31,28 @@ jobs:
         run: npm run typecheck --prefix frontend
       - name: Build Next.js frontend
         run: npm run build --prefix frontend
+      - name: Smoke-test Next.js direct routes
+        run: |
+          npm run start --prefix frontend > /tmp/raksha-next.log 2>&1 &
+          NEXT_PID=$!
+          trap 'kill "$NEXT_PID" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:3000/ >/dev/null; then break; fi
+            sleep 2
+          done
+          for route in / /commands /theatre-atlas /inventory /programmes /articles /briefs /documents /sources /procurement /timeline /watch /pib /register /history; do
+            status=$(curl -sS -o /dev/null -w "%{http_code}" "http://127.0.0.1:3000$route")
+            if [ "$status" != "200" ]; then
+              cat /tmp/raksha-next.log
+              echo "Expected HTTP 200 for $route, got $status"
+              exit 1
+            fi
+          done
+          unknown_status=$(curl -sS -o /dev/null -w "%{http_code}" http://127.0.0.1:3000/not-a-real-route)
+          if [ "$unknown_status" != "404" ]; then
+            echo "Expected HTTP 404 for unknown route, got $unknown_status"
+            exit 1
+          fi
       - name: Validate Docker Compose configuration
         env:
           DB_PASSWORD: test-database-password
