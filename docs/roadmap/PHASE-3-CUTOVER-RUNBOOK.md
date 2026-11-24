@@ -7,7 +7,8 @@ FastAPI is a private candidate service. Node `server/rag.mjs` remains the produc
 ## Required environment
 
 AI service:
-- `DOCUMENT_WORKER_TOKEN`: dedicated internal service token; never reuse a user JWT.
+- `DOCUMENT_WORKER_TOKEN`: document extraction worker credential.
+- `AI_SERVICE_TOKEN`: dedicated AI internal service credential; never reuse a user JWT or the document-worker token.
 - `DATABASE_URL`: PostgreSQL DSN for the AI vector store.
 - `EMBEDDING_API_KEY` or `OPENAI_API_KEY`.
 - `EMBEDDING_MODEL=text-embedding-3-small` (the current schema expects 1536 dimensions).
@@ -18,7 +19,7 @@ AI service:
 Spring Boot:
 - `RAKSHA_AI_ENABLED=true`
 - `RAKSHA_AI_BASE_URL`: private FastAPI service URL.
-- `RAKSHA_AI_SERVICE_TOKEN`: same dedicated service token configured for FastAPI.
+- `RAKSHA_AI_SERVICE_TOKEN`: same value as FastAPI `AI_SERVICE_TOKEN`.
 
 The PostgreSQL server must have pgvector installed before applying `ai/sql/001_ai_document_chunks.sql`. The SQL creates the vector extension/table/index separately from the existing Phase 2 Flyway migrations. Keep this additive and review it before applying to any shared database.
 
