@@ -12,3 +12,12 @@ CREATE TABLE IF NOT EXISTS inventory_items (
 CREATE INDEX IF NOT EXISTS inventory_items_service_category_idx ON inventory_items (service, category);
 CREATE INDEX IF NOT EXISTS inventory_items_status_idx ON inventory_items (quantity_status, verification_status);
 CREATE INDEX IF NOT EXISTS inventory_items_source_id_idx ON inventory_items (source_id);
+
+ALTER TABLE inventory_items ADD COLUMN IF NOT EXISTS variant TEXT;
+ALTER TABLE inventory_items ADD COLUMN IF NOT EXISTS manufacturer TEXT;
+ALTER TABLE inventory_items ADD COLUMN IF NOT EXISTS capability_summary TEXT;
+ALTER TABLE inventory_items ADD COLUMN IF NOT EXISTS supporting_source_ids JSONB NOT NULL DEFAULT '[]'::jsonb;
+ALTER TABLE inventory_items ADD COLUMN IF NOT EXISTS technical_profile JSONB;
+ALTER TABLE inventory_items ADD COLUMN IF NOT EXISTS acquisition JSONB;
+ALTER TABLE inventory_items ADD COLUMN IF NOT EXISTS data_limitations JSONB;
+ALTER TABLE inventory_items ADD COLUMN IF NOT EXISTS raw_record JSONB NOT NULL DEFAULT '{}'::jsonb;
