@@ -1,4 +1,4 @@
-from app.evaluation.evaluate import evaluate
+from evaluation.evaluate import evaluate
 
 def test_evaluator_detects_required_and_forbidden_concepts():
     case = {"id":"x","required_concepts":["unverified","not confirmed inventory"],
