@@ -3,6 +3,7 @@ package com.raksha.inventory;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -21,6 +22,7 @@ public class InventoryService {
         this.inventoryRepository = inventoryRepository;
     }
 
+    @Cacheable("inventory-register")
     public List<InventoryItem> list() {
         return inventoryRepository.findAll(Sort.by("service").ascending().and(Sort.by("category")).and(Sort.by("platform")));
     }
