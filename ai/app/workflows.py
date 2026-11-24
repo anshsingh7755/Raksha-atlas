@@ -1,12 +1,25 @@
-"""Optional LangGraph research workflow; deterministic fallback keeps tests/provider-free runs usable."""
+"""Optional LangGraph research workflow with a deterministic fallback."""
+from typing import TypedDict
 from .retrieval import search_evidence
 from .model_router import complete
 
-async def _retrieve(state: dict) -> dict:
+
+class ResearchState(TypedDict, total=False):
+    question: str
+    limit: int
+    source_ids: list[str]
+    model: str | None
+    evidence: list[dict]
+    answer: str
+    citations: list[dict]
+
+
+async def _retrieve(state: ResearchState) -> dict:
     evidence = await search_evidence(state["question"], state.get("limit", 5), state.get("source_ids", []))
     return {"evidence": evidence["results"]}
 
-async def _answer(state: dict) -> dict:
+
+async def _answer(state: ResearchState) -> dict:
     evidence = state.get("evidence", [])
     if not evidence:
         return {"answer": "I could not find supporting indexed evidence for this question.", "citations": []}
@@ -24,12 +37,13 @@ async def _answer(state: dict) -> dict:
     result = await complete([{"role": "user", "content": prompt}], state.get("model"))
     return {"answer": result["content"], "citations": citations, "model": result["model"]}
 
+
 async def run_research_workflow(question: str, limit: int = 5, source_ids: list[str] | None = None,
                                 model: str | None = None) -> dict:
-    state = {"question": question, "limit": limit, "source_ids": source_ids or [], "model": model}
+    state: ResearchState = {"question": question, "limit": limit, "source_ids": source_ids or [], "model": model}
     try:
         from langgraph.graph import END, StateGraph
-        graph = StateGraph(dict)
+        graph = StateGraph(ResearchState)
         graph.add_node("retrieve", _retrieve)
         graph.add_node("answer", _answer)
         graph.set_entry_point("retrieve")
