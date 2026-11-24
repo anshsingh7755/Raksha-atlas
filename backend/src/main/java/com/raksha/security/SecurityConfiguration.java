@@ -48,9 +48,10 @@ public class SecurityConfiguration {
             throw new IllegalStateException("RAKSHA_JWT_SECRET must contain at least 32 bytes");
         }
         SecretKey key = new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
-        return NimbusJwtDecoder.withSecretKey(key).macAlgorithm(
-                org.springframework.security.oauth2.jose.jws.MacAlgorithm.HS256)
-                .jwtValidator(JwtValidators.createDefaultWithIssuer(issuer)).build();
+        NimbusJwtDecoder decoder = NimbusJwtDecoder.withSecretKey(key).macAlgorithm(
+                org.springframework.security.oauth2.jose.jws.MacAlgorithm.HS256).build();
+        decoder.setJwtValidator(JwtValidators.createDefaultWithIssuer(issuer));
+        return decoder;
     }
 
     private Converter<Jwt, ? extends AbstractAuthenticationToken> rolesConverter() {
