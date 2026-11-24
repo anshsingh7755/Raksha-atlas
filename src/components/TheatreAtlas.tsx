@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Anchor, ArrowUpRight, Info, MapPin, Shield, X, LocateFixed } from "lucide-react";
+import { apiGet } from "../services/api";
 
 type Place = {
   id:string; name:string; country:string; kind:string; status:string; detail:string;
@@ -48,7 +49,7 @@ export default function TheatreAtlas(){
  },[]);
  useEffect(()=>{
   let active=true;
-  fetch("/api/theatre-atlas").then(response=>{if(!response.ok)throw new Error("Theatre Atlas register unavailable");return response.json();}).then(payload=>{
+  apiGet<{ items?: Array<{ id: string; name: string; country: string; city?: string; locationType: string; status: string; description: string; sourceUrl: string; sourceName: string; latitude: number; longitude: number; evidenceStatus?: string; lastReviewed?: string; coordinatePrecision?: string }>; asOf?: string | null; policy?: string }>("/api/theatre-atlas").then(payload=>{
    if(!active||!Array.isArray(payload.items))return;
    const mapped:Place[]=payload.items.filter((item:any)=>Number.isFinite(item.latitude)&&Number.isFinite(item.longitude)).map((item:any)=>({
     id:item.id,name:item.name,country:item.city?item.city+", "+item.country:item.country,
