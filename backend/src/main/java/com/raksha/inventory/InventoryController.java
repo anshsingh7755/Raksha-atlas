@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/inventory")
 public class InventoryController {
 
-    private final InventoryRepository inventoryRepository;
+    private final InventoryService inventoryService;
 
-    public InventoryController(InventoryRepository inventoryRepository) {
-        this.inventoryRepository = inventoryRepository;
+    public InventoryController(InventoryService inventoryService) {
+        this.inventoryService = inventoryService;
     }
 
     @GetMapping
     public List<InventoryItem> list() {
-        return inventoryRepository.findAll();
+        return inventoryService.list();
     }
 }
