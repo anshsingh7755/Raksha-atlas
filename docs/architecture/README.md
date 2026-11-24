@@ -78,7 +78,7 @@ The root Vite/Node application remains the active website and API. The current l
 |---|---|---|
 | `frontend/` | Next.js 15 shell and package | Full App Router migration and feature parity |
 | `backend/` | Spring Boot 4 / Java 21 scaffold, health and initial inventory slice | PostgreSQL runtime, full domain APIs, auth, tests and cutover |
-| `ai/` | FastAPI app and health endpoint | RAG, embeddings, workflows, evaluation and Node RAG replacement |
+| `ai/` | FastAPI extraction worker plus Phase 3.1–3.5 contracts, chunking, embedding client, retrieval boundary and LiteLLM routing adapter | pgvector persistence/search, gateway integration, workflows, evaluation and Node RAG replacement |
 | `data-engineering/` | Python pipeline boundary, deduplication and CLI check | Ported production collectors, orchestration and quality monitoring |
 | `database/` | PostgreSQL migration(s), initial inventory schema | Full domain schema and verified import |
 | `infrastructure/` | Docker/AWS migration notes and directories | Terraform, cloud resources, CI/CD and production observability |
