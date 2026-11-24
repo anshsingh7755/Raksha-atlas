@@ -152,7 +152,7 @@ This phase is the immediate priority. Complete and verify the product before the
 
 ## 5. Phase 1 — one-time frontend migration
 
-**Target:** Next.js + React + TypeScript. **Status: Phase 1.5 in progress — shared shell, Programmes, Armed Forces History, Intelligence Briefs, Procurement Watch, PIB Defence and programme Timeline feature boundaries are extracted. Phase 1.6 has started with a shared typed API client used by inventory and history.** See [Phase 1 frontend migration plan](PHASE-1-FRONTEND-MIGRATION.md) for the ten sub-phases and completion notes.
+**Target:** Next.js + React + TypeScript. **Status: Phase 1.5 in progress — shared shell, Programmes, Armed Forces History, Intelligence Briefs, Procurement Watch, PIB Defence, programme Timelines and Documents are extracted. Phase 1.6 typed API migration now covers inventory, history, briefs, watch, PIB Defence, timelines and Documents.** See [Phase 1 frontend migration plan](PHASE-1-FRONTEND-MIGRATION.md) for the ten sub-phases and completion notes.
 
 | Sub-phase | Workstream |
 |---|---|
@@ -264,4 +264,4 @@ For each technology, use the same learning loop:
 
 ## 12. Current next action
 
-**Current task: continue Phase 1.5 feature extraction and Phase 1.6 endpoint-by-endpoint typed API migration while retaining Vite as the reference.** The Next.js bridge must be validated before route migration or cutover. Do not retire Vite until feature parity, tests and rollback are demonstrated. See [Phase 1 frontend migration plan](PHASE-1-FRONTEND-MIGRATION.md).  The Phase 0.10 automated API smoke test and CI gate have passed; see [Quality Gate](QUALITY-GATE.md) for exact coverage and environment-dependent checks. Live document extraction requires a deliberately configured trusted-host allowlist and worker token. Model-backed answer quality and live web citations require separately configured credentials and an evaluation dataset. Do not start the main Next.js/Spring Boot cutover until the Phase 0 exit criteria are closed.
+**Current task: continue Phase 1.5 extraction of Signals and Sources with explicit shared-state props, and finish Phase 1.6 typed API migration while retaining Vite as the reference.** The Next.js bridge must be validated before route migration or cutover. Do not retire Vite until feature parity, tests and rollback are demonstrated. See [Phase 1 frontend migration plan](PHASE-1-FRONTEND-MIGRATION.md).  The Phase 0.10 automated API smoke test and CI gate have passed; see [Quality Gate](QUALITY-GATE.md) for exact coverage and environment-dependent checks. Live document extraction requires a deliberately configured trusted-host allowlist and worker token. Model-backed answer quality and live web citations require separately configured credentials and an evaluation dataset. Do not start the main Next.js/Spring Boot cutover until the Phase 0 exit criteria are closed.
