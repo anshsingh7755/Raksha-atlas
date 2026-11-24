@@ -10,6 +10,9 @@ from .documents import extract_public_document
 from .embeddings import create_embeddings
 from .model_router import allowed_models, complete
 from .retrieval import search_evidence
+from .vector_store import upsert_chunks
+from .workflows import run_research_workflow
+from .observability import RequestMetricsMiddleware
 
 app = FastAPI(
     title="Raksha Atlas AI",
@@ -37,7 +40,7 @@ class ChunkRequest(BaseModel):
         return self
 
 
-class CompletionRequest(BaseModel):
+class IndexRequest(BaseModel):\n    chunks: list[dict] = Field(min_length=1, max_length=64)\n    model: str | None = Field(default=None, max_length=120)\n\n\nclass ResearchRequest(BaseModel):\n    query: str = Field(min_length=3, max_length=2000)\n    limit: int = Field(default=5, ge=1, le=20)\n    source_ids: list[str] = Field(default_factory=list, max_length=50)\n    model: str | None = Field(default=None, max_length=120)\n\n\nclass CompletionRequest(BaseModel):
     model: str | None = Field(default=None, max_length=120)
     messages: list[dict] = Field(min_length=1, max_length=40)
 
@@ -63,7 +66,7 @@ def capabilities() -> dict:
         "document_extraction": True,
         "page_aware_chunking": True,
         "embeddings_configured": bool(os.getenv("EMBEDDING_API_KEY") or os.getenv("OPENAI_API_KEY")),
-        "vector_retrieval": False,
+        "vector_retrieval": bool(os.getenv("DATABASE_URL") and (os.getenv("EMBEDDING_API_KEY") or os.getenv("OPENAI_API_KEY"))),\n        "research_workflow": True,
         "model_routing_configured": bool(allowed_models()),
         "allowed_models": allowed_models(),
         "gateway_only": True,
@@ -92,7 +95,7 @@ async def embed_text(payload: EmbeddingRequest, authorization: str | None = Head
     return await create_embeddings(payload.texts, payload.model)
 
 
-@app.post("/v1/retrieval/search")
+@app.post("/v1/index/upsert")\nasync def index_chunks(payload: IndexRequest, authorization: str | None = Header(default=None)) -> dict:\n    require_worker_token(authorization)\n    texts = [chunk["text"] for chunk in payload.chunks]\n    embedded = await create_embeddings(texts, payload.model)\n    count = upsert_chunks(payload.chunks, embedded["vectors"], embedded["model"])\n    return {"indexed": count, "model": embedded["model"], "dimensions": embedded["dimensions"]}\n\n\n@app.post("/v1/assistant/answer")\nasync def research_answer(payload: ResearchRequest, authorization: str | None = Header(default=None)) -> dict:\n    require_worker_token(authorization)\n    return await run_research_workflow(payload.query, payload.limit, payload.source_ids, payload.model)\n\n\n@app.post("/v1/retrieval/search")
 async def retrieve_evidence(payload: RetrievalRequest, authorization: str | None = Header(default=None)) -> dict:
     require_worker_token(authorization)
     return await search_evidence(payload.query, payload.limit, payload.source_ids)
