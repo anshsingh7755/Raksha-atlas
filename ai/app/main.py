@@ -2,7 +2,7 @@ import os
 import secrets
 
 from fastapi import FastAPI, Header, HTTPException
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 from .chunking import chunk_document
 from .contracts import EmbeddingRequest, RetrievalRequest, SourceReference
@@ -29,6 +29,12 @@ class ChunkRequest(BaseModel):
     source: SourceReference
     max_chars: int = Field(default=2400, ge=300, le=12000)
     overlap: int = Field(default=250, ge=0, le=11999)
+
+    @model_validator(mode="after")
+    def validate_overlap(self):
+        if self.overlap >= self.max_chars:
+            raise ValueError("overlap must be smaller than max_chars")
+        return self
 
 
 class CompletionRequest(BaseModel):
