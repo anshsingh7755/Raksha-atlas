@@ -18,7 +18,7 @@ test("Next.js loading, error and not-found boundaries exist", async () => {
   const notFound = await read("../app/not-found.tsx");
   assert.match(loading, /role="status"/);
   assert.match(error, /role="alert"/);
-  assert.match(error, /reset\(\)/);
+  assert.match(error, /onClick=\{reset\}/);
   assert.match(notFound, /Return to overview/);
 });
 
