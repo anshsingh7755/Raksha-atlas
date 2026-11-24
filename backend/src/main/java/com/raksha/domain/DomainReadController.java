@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class DomainReadController {
-    private final DomainReadService service;
-    public DomainReadController(DomainReadService service) { this.service = service; }
+    private final DomainReadService domainReadService;
+    public DomainReadController(DomainReadService service) { this.domainReadService = service; }
 
     @GetMapping("/sources")
-    public Map<String, Object> sources() { return service.sources(); }
+    public Map<String, Object> sources() { return domainReadService.sources(); }
 
     @GetMapping("/programmes")
     public Map<String, Object> programmes(
@@ -22,12 +22,12 @@ public class DomainReadController {
             @RequestParam(required = false) String stageClassification,
             @RequestParam(required = false) String evidenceQuality,
             @RequestParam(required = false, name = "q") String query) {
-        return service.programmes(service, status, stageClassification, evidenceQuality, query);
+        return domainReadService.programmes(service, status, stageClassification, evidenceQuality, query);
     }
 
     @GetMapping("/procurement-2026")
     public Map<String, Object> procurement(@RequestParam(required = false) String scope,
                                            @RequestParam(required = false) String status) {
-        return service.procurement(scope, status);
+        return domainReadService.procurement(scope, status);
     }
 }
