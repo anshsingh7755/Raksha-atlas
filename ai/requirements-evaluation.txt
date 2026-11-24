@@ -1,0 +1,3 @@
+# Optional semantic RAG evaluation tooling; install only for evaluation jobs.
+ragas>=0.2,<1
+datasets>=3,<4
