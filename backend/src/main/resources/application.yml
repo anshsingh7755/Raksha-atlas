@@ -1,6 +1,23 @@
 spring:
   application:
     name: raksha-atlas-backend
+  datasource:
+    url: ${DB_JDBC_URL:jdbc:postgresql://localhost:5432/raksha_atlas}
+    username: ${DB_USERNAME:raksha}
+    password: ${DB_PASSWORD:}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    validate-on-migrate: true
 
 server:
-  port: 8081
+  port: ${SERVER_PORT:8081}
