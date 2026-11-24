@@ -13,6 +13,6 @@ public class HealthController {
         return Map.of(
                 "status", "ok",
                 "service", "java-backend",
-                "migration", "scaffold");
+                "migration", "flyway-managed");
     }
 }
