@@ -93,3 +93,15 @@ def test_chunk_endpoint_rejects_overlap_larger_than_chunk(monkeypatch):
         }
     )
     assert response.status_code == 422
+
+
+def test_answer_endpoint_requires_service_token(monkeypatch):
+    monkeypatch.setenv("DOCUMENT_WORKER_TOKEN", "test-secret")
+    response = client.post("/v1/assistant/answer", json={"query": "What is the evidence?"})
+    assert response.status_code == 401
+
+
+def test_index_endpoint_requires_service_token(monkeypatch):
+    monkeypatch.setenv("DOCUMENT_WORKER_TOKEN", "test-secret")
+    response = client.post("/v1/index/upsert", json={"chunks": []})
+    assert response.status_code in (401, 422)
