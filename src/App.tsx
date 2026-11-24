@@ -331,11 +331,10 @@ function WikipediaEquipmentTables({
   const [sourceId, setSourceId] = useState("all");
   const [query, setQuery] = useState("");
   useEffect(() => {
-    fetch("/api/reference/equipment")
-      .then((r) => r.json())
-      .then((d) => {
-        setPages(d.pages ?? []);
-        setSnapshotAt(d.generatedAt ?? null);
+    apiGet<{ pages?: typeof pages; generatedAt?: string | null }>("/api/reference/equipment")
+      .then((data) => {
+        setPages(data.pages ?? []);
+        setSnapshotAt(data.generatedAt ?? null);
       })
       .catch(() => setPages([]));
   }, []);
@@ -502,8 +501,8 @@ function EquipmentDataExplorer() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     Promise.all([
-      fetch("/api/equipment-catalog").then((r) => r.json()),
-      fetch("/api/future-procurement").then((r) => r.json()),
+      apiGet<{ items?: typeof inventory }>("/api/equipment-catalog"),
+      apiGet<{ items?: typeof procurement }>("/api/future-procurement"),
     ])
       .then(([catalog, pipeline]) => {
         setInventory(catalog.items ?? []);
@@ -1257,12 +1256,9 @@ function App({
   const [commandState, setCommandState] = useState<"loading" | "ready" | "error">("loading");
   useEffect(() => {
     Promise.all([
-      fetch("/api/timelines").then((r) => r.json()),
-      fetch("/api/sources").then((r) => r.json()),
-      fetch("/api/commands").then((response) => {
-        if (!response.ok) throw new Error("Command directory unavailable");
-        return response.json();
-      }),
+      apiGet<{ count?: number }>("/api/timelines"),
+      apiGet<{ items?: RegistrySource[] }>("/api/sources"),
+      apiGet<{ items?: CommandRecord[] }>("/api/commands"),
     ])
       .then(([programmesData, sourcesData, commandsData]) => {
         setLedgerCounts({
@@ -1306,12 +1302,11 @@ function App({
     const timer = window.setTimeout(() => {
       setGlobalSearchLoading(true);
       setGlobalSearchError("");
-      fetch(`/api/search?q=${encodeURIComponent(q)}&section=${encodeURIComponent(globalSearchSection)}&limit=60`, { signal: controller.signal })
-        .then(async (response) => {
-          if (!response.ok) throw new Error("Search service is temporarily unavailable.");
-          return response.json();
-        })
-        .then((data: { results?: Array<{section:string;view:View;id:string;title:string;summary:string}>; sections?: string[] }) => {
+      apiGet<{ results?: Array<{section:string;view:View;id:string;title:string;summary:string}>; sections?: string[] }>(
+        `/api/search?q=${encodeURIComponent(q)}&section=${encodeURIComponent(globalSearchSection)}&limit=60`,
+        { signal: controller.signal },
+      )
+        .then((data) => {
           setGlobalSearchResults(data.results ?? []);
           setGlobalSearchSections(data.sections ?? []);
         })
@@ -1379,11 +1374,7 @@ function App({
     const filter = params.size ? `?${params.toString()}` : "";
     let active = true;
     const loadArticles = () =>
-      fetch(`/api/articles${filter}`)
-        .then(async (response) => {
-          if (!response.ok) throw new Error("Unable to load articles");
-          return response.json() as Promise<{ items: typeof articles }>;
-        })
+      apiGet<{ items: ReviewArticle[] }>(`/api/articles${filter}`)
         .then((result) => {
           if (active) {
             setArticles(result.items);
@@ -1406,12 +1397,8 @@ function App({
     };
   }, [articleFilter, reviewStateFilter]);
   useEffect(() => {
-    fetch("/api/health")
-      .then(async (response) => {
-        if (!response.ok) throw new Error("API unavailable");
-        const health = (await response.json()) as {
-          lastRefresh: string | null;
-        };
+    apiGet<{ lastRefresh: string | null }>("/api/health")
+      .then((health) => {
         setLastRefresh(health.lastRefresh);
         setApiState("online");
       })
@@ -1433,14 +1420,10 @@ function App({
     setChatSources([]);
     setChatNeedsModelKey(false);
     try {
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: prompt }),
-      });
-      const result = await response.json();
-      if (!response.ok)
-        throw new Error(result.error || "Could not retrieve a sourced answer.");
+      const result = await apiPost<
+        { answer?: string; sources?: ChatSource[]; needsModelKey?: boolean },
+        { question: string }
+      >("/api/chat", { question: prompt });
       setChatAnswer(result.answer ?? "No answer was returned.");
       setChatSources(result.sources ?? []);
       setChatNeedsModelKey(Boolean(result.needsModelKey));
@@ -1467,13 +1450,21 @@ function App({
     }
     setComposerSaving(true);
     try {
-      const response = await fetch("/api/articles", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          ...(adminToken ? { Authorization: `Bearer ${adminToken}` } : {}),
-        },
-        body: JSON.stringify({
+      const result = await apiPost<
+        ReviewArticle,
+        {
+          title: string;
+          canonicalUrl: string;
+          summary: string;
+          sourceId: string;
+          topic: string;
+          confidence: string;
+          verificationStatus: string;
+          reviewState: string;
+        }
+      >(
+        "/api/articles",
+        {
           title: composerTitle.trim(),
           canonicalUrl: composerUrl.trim(),
           summary: composerNotes.trim(),
@@ -1482,10 +1473,9 @@ function App({
           confidence: "editor-submitted; awaiting review",
           verificationStatus: "unverified",
           reviewState: "unreviewed",
-        }),
-      });
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.error || "Could not save candidate.");
+        },
+        { headers: adminToken ? { Authorization: `Bearer ${adminToken}` } : {} },
+      );
       setArticles((previous) => [result, ...previous]);
       setComposerTitle("");
       setComposerUrl("");
@@ -1850,9 +1840,11 @@ function App({
       if (categoryFilter !== "all") params.set("category", categoryFilter);
       if (statusFilter !== "all") params.set("quantityStatus", statusFilter);
       setLoading(true);
-      fetch(`/api/inventory?${params}`, { signal: controller.signal })
-        .then((r) => { if (!r.ok) throw new Error("Inventory unavailable"); return r.json(); })
-        .then((data: { items: InventoryItem[]; availableFilters?: InventoryFilterOptions }) => {
+      apiGet<{ items: InventoryItem[]; availableFilters?: InventoryFilterOptions }>(
+        `/api/inventory?${params}`,
+        { signal: controller.signal },
+      )
+        .then((data) => {
           setItems(data.items ?? []);
           if (data.availableFilters) setFilterOptions(data.availableFilters);
         })
