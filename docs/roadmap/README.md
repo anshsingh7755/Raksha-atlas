@@ -191,17 +191,22 @@ Remaining Phase 2 work: authentication, authorization, expanded API validation/p
 
 ## 7. Phase 3 — AI service
 
-**Target:** Python 3.11+, FastAPI, Pydantic, LangGraph, LiteLLM, pgvector and approved model providers. **Current status:** 3.1–3.5 implementation foundations committed; vector persistence/search, gateway integration and runtime acceptance remain deferred. Existing Node RAG remains active.
+**Target:** Python 3.11+, FastAPI, Pydantic, LangGraph, LiteLLM, PostgreSQL/pgvector and approved model providers. **Implementation status:** 3.1–3.10 code foundations committed. Final database/provider/gateway/quality acceptance is deferred to the Phase 10 final validation window. Existing Node RAG remains the production fallback.
 
-| Sub-phase | Workstream | Status |
+| Sub-phase | Workstream | Implementation status |
 |---|---|---|
-| 3.1 | Versioned AI API contracts and access boundaries | Pydantic v2 contracts, bounded request schemas, internal service-token boundary and gateway-only policy implemented |
-| 3.2 | Python document chunking | Deterministic page-aware chunking with stable IDs, overlap and source provenance implemented; worker-to-chunker end-to-end validation pending |
-| 3.3 | Embeddings and vector-index boundary | Configurable OpenAI-compatible embedding client implemented; pgvector schema, persistence and indexing deferred |
-| 3.4 | Evidence retrieval and citations | Typed retrieval contract and source/page citation metadata implemented; pgvector similarity-search adapter deferred and fails closed |
-| 3.5 | Model routing | Optional LiteLLM adapter, explicit model allow-list and bounded completion request implemented; provider credentials/runtime validation pending |
+| 3.1 | Versioned contracts and access boundaries | Pydantic schemas, bounded payloads, dedicated AI service token and separate document worker token |
+| 3.2 | Extraction and chunking | Deterministic page-aware chunks with stable IDs and source provenance |
+| 3.3 | Embeddings and vector indexing | Configurable embedding client, idempotent pgvector upsert and fixed 1536-dimension schema |
+| 3.4 | Retrieval and citations | Cosine-similarity retrieval, source filters, page/source metadata and evidence-linked citations |
+| 3.5 | Model routing | LiteLLM adapter, explicit model allow-list, bounded generation and token/cost/latency telemetry |
+| 3.6 | AI workflows | LangGraph retrieval-to-answer workflow with deterministic fallback and evidence-only prompt policy |
+| 3.7 | Evaluation | Golden regression dataset, required/forbidden concept evaluator and comparative Node-vs-FastAPI review protocol |
+| 3.8 | Spring Boot gateway | Authenticated `/api/ai/answer` gateway; browser does not call FastAPI directly; service token is server-side only |
+| 3.9 | Legacy RAG migration | Candidate workflow and cutover/rollback runbook; Node RAG retained until parity and release approval |
+| 3.10 | Operational readiness | Request latency headers/logs, model usage/cost telemetry, tests, configuration and rollout checklist |
 
-Remaining Phase 3 work: persistent pgvector chunk/vector upsert and similarity search, dedicated service identity, Spring Boot gateway forwarding, LangGraph workflows, evaluation datasets/RAGAS, citation entailment, regression tests, and cost/latency telemetry. Do not expose FastAPI directly to the browser or retire Node RAG until quality, provenance and parity are demonstrated.
+**Phase 3 final acceptance (deferred):** install pgvector on the target PostgreSQL instance and apply `ai/sql/001_ai_document_chunks.sql`; configure real embedding/model credentials and private service networking; index a reviewed public corpus; verify retrieval and citations; validate Spring Boot gateway with the approved identity provider; compare against Node RAG; review quality, latency and cost; rehearse rollback. See [Phase 3 cutover runbook](PHASE-3-CUTOVER-RUNBOOK.md). Do not retire Node RAG or enable the gateway by default before those checks.
 
 ## 8. Phase 4 — data engineering
 
