@@ -171,7 +171,7 @@ The Vite app remains the reference and must not be retired before feature parity
 
 ## 6. Phase 2 — Spring Boot backend and PostgreSQL
 
-**Target:** Java 21, Spring Boot 4, Spring Data JPA, Flyway and PostgreSQL. **Current status:** Phase 2.1 domain contracts, 2.2 Flyway/database configuration, inventory service boundary for 2.3, dry-run-first idempotent import utility for 2.4, and programme/procurement schemas for 2.5 are implemented. Maven/DB runtime validation and row-level reconciliation remain pending. See [Phase 2 backend migration plan](PHASE-2-BACKEND-MIGRATION.md).
+**Target:** Java 21, Spring Boot 4, Spring Data JPA, Flyway and PostgreSQL. **Current status:** Phase 2.1–2.9 implementation and 2.10 reconciliation/cutover controls are committed: JWT resource-server security, role mapping, validation/pagination, optional Redis cache, Testcontainers integration tests, API response contracts and a row-level reconciliation utility. Final GitHub CI, local PostgreSQL import/reconciliation, external identity-provider verification and rollback rehearsal remain release gates. See [Phase 2 backend migration plan](PHASE-2-BACKEND-MIGRATION.md).
 
 | Sub-phase | Workstream | Status |
 |---|---|---|
