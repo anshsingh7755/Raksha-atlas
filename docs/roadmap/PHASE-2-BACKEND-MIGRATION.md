@@ -73,7 +73,7 @@ GitHub Actions now installs Java 21 and runs `mvn -B -f backend/pom.xml test` be
 - `scripts/reconcile-domain-data.mjs` compares source IDs and complete `raw_record` payloads against PostgreSQL for each imported dataset.
 - Node remains available for rollback; frontend traffic is not switched automatically.
 
-**Cutover is intentionally gated:** endpoint-by-endpoint comparison against a populated local database, identity-provider integration, feature-level browser verification, monitoring and rollback rehearsal must pass before any frontend proxy or production route is changed. The existing Node endpoints are not retired in Phase 2.10 without explicit release approval.
+**Cutover is intentionally gated:** endpoint-by-endpoint comparison against a populated local database, identity-provider integration, feature-level browser verification, monitoring and rollback rehearsal must pass before any frontend proxy or production route is changed. Follow [Phase 2 cutover and rollback runbook](PHASE-2-CUTOVER-RUNBOOK.md). The existing Node endpoints are not retired in Phase 2.10 without explicit release approval.
 
 ## Local validation and migration procedure
 
