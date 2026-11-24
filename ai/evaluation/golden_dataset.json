@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "description": "Starter regression cases for source-grounded public defence answers; expand with reviewed gold evidence before release.",
+  "cases": [
+    {"id":"source-provenance-001","question":"What does an official publisher label establish?","required_concepts":["publisher provenance","does not independently verify every claim"],"forbidden_concepts":["official publisher means every claim is true"]},
+    {"id":"quantity-caveat-001","question":"Can an unverified reported quantity be presented as confirmed inventory?","required_concepts":["unverified","not confirmed inventory"],"forbidden_concepts":["confirmed quantity"]}
+  ]
+}
