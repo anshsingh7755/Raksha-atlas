@@ -4,10 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "raksha-atlas-data-engineering"
-version = "0.1.0"
-description = "Collection and processing pipelines for Raksha Atlas."
+version = "0.2.0"
+description = "Parallel Python collection and processing pipelines for Raksha Atlas."
 requires-python = ">=3.11"
 dependencies = []
+
+[project.optional-dependencies]
+postgres = ["psycopg[binary]>=3.2,<4"]
+test = []
 
 [project.scripts]
 raksha-pipeline = "pipeline.main:main"
