@@ -33,6 +33,37 @@ public class DomainReadService {
         }, args);
     }
 
+    public Map<String, Object> inventory(String service, String category, String quantityStatus, String originCountry) {
+        List<JsonNode> all = records("inventory_items", "");
+        List<JsonNode> items = all.stream()
+                .filter(item -> blank(service) || service.equals(item.path("service").asText()))
+                .filter(item -> blank(category) || category.equals(item.path("category").asText()))
+                .filter(item -> blank(quantityStatus) || quantityStatus.equals(item.path("quantityStatus").asText()))
+                .filter(item -> blank(originCountry) || originCountry.equals(item.path("originCountry").asText()))
+                .toList();
+        Map<String, Object> available = new LinkedHashMap<>();
+        available.put("serviceDomains", unique(all, "service"));
+        available.put("categories", unique(all, "category"));
+        available.put("quantityStatuses", unique(all, "quantityStatus"));
+        available.put("originCountries", unique(all, "originCountry"));
+        String asOf = all.stream().map(item -> item.path("asOfDate").asText(""))
+                .filter(value -> !value.isBlank()).max(String::compareTo).orElse(null);
+        Map<String, Object> response = new LinkedHashMap<>();
+        response.put("items", items);
+        response.put("count", items.size());
+        response.put("filters", Map.of("service", safe(service), "category", safe(category),
+                "quantityStatus", safe(quantityStatus), "originCountry", safe(originCountry)));
+        response.put("availableFilters", available);
+        response.put("asOf", asOf);
+        response.put("latestRecordAsOf", asOf);
+        return response;
+    }
+
+    private static List<String> unique(List<JsonNode> items, String field) {
+        return items.stream().map(item -> item.path(field).asText(""))
+                .filter(value -> !value.isBlank()).distinct().sorted().toList();
+    }
+
     public Map<String, Object> sources() {
         return Map.of("items", records("sources", " WHERE active = TRUE"),
                 "verificationStatuses", List.of("official", "verified", "reported", "unverified", "disputed", "corrected", "withdrawn"));
