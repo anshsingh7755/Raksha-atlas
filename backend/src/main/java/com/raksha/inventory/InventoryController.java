@@ -3,6 +3,7 @@ package com.raksha.inventory;
 import java.util.List;
 
 import com.raksha.common.PageResponse;
+import com.raksha.domain.DomainReadService;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,14 +15,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class InventoryController {
 
     private final InventoryService inventoryService;
+    private final DomainReadService domainReadService;
 
-    public InventoryController(InventoryService inventoryService) {
+    public InventoryController(InventoryService inventoryService, DomainReadService domainReadService) {
         this.inventoryService = inventoryService;
+        this.domainReadService = domainReadService;
     }
 
     @GetMapping
-    public List<InventoryItem> list() {
-        return inventoryService.list();
+    public java.util.Map<String, Object> list(
+            @RequestParam(required = false) String service,
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) String quantityStatus,
+            @RequestParam(required = false) String originCountry) {
+        return domainReadService.inventory(service, category, quantityStatus, originCountry);
     }
 
     @GetMapping("/v2")
