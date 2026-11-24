@@ -18,6 +18,9 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtValidators;
+import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
+import org.springframework.security.oauth2.core.OAuth2TokenValidator;
+import org.springframework.security.oauth2.core.validator.JwtClaimValidator;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -43,14 +46,18 @@ public class SecurityConfiguration {
 
     @Bean
     JwtDecoder jwtDecoder(@Value("${raksha.security.jwt-secret}") String secret,
-                          @Value("${raksha.security.issuer:raksha-atlas}") String issuer) {
+                          @Value("${raksha.security.issuer:raksha-atlas}") String issuer,
+                          @Value("${raksha.security.audience:raksha-atlas-api}") String audience) {
         if (secret.getBytes(StandardCharsets.UTF_8).length < 32) {
             throw new IllegalStateException("RAKSHA_JWT_SECRET must contain at least 32 bytes");
         }
         SecretKey key = new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
         NimbusJwtDecoder decoder = NimbusJwtDecoder.withSecretKey(key).macAlgorithm(
                 org.springframework.security.oauth2.jose.jws.MacAlgorithm.HS256).build();
-        decoder.setJwtValidator(JwtValidators.createDefaultWithIssuer(issuer));
+        OAuth2TokenValidator<Jwt> validator = new DelegatingOAuth2TokenValidator<>(
+                JwtValidators.createDefaultWithIssuer(issuer),
+                new JwtClaimValidator<List<String>>("aud", audiences -> audiences != null && audiences.contains(audience)));
+        decoder.setJwtValidator(validator);
         return decoder;
     }
 
