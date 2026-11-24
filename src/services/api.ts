@@ -1,3 +1,5 @@
+import { parseApiResponse } from "./api-response.mjs";
+
 export class ApiError extends Error {
   readonly status: number;
   readonly payload: unknown;
@@ -35,24 +37,14 @@ export async function apiRequest<T>(
     },
   });
 
-  if (response.status === 204 || response.status === 205) {
-    return undefined as T;
-  }
-
-  const contentType = response.headers.get("content-type") ?? "";
-  const raw = await response.text();
-  let payload: unknown = raw;
-
-  if (raw && contentType.includes("application/json")) {
-    try {
-      payload = JSON.parse(raw);
-    } catch {
-      if (response.ok) {
-        throw new ApiError("The server returned invalid JSON.", response.status, raw);
-      }
-    }
-  } else if (!raw) {
-    payload = undefined;
+  let payload: unknown;
+  try {
+    payload = await parseApiResponse(response);
+  } catch {
+    throw new ApiError(
+      "The server returned invalid JSON.",
+      response.status,
+    );
   }
 
   if (!response.ok) {
