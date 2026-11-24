@@ -27,7 +27,7 @@ def upsert_chunks(chunks: list[dict], vectors: list[list[float]], model: str) ->
     try:
         with _connection() as conn:
             with conn.cursor() as cur:
-                cur.execute("SELECT vector_dims(%s)", (vectors[0],))
+                if dimensions != 1536:\n                    raise ValueError("The current pgvector schema requires 1536-dimensional embeddings.")
                 for chunk, vector in zip(chunks, vectors):
                     source = chunk["source"]
                     cur.execute("""
