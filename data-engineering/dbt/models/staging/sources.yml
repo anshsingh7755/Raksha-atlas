@@ -1,0 +1,24 @@
+version: 2
+sources:
+  - name: raksha
+    schema: public
+    tables:
+      - name: ingested_articles
+        columns:
+          - name: id
+            tests: [not_null, unique]
+          - name: canonical_url
+            tests: [not_null, unique]
+          - name: source_id
+            tests: [not_null]
+models:
+  - name: stg_ingested_articles
+    columns:
+      - name: verification_status
+        tests:
+          - accepted_values:
+              values: ['unverified', 'reported', 'verified', 'disputed', 'retracted']
+      - name: review_state
+        tests:
+          - accepted_values:
+              values: ['unreviewed', 'in_review', 'reviewed']
