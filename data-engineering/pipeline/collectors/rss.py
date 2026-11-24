@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import hashlib
+import ipaddress
+import socket
 import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -9,7 +11,7 @@ from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 from html import unescape
 from typing import Any
-from urllib.parse import urlparse
+from urllib.parse import urljoin, urlparse
 
 
 def _local_name(tag: str) -> str:
@@ -83,20 +85,44 @@ def parse_feed(xml_text: str, source: dict[str, Any]) -> list[dict[str, Any]]:
     return records
 
 
-def collect_rss(source: dict[str, Any], timeout: int = 15) -> list[dict[str, Any]]:
-    url = source.get("url", "")
+def _validate_public_url(url: str) -> None:
     parsed = urlparse(url)
     if parsed.scheme != "https" or not parsed.hostname or parsed.username or parsed.password:
         raise ValueError("Only public HTTPS feed URLs are allowed.")
+    host = parsed.hostname.lower()
+    if host == "localhost" or host.endswith((".localhost", ".local", ".internal")):
+        raise ValueError("Private host blocked.")
+    try:
+        addresses = [ipaddress.ip_address(host)]
+    except ValueError:
+        try:
+            addresses = [ipaddress.ip_address(row[4][0]) for row in socket.getaddrinfo(host, None, type=socket.SOCK_STREAM)]
+        except OSError as exc:
+            raise ValueError("Feed host could not be resolved.") from exc
+    if not addresses or any(not address.is_global for address in addresses):
+        raise ValueError("Private or non-public feed host blocked.")
+
+
+class _SafeRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, request, fp, code, message, headers, new_url):
+        target = urljoin(request.full_url, new_url)
+        _validate_public_url(target)
+        return super().redirect_request(request, fp, code, message, headers, target)
+
+
+def collect_rss(source: dict[str, Any], timeout: int = 15) -> list[dict[str, Any]]:
+    url = source.get("url", "")
+    _validate_public_url(url)
     request = urllib.request.Request(
         url,
         headers={"User-Agent": "RakshaAtlas/1.0 (+public RSS metadata)", "Accept": "application/rss+xml,application/atom+xml,application/xml,text/xml"},
     )
+    opener = urllib.request.build_opener(_SafeRedirect())
     try:
-        with urllib.request.urlopen(request, timeout=timeout) as response:
+        with opener.open(request, timeout=timeout) as response:
             if response.status != 200:
                 raise RuntimeError(f"Feed returned HTTP {response.status}")
             payload = response.read(2_000_000)
-    except urllib.error.URLError as exc:
+    except (urllib.error.URLError, TimeoutError) as exc:
         raise RuntimeError(f"Feed request failed: {exc}") from exc
     return parse_feed(payload.decode("utf-8", errors="replace"), source)
