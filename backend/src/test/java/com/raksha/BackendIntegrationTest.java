@@ -63,6 +63,37 @@ class BackendIntegrationTest {
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
     }
 
+
+    @Test
+    void inventoryPreservesLegacyEnvelopeAndFilters() throws Exception {
+        mvc.perform(get("/api/inventory").param("service", "Army")
+                        .with(SecurityMockMvcRequestPostProcessors.jwt()
+                                .jwt(jwt -> jwt.subject("test-user").claim("roles", List.of("ANALYST")))))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.items").isArray())
+                .andExpect(jsonPath("$.count").value(0))
+                .andExpect(jsonPath("$.availableFilters.serviceDomains").isArray());
+    }
+
+    @Test
+    void sourceProgrammeAndProcurementEndpointsExposeStableEnvelopes() throws Exception {
+        var auth = SecurityMockMvcRequestPostProcessors.jwt()
+                .jwt(jwt -> jwt.subject("test-user").claim("roles", List.of("ANALYST")));
+        mvc.perform(get("/api/sources").with(auth))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.items").isArray())
+                .andExpect(jsonPath("$.verificationStatuses").isArray());
+        mvc.perform(get("/api/programmes").with(auth))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.items").isArray())
+                .andExpect(jsonPath("$.count").value(0))
+                .andExpect(jsonPath("$.classificationPolicy").exists());
+        mvc.perform(get("/api/procurement-2026").with(auth))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.items").isArray())
+                .andExpect(jsonPath("$.count").value(0));
+    }
+
     @Test
     void inventoryV2RejectsOversizedPage() throws Exception {
         mvc.perform(get("/api/inventory/v2").param("size", "1000")
