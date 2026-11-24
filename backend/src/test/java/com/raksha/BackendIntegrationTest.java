@@ -1,0 +1,74 @@
+package com.raksha;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
+import org.springframework.test.web.servlet.MockMvc;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
+
+@SpringBootTest
+@AutoConfigureMockMvc
+@Testcontainers(disabledWithoutDocker = true)
+class BackendIntegrationTest {
+
+    @Container
+    static final PostgreSQLContainer<?> POSTGRES = new PostgreSQLContainer<>("postgres:17-alpine")
+            .withDatabaseName("raksha_atlas")
+            .withUsername("raksha")
+            .withPassword("test-password");
+
+    @DynamicPropertySource
+    static void database(DynamicPropertyRegistry registry) {
+        registry.add("spring.datasource.url", POSTGRES::getJdbcUrl);
+        registry.add("spring.datasource.username", POSTGRES::getUsername);
+        registry.add("spring.datasource.password", POSTGRES::getPassword);
+        registry.add("raksha.security.jwt-secret", () -> "test-secret-that-is-at-least-thirty-two-bytes");
+        registry.add("raksha.security.issuer", () -> "raksha-atlas");
+    }
+
+    @Autowired
+    MockMvc mvc;
+
+    @Test
+    void healthIsPublic() throws Exception {
+        mvc.perform(get("/api/health"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.status").value("ok"));
+    }
+
+    @Test
+    void protectedInventoryRequiresAuthentication() throws Exception {
+        mvc.perform(get("/api/inventory"))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void authenticatedInventoryEndpointReturnsList() throws Exception {
+        mvc.perform(get("/api/inventory").with(SecurityMockMvcRequestPostProcessors.jwt()
+                        .jwt(jwt -> jwt.subject("test-user").claim("roles", List.of("ANALYST"))))
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+    }
+
+    @Test
+    void inventoryV2RejectsOversizedPage() throws Exception {
+        mvc.perform(get("/api/inventory/v2").param("size", "1000")
+                        .with(SecurityMockMvcRequestPostProcessors.jwt()
+                                .jwt(jwt -> jwt.subject("test-user").claim("roles", List.of("ANALYST")))))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.title").value("Invalid request"));
+    }
+}
