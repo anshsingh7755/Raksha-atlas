@@ -2,7 +2,7 @@
 
 **Target:** Python 3.11+, FastAPI, Pydantic v2, LangGraph, LiteLLM, PostgreSQL/pgvector and approved model providers.  
 **Branch:** work/step-1-foundation  
-**Implementation:** Sub-phases 3.1–3.10 are implemented in the repository. Runtime/provider/database acceptance and traffic migration are deferred to the Phase 10 final acceptance window.
+**Implementation:** Sub-phases 3.1–3.10 are implemented in the repository. Full repository CI passed in [run #393](https://github.com/anshsingh7755/Raksha-atlas/actions/runs/45354246193) on commit `c1986ff`. Runtime/provider/database acceptance and traffic migration are deferred to the Phase 10 final acceptance window.
 
 ## Service boundary and security
 
