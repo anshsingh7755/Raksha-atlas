@@ -14,7 +14,7 @@ $env:DOCUMENT_ALLOWED_HOSTS = "mod.gov.in,pib.gov.in,drdo.gov.in"
 python -m uvicorn app.main:app --reload --port 8001
 ```
 
-The Node API uses `DOCUMENT_WORKER_TOKEN` for extraction. Internal Phase 3 APIs use a separate `AI_SERVICE_TOKEN`; Spring Boot forwards authorized requests using `RAKSHA_AI_SERVICE_TOKEN`.
+The Node API uses `DOCUMENT_WORKER_TOKEN` for extraction. Internal Phase 3 APIs use a separate `AI_SERVICE_TOKEN`; Spring Boot forwards authorized requests using `RAKSHA_AI_SERVICE_TOKEN`. Configure the same random secret on both services, but never reuse the end-user JWT signing secret.
 
 ## Extraction endpoint
 
