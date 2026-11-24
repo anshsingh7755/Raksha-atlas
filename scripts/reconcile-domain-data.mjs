@@ -36,10 +36,11 @@ try {
   for (const spec of specs) {
     const parsed = JSON.parse(await fs.readFile(path.join(root, spec.file), "utf8"));
     const sourceRows = spec.rows(parsed);
-    const dbRows = await pool.query(
-      "SELECT id, raw_record FROM " + spec.table + " WHERE dataset = $1 OR $1 IS NULL",
-      [spec.table === "procurement_records" ? (spec.file.includes("future-") ? "future-procurement" : "procurement-2026") : null]
-    );
+    const dbRows = spec.table === "procurement_records"
+      ? await pool.query("SELECT id, raw_record FROM procurement_records WHERE dataset = $1", [
+          spec.file.includes("future-") ? "future-procurement" : "procurement-2026"
+        ])
+      : await pool.query("SELECT id, raw_record FROM " + spec.table);
     const byId = new Map(dbRows.rows.map(row => [row.id, row.raw_record]));
     const missing = [];
     const changed = [];
