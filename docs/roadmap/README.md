@@ -171,13 +171,17 @@ The Vite app remains the reference and must not be retired before feature parity
 
 ## 6. Phase 2 — Spring Boot backend and PostgreSQL
 
-**Target:** Java 21, Spring Boot 4, Spring Security, Spring Data JPA, PostgreSQL.
+**Target:** Java 21, Spring Boot 4, Spring Data JPA, Flyway and PostgreSQL. **Current status:** Phase 2.1 domain contracts, 2.2 Flyway/database configuration, inventory service boundary for 2.3, dry-run-first idempotent import utility for 2.4, and programme/procurement schemas for 2.5 are implemented. Maven/DB runtime validation and row-level reconciliation remain pending. See [Phase 2 backend migration plan](PHASE-2-BACKEND-MIGRATION.md).
 
-1. Finalize domain model and API contracts.
-2. Configure PostgreSQL connection and migration runner.
-3. Create entities, repositories, services and controllers.
-4. Migrate inventory and source records with reconciliation reports.
-5. Add programmes, procurement milestones, articles, users and audit entities.
+| Sub-phase | Workstream | Status |
+|---|---|---|
+| 2.1 | Domain model and API contracts | Contract baseline documented |
+| 2.2 | PostgreSQL connection and migrations | Flyway and environment configuration implemented; local DB validation pending |
+| 2.3 | Entities, repositories, services and controllers | Inventory vertical slice implemented; other domain layers pending |
+| 2.4 | Inventory and source migration | Dry-run-first idempotent importer implemented; apply/reconciliation pending |
+| 2.5 | Programmes and procurement persistence | PostgreSQL schemas implemented; API layers and validation pending |
+
+Remaining Phase 2 work: authentication, authorization, expanded API validation/pagination, Redis only where justified, JUnit/Testcontainers coverage, API parity and gradual frontend consumer migration. Node endpoints are not retired until every consumer has moved.
 6. Implement authentication, JWT/session strategy and role-based access.
 7. Add validation, pagination, filtering, sorting and error contracts.
 8. Add Redis only for identified cache/rate-limit/session use cases.
