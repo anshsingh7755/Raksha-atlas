@@ -210,22 +210,22 @@ Remaining Phase 2 work: authentication, authorization, expanded API validation/p
 
 ## 8. Phase 4 — data engineering
 
-**Target:** Python, Polars, Parquet, Kafka, Airflow, dbt, PySpark, Iceberg and Great Expectations. **Current status:** 4.1–4.5 implementation committed as a parallel, dry-run-first Python ingestion path. Node collectors and scheduler remain active. Runtime/database acceptance is deferred to Phase 10.
+**Target:** Python, Polars, Parquet, Kafka, Airflow, dbt, PySpark, Iceberg and data-quality checks. **Status:** Implementation for 4.1–4.10 committed; automated CI covers the offline Python tests. This is a parallel migration path, not a production cutover. Runtime, database, broker, orchestration and data-parity acceptance is deferred to Phase 10. See [Phase 4 ingestion inventory](../architecture/PHASE-4-INGESTION-INVENTORY.md) and [Phase 4 cutover runbook](PHASE-4-CUTOVER-RUNBOOK.md).
 
 | Sub-phase | Workstream | Status |
 |---|---|---|
-| 4.1 | Inventory existing Node collectors, processors, persistence and scheduling contracts | Implemented; see [ingestion inventory](../architecture/PHASE-4-INGESTION-INVENTORY.md) |
+| 4.1 | Inventory existing Node collectors, processors, persistence and scheduling contracts | Implemented |
 | 4.2 | Define canonical article, source, programme and equipment schemas | Implemented |
-| 4.3 | Port the first RSS/Atom collector to Python using existing feed configuration | Implemented; parallel only |
-| 4.4 | Normalize, validate and deduplicate records while preserving provenance | Implemented; URL-level deduplication, not story-clustering parity |
-| 4.5 | Add dry-run-first PostgreSQL landing persistence and additive schema | Implemented; DB apply deferred to Phase 10 |
-| 4.6 | Add Polars batch transformations and typed analytical exports | Planned |
-| 4.7 | Add Parquet snapshots and historical partition strategy | Planned |
-| 4.8 | Introduce Kafka only for justified asynchronous event workloads | Planned; workload-gated |
-| 4.9 | Introduce Airflow orchestration, retries and dbt transformations/tests | Planned; workload-gated |
-| 4.10 | Add Great Expectations/data-quality monitoring and Spark/Iceberg scale path | Planned; scale-gated |
+| 4.3 | Port the first RSS/Atom collector to Python | Implemented; parallel only |
+| 4.4 | Normalize, deduplicate, classify and validate incoming records | Implemented; canonical URL deduplication |
+| 4.5 | Add PostgreSQL landing persistence and raw-document storage boundary | PostgreSQL sink implemented; S3 integration deferred |
+| 4.6 | Add Polars batch transformations | Implemented; optional dependency |
+| 4.7 | Add Parquet analytical snapshots | Implemented; optional dependency |
+| 4.8 | Add Kafka event publishing for asynchronous workloads | Implemented; broker configuration required |
+| 4.9 | Add Airflow orchestration and dbt transformations/tests | Implemented; environment deployment/configuration pending |
+| 4.10 | Add quality metrics and Spark/Iceberg scale path | Implemented; production thresholds and scale validation deferred |
 
-Do not schedule the Python pipeline in production, switch the API writer, or disable Node ingestion before Phase 10 validates source coverage, freshness, duplicate behavior, row-level parity, failure recovery and rollback.
+**Cutover rule:** Node ingestion remains active. Do not schedule Python in production, switch article writers or activate downstream consumers until Phase 10 validates row-level parity, source coverage, freshness, idempotency, recovery and rollback.
 
 ## 9. Phase 5 — infrastructure and production
 
