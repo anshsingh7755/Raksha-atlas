@@ -1,2 +1,3 @@
 # Optional Phase 3 model-routing runtime. Install only when enabling LLM workflows.
 litellm>=1.60,<2
+psycopg[binary]>=3.2,<4\npgvector>=0.4,<1\nlanggraph>=0.2,<1\n
