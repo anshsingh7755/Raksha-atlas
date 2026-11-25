@@ -19,7 +19,10 @@
         "**/.ruff_cache": true,
         "**/.venv": true,
         "**/venv": true,
-        "**/.terraform": true
+        "**/.terraform": true,
+        "/INVENTORY-DATA.md": true,
+        "/NEWS-PIPELINE.md": true,
+        "/RAG-CHATBOT.md": true
     },
     "search.exclude": {
         "**/.env": true,
@@ -36,6 +39,16 @@
         "**/.ruff_cache": true,
         "**/.venv": true,
         "**/venv": true,
-        "**/.terraform": true
+        "**/.terraform": true,
+        "/INVENTORY-DATA.md": true,
+        "/NEWS-PIPELINE.md": true,
+        "/RAG-CHATBOT.md": true
+    },
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.expand": false,
+    "explorer.fileNesting.patterns": {
+        "package.json": "package-lock.json",
+        "Dockerfile": ".dockerignore",
+        "tsconfig.json": "tsconfig.app.json, tsconfig.node.json"
     }
 }
