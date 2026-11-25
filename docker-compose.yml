@@ -81,8 +81,48 @@ services:
       - "${WEB_PORT:-8080}:80"
     networks: [private]
 
+  backend:
+    profiles: ["migration"]
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      SERVER_PORT: 8081
+      DB_JDBC_URL: jdbc:postgresql://db:5432/raksha_atlas
+      DB_USERNAME: raksha
+      DB_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
+      RAKSHA_JWT_SECRET: ${RAKSHA_JWT_SECRET:?Set a local-only JWT secret in .env}
+      RAKSHA_AI_BASE_URL: http://ai:8001
+      RAKSHA_AI_SERVICE_TOKEN: ${RAKSHA_AI_SERVICE_TOKEN:-}
+      RAKSHA_AI_ENABLED: "false"
+      RAKSHA_REDIS_CACHE_ENABLED: "false"
+    depends_on:
+      db:
+        condition: service_healthy
+      ai:
+        condition: service_healthy
+    expose: ["8081"]
+    networks: [private]
+
+  redis:
+    profiles: ["cache"]
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--save", "60", "1", "--appendonly", "yes"]
+    volumes:
+      - raksha-redis:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    expose: ["6379"]
+    networks: [private]
+
 volumes:
   raksha-postgres:
+  raksha-redis:
 
 networks:
   private:
