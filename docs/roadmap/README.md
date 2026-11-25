@@ -280,7 +280,7 @@ For each technology, use the same learning loop:
 
 ## 12. Current next action
 
-**Current execution point:** Phase 9.1–9.10 validation plan is documented in [the Phase 9 validation plan](PHASE-9-END-TO-END-VALIDATION.md). Repository-side preparation is recorded; local execution, browser/device checks, isolated PostgreSQL reconciliation, security review, load testing and recovery rehearsal remain pending. Keep the root Vite/Node runtime active, keep migration routes opt-in, and preserve local stashes. Phase 10 deployment and production cutover remain blocked until Phase 9 evidence is reviewed and explicit release approval is given.
+**Current execution point:** Phase 10 deployment and single-user activation scope is documented in [the Phase 10 plan](PHASE-10-DEPLOYMENT-AND-SINGLE-USER-ACTIVATION.md). The initial operating model is one owner ADMIN account with managed OIDC/MFA, no public sign-up and no team-management features. AWS provisioning, real identity-provider configuration, database migration, CI/CD activation and production deployment remain pending explicit approvals and evidence. Keep Vite/Node active until migration parity and rollback are proven. Phase 9 local and environment-dependent validation remains a prerequisite and must not be marked passed without evidence.
 
 ## 12. Phase 6 — security, identity, authorization and audit
 
