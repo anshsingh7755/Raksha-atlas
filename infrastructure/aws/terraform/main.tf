@@ -150,7 +150,22 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "documents" {
   }
 }
 
-resource "aws_s3_bucket_policy" "documents" {\n  bucket = aws_s3_bucket.documents.id\n  policy = jsonencode({\n    Version = "2012-10-17"\n    Statement = [{\n      Sid       = "DenyInsecureTransport"\n      Effect    = "Deny"\n      Principal = "*"\n      Action    = "s3:*"\n      Resource  = [aws_s3_bucket.documents.arn, "${aws_s3_bucket.documents.arn}/*"]\n      Condition = { Bool = { "aws:SecureTransport" = "false" } }\n    }]\n  })\n}\n\nresource "aws_s3_bucket_versioning" "documents" {
+resource "aws_s3_bucket_policy" "documents" {
+  bucket = aws_s3_bucket.documents.id
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Sid       = "DenyInsecureTransport"
+      Effect    = "Deny"
+      Principal = "*"
+      Action    = "s3:*"
+      Resource  = [aws_s3_bucket.documents.arn, "${aws_s3_bucket.documents.arn}/*"]
+      Condition = { Bool = { "aws:SecureTransport" = "false" } }
+    }]
+  })
+}
+
+resource "aws_s3_bucket_versioning" "documents" {
   bucket = aws_s3_bucket.documents.id
   versioning_configuration { status = "Enabled" }
 }
