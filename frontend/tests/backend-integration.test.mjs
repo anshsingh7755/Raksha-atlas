@@ -50,3 +50,19 @@ test("inventory API errors are visible instead of being silently logged", async 
   assert.match(app, /inventoryError/);
   assert.match(app, /role="alert"/);
 });
+
+test("operations summary has a typed, cancellation-aware frontend client", async () => {
+  const client = await read("../../src/services/operations.ts");
+  assert.match(client, /OperationsSummary/);
+  assert.match(client, /getOperationsSummary/);
+  assert.match(client, /apiGet<OperationsSummary>/);
+  assert.match(client, /\/api\/operations\/summary/);
+});
+
+test("operations UI distinguishes source freshness from claim verification", async () => {
+  const app = await read("../../src/App.tsx");
+  assert.match(app, /SOURCE FRESHNESS/);
+  assert.match(app, /never checked/);
+  assert.match(app, /not proof that a publisher is currently available/);
+  assert.match(app, /getOperationsSummary\(\)/);
+});
