@@ -1,0 +1,52 @@
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import test from "node:test";
+
+const read = (path) => readFile(new URL(path, import.meta.url), "utf8");
+
+test("Spring routing is opt-in and unsupported APIs retain the Node fallback", async () => {
+  const config = await read("../next.config.mjs");
+  assert.match(config, /RAKSHA_SPRING_API_ENABLED === "true"/);
+  assert.match(config, /RAKSHA_SPRING_API_PROXY_TARGET/);
+  assert.match(config, /\/api\/inventory/);
+  assert.match(config, /\/api\/sources/);
+  assert.match(config, /\/api\/programmes/);
+  assert.match(config, /\/api\/procurement-2026/);
+  assert.match(config, /\/api\/chat/);
+  assert.match(config, /\/api\/:path\*/);
+  assert.match(config, /nodeApiTarget/);
+});
+
+test("API transport accepts an in-memory identity token provider without persisting credentials", async () => {
+  const api = await read("../../src/services/api.ts");
+  assert.match(api, /setApiAccessTokenProvider/);
+  assert.match(api, /Authorization/);
+  assert.match(api, /credentials: init\.credentials \?\? "same-origin"/);
+  assert.doesNotMatch(api, /localStorage|sessionStorage|document\.cookie/);
+});
+
+test("typed backend clients cover only implemented Spring domain contracts", async () => {
+  const client = await read("../../src/services/backend-api.ts");
+  for (const endpoint of ["/api/inventory", "/api/sources", "/api/programmes", "/api/procurement-2026", "/api/chat"]) {
+    assert.ok(client.includes(endpoint), `missing typed client for ${endpoint}`);
+  }
+});
+
+test("existing assistant UI uses the typed backend adapter and preserves citation metadata", async () => {
+  const app = await read("../../src/App.tsx");
+  assert.match(app, /backendApi\.answer\(prompt\)/);
+  assert.match(app, /source_id/);
+  assert.match(app, /verification_status/);
+});
+
+test("Next.js container installs shared dependencies at repository root", async () => {
+  const dockerfile = await read("../Dockerfile");
+  assert.match(dockerfile, /WORKDIR \/app\nCOPY frontend\/package\.json frontend\/package-lock\.json \.\/\nRUN npm ci/);
+  assert.match(dockerfile, /COPY src\/ \/app\/src\//);
+});
+
+test("inventory API errors are visible instead of being silently logged", async () => {
+  const app = await read("../../src/App.tsx");
+  assert.match(app, /inventoryError/);
+  assert.match(app, /role="alert"/);
+});
