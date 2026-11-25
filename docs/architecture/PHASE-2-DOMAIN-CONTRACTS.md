@@ -1,3 +1,11 @@
+## Simple explanation
+
+This document defines how the main kinds of Raksha Atlas information are represented and how the API should exchange them.
+
+A **domain** is one area of information, such as inventory, sources, programmes or procurement. A **data contract** is an agreement about the fields, names and response shape that services must use.
+
+The contract prevents the frontend, Node API, Spring Boot service and database from describing the same record in different ways. The current Node API remains the reference until the Spring endpoints pass parity and reconciliation checks.
+
 # Phase 2 — Domain model and API contracts
 
 **Status:** 2.1 contract baseline recorded; 2.2–2.5 implementation in progress  
