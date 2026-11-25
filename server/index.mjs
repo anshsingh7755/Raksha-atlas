@@ -950,11 +950,14 @@ const server = createServer(async (request, response) => {
       if (to && (!article.publishedAt || article.publishedAt > to)) return false;
       return true;
     });
+    const paginationRequested = url.searchParams.has("limit") || url.searchParams.has("offset");
     const requestedLimit = Number(url.searchParams.get("limit") || filteredItems.length || 100);
     const requestedOffset = Number(url.searchParams.get("offset") || 0);
-    const limit = Number.isFinite(requestedLimit) ? Math.max(1, Math.min(200, Math.floor(requestedLimit))) : 100;
+    const limit = paginationRequested
+      ? (Number.isFinite(requestedLimit) ? Math.max(1, Math.min(200, Math.floor(requestedLimit))) : 100)
+      : filteredItems.length;
     const offset = Number.isFinite(requestedOffset) ? Math.max(0, Math.floor(requestedOffset)) : 0;
-    const items = filteredItems.slice(offset, offset + limit);
+    const items = paginationRequested ? filteredItems.slice(offset, offset + limit) : filteredItems;
     send(response, 200, {
       items,
       count: items.length,
