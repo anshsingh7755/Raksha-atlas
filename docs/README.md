@@ -20,6 +20,10 @@ Use this page to find the current project documentation. Keep detailed technical
 - [Database](../database/README.md)
 - [Data engineering](../data-engineering/README.md)
 - [Infrastructure](../infrastructure/README.md)
+- [Vercel API adapter](../api/README.md)
+- [Project scripts](../scripts/README.md)
+- [Nginx deployment config](../deploy/README.md)
+- [GitHub Actions workflows](../.github/workflows/README.md)
 
 ## Documentation areas
 
