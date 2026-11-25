@@ -1,3 +1,11 @@
+## How to read this dossier
+
+This dossier collects public information about future defence programmes and acquisitions. It may include projects at very different stages: an idea, a study, an approval, a tender, a signed contract, testing or construction.
+
+Those stages must remain separate. A report about a possible programme is not an official approval. An approval is not a signed contract. A contract is not proof of delivery.
+
+The research cut-off and source links are important. Treat the records as a dated research snapshot, not a live government register or a complete list of every programme.
+
 # Indian Defence Future Programmes & Acquisition Intelligence Dossier
 
 **Research cut-off:** 23 November 2026  
