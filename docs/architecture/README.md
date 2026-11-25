@@ -197,3 +197,10 @@ AWS Terraform defines a private encrypted RDS database with Secrets Manager-mana
 Spring Boot is the authorization enforcement point. The candidate API uses stateless bearer-token authentication, validates issuer/audience/time and signature, and accepts only the signed `VIEWER`, `ANALYST` and `ADMIN` role values. `GET /api/admin/audit` is ADMIN-only and bounded to 1–100 records. The audit filter records mutation attempts and rejected API requests without request bodies, query strings, bearer tokens, source text or client IP. CORS is an exact-origin allowlist configured by `RAKSHA_ALLOWED_ORIGINS`; security headers are set by the backend.
 
 The backend supports an explicit OIDC issuer-discovery/JWKS decoder mode with audience validation; HS256 remains the local compatibility mode. OIDC code support is not provider verification: production still requires approved issuer metadata, MFA and lifecycle controls. Audit table permissions, retention, export and tamper evidence must be configured and tested before release. No production identity provider or route cutover is enabled. See [Phase 6 security design](PHASE-6-SECURITY-IDENTITY.md), [threat model](../../infrastructure/security/PHASE-6-THREAT-MODEL.md) and [runbook](../roadmap/PHASE-6-CUTOVER-RUNBOOK.md).
+
+
+## 8. Phase 7 frontend/backend integration status
+
+The shared UI now has typed Spring API clients and an in-memory bearer-token provider. Next.js can route the inventory, sources, programmes, procurement-2026 and assistant chat paths to Spring when `RAKSHA_SPRING_API_ENABLED=true`; all other API paths retain the Node fallback. The assistant compatibility endpoint is `POST /api/chat`, which forwards through the authenticated Spring AI gateway to FastAPI.
+
+This is a candidate integration path, not the active production path. Spring routing is disabled by default because the browser OIDC client is not yet wired and PostgreSQL/AI runtime parity is not yet accepted. Documents, news/review, commands, timelines, briefs, watch, PIB and other endpoints without Spring contracts remain on Node. See [Phase 7 integration runbook](../roadmap/PHASE-7-FRONTEND-INTEGRATION.md).
