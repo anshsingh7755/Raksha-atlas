@@ -4,10 +4,22 @@ Use this page to find the current project documentation. Keep detailed technical
 
 ## Start here
 
-1. [Main README](../README.md) — project overview, quick start and delivery stages.
-2. [Architecture quick reference](../ARCHITECTURE.md) — active code paths and repository areas.
-3. [Architecture and service boundaries](architecture/README.md) — current runtime, target design and migration policy.
-4. [Delivery roadmap](roadmap/README.md) — phases, sub-phases, work completed, pending checks and acceptance criteria.
+1. [Run and deployment guide](RUN-AND-DEPLOY.md) — shortest path to install, run, build and deploy.
+2. [Main README](../README.md) — project overview, quick start and delivery stages.
+3. [Architecture quick reference](../ARCHITECTURE.md) — active code paths and repository areas.
+4. [Architecture and service boundaries](architecture/README.md) — current runtime, target design and migration policy.
+5. [Delivery roadmap](roadmap/README.md) — phases, sub-phases, work completed, pending checks and acceptance criteria.
+
+## Simple code guides
+
+- [Active frontend](../src/README.md)
+- [Active Node backend](../server/README.md)
+- [Next.js migration frontend](../frontend/README.md)
+- [Spring Boot migration backend](../backend/README.md)
+- [AI and document service](../ai/README.md)
+- [Database](../database/README.md)
+- [Data engineering](../data-engineering/README.md)
+- [Infrastructure](../infrastructure/README.md)
 
 ## Documentation areas
 
