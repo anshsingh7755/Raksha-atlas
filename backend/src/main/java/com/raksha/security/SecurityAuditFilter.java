@@ -11,10 +11,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-@Component
 public class SecurityAuditFilter extends OncePerRequestFilter {
     private final JdbcTemplate jdbc;
     public SecurityAuditFilter(JdbcTemplate jdbc) { this.jdbc = jdbc; }
