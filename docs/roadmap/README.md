@@ -280,7 +280,7 @@ For each technology, use the same learning loop:
 
 ## 12. Current next action
 
-**Current execution point:** Phase 5.1–5.10 implementation foundations are committed. Continue to Phase 6 while retaining runtime, cloud deployment, recovery and cutover acceptance checks for Phase 10. Keep the Phase 1 browser/device parity, Phase 2 PostgreSQL import/reconciliation, identity-provider verification, API parity and rollback rehearsal as explicit Phase 10 final acceptance gates. Do not retire Vite, Node RAG or legacy APIs before those gates pass and release approval is given.
+**Current execution point:** Phase 7.1–7.10 frontend integration foundations are implemented. CI and runtime acceptance are being verified. Proceed to Phase 8 only after the Phase 7 automated gates pass; keep real OIDC, populated PostgreSQL parity, live AI retrieval, browser/device checks and rollback rehearsal for Phase 10. Do not retire Vite, Node RAG or legacy APIs before those gates pass and release approval is given.
 
 ## 12. Phase 6 — security, identity, authorization and audit
 
@@ -300,3 +300,23 @@ For each technology, use the same learning loop:
 | 6.10 | Penetration test, incident exercise and security release sign-off | Security release checklist added; actual exercises and sign-off deferred to Phase 10 |
 
 **Security boundary:** No production IdP, credentials, user provisioning or public route changes are activated. OIDC mode is code support only; do not configure it for production until issuer/JWKS and claims are verified against the approved provider. The Vite/Node application remains active. Audit records intentionally exclude request bodies, query strings, tokens, source text and client IP. Database-level immutability, retention, export and outage behavior require Phase 10 validation.
+
+
+## 13. Phase 7 — frontend integration and backend connectivity
+
+**Target:** shared React UI, Next.js routing, typed API clients, Spring Boot read APIs and the protected FastAPI gateway. **Implementation status:** 7.1–7.10 foundations implemented; CI verification pending. Spring routing remains disabled by default and Node remains the fallback. See [Phase 7 integration runbook](PHASE-7-FRONTEND-INTEGRATION.md).
+
+| Sub-phase | Workstream | Status |
+|---|---|---|
+| 7.1 | Inventory frontend/backend contracts | Mapped supported Spring contracts and legacy-only endpoints |
+| 7.2 | Secure identity handoff | In-memory bearer-token provider; real OIDC client wiring deferred |
+| 7.3 | Typed backend API client | Inventory, sources, programmes, procurement and assistant clients added |
+| 7.4 | API proxy and routing strategy | Opt-in Spring route allowlist; Node fallback retained |
+| 7.5 | Inventory and source integration | Existing UI paths compatible with Spring read contracts |
+| 7.6 | Programme and procurement integration | Spring read contracts exposed; unsupported modules remain on Node |
+| 7.7 | AI assistant integration | Existing chat UI uses typed client; Spring compatibility adapter calls FastAPI gateway |
+| 7.8 | Loading, error and empty states | Inventory failures are surfaced accessibly; chat states retained |
+| 7.9 | Integration tests and parity gates | Frontend contract tests and Spring gateway tests added |
+| 7.10 | Controlled routing, rollback and documentation | Opt-in configuration and rollback boundary documented; no cutover |
+
+**Phase 7 release boundary:** Spring endpoints require valid JWT access tokens and populated PostgreSQL data. The AI gateway additionally requires private FastAPI connectivity, pgvector, model credentials and a separate service token. No real OIDC provider is configured. Keep `RAKSHA_SPRING_API_ENABLED=false` until Phase 10 identity, data, AI, browser and rollback checks pass. The current Node API remains active for all other features.
