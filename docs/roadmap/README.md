@@ -229,22 +229,22 @@ Remaining Phase 2 work: authentication, authorization, expanded API validation/p
 
 ## 9. Phase 5 — infrastructure and production
 
-**Target:** Docker, AWS, Terraform and GitHub Actions; Kubernetes/EKS only when justified. **Implementation status:** 5.1–5.5 foundations committed. Local runtime/profile acceptance, AWS plan review and deployment remain deferred; no AWS resources have been provisioned.
+**Target:** Docker, AWS, Terraform, GitHub Actions, observability and secure operations. **Implementation status:** 5.1–5.10 foundations implemented; CI/runtime/cloud acceptance is pending. No AWS resources have been applied and no production deployment has occurred.
 
 | Sub-phase | Workstream | Status |
 |---|---|---|
-| 5.1 | Create reproducible local Compose services | Existing Vite/Node stack preserved; opt-in `migration` (Spring Boot) and `cache` (Redis) profiles added |
-| 5.2 | Add service-specific Dockerfiles and health checks | Java 21 backend and Next.js standalone images added; existing FastAPI image retained; Next.js image is candidate-only |
-| 5.3 | Add automated format, typecheck, unit and integration tests | Existing tests retained; CI expanded for container builds and Terraform static checks |
-| 5.4 | Build GitHub Actions CI for pull requests and branch updates | CI permissions, concurrency, timeout and validation steps updated |
-| 5.5 | Provision AWS networking, IAM, S3, RDS and ECS with Terraform | VPC/subnets/security groups, private encrypted RDS, encrypted/versioned S3, ECS cluster and task IAM roles defined; apply prohibited pending review |
-| 5.6 | Configure secrets, backups, encryption and access policies | Not started |
-| 5.7 | Add deployment and rollback workflows | Not started |
-| 5.8 | Add OpenTelemetry instrumentation, Prometheus metrics and Grafana dashboards | Not started |
-| 5.9 | Perform security review, load testing and recovery exercises | Deferred to Phase 10 |
-| 5.10 | Adopt Kubernetes/EKS and Helm only when justified | ECS remains the initial target; EKS deferred unless scale requires it |
+| 5.1 | Create reproducible local Compose services | Default Vite/Node stack retained; opt-in migration, cache and monitoring profiles added |
+| 5.2 | Add service-specific Dockerfiles and health checks | Spring Boot and Next.js images added; FastAPI image retained; health checks configured |
+| 5.3 | Add automated format, typecheck, unit and integration tests | Existing tests retained; CI expanded for image builds, Terraform and metrics |
+| 5.4 | Build GitHub Actions CI for pull requests and branch updates | CI expanded with permissions, concurrency and validation gates |
+| 5.5 | Provision AWS networking, IAM, S3, RDS and ECS with Terraform | VPC, private RDS, S3, ECS, KMS and IAM foundation defined; not applied |
+| 5.6 | Configure secrets, backups, encryption and access policies | RDS managed credentials, Secrets Manager placeholder, KMS encryption/rotation, S3 TLS/versioning, backup policy and restore helpers |
+| 5.7 | Add deployment and rollback workflows | Protected manual ECS task-definition deploy/rollback workflow; requires environment approval and service configuration |
+| 5.8 | Add OpenTelemetry instrumentation, Prometheus metrics and Grafana dashboards | FastAPI metrics, optional OTLP traces, local Prometheus/Grafana and dashboard provisioning |
+| 5.9 | Perform security review, load testing and recovery exercises | Security checklist, k6 profile, backup/restore helpers and recovery plan added; execution deferred to Phase 10 |
+| 5.10 | Adopt Kubernetes/EKS and Helm only when operational scale/complexity justifies it | Decision recorded: ECS/Fargate first; EKS/Helm deferred pending measurable need |
 
-**Safety boundary:** Compose profiles are opt-in. The default Vite/Node request path remains active. Terraform defines infrastructure only; it does not deploy an application service, load balancer, NAT gateway or production secrets. Never apply the plan before account, budget, IAM, network, backup and security approval. See [Phase 5 cutover runbook](PHASE-5-CUTOVER-RUNBOOK.md).
+**Safety boundary:** Terraform is plan-only until explicit approval. The default Vite/Node request path remains active. The ECS deploy/rollback workflow is manual and requires protected GitHub environments, OIDC role configuration, an existing ECS service, an exact task-definition ARN and explicit confirmation. Runtime, AWS, load, security, backup-restore and rollback validation remain Phase 10 acceptance gates. See [Phase 5 runbook](PHASE-5-CUTOVER-RUNBOOK.md) and [ECS decision](../architecture/PHASE-5-ECS-DECISION.md).
 
 ## 10. Six-month learning plan
 
@@ -280,4 +280,4 @@ For each technology, use the same learning loop:
 
 ## 12. Current next action
 
-**Current execution point:** Phase 5.1–5.5 infrastructure foundations are implemented. Continue with Phase 5.6–5.10 while retaining all runtime, cloud deployment, recovery and cutover acceptance checks for Phase 10. Keep the Phase 1 browser/device parity, Phase 2 PostgreSQL import/reconciliation, identity-provider verification, API parity and rollback rehearsal as explicit Phase 10 final acceptance gates. Do not retire Vite, Node RAG or legacy APIs before those gates pass and release approval is given.
+**Current execution point:** Phase 5.1–5.10 implementation foundations are committed. Continue to Phase 6 while retaining runtime, cloud deployment, recovery and cutover acceptance checks for Phase 10. Keep the Phase 1 browser/device parity, Phase 2 PostgreSQL import/reconciliation, identity-provider verification, API parity and rollback rehearsal as explicit Phase 10 final acceptance gates. Do not retire Vite, Node RAG or legacy APIs before those gates pass and release approval is given.
