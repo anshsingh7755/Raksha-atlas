@@ -280,7 +280,7 @@ For each technology, use the same learning loop:
 
 ## 12. Current next action
 
-**Current execution point:** Phase 8.1–8.10 intelligence operations and data-quality foundations are implemented. Latest CI verification is running. Phase 7 CI #538 and Phase 8 CI must be green before treating automated validation as complete; keep real OIDC, populated PostgreSQL parity, live AI retrieval, browser/device checks and rollback rehearsal for Phase 10. Do not retire Vite, Node RAG or legacy APIs before those gates pass and release approval is given.
+**Current execution point:** Phase 9.1–9.10 validation plan is documented in [the Phase 9 validation plan](PHASE-9-END-TO-END-VALIDATION.md). Repository-side preparation is recorded; local execution, browser/device checks, isolated PostgreSQL reconciliation, security review, load testing and recovery rehearsal remain pending. Keep the root Vite/Node runtime active, keep migration routes opt-in, and preserve local stashes. Phase 10 deployment and production cutover remain blocked until Phase 9 evidence is reviewed and explicit release approval is given.
 
 ## 12. Phase 6 — security, identity, authorization and audit
 
