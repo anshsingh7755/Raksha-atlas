@@ -13,6 +13,8 @@ from .observability import RequestMetricsMiddleware
 from .retrieval import search_evidence
 from .vector_store import upsert_chunks
 from .workflows import run_research_workflow
+from .telemetry import configure_tracing
+from prometheus_fastapi_instrumentator import Instrumentator
 
 app = FastAPI(
     title="Raksha Atlas AI",
@@ -20,6 +22,8 @@ app = FastAPI(
     description="Private AI, RAG foundation and public-document extraction service.",
 )
 app.add_middleware(RequestMetricsMiddleware)
+Instrumentator().instrument(app).expose(app, endpoint="/metrics", include_in_schema=False)
+configure_tracing(app)
 
 
 class DocumentExtractionRequest(BaseModel):
