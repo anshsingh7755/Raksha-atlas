@@ -64,8 +64,10 @@ jobs:
           ECS_CLUSTER: ${{ vars.ECS_CLUSTER }}
           ECS_SERVICE: ${{ vars.ECS_SERVICE }}
           TASK_DEFINITION: ${{ inputs.task_definition_arn }}
+          OPERATION: ${{ inputs.operation }}
         run: |
           set -euo pipefail
+          echo "Requested operation: $OPERATION (deploy means a reviewed new revision; rollback means a previously approved known-good revision)."
           aws ecs describe-services --cluster "$ECS_CLUSTER" --services "$ECS_SERVICE" --region "$AWS_REGION" --query 'services[?status==`ACTIVE`].serviceName' --output text | grep -Fx "$ECS_SERVICE"
           aws ecs update-service --cluster "$ECS_CLUSTER" --service "$ECS_SERVICE" --task-definition "$TASK_DEFINITION" --region "$AWS_REGION"
           aws ecs wait services-stable --cluster "$ECS_CLUSTER" --services "$ECS_SERVICE" --region "$AWS_REGION"
