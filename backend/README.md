@@ -1,18 +1,22 @@
-# Raksha Atlas — Spring Boot backend
+# Backend — Spring Boot migration version
 
-This directory contains the Java 21 / Spring Boot 4 migration backend. It is a candidate service, not a replacement for the active Node.js API in `server/`.
+This folder contains a Java service being prepared for a future backend migration.
 
-## Current scope
+## In simple words
 
-- Spring Boot application and REST API scaffold.
-- Flyway database migrations under `src/main/resources/db/migration`.
-- Initial domain APIs and security foundations.
-- Docker image and local migration-profile support.
+The active website currently talks to the Node.js API in `server/`. This Spring Boot service is a future replacement candidate; it is not the default live API.
 
-## Run and validate
+## What is inside?
 
-Use the root Docker Compose migration profile and the environment settings documented in [infrastructure](../infrastructure/README.md). For the active website, continue using the root `npm run dev:full` workflow.
+- `src/main/java/` — Java code for API endpoints, business rules, inventory and security.
+- `src/main/resources/` — application settings and database migration files.
+- `pom.xml` — Java dependencies and build instructions.
+- `Dockerfile` — instructions for building its container.
 
-## Migration rule
+## How does it work?
 
-Do not route production website traffic to this service or remove Node endpoints until authentication, populated-data parity, API contract tests, end-to-end validation and rollback are accepted. See [architecture](../docs/architecture/README.md) and the [delivery roadmap](../docs/roadmap/README.md).
+A website or another trusted service sends an API request. Spring Boot checks it, applies the required rules and reads data from PostgreSQL.
+
+## Important
+
+Do not route the live website to this service or remove Node endpoints until authentication, data parity, tests and rollback are approved. See the [phase-wise roadmap](../docs/roadmap/README.md).
