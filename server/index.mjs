@@ -622,11 +622,10 @@ export async function handleRequest(request, response) {
   );
   if (
     process.env.VERCEL === "1" &&
-    ["POST", "PATCH", "DELETE"].includes(request.method) &&
-    url.pathname !== "/api/chat"
+    ["POST", "PATCH", "DELETE"].includes(request.method)
   ) {
     send(response, 503, {
-      error: "This operation is temporarily disabled in the Vercel read-only deployment while persistent storage and owner authentication are being migrated.",
+      error: "Write and AI endpoints are temporarily disabled in the Vercel read-only deployment until persistent storage and owner authentication are configured.",
     });
     return;
   }
