@@ -12,6 +12,19 @@ For every phase, use the runbook as a checklist, record the exact commands and r
 
 > **Project stage update — 25 November 2026:** The project owner confirms that the initial website is deployed and its existing functionality is working. The current task is documentation and repository organization only; new feature development follows after that cleanup. Phase tables below preserve the technical implementation history and acceptance notes recorded during earlier work. Treat environment-dependent checks as pending until they are rerun, not as proof that the live deployment is broken.
 
+## Roadmap terms in simple language
+
+| Term | Meaning |
+|---|---|
+| Phase | A large stage of project work. |
+| Sub-phase | A smaller group of tasks inside a phase. |
+| Deliverable | The code, document or capability the work should produce. |
+| Acceptance criteria | The checks that must pass before the work is accepted. |
+| Parity | The new version behaves like the old version for the same feature. |
+| Cutover | Switching real application traffic to the replacement service. |
+| Rollback | Returning to the previous working version if the new one fails. |
+| Pending validation | The work exists, but the required test has not yet been completed. |
+
 ## 1. Product and engineering principles
 
 1. Finish and validate the website's required features before starting the major stack migration.
