@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import { fetchPlatformRegister, type PlatformRegisterItem } from "./services/inventory";
 import { apiGet, apiPatch, apiPost } from "./services/api";
+import { backendApi } from "./services/backend-api";
 import TheatreAtlas from "./components/TheatreAtlas";
 import AtlasFooter from "./components/AtlasFooter";
 import SectionTitle from "./components/SectionTitle";
@@ -1420,12 +1421,16 @@ function App({
     setChatSources([]);
     setChatNeedsModelKey(false);
     try {
-      const result = await apiPost<
-        { answer?: string; sources?: ChatSource[]; needsModelKey?: boolean },
-        { question: string }
-      >("/api/chat", { question: prompt });
+      const result = await backendApi.answer(prompt);
       setChatAnswer(result.answer ?? "No answer was returned.");
-      setChatSources(result.sources ?? []);
+      setChatSources((result.sources ?? []).map((source) => ({
+        title: source.title,
+        url: source.url,
+        sourceId: source.source_id,
+        sourceName: source.publisher,
+        verificationStatus: source.verification_status,
+        pageNumber: source.page ?? undefined,
+      })));
       setChatNeedsModelKey(Boolean(result.needsModelKey));
       setQuestion("");
     } catch (error) {
