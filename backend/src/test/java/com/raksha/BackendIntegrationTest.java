@@ -113,4 +113,37 @@ class BackendIntegrationTest {
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.title").value("Invalid request"));
     }
+
+    @Test
+    void viewerCannotReadAdministrativeAuditEvents() throws Exception {
+        mvc.perform(get("/api/admin/audit").with(SecurityMockMvcRequestPostProcessors.jwt()
+                        .authorities(new SimpleGrantedAuthority("ROLE_VIEWER"))))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
+    void adminCanReadBoundedAuditEvents() throws Exception {
+        mvc.perform(get("/api/admin/audit").param("limit", "10")
+                        .with(SecurityMockMvcRequestPostProcessors.jwt()
+                                .authorities(new SimpleGrantedAuthority("ROLE_ADMIN"))))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isArray());
+    }
+
+    @Test
+    void healthIncludesSecurityHeaders() throws Exception {
+        mvc.perform(get("/api/health"))
+                .andExpect(status().isOk())
+                .andExpect(header().string("X-Content-Type-Options", "nosniff"))
+                .andExpect(header().string("X-Frame-Options", "DENY"))
+                .andExpect(header().exists("Referrer-Policy"));
+    }
+
+    @Test
+    void auditEndpointRejectsUnboundedLimit() throws Exception {
+        mvc.perform(get("/api/admin/audit").param("limit", "500")
+                        .with(SecurityMockMvcRequestPostProcessors.jwt()
+                                .authorities(new SimpleGrantedAuthority("ROLE_ADMIN"))))
+                .andExpect(status().isBadRequest());
+    }
 }
