@@ -1,3 +1,9 @@
+## Simple explanation
+
+Phase 2 prepares a Java Spring Boot backend and PostgreSQL database to replace parts of the current Node.js backend.
+
+This is a controlled migration, not a quick folder rename. The current Node API stays active while the Java service is tested. Data must be copied and compared, API responses must match, and authentication must be verified before traffic is switched.
+
 # Phase 2 — Spring Boot backend and PostgreSQL
 
 **Target:** Java 21, Spring Boot 4, Spring Security, Spring Data JPA, Flyway, PostgreSQL 17 and optional Redis.  
