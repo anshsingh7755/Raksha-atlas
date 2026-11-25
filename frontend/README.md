@@ -20,7 +20,7 @@ npm run dev
 
 Open `http://localhost:3000`.
 
-The Next.js rewrite forwards `/api/*` requests to the existing Node API. By default it uses `http://127.0.0.1:8787`. Copy `.env.example` to `.env.local` and set `RAKSHA_API_PROXY_TARGET` when using a different API origin. Do not expose secrets through `NEXT_PUBLIC_*` variables. Do not stop the existing API while testing the Next.js frontend.
+The Next.js rewrite forwards `/api/*` requests to the existing Node API by default (`RAKSHA_API_PROXY_TARGET`, default `http://127.0.0.1:8787`). Spring routing is opt-in: set `RAKSHA_SPRING_API_ENABLED=true` and `RAKSHA_SPRING_API_PROXY_TARGET=http://127.0.0.1:8081` to route only inventory, sources, programmes, procurement-2026 and chat to Spring; every other API route remains on Node. These rewrite values are evaluated during the Next.js build, so rebuild after changing them. Spring endpoints require a valid bearer token supplied through `setApiAccessTokenProvider()` by an approved OIDC client; no production identity provider is wired yet, so keep Spring routing disabled. Never expose credentials through `NEXT_PUBLIC_*` variables.
 
 ## Validate
 
@@ -37,3 +37,4 @@ npm run build
 - Do not delete the root Vite application until Next.js feature parity and rollback checks pass.
 
 See [Phase 1 frontend migration plan](../docs/roadmap/PHASE-1-FRONTEND-MIGRATION.md).
+\n## Phase 7 integration\n\nSee [Phase 7 frontend integration runbook](../docs/roadmap/PHASE-7-FRONTEND-INTEGRATION.md) for endpoint coverage, authentication handoff, validation and cutover gates.\n
