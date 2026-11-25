@@ -340,6 +340,7 @@ async function refresh({ includeMonitor = true } = {}) {
         error: error.message || "monitored source sync failed",
       };
     }
+  await storeReady;
   const data = await loadData();
   data.lastRefreshAttemptAt = attemptedAt;
   data.lastRefreshResult = {
@@ -602,7 +603,7 @@ async function runScheduledHourly() {
   }
 }
 
-const server = createServer(async (request, response) => {
+export async function handleRequest(request, response) {
   if (request.method === "OPTIONS") {
     response.writeHead(204, {
       "Access-Control-Allow-Origin":
@@ -619,6 +620,17 @@ const server = createServer(async (request, response) => {
     request.url || "/",
     `http://${request.headers.host || "localhost"}`,
   );
+  if (
+    process.env.VERCEL === "1" &&
+    ["POST", "PATCH", "DELETE"].includes(request.method) &&
+    url.pathname !== "/api/chat"
+  ) {
+    send(response, 503, {
+      error: "This operation is temporarily disabled in the Vercel read-only deployment while persistent storage and owner authentication are being migrated.",
+    });
+    return;
+  }
+
   if (
     ["POST", "PATCH", "DELETE"].includes(request.method) &&
     url.pathname !== "/api/chat" &&
@@ -1646,8 +1658,12 @@ const server = createServer(async (request, response) => {
     return;
   }
   send(response, 404, { error: "not found" });
-});
+}
 
+export default handleRequest;
+
+if (process.env.VERCEL !== "1") {
+const server = createServer(handleRequest);
 const apiHost =
   process.env.HOST || (process.env.NODE_ENV === "production" ? "0.0.0.0" : "127.0.0.1");
 await storeReady;
@@ -1665,3 +1681,4 @@ startScheduler({
   runDaily: () => refresh({ includeMonitor: false }),
   onError: (error) => console.error("Scheduled job failed:", error.message || error),
 });
+}
