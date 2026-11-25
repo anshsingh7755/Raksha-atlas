@@ -123,7 +123,7 @@ resource "aws_db_instance" "main" {
   skip_final_snapshot           = false
   final_snapshot_identifier     = "${var.name_prefix}-final"
   copy_tags_to_snapshot         = true
-  enabled_cloudwatch_logs_exports = ["postgresql"]
+  enabled_cloudwatch_logs_exports   = ["postgresql"]
 }
 
 resource "aws_s3_bucket" "documents" {
