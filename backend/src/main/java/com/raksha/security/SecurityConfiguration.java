@@ -26,7 +26,7 @@ import org.springframework.security.oauth2.core.OAuth2Error;
 import org.springframework.security.oauth2.core.OAuth2TokenValidatorResult;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.access.intercept.AuthorizationFilter;
+import org.springframework.security.web.access.ExceptionTranslationFilter;
 import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter;
 
 @Configuration
@@ -48,7 +48,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/api/admin/audit/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .oauth2ResourceServer(oauth -> oauth.jwt(jwt -> jwt.jwtAuthenticationConverter(rolesConverter())))
-                .addFilterAfter(auditFilter, AuthorizationFilter.class)
+                .addFilterAfter(auditFilter, ExceptionTranslationFilter.class)
                 .build();
     }
 
