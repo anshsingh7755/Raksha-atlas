@@ -1,5 +1,5 @@
 FROM node:22-alpine AS dependencies
-WORKDIR /app/frontend
+WORKDIR /app
 COPY frontend/package.json frontend/package-lock.json ./
 RUN npm ci
 
@@ -7,7 +7,6 @@ FROM dependencies AS build
 WORKDIR /app/frontend
 COPY frontend/ ./
 COPY src/ /app/src/
-ARG NEXT_PUBLIC_API_BASE_URL=
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 
