@@ -173,7 +173,8 @@ The Programmes page is a research/discovery register, not a contract ledger or o
 ## 12. Where to find implementation details
 
 - [Delivery roadmap](../roadmap/README.md) — phases, sequence, acceptance criteria and learning plan.
-- [Inventory module specification](../roadmap/INVENTORY-MODULE.md) — canonical model, API contract, current implementation and acceptance checklist.\n- [Commands module specification](../roadmap/COMMANDS-MODULE.md) — command classification, API contract, source policy and acceptance checklist.
+- [Inventory module specification](../roadmap/INVENTORY-MODULE.md) — canonical model, API contract, current implementation and acceptance checklist.
+- [Commands module specification](../roadmap/COMMANDS-MODULE.md) — command classification, API contract, source policy and acceptance checklist.
 - [Programmes module specification](../roadmap/PROGRAMMES-MODULE.md) — programme register API, stage classification, evidence policy and acceptance checklist.
 - [Inventory classification policy](../data/INVENTORY-CLASSIFICATION-AND-RECONCILIATION.md) — operator attribution, domain classification and quantity reconciliation rules.
 - [Inventory data notes](../../INVENTORY-DATA.md) — inventory provenance and data handling.
