@@ -1,3 +1,13 @@
+## Read this guide in simple terms
+
+This document explains how a programme's history is different from the list of equipment currently in service.
+
+A **programme** is a project to develop, acquire or upgrade a capability. A **milestone** is an event in that programme, such as approval, tender, contract, first flight, delivery or induction.
+
+Those events are not interchangeable. An approval does not mean a contract was signed. A contract does not mean the equipment was delivered. A planned date does not prove that an event happened.
+
+The timeline should show only what the source supports, keep uncertain dates clearly labelled and connect each programme timeline to its structured programme record.
+
 # Programme timeline and inventory information architecture
 
 **Research cut-off:** 23 November 2026  
