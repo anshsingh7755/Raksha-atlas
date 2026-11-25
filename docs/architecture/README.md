@@ -85,23 +85,23 @@ The root Vite/Node application remains the active website and API. The current l
 
 The Next.js shell currently reuses the existing UI and proxies API requests to Node. This is a transition aid, not a second permanent frontend. Its standalone Docker image is opt-in and does not replace the root Vite/Node image.
 
-## 5. Request flows
+## 5. Target request flows (after migration)
 
-### Standard website request
+### Standard website request (target)
 1. Browser loads a Next.js route.
 2. Frontend calls Spring Boot REST API.
 3. Spring Boot applies validation, authentication and domain rules.
 4. Spring Boot reads/writes PostgreSQL; Redis is used only where caching is useful.
 5. Typed API response is rendered in the UI.
 
-### AI assistant request
+### AI assistant request (target)
 1. Frontend submits a question to Spring Boot.
 2. Spring Boot checks access and forwards an authorized request to FastAPI.
 3. FastAPI retrieves source chunks/metadata using pgvector and approved document storage.
 4. LLM generates a grounded response with citations.
 5. Result returns through Spring Boot to the frontend.
 
-### Public-source ingestion
+### Public-source ingestion (target)
 1. Python collectors read permitted public RSS feeds, APIs, pages and documents.
 2. Extractors parse text and metadata.
 3. Polars/Python processors normalize, deduplicate and classify.
