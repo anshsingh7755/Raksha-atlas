@@ -362,3 +362,12 @@ For each technology, use the same learning loop:
 | 8.10 | Documentation and acceptance | Phase 8 runbook and Phase 10 operational gates recorded |
 
 **Release boundary:** Source freshness is a timestamp indicator, not an availability guarantee or evidence score. Active feed configuration is not proof of a successful fetch. No alerts, new schedules, automatic review decisions or production cutover are enabled. Runtime checks against actual source systems, data reconciliation, outage recovery and dashboard responsive testing remain Phase 10 acceptance items.
+
+
+## New product requirement — automated intelligence monitoring
+
+A separate requirements plan has been added: [Automated Defence Intelligence Monitoring](../intelligence/AUTOMATED-INTELLIGENCE-MONITORING.md).
+
+It defines the requested 08:00–09:00 IST morning collection, 10:00 IST refresh, hourly collection, cross-source event grouping, official/reported/unverified/rumour/disputed evidence labels, programme lifecycle tracking, mobile owner controls and laptop-independent hosted execution.
+
+**Roadmap status:** Proposed; not implemented or validated. The existing Node scheduler is process-dependent, so hosted execution is a prerequisite. Deliver this in small stages (source registry, hosted worker, event grouping, evidence model, mobile dashboard, optional AI) without replacing the active frontend/backend. Do not mark these tasks complete until the acceptance checks in the requirements document have evidence.
