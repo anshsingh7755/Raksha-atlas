@@ -1838,6 +1838,7 @@ function App({
     const [query, setQuery] = useState("");
     useEffect(() => { const saved = sessionStorage.getItem("raksha-search-query"); if (saved) { setQuery(saved); sessionStorage.removeItem("raksha-search-query"); } }, []);
     const [loading, setLoading] = useState(true);
+    const [inventoryError, setInventoryError] = useState("");
     useEffect(() => {
       const controller = new AbortController();
       const params = new URLSearchParams();
@@ -1845,6 +1846,7 @@ function App({
       if (categoryFilter !== "all") params.set("category", categoryFilter);
       if (statusFilter !== "all") params.set("quantityStatus", statusFilter);
       setLoading(true);
+      setInventoryError("");
       apiGet<{ items: InventoryItem[]; availableFilters?: InventoryFilterOptions }>(
         `/api/inventory?${params}`,
         { signal: controller.signal },
@@ -1853,7 +1855,11 @@ function App({
           setItems(data.items ?? []);
           if (data.availableFilters) setFilterOptions(data.availableFilters);
         })
-        .catch((error) => { if (error.name !== "AbortError") console.error(error); })
+        .catch((error) => {
+          if (error.name !== "AbortError") {
+            setInventoryError(error instanceof Error ? error.message : "Inventory is temporarily unavailable.");
+          }
+        })
         .finally(() => { if (!controller.signal.aborted) setLoading(false); });
       return () => controller.abort();
     }, [serviceFilter, categoryFilter, statusFilter]);
@@ -1903,6 +1909,7 @@ function App({
           <Search size={17}/><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Find a platform, class, variant, role or manufacturer…" aria-label="Search inventory records"/>
           {query && <button className="quiet-btn" onClick={() => setQuery("")}>Clear</button>}
         </div>
+        {inventoryError && <div className="data-state" role="alert">{inventoryError} Check API connectivity and access permissions, then retry by changing a filter.</div>}
         <div className="inventory-profile-grid">
           {visibleItems.map((item) => {
             const PlatformIcon = iconFor(item);
