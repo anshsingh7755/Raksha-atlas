@@ -79,3 +79,6 @@ Use one main document for each subject and link to it from other files. Avoid co
 - **Planned:** described as future work; not necessarily implemented.
 - **Pending validation:** code or documentation exists, but the required check has not yet been completed.
 - **Completed:** the stated work and its acceptance checks have evidence. If a status is only owner-reported, the document should say so.
+
+### Automated intelligence monitoring
+- [Automated Defence Intelligence Monitoring](intelligence/AUTOMATED-INTELLIGENCE-MONITORING.md) — complete requirements, source groups, evidence labels, 08:00–09:00 morning collection, 10:00 refresh, all-day monitoring, phone access, free-first constraints and phased implementation plan.
