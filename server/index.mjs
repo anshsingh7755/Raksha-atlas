@@ -690,6 +690,35 @@ const server = createServer(async (request, response) => {
     });
     return;
   }
+  if (request.method === "GET" && url.pathname === "/api/operations/summary") {
+    const sourceRows = store ? await store.loadSources() : readSources();
+    const monitorConfig = JSON.parse(readFileSync(monitorConfigPath, "utf8"));
+    const feeds = store ? await store.loadMonitorFeeds() : monitorConfig.rssFeeds;
+    const articles = data.articles ?? [];
+    const countBy = (field, value) => articles.filter((item) => item[field] === value).length;
+    const now = Date.now();
+    const freshness = sourceRows.reduce((result, source) => {
+      if (!source.lastCheckedAt) result.neverChecked += 1;
+      else {
+        const ageHours = (now - Date.parse(source.lastCheckedAt)) / 3600000;
+        if (Number.isFinite(ageHours) && ageHours > 168) result.staleOver7Days += 1;
+        else if (Number.isFinite(ageHours) && ageHours > 24) result.staleOver24Hours += 1;
+        else if (Number.isFinite(ageHours)) result.checkedWithin24Hours += 1;
+        else result.neverChecked += 1;
+      }
+      return result;
+    }, { checkedWithin24Hours: 0, staleOver24Hours: 0, staleOver7Days: 0, neverChecked: 0 });
+    const pipelineLogs = store ? await store.listPipelineLogs(10) : [];
+    send(response, 200, {
+      generatedAt: new Date().toISOString(),
+      storage: store ? "postgresql" : "json-file",
+      sources: { total: sourceRows.length, active: sourceRows.filter((source) => source.active !== false).length, inactive: sourceRows.filter((source) => source.active === false).length, freshness },
+      feeds: { total: feeds.length, active: feeds.filter((feed) => feed.active !== false).length, inactive: feeds.filter((feed) => feed.active === false).length },
+      articles: { total: articles.length, unreviewed: countBy("reviewState", "unreviewed"), inReview: countBy("reviewState", "in_review"), approved: countBy("reviewState", "approved"), rejected: countBy("reviewState", "rejected"), verification: { official: countBy("verificationStatus", "official"), verified: countBy("verificationStatus", "verified"), reported: countBy("verificationStatus", "reported"), unverified: countBy("verificationStatus", "unverified"), disputed: countBy("verificationStatus", "disputed"), corrected: countBy("verificationStatus", "corrected"), withdrawn: countBy("verificationStatus", "withdrawn") } },
+      pipeline: { lastRefresh: data.lastRefresh ?? null, lastRefreshAttemptAt: data.lastRefreshAttemptAt ?? null, lastRefreshResult: data.lastRefreshResult ?? null, lastRagSyncAt: data.lastRagSyncAt ?? null, lastRagSyncResult: data.lastRagSyncResult ?? null, recentJobs: pipelineLogs },
+    });
+    return;
+  }
   if (request.method === "GET" && url.pathname === "/api/categories") {
     const items = JSON.parse(
       readFileSync(join(root, "categories.json"), "utf8"),
@@ -908,29 +937,31 @@ const server = createServer(async (request, response) => {
     const reviewState = url.searchParams.get("reviewState");
     const from = url.searchParams.get("from");
     const to = url.searchParams.get("to");
-    const items = data.articles.filter((article) => {
+    const filteredItems = data.articles.filter((article) => {
       if (!reviewState && article.reviewState === "rejected") return false;
       if (service && article.service !== service) return false;
       if (topic && article.topic !== topic) return false;
       if (categoryId && article.categoryId !== categoryId) return false;
-      if (
-        searchQuery &&
-        !`${article.title} ${article.summary || ""} ${article.sourceId} ${(article.keywords || []).join(" ")}`
-          .toLowerCase()
-          .includes(searchQuery)
-      )
-        return false;
+      if (searchQuery && ![article.title, article.summary || "", article.sourceId, (article.keywords || []).join(" ")].join(" ").toLowerCase().includes(searchQuery)) return false;
       if (sourceId && article.sourceId !== sourceId) return false;
-      if (verificationStatus && article.verificationStatus !== verificationStatus)
-        return false;
+      if (verificationStatus && article.verificationStatus !== verificationStatus) return false;
       if (reviewState && article.reviewState !== reviewState) return false;
       if (from && (!article.publishedAt || article.publishedAt < from)) return false;
       if (to && (!article.publishedAt || article.publishedAt > to)) return false;
       return true;
     });
+    const requestedLimit = Number(url.searchParams.get("limit") || filteredItems.length || 100);
+    const requestedOffset = Number(url.searchParams.get("offset") || 0);
+    const limit = Number.isFinite(requestedLimit) ? Math.max(1, Math.min(200, Math.floor(requestedLimit))) : 100;
+    const offset = Number.isFinite(requestedOffset) ? Math.max(0, Math.floor(requestedOffset)) : 0;
+    const items = filteredItems.slice(offset, offset + limit);
     send(response, 200, {
       items,
       count: items.length,
+      total: filteredItems.length,
+      limit,
+      offset,
+      hasMore: offset + items.length < filteredItems.length,
       filters: {
         service,
         topic,
