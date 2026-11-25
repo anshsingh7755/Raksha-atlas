@@ -55,7 +55,8 @@ variable "database_deletion_protection" {
   type    = bool
   default = true
 }
-\nvariable "database_backup_retention_days" {
+
+variable "database_backup_retention_days" {
   description = "Automated RDS backup retention in days."
   type        = number
   default     = 7
