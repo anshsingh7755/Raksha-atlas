@@ -185,3 +185,9 @@ The Programmes page is a research/discovery register, not a contract ledger or o
 ## 13. Phase 5 infrastructure boundary
 
 The default Compose stack preserves the current Vite/Node application. The `migration` profile adds the Spring Boot candidate API and the `cache` profile adds Redis; neither changes the default browser/API path. Service images live in `backend/Dockerfile`, `frontend/Dockerfile` and `ai/Dockerfile`. The AWS Terraform foundation is in `infrastructure/aws/terraform`; it defines a private encrypted RDS database, encrypted/versioned private S3 bucket, VPC network boundary, ECS cluster and scoped task IAM. No AWS resources have been applied and no production application service or ingress is created. See [Phase 5 runbook](../roadmap/PHASE-5-CUTOVER-RUNBOOK.md).
+
+## 14. Phase 5 production foundations
+
+The default Compose runtime remains the Vite/Node application. Optional `migration`, `cache` and `monitoring` profiles add the Spring Boot candidate, Redis, and Prometheus/Grafana without changing the default browser path. FastAPI exports low-cardinality Prometheus request metrics and optional OTLP traces; prompts, document content, tokens and raw query strings must never be recorded.
+
+AWS Terraform defines a private encrypted RDS database with Secrets Manager-managed master credentials, encrypted/versioned S3, KMS key rotation, VPC/security groups, ECS cluster and least-privilege IAM. The application secret is a placeholder until an approved rotation workflow populates it. Terraform does not create an application ECS service or public ingress. ECS/Fargate is the initial orchestration decision; EKS is deferred until measured operational needs justify it. See [Phase 5 runbook](../roadmap/PHASE-5-CUTOVER-RUNBOOK.md), [security review](../../infrastructure/security/SECURITY-REVIEW.md) and [ECS decision](PHASE-5-ECS-DECISION.md).
