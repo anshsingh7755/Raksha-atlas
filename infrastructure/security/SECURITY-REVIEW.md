@@ -1,3 +1,11 @@
+## Simple explanation
+
+This is a security review checklist for the project. It lists the important areas that must be checked before the application is treated as production-ready.
+
+The checklist is not a penetration test, security certification or proof that every control is enabled. Each item needs evidence, such as a configuration review, automated test, restore exercise or independent security test.
+
+Use it to track what is implemented, what has been tested and what is still waiting for a real environment or approval.
+
 # Raksha Atlas security review baseline
 
 This checklist is a threat-model starting point, not a completed penetration test or security certification.
