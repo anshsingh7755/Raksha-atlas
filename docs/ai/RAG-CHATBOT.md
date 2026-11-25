@@ -1,10 +1,23 @@
+## Read this guide in simple terms
+
+RAG means **Retrieval-Augmented Generation**. Before an AI model answers a question, the application first searches project records for useful evidence. It then gives selected records to the model so the answer can be based on those sources.
+
+In Raksha Atlas:
+1. The user asks a question.
+2. The Node backend searches relevant public records.
+3. Matching records are passed as evidence to the model when model access is configured.
+4. The answer returns with references to the evidence.
+5. The user can inspect the source rather than trusting an unsupported statement.
+
+The search is currently mainly keyword-based. It can miss questions phrased in an unexpected way. A model answer is not a source, and retrieved text must be treated as untrusted information.
+
 # Raksha Atlas RAG chatbot and daily source monitor
 
 ## Current design
 
 The chat is no longer a fixed answer map. `POST /api/chat` retrieves matching public records from the curated `inventory.json`, source-table equipment catalogue, procurement pipeline, programme timelines, history, and collected article records. In PostgreSQL mode it reads collected articles from the database, rather than relying on the JSON seed file. It sends those records as cited context to the OpenAI Responses API when `OPENAI_API_KEY` is configured. The model may use Responses API `web_search` for current questions. Local evidence is cited as `[R1]`, etc.; live-search citations are returned alongside it. Without a model key, inventory count questions can still be answered from matching curated records; other questions return retrieved records and explain that conversational synthesis/live search needs the key.
 
-The local retriever is lexical/keyword based, with lightweight intent boosts for inventory counts, programme status, organisation, public geography and document research. It now indexes programme dossiers, the public command directory, Theatre Atlas regional records and completed document extractions (PDF pages remain page-addressable). It may miss semantic paraphrases; embeddings/vector search remain future work and should be added only with measured retrieval evaluation. See [AI Assistant module specification](docs/roadmap/AI-ASSISTANT-MODULE.md).
+The local retriever is lexical/keyword based, with lightweight intent boosts for inventory counts, programme status, organisation, public geography and document research. It now indexes programme dossiers, the public command directory, Theatre Atlas regional records and completed document extractions (PDF pages remain page-addressable). It may miss semantic paraphrases; embeddings/vector search remain future work and should be added only with measured retrieval evaluation. See [AI Assistant module specification](../roadmap/AI-ASSISTANT-MODULE.md).
 
 ## What the scheduled collector does
 
