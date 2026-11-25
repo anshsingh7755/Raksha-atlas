@@ -204,3 +204,12 @@ The backend supports an explicit OIDC issuer-discovery/JWKS decoder mode with au
 The shared UI now has typed Spring API clients and an in-memory bearer-token provider. Next.js can route the inventory, sources, programmes, procurement-2026 and assistant chat paths to Spring when `RAKSHA_SPRING_API_ENABLED=true`; all other API paths retain the Node fallback. The assistant compatibility endpoint is `POST /api/chat`, which forwards through the authenticated Spring AI gateway to FastAPI.
 
 This is a candidate integration path, not the active production path. Spring routing is disabled by default because the browser OIDC client is not yet wired and PostgreSQL/AI runtime parity is not yet accepted. Documents, news/review, commands, timelines, briefs, watch, PIB and other endpoints without Spring contracts remain on Node. See [Phase 7 integration runbook](../roadmap/PHASE-7-FRONTEND-INTEGRATION.md).
+
+
+## 9. Phase 8 intelligence operations
+
+The active Node API now exposes `GET /api/operations/summary`, a read-only operational view of source-check freshness, RSS feed configuration, editorial review counts and recent pipeline outcomes. The existing source/RAG status panel consumes the summary through `src/services/operations.ts`.
+
+The article API also supports optional bounded pagination while preserving its original unpaginated response behavior for existing clients. These changes are operational visibility aids only: source freshness is not proof of source availability or claim verification, active feeds are not proof of a successful fetch, and review status is separate from verification status.
+
+See [Phase 8 intelligence operations runbook](../roadmap/PHASE-8-INTELLIGENCE-OPERATIONS.md). Node ingestion and storage remain active; no new schedule, automated source promotion, production alert or stack cutover is activated.
