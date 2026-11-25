@@ -1,3 +1,9 @@
+## Simple explanation
+
+Phase 10 describes how Raksha Atlas could be hosted first on Vercel with a hosted PostgreSQL service, using one owner/admin account. It also keeps the AWS deployment path available for a later move.
+
+This is a deployment plan, not proof that accounts, databases, credentials or cloud resources have been created. Each external setup step must be completed and verified separately. Do not mark production activation complete until the real deployment, authentication, data migration, backups and rollback checks have evidence.
+
 # Phase 10 — Vercel-first deployment, single-user activation and AWS portability
 
 **Branch:** `work/phase-10-deployment`  
