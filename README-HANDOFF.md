@@ -80,7 +80,7 @@ The importer `scripts/import-defence-database.mjs` was updated for duplicate IDs
 - `database/`: defence/application schemas, imports, migrations and initialization resources organized separately.
 - `infrastructure/deployment/`: consolidated deployment/Nginx configuration.
 - `archive/`: Next.js and Spring Boot migration implementations preserved rather than deleted.
-- Root and folder documentation consolidated; this handoff is the continuation record.
+- Root documentation consolidated into exactly two root handbooks: `README.md` (quick start) and `README-HANDOFF.md` (living project state). The former docs index is preserved as `docs/miscellaneous/documentation-index.md`.
 
 These notes summarize work performed in the local workspace/conversation. They do not assert that every listed local modification has already been pushed to this GitHub branch.
 
@@ -111,7 +111,8 @@ Next:
 - Repository: `anshsingh7755/Raksha-atlas`
 - Branch updated by this documentation change: `work/vercel-api-adaptation`
 - Previous code baseline before these handbook commits: `1499cdd7f7c6a6b7add460836dc9b91580e4776d`
-- Root quick-start and this handoff were committed directly to the GitHub branch. See the branch history for the latest documentation commit SHAs.
+- Latest synchronized documentation commit before this handoff update: `7f8066022862b255e580bd462cf65397e82b110c` (removed the extra `docs/README.md`; preserved its index as `docs/miscellaneous/documentation-index.md`).
+- The intended two root handbooks are `README.md` (quick start) and `README-HANDOFF.md` (living project state).
 
 ## Rules for the next ChatGPT session
 1. Read this file first.
