@@ -33,13 +33,20 @@ Use this page to find the current project documentation. Keep detailed technical
 | [Roadmap](roadmap/README.md) | Delivery phases, module plans, runbooks and quality gates |
 | [Data](data/README.md) | Data classification, provenance and reconciliation policies |
 | [Intelligence and research](intelligence/README.md) | Public-source research, catalogues and intelligence dossiers |
+| [Frontend](frontend/README.md) | Active UI and Next.js migration |
+| [Backend](backend/README.md) | Active Node API and news pipeline |
+| [AI](ai/README.md) | Retrieval assistant and FastAPI service |
+| [Inventory](inventory/README.md) | Inventory datasets and procurement definitions |
+| [Docker](docker/README.md) | Containers and deployment configuration |
 
-## Topic guides at repository root
+## Topic guides
 
-- [News pipeline](../NEWS-PIPELINE.md)
-- [RAG chatbot](../RAG-CHATBOT.md)
-- [Inventory data](../INVENTORY-DATA.md)
-- [Database guide](../database/README.md)
+- [Frontend](frontend/README.md)
+- [Backend and news pipeline](backend/README.md)
+- [AI and RAG](ai/README.md)
+- [Inventory data](inventory/README.md)
+- [Docker and deployment](docker/README.md)
+- [Database](../database/README.md)
 
 ## Documentation rules
 
