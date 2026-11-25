@@ -31,3 +31,7 @@ Public website and public-source content; authenticated analyst/admin identities
 - Backup restore or rollback rehearsal fails.
 
 Record reviewer, date, commit/image digest, scanner versions, findings, severity, owner, remediation, accepted exceptions and sign-off in Phase 10. CI success alone does not complete this review.
+
+## Phase 6 implementation notes
+
+The candidate Spring Boot API now has stateless bearer-token authorization, an allowlisted role vocabulary (`VIEWER`, `ANALYST`, `ADMIN`), exact-origin CORS configuration, security response headers and an application audit event path. Review [Phase 6 threat model](PHASE-6-THREAT-MODEL.md), [security architecture](../../docs/architecture/PHASE-6-SECURITY-IDENTITY.md) and [acceptance runbook](../../docs/roadmap/PHASE-6-CUTOVER-RUNBOOK.md). These are implementation controls, not a completed security assessment. The HS256 local compatibility decoder must be replaced or formally approved for production; OIDC/JWKS, MFA, audit retention/immutability, scanner results, penetration tests and reviewer sign-off remain open.
