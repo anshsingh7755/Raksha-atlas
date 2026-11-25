@@ -1,3 +1,11 @@
+## How to use this roadmap
+
+This is the project's long-term delivery record. It is intentionally more detailed than the root README because it keeps the phase-by-phase work, decisions, dependencies and acceptance checks.
+
+A phase can have code committed while still having runtime validation or production activation pending. Read each status carefully. **Implemented**, **tested**, **deployed** and **approved for cutover** are different states.
+
+For every phase, use the runbook as a checklist, record the exact commands and results, and do not mark a gate complete until evidence exists. The current active application remains the Vite/React frontend and Node.js API unless a later cutover is explicitly approved.
+
 # Raksha Atlas — Delivery Roadmap
 
 **Purpose:** Record delivery phases, implementation status, acceptance criteria and migration decisions.
