@@ -99,6 +99,8 @@ resource "aws_db_subnet_group" "main" {
 resource "aws_db_instance" "main" {
   kms_key_id                  = aws_kms_key.storage.arn
   backup_retention_period     = var.database_backup_retention_days
+  backup_window               = "03:00-04:00"
+  maintenance_window          = "sun:04:30-sun:05:30"
   identifier                  = "${var.name_prefix}-postgres"
   engine                      = "postgres"
   engine_version              = "17"
@@ -109,7 +111,8 @@ resource "aws_db_instance" "main" {
   storage_encrypted           = true
   db_name                     = var.database_name
   username                    = var.database_username
-  password                    = var.database_password
+  manage_master_user_password = true
+  master_user_secret_kms_key_id = aws_kms_key.storage.arn
   port                        = 5432
   db_subnet_group_name        = aws_db_subnet_group.main.name
   vpc_security_group_ids      = [aws_security_group.database.id]
@@ -233,4 +236,28 @@ resource "aws_cloudwatch_log_group" "ecs" {
   name              = "/ecs/${var.name_prefix}"
   retention_in_days = 30
   kms_key_id        = aws_kms_key.storage.arn
+}
+
+resource "aws_secretsmanager_secret" "application" {
+  name                    = "${var.name_prefix}/application"
+  description             = "Reserved container runtime secret bundle; populate through an approved secret rotation process."
+  kms_key_id              = aws_kms_key.storage.arn
+  recovery_window_in_days = 30
+}
+
+resource "aws_iam_policy" "runtime_secrets" {
+  name = "${var.name_prefix}-runtime-secrets"
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect   = "Allow"
+      Action   = ["secretsmanager:GetSecretValue"]
+      Resource = [aws_secretsmanager_secret.application.arn]
+    }]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "runtime_secrets" {
+  role       = aws_iam_role.ecs_execution.name
+  policy_arn = aws_iam_policy.runtime_secrets.arn
 }
