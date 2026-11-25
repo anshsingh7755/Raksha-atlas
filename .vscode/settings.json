@@ -2,7 +2,11 @@
     "python.terminal.useEnvFile": true,
     "java.configuration.updateBuildConfiguration": "automatic",
     "java.compile.nullAnalysis.mode": "automatic",
+    "explorer.compactFolders": true,
+    "explorer.sortOrder": "type",
     "files.exclude": {
+        "**/.env": true,
+        "**/.tools": true,
         "**/node_modules": true,
         "**/dist": true,
         "**/build": true,
@@ -11,11 +15,15 @@
         "**/target": true,
         "**/__pycache__": true,
         "**/.pytest_cache": true,
+        "**/.mypy_cache": true,
+        "**/.ruff_cache": true,
         "**/.venv": true,
         "**/venv": true,
         "**/.terraform": true
     },
     "search.exclude": {
+        "**/.env": true,
+        "**/.tools": true,
         "**/node_modules": true,
         "**/dist": true,
         "**/build": true,
@@ -24,6 +32,8 @@
         "**/target": true,
         "**/__pycache__": true,
         "**/.pytest_cache": true,
+        "**/.mypy_cache": true,
+        "**/.ruff_cache": true,
         "**/.venv": true,
         "**/venv": true,
         "**/.terraform": true
