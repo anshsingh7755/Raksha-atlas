@@ -35,13 +35,15 @@ Optional services and migration commands are documented in the relevant folder R
 | `src/` | React + TypeScript + Vite website | Active |
 | `server/` | Node.js API, data access, collectors, processors, scheduler and RAG | Active |
 | `api/` | Vercel API entry point | Deployment adapter |
+| `deploy/` | Legacy Nginx reverse-proxy configuration | Supporting deployment config |
+| `.github/workflows/` | CI validation, CodeQL and controlled ECS workflow | Automation |
 | `frontend/` | Next.js application | Migration scaffold |
 | `backend/` | Spring Boot / Java service | Migration scaffold |
 | `ai/` | FastAPI AI and document service | Supporting service / migration path |
 | `database/` | Database notes and historical schema references | Supporting |
 | `data-engineering/` | Python ingestion and analytics pipeline | Migration path |
 | `infrastructure/`, `deploy/` | Docker, cloud and operations configuration | Supporting |
-| `scripts/` | Import, migration, reconciliation and maintenance scripts | Supporting |
+| `scripts/` | Import, migration, reconciliation, refresh and maintenance tools | Supporting |
 | `docs/` | Architecture, roadmap, data policy and intelligence references | Documentation |
 
 Do not move active code or change deployment paths as part of documentation cleanup.
@@ -51,6 +53,10 @@ Do not move active code or change deployment paths as part of documentation clea
 Start with the [documentation index](docs/README.md) or use the [short run and deployment guide](docs/RUN-AND-DEPLOY.md).
 
 - [Run and deployment guide](docs/RUN-AND-DEPLOY.md) — install, run, build, test and deploy.
+- [API adapter](api/README.md) — how Vercel forwards requests to the active Node API.
+- [Project scripts](scripts/README.md) — data refresh, imports and maintenance.
+- [Deployment configuration](deploy/README.md) — legacy Nginx/Docker routing.
+- [GitHub Actions](.github/workflows/README.md) — validation and deployment workflows.
 - [Architecture quick reference](ARCHITECTURE.md) — active runtime and repository map.
 - [Architecture and service boundaries](docs/architecture/README.md) — current system, target system and migration rules.
 - [Delivery roadmap](docs/roadmap/README.md) — phases, sub-phases, acceptance criteria and implementation records.
