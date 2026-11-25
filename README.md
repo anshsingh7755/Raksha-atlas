@@ -76,9 +76,9 @@ Start with the [documentation index](docs/README.md) or use the [short run and d
 - [Architecture and service boundaries](docs/architecture/README.md) — current system, target system and migration rules.
 - [Delivery roadmap](docs/roadmap/README.md) — phases, sub-phases, acceptance criteria and implementation records.
 - [Database guide](database/README.md) — schemas, migrations and safe import/reconciliation.
-- [News pipeline](NEWS-PIPELINE.md) — current collection and processing.
-- [RAG chatbot](RAG-CHATBOT.md) — current retrieval and assistant implementation.
-- [Inventory data notes](INVENTORY-DATA.md) — inventory conventions and provenance.
+- [News pipeline](docs/backend/NEWS-PIPELINE.md) — current collection and processing.
+- [AI and RAG](docs/ai/RAG-CHATBOT.md) — current retrieval and assistant implementation.
+- [Inventory data notes](docs/inventory/INVENTORY-DATA.md) — inventory conventions and provenance.
 
 ## Delivery stages
 
