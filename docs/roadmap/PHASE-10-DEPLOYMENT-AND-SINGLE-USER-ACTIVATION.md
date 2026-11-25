@@ -40,7 +40,7 @@ Do not assume the existing Terraform foundation is sufficient for public traffic
 ## 3. Phase 10 workstreams
 
 ### 10.1 — Deployment baseline and release target
-- Review Phase 9 evidence and unresolved defects.
+- Review the Phase 9 scope and identify known release blockers. The full Phase 9 regression/bug-fixing campaign can continue as post-deployment stabilization, as requested; however, mandatory pre-release build, configuration, security, migration-safety and smoke checks must pass before exposing production traffic.
 - Choose initial application runtime and define one canonical production path.
 - Keep Vite/Node as the active reference until Next.js/Spring parity is proven; do not run two independent production products.
 - Decide AWS account, region, hostname/domain, environment names, data classification and expected availability.
@@ -128,8 +128,8 @@ Do not assume the existing Terraform foundation is sufficient for public traffic
 **Exit:** actionable monitoring and successful documented restore/rollback exercise.
 
 ### 10.9 — Release readiness and acceptance
-- Run complete automated CI on the exact release commit.
-- Run browser route/interaction checks on staging and verify mobile/responsive behavior.
+- Run the required release CI/build checks on the exact release commit; schedule the broader Phase 9 regression, browser, performance and bug-fixing campaign for post-deployment stabilization.
+- Before production traffic, perform mandatory staging smoke checks for login, core routes, API health, authorization, database connectivity, backup readiness and rollback. Do not waive a failed critical security or data-integrity gate.
 - Verify owner login, MFA, logout, expiry, recovery and denial of unknown users.
 - Verify API authorization, CORS, TLS, headers, rate limits and service-token boundaries.
 - Verify data reconciliation, AI behavior (if enabled), source provenance, document extraction limits and error handling.
@@ -137,7 +137,7 @@ Do not assume the existing Terraform foundation is sufficient for public traffic
 - Review load results, backups, restore, alerts, incident and rollback procedures.
 - Confirm domain/DNS/TLS, privacy notice, terms/usage guidance and operational ownership where applicable.
 
-**Exit:** release checklist signed by owner; no unresolved critical/high release blockers.
+**Exit:** minimum release-safety checklist signed by owner; no unresolved critical security, authentication, data-integrity or recoverability blockers. Broader non-critical defects are recorded for the post-deployment stabilization backlog.
 
 ### 10.10 — Controlled production deployment and handoff
 - Obtain explicit approval for the exact commit, image digest, task-definition revision, database migration and production change window.
@@ -148,7 +148,7 @@ Do not assume the existing Terraform foundation is sufficient for public traffic
 - If acceptance fails, roll back to the last known-good application revision; do not delete data or old infrastructure during incident response.
 - Record deployed versions, configuration references (never secret values), test results and open issues.
 
-**Exit:** production deployment is verified and owner handoff is complete. Bugs discovered after go-live are handled in a separate post-deployment stabilization backlog, not hidden or marked as pre-release passes.
+**Exit:** production deployment is verified and owner handoff is complete. After deployment, run the broader Phase 9 regression, browser, performance and reliability campaign; fix and retest discovered issues in a separate stabilization backlog. Never describe an untested path as passed.
 
 ## 4. Single-user access policy
 
@@ -203,5 +203,7 @@ Do not assume the existing Terraform foundation is sufficient for public traffic
 | 10.8 Observability/recovery | Pending | Dashboards, alerts and restore evidence |
 | 10.9 Release readiness | Pending | Signed acceptance checklist |
 | 10.10 Production deployment | Not authorized | Explicit production approval and smoke tests |
+
+**Workflow note:** the current manual ECS workflow accepts an operation label and an exact task-definition ARN; both deploy and rollback ultimately update the service to that supplied ARN. Rollback therefore depends on supplying a previously verified known-good revision. The workflow is not usable until the ECS service and protected GitHub environment are configured.
 
 **Current result:** Phase 10 scope and single-user operating model are documented. No cloud resources have been created and no production deployment has been performed.
