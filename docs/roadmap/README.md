@@ -281,3 +281,22 @@ For each technology, use the same learning loop:
 ## 12. Current next action
 
 **Current execution point:** Phase 5.1–5.10 implementation foundations are committed. Continue to Phase 6 while retaining runtime, cloud deployment, recovery and cutover acceptance checks for Phase 10. Keep the Phase 1 browser/device parity, Phase 2 PostgreSQL import/reconciliation, identity-provider verification, API parity and rollback rehearsal as explicit Phase 10 final acceptance gates. Do not retire Vite, Node RAG or legacy APIs before those gates pass and release approval is given.
+
+## 12. Phase 6 — security, identity, authorization and audit
+
+**Target:** Spring Security, trusted OIDC/JWKS identity, role-based access, audit events, API hardening and security verification. **Implementation status:** 6.1–6.5 foundations committed; CI validation pending. Existing HS256 JWT support remains a local compatibility bridge. Production OIDC, MFA, identity lifecycle, penetration testing and audit retention are Phase 10 acceptance gates. See [Phase 6 security architecture](../architecture/PHASE-6-SECURITY-IDENTITY.md), [threat model](../../infrastructure/security/PHASE-6-THREAT-MODEL.md) and [runbook](PHASE-6-CUTOVER-RUNBOOK.md).
+
+| Sub-phase | Workstream | Status |
+|---|---|---|
+| 6.1 | Threat model, assets, trust boundaries and security requirements | Threat model baseline documented |
+| 6.2 | Identity and role policy foundation | Stateless JWT validation; trusted roles restricted to VIEWER, ANALYST and ADMIN |
+| 6.3 | Security audit trail | Flyway audit table, mutation/rejection capture and ADMIN-only bounded read endpoint |
+| 6.4 | API hardening | Exact-origin CORS, security response headers and bounded audit query contract |
+| 6.5 | Security regression tests and CI gate | Role isolation, headers and audit endpoint tests added; workflow result pending |
+| 6.6 | OIDC/JWKS identity-provider integration | Planned; approved provider and metadata required |
+| 6.7 | User lifecycle, MFA and privileged access governance | Planned; provider and operational ownership required |
+| 6.8 | Secrets/key rotation and service identity hardening | Planned; coordinate with Phase 5 secret-management controls |
+| 6.9 | Abuse protection, dependency scanning and security monitoring | Planned; edge limits and scanner policy required |
+| 6.10 | Penetration test, incident exercise and security release sign-off | Planned; final acceptance window in Phase 10 |
+
+**Security boundary:** No production IdP, credentials, user provisioning or public route changes are activated. The Vite/Node application remains active. Audit records intentionally exclude request bodies, query strings, tokens, source text and client IP. Database-level immutability, retention, export and outage behavior require Phase 10 validation.
