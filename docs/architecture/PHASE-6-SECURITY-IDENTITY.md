@@ -1,3 +1,11 @@
+## Simple explanation
+
+This document explains where identity checks and security rules belong in the target backend.
+
+The backend must check who is making a request, whether the token is valid and which actions the user's role allows. Internal AI service credentials are separate from user login tokens and must never be sent to the browser.
+
+The document also describes audit records, role boundaries and the checks needed before a real identity provider can be used in production.
+
 # Phase 6 — security, identity, authorization and audit
 
 ## Enforcement architecture
