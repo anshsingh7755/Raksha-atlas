@@ -1,3 +1,9 @@
+## Simple explanation
+
+Phase 5 prepares the containers and cloud infrastructure needed to run the services. It includes Docker Compose for local development and a Terraform foundation for a possible AWS deployment.
+
+Having a Dockerfile or Terraform plan does not mean the service is deployed. This runbook explains what exists and what still needs approval, environment setup and operational testing.
+
 # Phase 5 — Infrastructure foundation and cutover runbook
 
 ## Scope
