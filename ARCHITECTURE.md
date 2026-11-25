@@ -1,88 +1,61 @@
-# Raksha Atlas — Project Structure (Quick Reference)
+# Raksha Atlas — Architecture Quick Reference
 
-The detailed architecture, service boundaries and request/data flows are documented in [docs/architecture/README.md](docs/architecture/README.md). The feature completion and technology migration sequence is in [docs/roadmap/README.md](docs/roadmap/README.md).
+For full service boundaries, request flows and migration rules, see [docs/architecture/README.md](docs/architecture/README.md). For delivery phases and implementation records, see [docs/roadmap/README.md](docs/roadmap/README.md).
 
-## Current working application
+## Active application
 
 ```text
 Browser
   |
   v
-src/ (React + TypeScript + Vite)
+src/ — React + TypeScript + Vite
   |
-  | fetch /api/*
+  | /api/*
   v
-server/index.mjs (Node.js API)
-  |-- server/*.json
-  |-- collectors / extractors / processors
-  |-- scheduler / workers
-  |-- server/rag.mjs
+api/ — Vercel API entry point
+  |
+  v
+server/ — Node.js API
+  |-- existing data and domain endpoints
+  |-- collectors, extractors and processors
+  |-- scheduler and workers
+  |-- RAG / assistant
   |-- optional PostgreSQL adapter
-
-Docker Compose: web + Node API + PostgreSQL 17
 ```
 
-## Target architecture
+The project owner confirms that the initial website is deployed and existing functionality is working. The active source paths are `src/` and `server/`; preserve them and their deployment/build references during repository cleanup.
 
-```text
-Next.js + React + TypeScript
-          |
-          | REST / WebSockets
-          v
-Spring Boot 4 + Java 21  <----->  FastAPI + Python
-          |                       AI / RAG / documents
-          |
-          v
-PostgreSQL + pgvector
-Redis (cache) | S3 (documents/media)
+## Repository areas
 
-Python data pipelines:
-public sources -> collect -> extract -> normalize -> deduplicate
--> classify -> validate -> PostgreSQL / S3 -> AI indexing / events
+| Path | Role | Status |
+|---|---|---|
+| `src/` | Website UI | Active |
+| `server/` | API and existing processing services | Active |
+| `api/` | Serverless API adapter | Deployment entry |
+| `frontend/` | Next.js | Migration scaffold |
+| `backend/` | Spring Boot / Java | Migration scaffold |
+| `ai/` | FastAPI | Supporting AI/document service |
+| `database/` | Schema and migration guidance | Supporting |
+| `data-engineering/` | Python pipelines | Migration path |
+| `infrastructure/`, `deploy/` | Runtime and cloud configuration | Supporting |
+| `scripts/` | Data and maintenance utilities | Supporting |
+| `docs/` | Architecture, roadmap and research references | Documentation |
 
-Docker + AWS + Terraform + GitHub Actions
-OpenTelemetry + Prometheus + Grafana
-Kafka / Airflow / dbt / Spark / Iceberg / Kubernetes as justified
-```
+## Target direction
 
-## Repository map
-
-```text
-src/                 Active Vite frontend
-server/              Active Node API, news ingestion, processors, scheduler and RAG
-frontend/            Next.js migration scaffold
-backend/             Spring Boot / Java migration scaffold
-ai/                  FastAPI service scaffold
-data-engineering/    Python pipeline boundary
-database/            PostgreSQL migrations
-infrastructure/      Docker and AWS migration notes
-docs/architecture/   Current and target architecture details
-docs/roadmap/        Website completion and technology migration plan
-  INVENTORY-MODULE.md Shared inventory model and module implementation checklist
-docs/intelligence/   Public-source defence research dossiers
-scripts/              Ingestion, sync and database utilities
-```
-
-## What is active vs planned
-
-- Active website/API: root `src/` + `server/` (Vite + Node.js).
-- Next.js, Spring Boot and FastAPI folders are migration scaffolds; do not assume they have replaced the active application.
-- PostgreSQL Compose service and initial inventory schema exist; complete domain migration and runtime parity remain.
-- Python data engineering is an early migration boundary; existing Node collectors remain active.
-- AWS, Terraform, CI/CD and production Kubernetes/observability are future implementation work.
+The documented target direction is a Next.js frontend, Spring Boot business API, FastAPI AI service, PostgreSQL/pgvector, Python data pipelines and containerized infrastructure. These components must be migrated incrementally; a folder or scaffold does not mean that it has replaced the active application.
 
 ## Local development
 
 ```powershell
 npm install
 npm run build
+npm test
 npm run dev:full
 ```
 
-Open `http://localhost:5173`.
+Open http://localhost:5173.
 
 ## Migration rule
 
-Inventory is one cross-service module. The service, equipment domain/category, class, platform and variant are separate dimensions. The current inventory API reads server/inventory.json and filters by exact service/category/lifecycle/origin values. The UI defaults to All services unless a user enters from a selected service card; service/domain/category/lifecycle filter options are returned by the API from the current dataset. The legacy Navy-only frigate reader/route has been removed from the active API; its JSON file is retained temporarily as a reference artifact. The existing service field mixes actual operators with Joint and public capability-domain labels; use docs/data/INVENTORY-CLASSIFICATION-AND-RECONCILIATION.md before reclassifying records. See docs/roadmap/INVENTORY-MODULE.md for fields and acceptance checks.
-
-Complete the agreed website features first. Then migrate the finished UI once to Next.js, move business APIs domain-by-domain to Spring Boot, migrate structured data to PostgreSQL, move AI/RAG to FastAPI and port ingestion to Python. Keep old implementations until feature parity, data reconciliation and tests pass. Do not build the same feature twice or remove working functionality prematurely.
+Reuse the working implementation. Migrate one domain at a time only when its replacement has feature parity, data reconciliation, tests and a rollback path. Do not duplicate features or remove legacy code prematurely.
