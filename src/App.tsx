@@ -957,7 +957,7 @@ function RagMonitorStatus() {
       </div>
       <div>
         <span>LAST REFRESH RESULT</span>
-        <strong>{operations?.pipeline.lastRefresh ? new Date(operations.pipeline.lastRefresh).toLocaleString("en-IN") + " · " + (operations.pipeline.lastRefreshResult?.ok === false ? "Needs attention" : "Completed") : "No refresh recorded"}</strong>
+        <strong>{operations?.pipeline.lastRefresh ? new Date(operations.pipeline.lastRefresh).toLocaleString("en-IN") + " · " + (operations.pipeline.lastRefreshSucceeded === false ? "Needs attention" : "Completed") : "No refresh recorded"}</strong>
       </div>
       <p>
         Discovery results are candidates. Search snippets and social posts never become
