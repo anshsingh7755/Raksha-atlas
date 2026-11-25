@@ -1,3 +1,11 @@
+## Simple explanation
+
+A quality gate is a set of checks that must pass before a change is considered safe to merge or release.
+
+It checks that the active website builds, automated tests pass, the local container configuration is valid and the core API routes return usable responses. It also checks the document worker.
+
+Passing this gate does not mean the future Next.js/Spring Boot migration is approved. Migration has its own separate acceptance and cutover checks.
+
 # Phase 0.10 — Quality Gate
 
 ## Purpose
