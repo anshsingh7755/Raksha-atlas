@@ -715,7 +715,19 @@ const server = createServer(async (request, response) => {
       sources: { total: sourceRows.length, active: sourceRows.filter((source) => source.active !== false).length, inactive: sourceRows.filter((source) => source.active === false).length, freshness },
       feeds: { total: feeds.length, active: feeds.filter((feed) => feed.active !== false).length, inactive: feeds.filter((feed) => feed.active === false).length },
       articles: { total: articles.length, unreviewed: countBy("reviewState", "unreviewed"), inReview: countBy("reviewState", "in_review"), approved: countBy("reviewState", "approved"), rejected: countBy("reviewState", "rejected"), verification: { official: countBy("verificationStatus", "official"), verified: countBy("verificationStatus", "verified"), reported: countBy("verificationStatus", "reported"), unverified: countBy("verificationStatus", "unverified"), disputed: countBy("verificationStatus", "disputed"), corrected: countBy("verificationStatus", "corrected"), withdrawn: countBy("verificationStatus", "withdrawn") } },
-      pipeline: { lastRefresh: data.lastRefresh ?? null, lastRefreshAttemptAt: data.lastRefreshAttemptAt ?? null, lastRefreshResult: data.lastRefreshResult ?? null, lastRagSyncAt: data.lastRagSyncAt ?? null, lastRagSyncResult: data.lastRagSyncResult ?? null, recentJobs: pipelineLogs },
+      pipeline: {
+        lastRefresh: data.lastRefresh ?? null,
+        lastRefreshAttemptAt: data.lastRefreshAttemptAt ?? null,
+        lastRefreshSucceeded: typeof data.lastRefreshResult?.ok === "boolean" ? data.lastRefreshResult.ok : null,
+        lastRagSyncAt: data.lastRagSyncAt ?? null,
+        lastRagSyncSucceeded: typeof data.lastRagSyncResult?.ok === "boolean" ? data.lastRagSyncResult.ok : null,
+        recentJobs: {
+          total: pipelineLogs.length,
+          completed: pipelineLogs.filter((job) => job.status === "completed" || job.status === "success").length,
+          failed: pipelineLogs.filter((job) => job.status === "failed" || job.status === "error").length,
+          latestAt: pipelineLogs[0]?.started_at ?? null,
+        },
+      },
     });
     return;
   }
