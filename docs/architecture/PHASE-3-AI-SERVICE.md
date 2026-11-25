@@ -1,3 +1,11 @@
+## Simple explanation
+
+This document explains the design of the separate Python AI service.
+
+The browser must not send privileged requests straight to this service. The intended design is for an authenticated backend gateway to check the user and then call the private AI service. This keeps service tokens away from the browser.
+
+The document describes service boundaries, tokens, evidence handling, AI components and the steps still needed before the current Node assistant can be replaced.
+
 # Phase 3 — AI service architecture
 
 **Target:** Python 3.11+, FastAPI, Pydantic v2, LangGraph, LiteLLM, PostgreSQL/pgvector and approved model providers.  
