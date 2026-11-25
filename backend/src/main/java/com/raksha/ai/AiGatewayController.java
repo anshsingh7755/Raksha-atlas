@@ -53,6 +53,29 @@ public class AiGatewayController {
         }
     }
 
+    /** Compatibility adapter for the current UI's /api/chat question contract. */
+    @PostMapping("/chat")
+    public ResponseEntity<?> chat(@RequestBody ChatRequest request) {
+        ResponseEntity<?> response = answer(new AnswerRequest(request.question(), 5, List.of(), null));
+        if (!response.getStatusCode().is2xxSuccessful() || !(response.getBody() instanceof JsonNode result)) {
+            return response;
+        }
+        Map<String, Object> compatible = new HashMap<>();
+        compatible.put("answer", result.path("answer").asText("No answer was returned."));
+        compatible.put("sources", result.path("citations"));
+        compatible.put("needsModelKey", false);
+        compatible.put("model", result.path("model").isMissingNode() ? null : result.path("model").asText());
+        compatible.put("evidenceCount", result.path("evidence_count").asInt(0));
+        return ResponseEntity.ok(compatible);
+    }
+
+    public record ChatRequest(String question) {
+        public ChatRequest {
+            if (question == null || question.trim().length() < 3 || question.length() > 2000)
+                throw new IllegalArgumentException("question must contain 3–2000 characters");
+        }
+    }
+
     public record AnswerRequest(String query, Integer limit, List<String> sourceIds, String model) {
         public AnswerRequest {
             if (query == null || query.trim().length() < 3 || query.length() > 2000)
