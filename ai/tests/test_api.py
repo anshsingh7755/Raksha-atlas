@@ -105,3 +105,9 @@ def test_index_endpoint_requires_service_token(monkeypatch):
     monkeypatch.setenv("AI_SERVICE_TOKEN", "test-secret")
     response = client.post("/v1/index/upsert", json={"chunks": []})
     assert response.status_code in (401, 422)
+
+
+def test_prometheus_metrics_endpoint_is_available():
+    response = client.get("/metrics")
+    assert response.status_code == 200
+    assert "http_requests_total" in response.text
