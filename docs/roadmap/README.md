@@ -1,7 +1,29 @@
+## How to use this roadmap
+
+This is the project's long-term delivery record. It is intentionally more detailed than the root README because it keeps the phase-by-phase work, decisions, dependencies and acceptance checks.
+
+A phase can have code committed while still having runtime validation or production activation pending. Read each status carefully. **Implemented**, **tested**, **deployed** and **approved for cutover** are different states.
+
+For every phase, use the runbook as a checklist, record the exact commands and results, and do not mark a gate complete until evidence exists. The current active application remains the Vite/React frontend and Node.js API unless a later cutover is explicitly approved.
+
 # Raksha Atlas — Delivery Roadmap
 
-**Branch:** `work/step-1-foundation`  
-**Purpose:** Complete the user-facing website first, then move once to the target architecture without rebuilding features twice.
+**Purpose:** Record delivery phases, implementation status, acceptance criteria and migration decisions.
+
+> **Project stage update — 25 November 2026:** The project owner confirms that the initial website is deployed and its existing functionality is working. The current task is documentation and repository organization only; new feature development follows after that cleanup. Phase tables below preserve the technical implementation history and acceptance notes recorded during earlier work. Treat environment-dependent checks as pending until they are rerun, not as proof that the live deployment is broken.
+
+## Roadmap terms in simple language
+
+| Term | Meaning |
+|---|---|
+| Phase | A large stage of project work. |
+| Sub-phase | A smaller group of tasks inside a phase. |
+| Deliverable | The code, document or capability the work should produce. |
+| Acceptance criteria | The checks that must pass before the work is accepted. |
+| Parity | The new version behaves like the old version for the same feature. |
+| Cutover | Switching real application traffic to the replacement service. |
+| Rollback | Returning to the previous working version if the new one fails. |
+| Pending validation | The work exists, but the required test has not yet been completed. |
 
 ## 1. Product and engineering principles
 
@@ -340,3 +362,12 @@ For each technology, use the same learning loop:
 | 8.10 | Documentation and acceptance | Phase 8 runbook and Phase 10 operational gates recorded |
 
 **Release boundary:** Source freshness is a timestamp indicator, not an availability guarantee or evidence score. Active feed configuration is not proof of a successful fetch. No alerts, new schedules, automatic review decisions or production cutover are enabled. Runtime checks against actual source systems, data reconciliation, outage recovery and dashboard responsive testing remain Phase 10 acceptance items.
+
+
+## New product requirement — automated intelligence monitoring
+
+A separate requirements plan has been added: [Automated Defence Intelligence Monitoring](../intelligence/AUTOMATED-INTELLIGENCE-MONITORING.md).
+
+It defines the requested 08:00–09:00 IST morning collection, 10:00 IST refresh, hourly collection, cross-source event grouping, official/reported/unverified/rumour/disputed evidence labels, programme lifecycle tracking, mobile owner controls and laptop-independent hosted execution.
+
+**Roadmap status:** Proposed; not implemented or validated. The existing Node scheduler is process-dependent, so hosted execution is a prerequisite. Deliver this in small stages (source registry, hosted worker, event grouping, evidence model, mobile dashboard, optional AI) without replacing the active frontend/backend. Do not mark these tasks complete until the acceptance checks in the requirements document have evidence.

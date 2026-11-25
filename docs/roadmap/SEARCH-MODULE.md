@@ -1,3 +1,11 @@
+## Simple explanation
+
+Global Search is the website's shared search window. Instead of searching only one page, it looks across supported project areas such as inventory, programmes, news, documents, sources, commands and public map records.
+
+Each result must remember which section it belongs to and which record it represents. That lets the website open the correct page and show the selected result.
+
+This specification describes the API inputs, response and navigation behaviour.
+
 # Global Search — API and implementation
 
 **Status:** Implemented; validation pending  

@@ -1,3 +1,9 @@
+## Simple explanation
+
+Phase 9 is the full-system check before deployment planning. It checks that the current website, API, document worker, database options and migration candidates fit together and that important failures are found before release.
+
+Run checks only with local or test data. Do not perform production deployment, destructive database changes, Terraform apply or irreversible data migration as part of this validation phase.
+
 # Phase 9 — end-to-end validation, integration, defects and performance
 
 **Branch:** `work/phase-9-quality-validation`  

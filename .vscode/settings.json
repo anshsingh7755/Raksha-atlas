@@ -1,5 +1,54 @@
 {
     "python.terminal.useEnvFile": true,
     "java.configuration.updateBuildConfiguration": "automatic",
-    "java.compile.nullAnalysis.mode": "automatic"
+    "java.compile.nullAnalysis.mode": "automatic",
+    "explorer.compactFolders": true,
+    "explorer.sortOrder": "type",
+    "files.exclude": {
+        "**/.env": true,
+        "**/.tools": true,
+        "**/node_modules": true,
+        "**/dist": true,
+        "**/build": true,
+        "**/.next": true,
+        "**/coverage": true,
+        "**/target": true,
+        "**/__pycache__": true,
+        "**/.pytest_cache": true,
+        "**/.mypy_cache": true,
+        "**/.ruff_cache": true,
+        "**/.venv": true,
+        "**/venv": true,
+        "**/.terraform": true,
+        "/INVENTORY-DATA.md": true,
+        "/NEWS-PIPELINE.md": true,
+        "/RAG-CHATBOT.md": true
+    },
+    "search.exclude": {
+        "**/.env": true,
+        "**/.tools": true,
+        "**/node_modules": true,
+        "**/dist": true,
+        "**/build": true,
+        "**/.next": true,
+        "**/coverage": true,
+        "**/target": true,
+        "**/__pycache__": true,
+        "**/.pytest_cache": true,
+        "**/.mypy_cache": true,
+        "**/.ruff_cache": true,
+        "**/.venv": true,
+        "**/venv": true,
+        "**/.terraform": true,
+        "/INVENTORY-DATA.md": true,
+        "/NEWS-PIPELINE.md": true,
+        "/RAG-CHATBOT.md": true
+    },
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.expand": false,
+    "explorer.fileNesting.patterns": {
+        "package.json": "package-lock.json",
+        "Dockerfile": ".dockerignore",
+        "tsconfig.json": "tsconfig.app.json, tsconfig.node.json"
+    }
 }

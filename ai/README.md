@@ -1,3 +1,139 @@
+# AI and document service — FastAPI
+
+## 1. What is this service?
+
+This folder contains a Python FastAPI service for safely extracting text and metadata from approved public documents and for building future AI/RAG capabilities.
+
+**It is not currently the website's main assistant backend.** The active assistant retrieval path is still in `server/rag.mjs` in the Node.js backend. This FastAPI service is a separate supporting service and migration path.
+
+## 2. What problem does it solve?
+
+A public PDF may contain many pages. A normal web page or the browser cannot safely and reliably turn every PDF into clean, searchable text. This service provides a controlled worker that can:
+
+- Receive an approved public document URL.
+- Check that the URL and host are allowed.
+- Download within configured size limits.
+- Extract text from PDF pages or HTML.
+- Optionally use OCR for image-only PDF pages.
+- Return page-aware text and metadata to the calling service.
+
+The later AI modules add chunking, embeddings, retrieval boundaries and model routing. Those foundations do not mean a production vector database or complete assistant cutover is already active.
+
+## 3. Main parts
+
+| Path | Purpose |
+|---|---|
+| `app/main.py` | FastAPI application and HTTP endpoints. |
+| `app/documents.py` | Public document retrieval and extraction controls. |
+| `app/contracts.py` | Request/response data contracts. |
+| `app/chunking.py` | Splits extracted text into smaller searchable pieces. |
+| `app/embeddings.py` | Embedding client boundary. |
+| `app/vector_store.py` | Vector-store integration boundary. |
+| `app/retrieval.py` | Retrieval service boundary. |
+| `app/model_router.py` | Optional model/provider routing. |
+| `app/workflows.py` | AI workflow coordination. |
+| `app/observability.py`, `app/telemetry.py` | Metrics and tracing support. |
+| `sql/` | AI document/vector table schema. |
+| `tests/` | Automated service tests. |
+| `evaluation/` | Deterministic and comparative answer evaluation tools. |
+
+## 4. How a document extraction request works
+
+```text
+Node API or trusted service
+        |
+        | POST /documents/extract
+        | bearer DOCUMENT_WORKER_TOKEN
+        v
+FastAPI validates token and request
+        |
+        v
+Checks HTTPS host, DNS, redirects and robots rules
+        |
+        v
+Downloads within configured limits
+        |
+        v
+Extracts PDF pages or HTML text
+        |
+        v
+Returns text, hashes, status and warnings
+```
+
+PDF output is page-aware. An image-only PDF can be marked as needing OCR. OCR is optional and bounded by a page limit.
+
+## 5. Run locally on Windows
+
+From the repository root:
+
+```powershell
+cd ai
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements-dev.txt
+$env:DOCUMENT_WORKER_TOKEN = "use-a-long-random-local-secret"
+$env:DOCUMENT_ALLOWED_HOSTS = "mod.gov.in,pib.gov.in,drdo.gov.in"
+python -m uvicorn app.main:app --reload --port 8001
+```
+
+The service should be available at http://localhost:8001. Check the health endpoint implemented by the app if you need to confirm startup.
+
+For the full AI runtime, the repository also provides `requirements-ai.txt`. Install optional dependencies only when the feature being tested needs them.
+
+## 6. Two separate service tokens
+
+Do not confuse these credentials:
+
+- `DOCUMENT_WORKER_TOKEN` protects the document extraction endpoint.
+- `AI_SERVICE_TOKEN` protects internal Phase 3 AI service endpoints.
+- `RAKSHA_AI_SERVICE_TOKEN` is the Spring Boot-side value used when it forwards to the AI service.
+
+Use long random local values. Never reuse a user JWT signing secret or commit token values.
+
+## 7. Main extraction endpoint
+
+`POST /documents/extract` accepts a bearer worker token and a JSON request such as:
+
+```json
+{"url":"https://approved-public-host.example/report.pdf","ocr":false}
+```
+
+The response includes information such as the SHA-256 hash, byte size, final URL, extraction status, engine and warnings. PDF text includes page numbers. HTML output includes readable text and source title; it does not invent page numbers.
+
+## 8. Safety controls
+
+The worker is deliberately limited:
+
+- Only HTTPS URLs on configured `DOCUMENT_ALLOWED_HOSTS` are accepted.
+- Redirect targets are checked again.
+- DNS results must be globally routable.
+- Publisher robots rules are checked.
+- Proxy environment variables are ignored.
+- Private/local addresses and unapproved hosts are rejected.
+- PDF type and signature are checked.
+- Download, page, text and OCR limits are enforced.
+- It does not crawl whole websites or bypass logins, paywalls or access controls.
+- Never submit classified, leaked, restricted or operationally sensitive documents.
+
+## 9. Tests
+
+From the `ai/` folder:
+
+```powershell
+pip install -r requirements-dev.txt
+pytest -q -c pytest.ini tests
+```
+
+Evaluation tools are regression aids. They are not proof that an answer is factually correct. Human review of evidence and citations is still required.
+
+## 10. Current status and migration boundary
+
+The extraction worker and several AI/RAG foundations are implemented in this folder. The vector retrieval endpoint deliberately fails closed until its required database adapter and populated index are provisioned. Do not treat a placeholder endpoint or schema as a working production vector search.
+
+Node RAG remains active until feature parity, evidence quality, security, integration tests and release approval are complete.
+
+---
+
 # Raksha Atlas AI and document extraction service
 
 This service remains separate from the current Node.js RAG implementation. Phase 0.7 uses it as a bounded public PDF and HTML extraction worker.

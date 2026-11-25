@@ -1,3 +1,11 @@
+## How to read this catalogue
+
+This is a public-source reference catalogue for equipment and platforms associated with India's armed services and related domains.
+
+A **record count** is the number of rows in this dataset. It is not the number of vehicles, aircraft, ships or weapons in service. A row may describe one platform, a class, a family or a source reference.
+
+Always read the source, date, quantity wording and verification label before using a number. This catalogue is not a government-certified inventory, readiness report or complete official order of battle.
+
 # Indian Armed Forces — Equipment, Fleet & Acquisition Catalogue
 
 > **Snapshot date:** 23 November 2026  

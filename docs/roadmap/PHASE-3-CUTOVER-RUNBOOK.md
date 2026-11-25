@@ -1,3 +1,9 @@
+## Simple explanation
+
+Phase 3 moves AI and document workflows toward the private FastAPI service. The current Node assistant remains the reference until the new service proves that it can return equally reliable evidence and citations.
+
+The browser must not call the private AI service directly. The intended user-facing gateway is Spring Boot, which checks access before calling FastAPI.
+
 # Phase 3 — AI service rollout and rollback runbook
 
 ## Current migration stance

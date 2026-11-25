@@ -1,3 +1,11 @@
+## Simple explanation
+
+The assistant is a research helper. A visitor asks a question, the application searches its public records, and the assistant can use the matching evidence to prepare an answer.
+
+The assistant must show where its information came from and say when evidence is missing. It is not an operational military tool and must not provide targeting, deployment, weapon-construction or actionable tactical guidance.
+
+This specification describes the current Node-based assistant, the data it searches, its safety rules and the work needed before any future AI service replaces it.
+
 # AI Assistant module — Phase 0.8
 
 ## Purpose and boundary

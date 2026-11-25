@@ -1,3 +1,9 @@
+## Simple explanation
+
+This module makes the website easier for everyone to use, including people who navigate with a keyboard or screen reader.
+
+Accessibility means that a person should be able to understand and operate the website without relying only on a mouse or visual cues. This specification records the expected behaviour and the checks needed to confirm it.
+
 # UX and accessibility — Phase 0.9
 
 ## Scope delivered

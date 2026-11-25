@@ -1,3 +1,11 @@
+## Simple explanation
+
+The Documents module is a register of public documents. It records where a document came from, when it was published or collected, and whether text extraction has succeeded.
+
+A registered document is not automatically verified. A scanned PDF with no readable text must be labelled as needing OCR; the application must not pretend it has extracted text that it does not have.
+
+This specification describes the document record, safe registration, extraction and review boundaries.
+
 # Documents Module — Phase 0.7
 
 ## Purpose

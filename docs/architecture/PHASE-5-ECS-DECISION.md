@@ -1,3 +1,11 @@
+## Simple explanation
+
+This document records the infrastructure decision for the first AWS container deployment.
+
+The current decision is to start with ECS on Fargate rather than Kubernetes/EKS. ECS is simpler to operate for the current service size. Kubernetes should be considered only if real workload, team or platform needs justify the extra operational complexity.
+
+This is an architecture decision, not proof that AWS resources have been deployed.
+
 # Phase 5.10 — ECS first, EKS only when justified
 
 ## Decision

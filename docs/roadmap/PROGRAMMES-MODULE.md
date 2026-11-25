@@ -1,3 +1,11 @@
+## Simple explanation
+
+The Programmes module tracks public information about defence projects and acquisitions. A programme can have announcements, approvals, tenders, contracts, tests, deliveries and other milestones.
+
+These stages must not be treated as the same thing. For example, an approval does not mean a contract exists, and a contract does not prove delivery.
+
+This specification describes the programme data, evidence labels, timeline links, API and website behaviour. It is a research register, not an official procurement ledger.
+
 # Programmes Module — Data Contract and Delivery Plan
 
 **Active branch:** `work/step-1-foundation`  

@@ -2,7 +2,8 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-const read = (path) => readFile(new URL(path, import.meta.url), "utf8");
+const read = async (path) =>
+  (await readFile(new URL(path, import.meta.url), "utf8")).replace(/\r\n/g, "\n");
 
 test("Spring routing is opt-in and unsupported APIs retain the Node fallback", async () => {
   const config = await read("../next.config.mjs");
@@ -65,4 +66,15 @@ test("operations UI distinguishes source freshness from claim verification", asy
   assert.match(app, /never checked/);
   assert.match(app, /not proof that a publisher is currently available/);
   assert.match(app, /getOperationsSummary\(\)/);
+});
+
+test("Vercel API adapter exports the existing API handler without starting a persistent server", async () => {
+  const server = await read("../../server/index.mjs");
+  const adapter = await read("../../api/[...path].mjs");
+  const vercelConfig = await read("../../vercel.json");
+  assert.match(server, /export async function handleRequest\(request, response\)/);
+  assert.match(server, /if \(process\.env\.VERCEL !== "1"\)/);
+  assert.match(server, /Write and AI endpoints are temporarily disabled in the Vercel read-only deployment/);
+  assert.match(adapter, /export default async function handler/);
+  assert.match(vercelConfig, /"outputDirectory": "dist"/);
 });

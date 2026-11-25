@@ -1,16 +1,56 @@
-# Raksha Atlas — Next.js frontend
+# Frontend — Next.js migration application
 
-This folder contains the Next.js 15 App Router migration application. It currently reuses the existing React UI from the repository root through a temporary compatibility bridge.
+## 1. What is this folder?
 
-## Prerequisites
+This folder contains a Next.js version of the Raksha Atlas website that is being prepared for a future migration.
 
-- Node.js 20 or later
-- npm
-- The existing Node API running at `http://127.0.0.1:8787`
+**The active website is still the React + Vite application in the root `src/` folder.** This Next.js project is not the default live frontend.
 
-## Run locally
+## 2. What is Next.js?
 
-Open a second PowerShell terminal while the current Vite + Node application is running:
+Next.js is a React framework. It adds routing and server-side features around React. It can render pages on the server and provide a structured application framework.
+
+This project currently uses a temporary bridge to reuse the existing React screen. That helps migration work start without immediately rebuilding every screen.
+
+## 3. Main files
+
+| Path | Purpose |
+|---|---|
+| `app/` | Next.js routes, pages and layouts. |
+| `lib/` | Helpers for routing and API access. |
+| `tests/` | Route and integration tests. |
+| `next.config.mjs` | Next.js build and runtime configuration. |
+| `Dockerfile` | Container build instructions. |
+| `package.json` | Next.js dependencies and commands. |
+
+## 4. How it connects to the existing backend
+
+The migration frontend can send requests to the current Node API. The temporary bridge reuses existing UI code rather than creating a second permanent copy.
+
+```text
+Browser
+  |
+  v
+Next.js app in frontend/
+  |
+  v
+Existing Node API in server/
+  |
+  v
+Current data and services
+```
+
+The final target may route through Spring Boot, but that is a separate migration step. Do not assume that target routing is already enabled.
+
+## 5. Run locally
+
+Start the Node API in one terminal from the repository root:
+
+```powershell
+npm run api
+```
+
+In another terminal:
 
 ```powershell
 cd frontend
@@ -18,23 +58,60 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+Open http://localhost:3000.
 
-The Next.js rewrite forwards `/api/*` requests to the existing Node API by default (`RAKSHA_API_PROXY_TARGET`, default `http://127.0.0.1:8787`). Spring routing is opt-in: set `RAKSHA_SPRING_API_ENABLED=true` and `RAKSHA_SPRING_API_PROXY_TARGET=http://127.0.0.1:8081` to route only inventory, sources, programmes, procurement-2026 and chat to Spring; every other API route remains on Node. These rewrite values are evaluated during the Next.js build, so rebuild after changing them. Spring endpoints require a valid bearer token supplied through `setApiAccessTokenProvider()` by an approved OIDC client; no production identity provider is wired yet, so keep Spring routing disabled. Never expose credentials through `NEXT_PUBLIC_*` variables.
+## 6. Build and test
 
-## Validate
+Use the scripts defined in `frontend/package.json`. From the root, the available convenience commands are:
 
 ```powershell
-npm run typecheck
-npm run build
+npm run build:next
 ```
 
-## Current limitations
+A successful Next.js build does not prove feature parity with the active Vite application. Test routes, API calls, responsive layout, error states and authentication behaviour separately.
 
-- The root `src/App.tsx` is dynamically loaded as a client-only application (`ssr: false`). This is a migration bridge, not the final App Router design.
-- The existing Node API remains the backend; Spring Boot is a later migration phase.
-- The API rewrite currently uses a local development address. Environment-specific API routing must be added before deployment.
-- Do not delete the root Vite application until Next.js feature parity and rollback checks pass.
+## 7. Before switching the live website
 
-See [Phase 1 frontend migration plan](../docs/roadmap/PHASE-1-FRONTEND-MIGRATION.md).
-\n## Phase 7 integration\n\nSee [Phase 7 frontend integration runbook](../docs/roadmap/PHASE-7-FRONTEND-INTEGRATION.md) for endpoint coverage, authentication handoff, validation and cutover gates.\n
+- [ ] All active pages and features are present.
+- [ ] Navigation and deep links work.
+- [ ] API routes and response contracts are verified.
+- [ ] Authentication and authorization are tested.
+- [ ] Accessibility and mobile layout are checked.
+- [ ] Build and integration tests pass.
+- [ ] Performance is measured.
+- [ ] Rollback to the Vite frontend is documented.
+
+Keep the root `src/` frontend active until the migration has passed these checks and the release is approved.# Next.js frontend — migration version
+
+This folder contains a second frontend being prepared for a future migration. It is not the default active website.
+
+## In simple words
+
+- The active website is in the root `src/` folder and uses React + Vite.
+- This folder contains the Next.js version.
+- It currently reuses the existing React screen through a temporary bridge.
+- It can send API requests to the existing Node backend.
+
+## Main files
+
+| Path | Purpose |
+|---|---|
+| `app/` | Next.js pages and layouts. |
+| `lib/` | Route and API helper code. |
+| `tests/` | Route and integration checks. |
+| `next.config.mjs` | Next.js configuration. |
+| `Dockerfile` | Container build instructions. |
+
+## Run this migration version
+
+Start the active Node API in one terminal. In another terminal:
+
+```powershell
+cd frontend
+npm install
+npm run dev
+```
+
+Open http://localhost:3000.
+
+Do not switch the live website to this version until the roadmap's feature-parity, authentication, API and rollback checks are complete.

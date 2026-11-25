@@ -1,3 +1,9 @@
+## Simple explanation
+
+This runbook is the safety checklist for switching API requests from Node.js to Spring Boot and returning them to Node.js if something goes wrong.
+
+A cutover is not allowed until the new database, imported data, API responses, authentication and automated tests have been checked. If any critical check fails, do not switch traffic.
+
 # Phase 2 — Spring Boot API cutover and rollback runbook
 
 **Status:** Prepared; not approved or executed  

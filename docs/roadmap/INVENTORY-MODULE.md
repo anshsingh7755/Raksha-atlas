@@ -1,3 +1,11 @@
+## Simple explanation
+
+The Inventory module is one shared catalogue for equipment across the Army, Navy, Air Force and other clearly identified public domains.
+
+The service name is a filter on the same catalogue. It should not create a separate hardcoded inventory page for each service.
+
+Each record should keep its operator, equipment domain, category, class, platform, variant, quantity, lifecycle and source evidence separate. If a source does not provide a value, leave it unknown rather than guessing.
+
 # Inventory Module — Implementation Specification
 
 **Status:** Phase 0.1 — service-neutral default and data-driven filters implemented; local validation pending  

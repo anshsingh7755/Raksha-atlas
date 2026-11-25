@@ -1,3 +1,9 @@
+## Simple explanation
+
+Phase 8 makes the public-source workflow easier to observe. It adds counts and status information so an operator can see whether sources have been checked, how many feeds are configured and how many news items need review.
+
+These measurements help people understand the pipeline. They do not prove that a publisher is reachable or that a news claim is true. The existing Node collection process remains active.
+
 # Phase 8 — intelligence operations and data quality
 
 ## Objective

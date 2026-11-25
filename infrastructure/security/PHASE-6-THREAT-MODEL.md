@@ -1,3 +1,11 @@
+## Simple explanation
+
+A threat model is a list of things that could go wrong, what they could affect and which controls reduce the risk.
+
+This register focuses on Raksha Atlas assets such as login tokens, privileged roles, audit records, public-source content, APIs, databases and service credentials. It also records what still needs to be tested.
+
+A control being written in code is not the same as proving it works in production. The remaining verification column is important and must not be marked complete without evidence.
+
 # Phase 6 threat model and abuse-case register
 
 | Asset | Threat | Control | Remaining verification |

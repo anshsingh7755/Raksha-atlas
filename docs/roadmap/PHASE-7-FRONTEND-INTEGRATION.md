@@ -1,3 +1,9 @@
+## Simple explanation
+
+Phase 7 connects the shared website UI to the candidate Spring Boot and FastAPI services. The goal is to let the frontend use typed API clients and controlled routing without creating a second UI or switching away from Node by default.
+
+Spring routing is opt-in. Unsupported features continue to use the Node API. This phase is integration groundwork, not approval to send all live traffic to the new services.
+
 # Phase 7 — frontend integration and backend connectivity
 
 ## Objective

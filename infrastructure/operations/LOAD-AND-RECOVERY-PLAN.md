@@ -1,3 +1,15 @@
+## Simple explanation
+
+This plan describes how to test whether the application can handle normal traffic and how to recover it after a failure.
+
+- **Load testing** checks how the service behaves when several users make requests.
+- **Backup** creates a saved copy of data.
+- **Restore** checks whether that saved copy can be used to recover a database.
+- **RPO** is the maximum amount of recent data the business is willing to lose.
+- **RTO** is the target time to restore service.
+
+The numbers in this document are planning proposals, not approved production promises. Run exercises only in an isolated environment with approved test data.
+
 # Load, backup and recovery exercise plan
 
 Run only in an isolated non-production environment with synthetic or approved public data. Do not load-test public/third-party sources or production endpoints without written approval.

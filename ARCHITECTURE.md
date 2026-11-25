@@ -1,88 +1,95 @@
-# Raksha Atlas — Project Structure (Quick Reference)
+# Raksha Atlas — architecture quick reference
 
-The detailed architecture, service boundaries and request/data flows are documented in [docs/architecture/README.md](docs/architecture/README.md). The feature completion and technology migration sequence is in [docs/roadmap/README.md](docs/roadmap/README.md).
+This page gives a short explanation of how the project is arranged. For the complete design and migration plan, read [the detailed architecture guide](docs/architecture/README.md). For work status and acceptance checks, read [the roadmap](docs/roadmap/README.md).
 
-## Current working application
+## 1. The application that runs today
 
-```text
-Browser
-  |
-  v
-src/ (React + TypeScript + Vite)
-  |
-  | fetch /api/*
-  v
-server/index.mjs (Node.js API)
-  |-- server/*.json
-  |-- collectors / extractors / processors
-  |-- scheduler / workers
-  |-- server/rag.mjs
-  |-- optional PostgreSQL adapter
-
-Docker Compose: web + Node API + PostgreSQL 17
-```
-
-## Target architecture
+The current website uses React + TypeScript + Vite. Its API uses Node.js.
 
 ```text
-Next.js + React + TypeScript
-          |
-          | REST / WebSockets
-          v
-Spring Boot 4 + Java 21  <----->  FastAPI + Python
-          |                       AI / RAG / documents
-          |
-          v
-PostgreSQL + pgvector
-Redis (cache) | S3 (documents/media)
-
-Python data pipelines:
-public sources -> collect -> extract -> normalize -> deduplicate
--> classify -> validate -> PostgreSQL / S3 -> AI indexing / events
-
-Docker + AWS + Terraform + GitHub Actions
-OpenTelemetry + Prometheus + Grafana
-Kafka / Airflow / dbt / Spark / Iceberg / Kubernetes as justified
+Visitor's browser
+      |
+      v
+src/ — React website
+      |
+      | HTTP request to /api/...
+      v
+Vercel adapter (api/[...path].mjs)
+      |
+      v
+server/ — Node.js API
+      |
+      +--> current JSON data/configuration
+      +--> collectors and extractors
+      +--> processors and background workers
+      +--> search and RAG assistant
+      +--> optional PostgreSQL storage paths
+      |
+      v
+JSON response to the website
 ```
 
-## Repository map
+During local development, `npm run dev:full` starts the Vite website and Node API together. Vite sends API requests to the local API. In the Vercel deployment, the adapter in `api/` forwards requests to the same Node handler.
 
-```text
-src/                 Active Vite frontend
-server/              Active Node API, news ingestion, processors, scheduler and RAG
-frontend/            Next.js migration scaffold
-backend/             Spring Boot / Java migration scaffold
-ai/                  FastAPI service scaffold
-data-engineering/    Python pipeline boundary
-database/            PostgreSQL migrations
-infrastructure/      Docker and AWS migration notes
-docs/architecture/   Current and target architecture details
-docs/roadmap/        Website completion and technology migration plan
-  INVENTORY-MODULE.md Shared inventory model and module implementation checklist
-docs/intelligence/   Public-source defence research dossiers
-scripts/              Ingestion, sync and database utilities
-```
+## 2. What each important folder does
 
-## What is active vs planned
+| Folder | Simple meaning | Status |
+|---|---|---|
+| `src/` | The website screens visitors see | Active frontend |
+| `server/` | The API and existing backend services | Active backend |
+| `api/` | Hosting adapter that forwards API requests | Vercel entry point |
+| `frontend/` | Next.js version of the website | Migration scaffold |
+| `backend/` | Spring Boot Java API | Migration scaffold |
+| `ai/` | FastAPI document/AI service | Supporting service and migration path |
+| `data-engineering/` | Python data ingestion and processing | Migration path |
+| `database/` | SQL schema and migration references | Supporting |
+| `scripts/` | Data refresh, import and maintenance tools | Supporting |
+| `infrastructure/` | Docker, AWS, monitoring and operations | Supporting |
+| `docs/` | Architecture, data rules, roadmap and history | Documentation |
 
-- Active website/API: root `src/` + `server/` (Vite + Node.js).
-- Next.js, Spring Boot and FastAPI folders are migration scaffolds; do not assume they have replaced the active application.
-- PostgreSQL Compose service and initial inventory schema exist; complete domain migration and runtime parity remain.
-- Python data engineering is an early migration boundary; existing Node collectors remain active.
-- AWS, Terraform, CI/CD and production Kubernetes/observability are future implementation work.
+## 3. What is the future target?
 
-## Local development
+The roadmap describes a possible longer-term system using:
+
+- Next.js for the website.
+- Spring Boot for the main business API.
+- FastAPI for AI and document workflows.
+- PostgreSQL and pgvector for structured records and vector search.
+- Python pipelines for data collection and transformation.
+- Docker and cloud infrastructure for deployment.
+
+This is a target direction, not a statement that every part is already live. The current Node/Vite application remains active until each replacement is complete and accepted.
+
+## 4. Why are there multiple versions?
+
+The project is being migrated gradually. The folders `frontend/`, `backend/`, `ai/` and `data-engineering/` contain code for future or supporting services.
+
+A migration folder is not automatically the new production service. Before switching a feature, the replacement must:
+1. Do the same job as the current feature.
+2. Read and write the correct data.
+3. Pass automated and manual tests.
+4. Preserve access control and source provenance.
+5. Have a rollback plan.
+
+## 5. Local development
+
+From the repository root:
 
 ```powershell
 npm install
 npm run build
+npm test
 npm run dev:full
 ```
 
-Open `http://localhost:5173`.
+Open http://localhost:5173. See [Run and Deploy](docs/RUN-AND-DEPLOY.md) for environment and Docker instructions.
 
-## Migration rule
+## 6. Safe architecture rules
 
-Inventory is one cross-service module. The service, equipment domain/category, class, platform and variant are separate dimensions. The current inventory API reads server/inventory.json and filters by exact service/category/lifecycle/origin values. The UI defaults to All services unless a user enters from a selected service card; service/domain/category/lifecycle filter options are returned by the API from the current dataset. The legacy Navy-only frigate reader/route has been removed from the active API; its JSON file is retained temporarily as a reference artifact. The existing service field mixes actual operators with Joint and public capability-domain labels; use docs/data/INVENTORY-CLASSIFICATION-AND-RECONCILIATION.md before reclassifying records. See docs/roadmap/INVENTORY-MODULE.md for fields and acceptance checks.
-
-Complete the agreed website features first. Then migrate the finished UI once to Next.js, move business APIs domain-by-domain to Spring Boot, migrate structured data to PostgreSQL, move AI/RAG to FastAPI and port ingestion to Python. Keep old implementations until feature parity, data reconciliation and tests pass. Do not build the same feature twice or remove working functionality prematurely.
+- Keep frontend code in `src/` and API logic in `server/` until an approved migration changes that.
+- Keep the Vercel adapter thin; do not put business rules in `api/`.
+- Do not rename folders used by imports, Docker, Vercel or CI without checking every reference.
+- Do not remove JSON data until database parity and recovery are proven.
+- Do not run two services as competing owners of the same data.
+- Keep official publisher identity separate from verification of a claim.
+- Keep the roadmap and phase runbooks as the detailed project history.

@@ -1,3 +1,9 @@
+## Simple explanation
+
+Phase 1 moves the existing website UI from Vite into Next.js. The goal is to change the framework without changing what the visitor can do.
+
+The current Vite website is the reference version. The Next.js app is the migration copy. Each page and interaction must be moved and checked before the old route is replaced.
+
 # Phase 1 — Frontend Migration to Next.js
 
 **Target:** Next.js 15 App Router + React 18 + TypeScript  

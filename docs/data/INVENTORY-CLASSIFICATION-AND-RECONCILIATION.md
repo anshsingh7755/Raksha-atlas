@@ -1,3 +1,15 @@
+## Read this policy in simple terms
+
+This document defines how an inventory row should be classified so that different kinds of information are not mixed together.
+
+For every record, ask four separate questions:
+1. **Who operates it?** The Army, Navy, Air Force, Coast Guard, Joint organization or another clearly named operator.
+2. **What kind of thing is it?** Aircraft, ship, land equipment, missile, radar or another domain.
+3. **What family does it belong to?** For example, a fighter aircraft or guided-missile destroyer.
+4. **Which exact type or version is it?** For example, a named class, model or variant.
+
+These are different facts and should not be stored in one field. The rules below explain how to classify and reconcile the public records without inventing certainty.
+
 # Inventory classification and reconciliation rules
 
 **Purpose:** keep Raksha Atlas inventory understandable without conflating service ownership, platform domain, command structure, source publisher, or acquisition status.

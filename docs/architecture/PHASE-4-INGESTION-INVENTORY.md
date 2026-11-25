@@ -1,3 +1,9 @@
+## Simple explanation
+
+This document is an inventory of how the current Node news and source-collection system works. It records which file is responsible for each job so the Python migration can copy the behaviour without accidentally losing a feature.
+
+Use it as a comparison checklist: source configuration, feed reading, network retries, metadata extraction, YouTube/X access, record normalization, deduplication, storage and scheduling must all be understood before switching the collector.
+
 # Phase 4.1 — Existing ingestion inventory
 
 ## Scope reviewed

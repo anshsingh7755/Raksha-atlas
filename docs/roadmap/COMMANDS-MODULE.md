@@ -1,3 +1,11 @@
+## Simple explanation
+
+This module is a public directory of command structures and related organisations. It helps a visitor understand the difference between a service command, a joint organisation, a headquarters, an agency and a proposed structure.
+
+It is not an operational order of battle. It must not show deployments, readiness, sensitive unit locations or unsupported command relationships.
+
+The data model below keeps the type, service, status, public headquarters and source evidence separate so that different kinds of organisations are not mixed together.
+
 # Raksha Atlas — Commands Module
 
 **Status:** Initial public directory implementation  

@@ -1,3 +1,14 @@
+## Read this architecture guide in simple terms
+
+This document explains three things:
+1. **Current system:** what the website and API use today.
+2. **Target system:** what the project may move to later.
+3. **Migration rules:** how to move from the current system to the target without breaking the website or losing data.
+
+Keep these states separate. The current frontend is React + Vite in `src/`; the current backend is Node.js in `server/`. Next.js, Spring Boot and Python data engineering are migration paths. FastAPI is a supporting document/AI service, not yet a replacement for Node RAG.
+
+The diagrams and tables below describe the intended boundaries. When a diagram describes the target system, it does not mean that every service has been deployed or activated.
+
 # Raksha Atlas — Architecture and Service Boundaries
 
 This document describes the current running system, the target system and the controlled migration path. The detailed delivery plan and acceptance criteria live in [the implementation roadmap](../roadmap/README.md).
@@ -85,23 +96,23 @@ The root Vite/Node application remains the active website and API. The current l
 
 The Next.js shell currently reuses the existing UI and proxies API requests to Node. This is a transition aid, not a second permanent frontend. Its standalone Docker image is opt-in and does not replace the root Vite/Node image.
 
-## 5. Request flows
+## 5. Target request flows (after migration)
 
-### Standard website request
+### Standard website request (target)
 1. Browser loads a Next.js route.
 2. Frontend calls Spring Boot REST API.
 3. Spring Boot applies validation, authentication and domain rules.
 4. Spring Boot reads/writes PostgreSQL; Redis is used only where caching is useful.
 5. Typed API response is rendered in the UI.
 
-### AI assistant request
+### AI assistant request (target)
 1. Frontend submits a question to Spring Boot.
 2. Spring Boot checks access and forwards an authorized request to FastAPI.
 3. FastAPI retrieves source chunks/metadata using pgvector and approved document storage.
 4. LLM generates a grounded response with citations.
 5. Result returns through Spring Boot to the frontend.
 
-### Public-source ingestion
+### Public-source ingestion (target)
 1. Python collectors read permitted public RSS feeds, APIs, pages and documents.
 2. Extractors parse text and metadata.
 3. Polars/Python processors normalize, deduplicate and classify.
@@ -173,7 +184,8 @@ The Programmes page is a research/discovery register, not a contract ledger or o
 ## 12. Where to find implementation details
 
 - [Delivery roadmap](../roadmap/README.md) — phases, sequence, acceptance criteria and learning plan.
-- [Inventory module specification](../roadmap/INVENTORY-MODULE.md) — canonical model, API contract, current implementation and acceptance checklist.\n- [Commands module specification](../roadmap/COMMANDS-MODULE.md) — command classification, API contract, source policy and acceptance checklist.
+- [Inventory module specification](../roadmap/INVENTORY-MODULE.md) — canonical model, API contract, current implementation and acceptance checklist.
+- [Commands module specification](../roadmap/COMMANDS-MODULE.md) — command classification, API contract, source policy and acceptance checklist.
 - [Programmes module specification](../roadmap/PROGRAMMES-MODULE.md) — programme register API, stage classification, evidence policy and acceptance checklist.
 - [Inventory classification policy](../data/INVENTORY-CLASSIFICATION-AND-RECONCILIATION.md) — operator attribution, domain classification and quantity reconciliation rules.
 - [Inventory data notes](../../INVENTORY-DATA.md) — inventory provenance and data handling.
@@ -213,3 +225,10 @@ The active Node API now exposes `GET /api/operations/summary`, a read-only opera
 The article API also supports optional bounded pagination while preserving its original unpaginated response behavior for existing clients. These changes are operational visibility aids only: source freshness is not proof of source availability or claim verification, active feeds are not proof of a successful fetch, and review status is separate from verification status.
 
 See [Phase 8 intelligence operations runbook](../roadmap/PHASE-8-INTELLIGENCE-OPERATIONS.md). Node ingestion and storage remain active; no new schedule, automated source promotion, production alert or stack cutover is activated.
+
+
+## Automated monitoring — current versus proposed
+
+The active Node backend already contains a public-source collection pipeline and process-bound scheduler. That scheduler runs only while its host process remains alive. The owner's new requirement for laptop-independent operation therefore needs a hosted scheduler and worker. The proposed schedule and evidence workflow are specified in [Automated Defence Intelligence Monitoring](../intelligence/AUTOMATED-INTELLIGENCE-MONITORING.md).
+
+Do not describe the hosted worker, 08:00–09:00 digest, 10:00 refresh, all-day execution or phone-triggered jobs as active until they have been deployed and tested. The current Vite/Node application remains the active product; this requirement does not require an immediate framework migration.
