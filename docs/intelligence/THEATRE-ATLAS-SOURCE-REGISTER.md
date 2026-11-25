@@ -1,3 +1,11 @@
+## How to read this source register
+
+This document explains the public-information rules for the Theatre Atlas map. The map is designed to help a visitor explore regional information, read a short profile and open the sources behind a record.
+
+A map marker is not proof that a military unit is currently at that location. The feature must use safe, regional-level public geography and explain the limits of its sources. It must not display sensitive live deployments, readiness or operational positions.
+
+The research cut-off and source links below explain what information was reviewed and how it should be presented.
+
 # India & Indian Ocean Theatre Atlas — source register and display rules
 
 **Research cut-off:** 23 November 2026  
