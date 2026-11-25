@@ -26,10 +26,10 @@ export type OperationsSummary = {
   pipeline: {
     lastRefresh: string | null;
     lastRefreshAttemptAt: string | null;
-    lastRefreshResult: { ok?: boolean; error?: string } | null;
+    lastRefreshSucceeded: boolean | null;
     lastRagSyncAt: string | null;
-    lastRagSyncResult: { ok?: boolean; error?: string } | null;
-    recentJobs: unknown[];
+    lastRagSyncSucceeded: boolean | null;
+    recentJobs: { total: number; completed: number; failed: number; latestAt: string | null };
   };
 };
 
