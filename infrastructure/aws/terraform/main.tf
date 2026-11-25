@@ -224,9 +224,6 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "documents" {
   }
 }
 
-resource "aws_db_instance" "main" {
-  kms_key_id = aws_kms_key.storage.arn
-}
 
 resource "aws_s3_bucket_lifecycle_configuration" "documents" {
   bucket = aws_s3_bucket.documents.id
