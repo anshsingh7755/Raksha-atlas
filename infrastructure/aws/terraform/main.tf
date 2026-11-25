@@ -214,6 +214,11 @@ resource "aws_iam_policy" "document_access" {
         Effect = "Allow"
         Action = ["s3:GetObject", "s3:PutObject"]
         Resource = ["${aws_s3_bucket.documents.arn}/documents/*", "${aws_s3_bucket.documents.arn}/raw/*"]
+      },
+      {
+        Effect = "Allow"
+        Action = ["kms:Decrypt", "kms:Encrypt", "kms:GenerateDataKey", "kms:DescribeKey"]
+        Resource = [aws_kms_key.storage.arn]
       }
     ]
   })
@@ -250,7 +255,6 @@ resource "aws_s3_bucket_lifecycle_configuration" "documents" {
 resource "aws_cloudwatch_log_group" "ecs" {
   name              = "/ecs/${var.name_prefix}"
   retention_in_days = var.log_retention_days
-  kms_key_id        = aws_kms_key.storage.arn
 }
 
 resource "aws_secretsmanager_secret" "application" {
