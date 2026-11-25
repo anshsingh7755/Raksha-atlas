@@ -1,13 +1,8 @@
 # Monitoring foundation
 
-## Components
+FastAPI exposes Prometheus metrics at `/metrics`. Optional OpenTelemetry traces export over OTLP HTTP when `OTEL_EXPORTER_OTLP_ENDPOINT` is configured. Prometheus scrapes the AI service on the private Compose network; Grafana provisions dashboards from this directory.
 
-- FastAPI exposes Prometheus metrics at `/metrics` (request count, status and latency; low-cardinality route labels).
-- Optional OpenTelemetry traces are exported using OTLP HTTP when `OTEL_EXPORTER_OTLP_ENDPOINT` is configured.
-- Prometheus scrapes the AI service over the private Compose network.
-- Grafana provisions dashboards from `grafana/dashboards`.
-
-No prompts, document bodies, authorization headers, tokens or raw query strings may be captured. Do not add user IDs, source URLs or arbitrary request values as metric labels.
+Never capture prompts, document bodies, authorization headers, tokens or raw query strings. Do not use user IDs, source URLs or arbitrary request values as metric labels.
 
 ## Local profile
 
@@ -15,14 +10,9 @@ No prompts, document bodies, authorization headers, tokens or raw query strings 
 docker compose --profile monitoring up --build
 ```
 
-Prometheus and Grafana are exposed on localhost only. Grafana requires a local admin password from `.env`; change it before use. Production deployment must use a managed secret store, TLS, SSO/RBAC, retention policy and alert routing.
+- Prometheus: http://localhost:9090
+- Grafana: http://localhost:3001
 
-## Initial dashboard signals
-
-- AI request rate and error ratio
-- p50/p95/p99 request latency
-- service availability and restart count
-- container CPU/memory
-- PostgreSQL connection saturation and backup status (CloudWatch/RDS integration is a later deployment task)
+Both ports bind to localhost only. Set `GRAFANA_ADMIN_PASSWORD` in the ignored local `.env`. Production requires a managed secret store, TLS, SSO/RBAC, retention policy and alert routing.
 
 Alert thresholds are intentionally not enabled until baseline traffic and SLOs are measured.
