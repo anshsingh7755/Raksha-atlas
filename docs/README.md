@@ -31,8 +31,8 @@ Use this page to find the current project documentation. Keep detailed technical
 |---|---|
 | [Architecture](architecture/README.md) | Service boundaries, current/target architecture and migration decisions |
 | [Roadmap](roadmap/README.md) | Delivery phases, module plans, runbooks and quality gates |
-| [Data](data/INVENTORY-CLASSIFICATION-AND-RECONCILIATION.md) | Data classification, provenance and reconciliation policies |
-| [Intelligence](intelligence/THEATRE-ATLAS-SOURCE-REGISTER.md) | Public-source research, catalogues and intelligence dossiers |
+| [Data](data/README.md) | Data classification, provenance and reconciliation policies |
+| [Intelligence and research](intelligence/README.md) | Public-source research, catalogues and intelligence dossiers |
 
 ## Topic guides at repository root
 
