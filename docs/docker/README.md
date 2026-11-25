@@ -1,11 +1,19 @@
-# Docker and deployment
+# Docker and deployment documentation
 
-Docker and deployment configuration is split by purpose:
+## What is covered here?
 
-- [Docker service boundaries](../../infrastructure/docker/README.md) — root Dockerfile, Compose services and optional profiles.
-- [Infrastructure guide](../../infrastructure/README.md) — local runtime, cloud and operations.
-- [AWS deployment boundary](../../infrastructure/aws/README.md) — Terraform foundation and approval requirements.
-- [Nginx deployment config](../../deploy/README.md) — legacy reverse proxy.
-- [Run and deploy](../RUN-AND-DEPLOY.md) — practical local commands and deployment notes.
+This folder is the starting point for understanding how Raksha Atlas is packaged and deployed.
 
-The root `Dockerfile`, `docker-compose.yml`, `vercel.json` and `api/` adapter are consumed by build/deployment tools. Do not rename them casually.
+## Read these guides
+
+- [Docker service boundaries](../../infrastructure/docker/README.md) — which Dockerfile belongs to which service and how Compose profiles work.
+- [Infrastructure overview](../../infrastructure/README.md) — local runtime, cloud resources, monitoring and operations.
+- [AWS deployment foundation](../../infrastructure/aws/README.md) — Terraform resources and approval requirements.
+- [Nginx configuration](../../deploy/README.md) — legacy Docker reverse proxy.
+- [Run and deploy](../RUN-AND-DEPLOY.md) — exact local commands and deployment checks.
+
+## Important difference
+
+Docker describes how to package and run containers. Vercel describes the current hosted website path. AWS Terraform describes a separate cloud infrastructure foundation.
+
+These are different deployment paths. A change to one does not automatically update the others. Check the configuration and test the exact path you intend to use.
