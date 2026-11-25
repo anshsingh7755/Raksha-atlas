@@ -1,3 +1,9 @@
+## Simple explanation
+
+This runbook covers the later parts of the Python data-engineering migration: analytics, Parquet snapshots, optional Kafka events, Airflow scheduling, dbt models and quality checks.
+
+These tools are optional building blocks. They should be enabled only when configured and useful. They do not automatically replace the current Node ingestion process.
+
 # Phase 4.6–4.10 — Analytics, events and orchestration
 
 ## Implemented capabilities
