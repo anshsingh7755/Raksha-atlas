@@ -25,7 +25,10 @@ def configure_tracing(app) -> None:
                 "deployment.environment": os.getenv("APP_ENV", "development"),
             })
         )
-        trace_endpoint = endpoint.rstrip("/")\n        if not trace_endpoint.endswith("/v1/traces"):\n            trace_endpoint += "/v1/traces"\n        provider.add_span_processor(BatchSpanProcessor(OTLPSpanExporter(endpoint=trace_endpoint)))
+        trace_endpoint = endpoint.rstrip("/")
+        if not trace_endpoint.endswith("/v1/traces"):
+            trace_endpoint += "/v1/traces"
+        provider.add_span_processor(BatchSpanProcessor(OTLPSpanExporter(endpoint=trace_endpoint)))
         trace.set_tracer_provider(provider)
         FastAPIInstrumentor.instrument_app(
             app,
