@@ -27,7 +27,7 @@ Returns:
 - `sources`: total, active/inactive and recorded check-freshness counts.
 - `feeds`: configured, active and inactive RSS feed counts.
 - `articles`: total, review-state counts and verification-status counts.
-- `pipeline`: last refresh/sync timestamps and results, plus recent pipeline job summaries when PostgreSQL storage is enabled.
+- `pipeline`: last refresh/sync timestamps and results, plus sanitized aggregate counts for recent pipeline jobs when PostgreSQL storage is enabled. Error payloads, source URLs, tokens and job metrics are not returned.
 - `storage`: current Node API storage mode.
 - `generatedAt`: summary generation timestamp.
 
