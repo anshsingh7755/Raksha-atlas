@@ -1,3 +1,11 @@
+## Read this guide in simple terms
+
+This document explains how Raksha Atlas finds public news leads and turns them into records that can be searched and reviewed.
+
+A **collector** reads a configured public feed or API. An **extractor** reads a limited amount of permitted metadata from a page. A **processor** cleans the record, checks duplicates and may add a category or summary. The result is stored and can appear in the Signals feed.
+
+The pipeline does not prove that a story is true. It records where the item came from and keeps a separate verification/review status. A human must review important claims.
+
 # Raksha Atlas: automated news pipeline
 
 ## Scope and operating choices
