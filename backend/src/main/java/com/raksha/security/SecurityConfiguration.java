@@ -81,8 +81,10 @@ public class SecurityConfiguration {
             Object claim = jwt.getClaims().getOrDefault("roles", List.of());
             Collection<?> roles = claim instanceof Collection<?> values ? values : List.of();
             var authorities = roles.stream().filter(String.class::isInstance).map(String.class::cast)
-                    .filter(role -> role.matches("[A-Za-z_]{1,40}"))
-                    .map(role -> role.startsWith("ROLE_") ? role : "ROLE_" + role.toUpperCase())
+                    .map(role -> role.startsWith("ROLE_") ? role.substring(5) : role)
+                    .map(String::toUpperCase)
+                    .filter(role -> List.of("VIEWER", "ANALYST", "ADMIN").contains(role))
+                    .map(role -> "ROLE_" + role)
                     .map(SimpleGrantedAuthority::new).collect(Collectors.toSet());
             return new JwtAuthenticationToken(jwt, authorities, jwt.getSubject());
         };
