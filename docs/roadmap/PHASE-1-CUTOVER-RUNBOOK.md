@@ -1,3 +1,9 @@
+## Simple explanation
+
+This is the checklist for switching the website from the current Vite frontend to the Next.js frontend. A cutover means sending real website traffic to the new version.
+
+The new frontend must not become active just because it builds. It must first match the existing pages and behaviour, connect to the correct API, pass tests and have a working rollback plan. Until then, keep Vite and the Node API available.
+
 # Phase 1.10 — Controlled Next.js Cutover Runbook
 
 **Status:** Cutover procedure implemented; production activation remains gated by browser parity sign-off.  
