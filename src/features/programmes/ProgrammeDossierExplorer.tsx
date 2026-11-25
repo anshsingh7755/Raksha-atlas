@@ -6,6 +6,7 @@ import AccessibleDialog from "../../components/AccessibleDialog";
 import ProgrammeHistoryNotes from "./ProgrammeHistoryNotes";
 import ProgrammeTimelinePanel, { type ProgrammeMilestone } from "../../components/ProgrammeTimelinePanel";
 import { apiGet } from "../../services/api";
+import { backendApi } from "../../services/backend-api";
 
 type ProgrammeSourceRecord = { url: string; sourceId: string | null; sourceName: string | null; sourceType: string; official: boolean | null };
 type ProgrammeDossierItem = {
@@ -37,7 +38,7 @@ function ProgrammeDossierExplorer() {
       .catch((error) => console.error("Could not load programme milestones.", error));
   }, []);
   useEffect(() => {
-    apiGet<{ items?: ProgrammeDossierItem[]; summary?: typeof registerSummary }>("/api/programmes")
+    backendApi.programmes<ProgrammeDossierItem>()
       .then((data) => {
         setItems(data.items ?? []);
         if (data.summary) setRegisterSummary(data.summary);
