@@ -28,6 +28,8 @@ server:
 
 raksha:
   security:
+    jwt-mode: ${RAKSHA_JWT_MODE:hs256}
+    issuer-uri: ${RAKSHA_JWT_ISSUER_URI:}
     jwt-secret: ${RAKSHA_JWT_SECRET:}
     issuer: ${RAKSHA_JWT_ISSUER:raksha-atlas}
     audience: ${RAKSHA_JWT_AUDIENCE:raksha-atlas-api}
