@@ -37,4 +37,7 @@ npm run build
 - Do not delete the root Vite application until Next.js feature parity and rollback checks pass.
 
 See [Phase 1 frontend migration plan](../docs/roadmap/PHASE-1-FRONTEND-MIGRATION.md).
-\n## Phase 7 integration\n\nSee [Phase 7 frontend integration runbook](../docs/roadmap/PHASE-7-FRONTEND-INTEGRATION.md) for endpoint coverage, authentication handoff, validation and cutover gates.\n
+
+## Phase 7 integration
+
+See [Phase 7 frontend integration runbook](../docs/roadmap/PHASE-7-FRONTEND-INTEGRATION.md) for endpoint coverage, authentication handoff, validation and cutover gates.
