@@ -14,7 +14,7 @@ import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
 
 @RestController
-@RequestMapping("/api/ai")
+@RequestMapping("/api")
 @PreAuthorize("hasAnyRole('ADMIN', 'ANALYST', 'VIEWER')")
 public class AiGatewayController {
 
@@ -31,7 +31,7 @@ public class AiGatewayController {
         this.enabled = enabled;
     }
 
-    @PostMapping("/answer")
+    @PostMapping("/ai/answer")
     public ResponseEntity<?> answer(@RequestBody AnswerRequest request) {
         if (!enabled || serviceToken.isBlank()) {
             return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
