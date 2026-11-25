@@ -69,7 +69,7 @@ test("operations UI distinguishes source freshness from claim verification", asy
 });
 
 test("Vercel API adapter exports the existing API handler without starting a persistent server", async () => {
-  const server = await read("../server/index.mjs");
+  const server = await read("../../server/index.mjs");
   const adapter = await read("../../api/[...path].mjs");
   const vercelConfig = await read("../../vercel.json");
   assert.match(server, /export async function handleRequest\(request, response\)/);
