@@ -1,3 +1,11 @@
+## Simple explanation
+
+This folder contains tools for checking the quality of answers produced by the AI assistant.
+
+A **golden dataset** is a small set of reviewed questions, expected evidence and important concepts. An evaluator compares an answer with those expectations and warns when required information is missing or forbidden claims appear.
+
+These checks are useful for catching regressions, but they cannot prove that an answer is true. Human reviewers must still inspect the original sources and citations.
+
 # AI answer evaluation
 
 The starter golden dataset in `golden_dataset.json` contains required and forbidden concepts for source-provenance and quantity-caveat regression checks.
