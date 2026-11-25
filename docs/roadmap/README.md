@@ -280,7 +280,7 @@ For each technology, use the same learning loop:
 
 ## 12. Current next action
 
-**Current execution point:** Phase 7.1–7.10 frontend integration foundations are implemented. CI and runtime acceptance are being verified. Proceed to Phase 8 only after the Phase 7 automated gates pass; keep real OIDC, populated PostgreSQL parity, live AI retrieval, browser/device checks and rollback rehearsal for Phase 10. Do not retire Vite, Node RAG or legacy APIs before those gates pass and release approval is given.
+**Current execution point:** Phase 8.1–8.10 intelligence operations and data-quality foundations are implemented. Latest CI verification is running. Phase 7 CI #538 and Phase 8 CI must be green before treating automated validation as complete; keep real OIDC, populated PostgreSQL parity, live AI retrieval, browser/device checks and rollback rehearsal for Phase 10. Do not retire Vite, Node RAG or legacy APIs before those gates pass and release approval is given.
 
 ## 12. Phase 6 — security, identity, authorization and audit
 
@@ -320,3 +320,23 @@ For each technology, use the same learning loop:
 | 7.10 | Controlled routing, rollback and documentation | Opt-in configuration and rollback boundary documented; no cutover |
 
 **Phase 7 release boundary:** Spring endpoints require valid JWT access tokens and populated PostgreSQL data. The AI gateway additionally requires private FastAPI connectivity, pgvector, model credentials and a separate service token. No real OIDC provider is configured. Keep `RAKSHA_SPRING_API_ENABLED=false` until Phase 10 identity, data, AI, browser and rollback checks pass. The current Node API remains active for all other features.
+
+
+## 14. Phase 8 — intelligence operations and data quality
+
+**Target:** operational visibility across source freshness, RSS feed configuration, article review queues and ingestion refresh outcomes. **Implementation status:** 8.1–8.10 foundations implemented; CI verification pending. Existing Node ingestion remains active and no automated verification or source promotion is introduced. See [Phase 8 runbook](PHASE-8-INTELLIGENCE-OPERATIONS.md).
+
+| Sub-phase | Workstream | Status |
+|---|---|---|
+| 8.1 | Operational summary API | Read-only source/feed/article/pipeline summary endpoint added |
+| 8.2 | Source freshness metrics | Recorded check timestamps grouped into four freshness buckets |
+| 8.3 | Feed configuration visibility | Active/inactive/configured feed counts added |
+| 8.4 | Editorial review queue metrics | Review-state and verification-state counts added |
+| 8.5 | Article API pagination | Optional bounded limit/offset with total/hasMore; old unpaginated contract preserved |
+| 8.6 | Typed operations client | `src/services/operations.ts` added |
+| 8.7 | Operations dashboard | Existing source/RAG status panel displays operations summary |
+| 8.8 | Evidence interpretation | Explicit caveat that freshness and publisher provenance are not claim verification |
+| 8.9 | Regression coverage | API smoke and frontend contract tests extended |
+| 8.10 | Documentation and acceptance | Phase 8 runbook and Phase 10 operational gates recorded |
+
+**Release boundary:** Source freshness is a timestamp indicator, not an availability guarantee or evidence score. Active feed configuration is not proof of a successful fetch. No alerts, new schedules, automatic review decisions or production cutover are enabled. Runtime checks against actual source systems, data reconciliation, outage recovery and dashboard responsive testing remain Phase 10 acceptance items.
