@@ -48,8 +48,9 @@ Do not move active code or change deployment paths as part of documentation clea
 
 ## Documentation
 
-Start with the [documentation index](docs/README.md).
+Start with the [documentation index](docs/README.md) or use the [short run and deployment guide](docs/RUN-AND-DEPLOY.md).
 
+- [Run and deployment guide](docs/RUN-AND-DEPLOY.md) — install, run, build, test and deploy.
 - [Architecture quick reference](ARCHITECTURE.md) — active runtime and repository map.
 - [Architecture and service boundaries](docs/architecture/README.md) — current system, target system and migration rules.
 - [Delivery roadmap](docs/roadmap/README.md) — phases, sub-phases, acceptance criteria and implementation records.
