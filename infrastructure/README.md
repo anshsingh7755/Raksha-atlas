@@ -8,18 +8,23 @@ Root deployment files remain the stable legacy runtime:
 - `docker-compose.yml` — default Vite/Node + PostgreSQL + FastAPI worker stack
 - `deploy/nginx.conf` — legacy web/API proxy
 
-Optional Compose profiles are documented in [Docker service boundaries](docker/README.md):
+Optional profiles:
 
 ```bash
 docker compose up --build
 docker compose --profile migration up --build
 docker compose --profile cache up --build
+docker compose --profile monitoring up --build
 ```
 
-## Cloud infrastructure
+Monitoring profile: Prometheus at localhost:9090 and Grafana at localhost:3001. Set `GRAFANA_ADMIN_PASSWORD` in local ignored `.env`.
 
-- `aws/terraform/` — configurable AWS VPC, security groups, private RDS, S3, ECS cluster and IAM foundation. Plan only until approved.
-- `aws/README.md` — account, security and cost guardrails.
+## Cloud and operations
+
+- `aws/terraform/` — VPC, private RDS, S3, ECS, KMS, Secrets Manager and IAM foundation; plan only until approved.
 - `docker/README.md` — service image boundaries.
+- `monitoring/` — Prometheus, Grafana and optional OpenTelemetry.
+- `security/SECURITY-REVIEW.md` — security review checklist.
+- `operations/` — load and recovery plan.
 
-The initial AWS target is ECS, not EKS. Kubernetes manifests and Helm are deferred until operational scale justifies them. No infrastructure is deployed by CI.
+The initial AWS target is ECS/Fargate, not EKS. No cloud infrastructure is deployed by CI.
