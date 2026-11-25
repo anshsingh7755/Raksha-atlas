@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "description": "Allowlisted public discovery sources for Raksha Atlas. Direct feeds/APIs only; no login bypass or collection of private material. Items are ingested as unreviewed candidates.",
+  "rssFeeds": [
+    {
+      "id": "pib-rss-defence",
+      "name": "PIB RSS — Government of India releases",
+      "url": "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=9&Regid=1",
+      "official": true,
+      "defaultVerification": "official",
+      "kind": "rss",
+      "active": true,
+      "notes": "Official primary releases. The RSS entry is metadata/snippet; open the original release for full context."
+    },
+    {
+      "id": "discovery-ani",
+      "name": "Google News discovery — ANI defence coverage",
+      "url": "https://news.google.com/rss/search?q=site%3Aaninews.in%20(defence%20OR%20navy%20OR%20army%20OR%20air%20force)%20India&hl=en-IN&gl=IN&ceid=IN%3Aen",
+      "official": false,
+      "defaultVerification": "unverified",
+      "kind": "discovery-rss",
+      "active": true,
+      "notes": "Search index used to discover stories; verify at the publisher and primary source."
+    },
+    {
+      "id": "discovery-air-news",
+      "name": "Google News discovery — All India Radio / News on AIR",
+      "url": "https://news.google.com/rss/search?q=(site%3Anewsonair.gov.in%20OR%20site%3Aprasarbharati.gov.in)%20(defence%20OR%20military%20OR%20navy%20OR%20army)&hl=en-IN&gl=IN&ceid=IN%3Aen",
+      "official": false,
+      "defaultVerification": "unverified",
+      "kind": "discovery-rss",
+      "active": true,
+      "notes": "Search index, not a direct AIR feed; AIR News is a public broadcaster but discovery results must be checked against the linked item."
+    },
+    {
+      "id": "discovery-idrw",
+      "name": "Google News discovery — IDRW",
+      "url": "https://news.google.com/rss/search?q=site%3Aidrw.org%20India%20(defence%20OR%20defense%20OR%20navy%20OR%20air%20force%20OR%20army)&hl=en-IN&gl=IN&ceid=IN%3Aen",
+      "official": false,
+      "defaultVerification": "unverified",
+      "kind": "discovery-rss",
+      "active": true,
+      "notes": "Secondary reporting. Keep claims unverified until corroborated."
+    },
+    {
+      "id": "discovery-india-today",
+      "name": "Google News discovery — India Today defence",
+      "url": "https://news.google.com/rss/search?q=site%3Aindiatoday.in%20(defence%20OR%20military%20OR%20Indian%20Navy%20OR%20IAF)&hl=en-IN&gl=IN&ceid=IN%3Aen",
+      "official": false,
+      "defaultVerification": "unverified",
+      "kind": "discovery-rss",
+      "active": true,
+      "notes": "Secondary reporting; citations link to the publisher item where available."
+    },
+    {
+      "id": "discovery-indian-express",
+      "name": "Google News discovery — The Indian Express defence",
+      "url": "https://news.google.com/rss/search?q=site%3Aindianexpress.com%20(defence%20OR%20military%20OR%20Indian%20Navy%20OR%20IAF)&hl=en-IN&gl=IN&ceid=IN%3Aen",
+      "official": false,
+      "defaultVerification": "unverified",
+      "kind": "discovery-rss",
+      "active": true,
+      "notes": "Secondary reporting; verify programme milestones with primary documentation."
+    },
+    {
+      "id": "discovery-hindu",
+      "name": "Google News discovery — The Hindu defence",
+      "url": "https://news.google.com/rss/search?q=site%3Athehindu.com%20(defence%20OR%20military%20OR%20Indian%20Navy%20OR%20IAF)&hl=en-IN&gl=IN&ceid=IN%3Aen",
+      "official": false,
+      "defaultVerification": "unverified",
+      "kind": "discovery-rss",
+      "active": true,
+      "notes": "Secondary reporting; verify programme milestones with primary documentation."
+    },
+    {
+      "id": "discovery-ani-defensechannels",
+      "name": "Google News discovery — named defence channels and reporters",
+      "url": "https://news.google.com/rss/search?q=(%22Alpha%20Defence%22%20OR%20%22Defence%20Matrix%22%20OR%20%22Defence%20Decode%22%20OR%20%22Defence%20Blog%22%20OR%20%22Kunal%20Biswas%22%20OR%20%22Ajit%20Kumar%20Dube%22)%20(defence%20OR%20navy%20OR%20military)&hl=en-IN&gl=IN&ceid=IN%3Aen",
+      "official": false,
+      "defaultVerification": "unverified",
+      "kind": "discovery-rss",
+      "active": true,
+      "notes": "Name-based search can return lookalikes or unrelated people. Treat as a discovery lead and verify account identity before citing."
+    },
+    {
+      "id": "discovery-world-defense",
+      "name": "Google News discovery — international defence outlets",
+      "url": "https://news.google.com/rss/search?q=(India%20OR%20Indian)%20(defence%20procurement%20OR%20military%20OR%20naval%20OR%20air%20force)%20(Janes%20OR%20Reuters%20OR%20Defense%20News)&hl=en-IN&gl=IN&ceid=IN%3Aen",
+      "official": false,
+      "defaultVerification": "unverified",
+      "kind": "discovery-rss",
+      "active": true,
+      "notes": "Secondary/international reporting. Headlines/snippets are retained, not full article text."
+    },
+    {
+      "id": "indian-defence-news-rss",
+      "name": "Indian Defence News — Publisher RSS",
+      "url": "https://www.indiandefensenews.in/feeds/posts/default?alt=rss",
+      "official": false,
+      "defaultVerification": "reported",
+      "kind": "rss",
+      "active": true,
+      "notes": "Publisher Blogger RSS feed. Secondary curated reporting; preserve article labels/bylines and underlying source attribution. Do not treat claims as verified without primary corroboration."
+    }
+  ],
+  "youtube": {
+    "active": true,
+    "searchTerms": [
+      "Indian defence procurement",
+      "Indian Navy submarine warship",
+      "Indian Air Force aircraft procurement",
+      "Indian Army tanks artillery systems",
+      "Alpha Defence India defence",
+      "Defence Matrix India military",
+      "Defence Decode Indian defence",
+      "Defence Blog India military"
+    ],
+    "channelsToConfirm": [
+      {
+        "name": "Alpha Defence",
+        "channelId": "",
+        "active": false
+      },
+      {
+        "name": "Defence Matrix",
+        "channelId": "",
+        "active": false
+      },
+      {
+        "name": "Defence Decode",
+        "channelId": "",
+        "active": false
+      },
+      {
+        "name": "Defence Blog",
+        "channelId": "",
+        "active": false
+      }
+    ],
+    "maxResultsPerSearch": 10,
+    "notes": "Requires YOUTUBE_API_KEY. API returns public video metadata, not a guaranteed transcript. Channel identity and claims remain reported until reviewed."
+  },
+  "xAccounts": [
+    {
+      "displayName": "Alpha Defence",
+      "username": "",
+      "active": false,
+      "verificationStatus": "reported"
+    },
+    {
+      "displayName": "Defence Matrix",
+      "username": "",
+      "active": false,
+      "verificationStatus": "reported"
+    },
+    {
+      "displayName": "Black Tiger",
+      "username": "",
+      "active": false,
+      "verificationStatus": "reported"
+    },
+    {
+      "displayName": "Sandlamp (as named by project owner)",
+      "username": "",
+      "active": false,
+      "verificationStatus": "reported"
+    },
+    {
+      "displayName": "Kunal Biswas (identity/handle to confirm)",
+      "username": "",
+      "active": false,
+      "verificationStatus": "reported"
+    },
+    {
+      "displayName": "Ajit Kumar Dube (identity/handle to confirm)",
+      "username": "",
+      "active": false,
+      "verificationStatus": "reported"
+    }
+  ],
+  "xApi": {
+    "active": true,
+    "notes": "Requires X_BEARER_TOKEN and exact public usernames. Recent Search access depends on the current X API plan. No logged-in browser scraping is used."
+  },
+  "liveWebSearch": {
+    "active": true,
+    "notes": "Chat can use OpenAI Responses API web_search when OPENAI_API_KEY is configured. A query-time search result is cited in the answer but is not silently auto-published to the site's article feed."
+  }
+}

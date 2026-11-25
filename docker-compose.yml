@@ -1,4 +1,4 @@
-services:
+﻿services:
   db:
     image: postgres:17-alpine
     restart: unless-stopped
@@ -6,10 +6,13 @@ services:
       POSTGRES_DB: raksha_atlas
       POSTGRES_USER: raksha
       POSTGRES_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
+    ports:
+      - "127.0.0.1:5432:5432"
     volumes:
       - raksha-postgres:/var/lib/postgresql/data
+      - ./database/seeds/01-create-databases.sql:/docker-entrypoint-initdb.d/01-create-databases.sql:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U raksha -d raksha_atlas"]
+      test: ["CMD-SHELL", "pg_isready -U raksha -d defence_db"]
       interval: 5s
       timeout: 5s
       retries: 15
@@ -25,7 +28,9 @@ services:
       NODE_ENV: production
       HOST: 0.0.0.0
       PORT: 8787
-      DATABASE_URL: postgresql://raksha:${DB_PASSWORD:?Set DB_PASSWORD in .env}@db:5432/raksha_atlas
+      DATABASE_URL: postgresql://raksha:${DB_PASSWORD:?Set DB_PASSWORD in .env}@db:5432/defence_db
+      DEFENCE_DATABASE_URL: postgresql://raksha:${DB_PASSWORD:?Set DB_PASSWORD in .env}@db:5432/defence_db
+      APPLICATION_DATABASE_URL: postgresql://raksha:${DB_PASSWORD:?Set DB_PASSWORD in .env}@db:5432/application_db
       DATABASE_SSL: "false"
       TRUST_PROXY: "true"
       CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:8080}
@@ -81,33 +86,6 @@ services:
     depends_on: [api]
     ports:
       - "${WEB_PORT:-8080}:80"
-    networks: [private]
-
-  backend:
-    profiles: ["migration"]
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    environment:
-      SERVER_PORT: 8081
-      DB_JDBC_URL: jdbc:postgresql://db:5432/raksha_atlas
-      DB_USERNAME: raksha
-      DB_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
-      RAKSHA_JWT_MODE: ${RAKSHA_JWT_MODE:-hs256}
-      RAKSHA_JWT_ISSUER_URI: ${RAKSHA_JWT_ISSUER_URI:-}
-      RAKSHA_JWT_SECRET: ${RAKSHA_JWT_SECRET:?Set a local-only JWT secret in .env}
-      RAKSHA_ALLOWED_ORIGINS: ${RAKSHA_ALLOWED_ORIGINS:-}
-      RAKSHA_AI_BASE_URL: http://ai:8001
-      RAKSHA_AI_SERVICE_TOKEN: ${RAKSHA_AI_SERVICE_TOKEN:-}
-      RAKSHA_AI_ENABLED: "false"
-      RAKSHA_REDIS_CACHE_ENABLED: "false"
-    depends_on:
-      db:
-        condition: service_healthy
-      ai:
-        condition: service_healthy
-    expose: ["8081"]
     networks: [private]
 
   prometheus:
@@ -166,3 +144,5 @@ volumes:
 networks:
   private:
     driver: bridge
+
+

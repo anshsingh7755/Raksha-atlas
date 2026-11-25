@@ -1,4 +1,4 @@
-import { readFile } from "node:fs/promises";
+﻿import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 
 const schemaUrl = new URL("./schema.sql", import.meta.url);
@@ -15,16 +15,25 @@ export async function initializeStore({
   categories = [],
   feeds = [],
 }) {
-  if (!process.env.DATABASE_URL) return null;
+  const defenceUrl = process.env.DEFENCE_DATABASE_URL || process.env.DATABASE_URL;
+  const applicationUrl = process.env.APPLICATION_DATABASE_URL;
+  if (!defenceUrl) return null;
   const { Pool } = await import("pg");
   const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
+    connectionString: defenceUrl,
     max: Number(process.env.DB_POOL_SIZE || 8),
     ssl:
       process.env.DATABASE_SSL === "true" ? { rejectUnauthorized: false } : undefined,
   });
+  const applicationPool = applicationUrl ? new Pool({ connectionString: applicationUrl, max: Number(process.env.APPLICATION_DB_POOL_SIZE || 3), ssl: process.env.DATABASE_SSL === "true" ? { rejectUnauthorized: false } : undefined }) : null;
+  if (applicationPool) {
+    const applicationSchemaUrl = new URL("../../database/application/schema/schema.sql", import.meta.url);
+    await applicationPool.query(await readFile(fileURLToPath(applicationSchemaUrl), "utf8"));
+  }
   await pool.query(await readFile(fileURLToPath(schemaUrl), "utf8"));
   const store = {
+    applicationDb: applicationPool,
+    async applicationStatus() { if (!applicationPool) return { enabled: false }; const result = await applicationPool.query("SELECT current_database() AS database"); return { enabled: true, ...result.rows[0] }; },
     async seedSources(rows) {
       for (const item of rows)
         await pool.query(
@@ -264,3 +273,5 @@ export async function seedStoreFromFiles() {
     feeds: monitorConfig.rssFeeds || [],
   });
 }
+
+

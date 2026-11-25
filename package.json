@@ -1,40 +1,37 @@
-{
-  "name": "raksha-atlas",
-  "private": true,
-  "version": "0.1.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "api": "node server/index.mjs",
-    "dev:full": "node dev-full.mjs",
-    "build": "tsc -b && vite build",
-    "preview": "vite preview",
-    "dev:api": "node server/index.mjs",
-    "format": "prettier --write \"src/**/*.{ts,tsx,css}\" \"server/**/*.mjs\" \"scripts/**/*.mjs\" \"*.{ts,mjs,json,yml,yaml,md}\"",
-    "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\" \"server/**/*.mjs\" \"scripts/**/*.mjs\" \"*.{ts,mjs,json,yml,yaml,md}\"",
-    "sync:reference": "node scripts/refresh-public-data.mjs",
-    "rag:sync": "node scripts/ingest-monitored-sources.mjs",
-    "news:run": "node scripts/ingest-monitored-sources.mjs",
-    "db:migrate": "node scripts/migrate-db.mjs",
-    "db:import": "node scripts/import-domain-data-to-postgres.mjs",
-    "db:reconcile": "node scripts/reconcile-domain-data.mjs",
-    "test": "node --test",
-    "dev:next": "npm run dev --prefix frontend",
-    "build:next": "npm run build --prefix frontend",
-    "start:next": "npm run start --prefix frontend"
-  },
-  "dependencies": {
-    "lucide-react": "^0.468.0",
-    "pg": "^8.23.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
-  },
-  "devDependencies": {
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "prettier": "^3.6.2",
-    "@vitejs/plugin-react": "^4.3.4",
-    "typescript": "^5.7.2",
-    "vite": "^6.0.5"
-  }
+﻿{
+    "name":  "raksha-atlas",
+    "private":  true,
+    "version":  "0.1.0",
+    "type":  "module",
+    "scripts":  {
+                    "dev":  "vite frontend",
+                    "api":  "node server/index.mjs",
+                    "dev:full":  "node dev-full.mjs",
+                    "build":  "tsc -b \u0026\u0026 vite build frontend --outDir ../dist",
+                    "preview":  "vite preview frontend",
+                    "dev:api":  "node server/index.mjs",
+                    "format":  "prettier --write \"src/**/*.{ts,tsx,css}\" \"server/**/*.mjs\" \"scripts/**/*.mjs\" \"*.{ts,mjs,json,yml,yaml,md}\"",
+                    "format:check":  "prettier --check \"src/**/*.{ts,tsx,css}\" \"server/**/*.mjs\" \"scripts/**/*.mjs\" \"*.{ts,mjs,json,yml,yaml,md}\"",
+                    "sync:reference":  "node scripts/ingestion/refresh-public-data.mjs",
+                    "rag:sync":  "node scripts/ingestion/ingest-monitored-sources.mjs",
+                    "news:run":  "node scripts/ingestion/ingest-monitored-sources.mjs",
+                    "db:migrate":  "node scripts/database/migrate-db.mjs",
+                    "db:import":  "node scripts/database/import-domain-data-to-postgres.mjs",
+                    "db:reconcile":  "node scripts/database/reconcile-domain-data.mjs",
+                    "test":  "node --test"
+                },
+    "dependencies":  {
+                         "lucide-react":  "^0.468.0",
+                         "pg":  "^8.23.1",
+                         "react":  "^18.3.1",
+                         "react-dom":  "^18.3.1"
+                     },
+    "devDependencies":  {
+                            "@types/react":  "^18.3.12",
+                            "@types/react-dom":  "^18.3.1",
+                            "prettier":  "^3.6.2",
+                            "@vitejs/plugin-react":  "^4.3.4",
+                            "typescript":  "^5.7.2",
+                            "vite":  "^6.0.5"
+                        }
 }

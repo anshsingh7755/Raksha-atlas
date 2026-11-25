@@ -1,0 +1,38 @@
+[
+  {
+    "id": "defproc-ge-y97-2026-27",
+    "title": "Repair works at military station YOL",
+    "reference": "GE/Y-97/2026-27",
+    "sourceId": "defproc-portal",
+    "sourceUrl": "https://defproc.gov.in/nicgep/app",
+    "publishedAt": null,
+    "closingAt": "2026-11-28T18:00:00+05:30",
+    "status": "active_tender",
+    "scope": "Infrastructure / works",
+    "verificationStatus": "official"
+  },
+  {
+    "id": "defproc-af-thanjavur-2026-27",
+    "title": "Provision of certain LBW and minor works at AF Station Thanjavur",
+    "reference": "8323/E8",
+    "sourceId": "defproc-portal",
+    "sourceUrl": "https://defproc.gov.in/nicgep/app",
+    "publishedAt": null,
+    "closingAt": "2026-11-25T18:00:00+05:30",
+    "status": "active_tender",
+    "scope": "Air Force infrastructure / works",
+    "verificationStatus": "official"
+  },
+  {
+    "id": "eprocure-nstl-dgsets-2026",
+    "title": "Maintenance and C Check to DG sets at SF Complex Jagdalpur and NSTL Visakhapatnam",
+    "reference": "Tender listing supplied by eProcure organisation page",
+    "sourceId": "eprocure-organisation",
+    "sourceUrl": "https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTendersByOrganisation&service=direct",
+    "publishedAt": "2026-11-02T18:00:00+05:30",
+    "closingAt": "2026-11-23T14:00:00+05:30",
+    "status": "active_tender",
+    "scope": "Defence research infrastructure / maintenance",
+    "verificationStatus": "official"
+  }
+]

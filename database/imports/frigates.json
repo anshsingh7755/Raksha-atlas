@@ -1,0 +1,78 @@
+[
+  {
+    "className": "Nilgiri class",
+    "classCount": 7,
+    "displacementT": 6670,
+    "origin": "India",
+    "homeport": "Visakhapatnam",
+    "role": "Stealth guided-missile frigate",
+    "note": "Upgraded derivative of the Shivalik class.",
+    "futureOrders": "7 ships in class record; no additional order counted here.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/INS_Nilgiri%2C_INS_Surat_and_INS_Vagsheer_during_commissioning_ceremony.jpg/250px-INS_Nilgiri%2C_INS_Surat_and_INS_Vagsheer_during_commissioning_ceremony.jpg",
+    "sourceUrl": "https://en.wikipedia.org/wiki/List_of_frigates_of_the_Indian_Navy",
+    "ships": [
+      { "name": "INS Nilgiri", "pennant": "F33", "commissioned": 2025 },
+      { "name": "INS Himgiri", "pennant": "F34", "commissioned": 2025 },
+      { "name": "INS Udaygiri", "pennant": "F35", "commissioned": 2025 },
+      { "name": "INS Taragiri", "pennant": "F41", "commissioned": 2026 },
+      { "name": "INS Dunagiri", "pennant": "F36", "commissioned": 2026 },
+      { "name": "INS Vindhyagiri", "pennant": "F38", "commissioned": 2026 },
+      { "name": "INS Mahendragiri", "pennant": "F37", "commissioned": 2026 }
+    ]
+  },
+  {
+    "className": "Shivalik class",
+    "classCount": 3,
+    "displacementT": 6200,
+    "origin": "India",
+    "homeport": "Visakhapatnam",
+    "role": "Stealth guided-missile frigate",
+    "note": "Indigenously built frigates with reduced observability.",
+    "futureOrders": "No additional ships counted in this class register.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/INS_Shivalik_%28F47%29_participating_in_the_International_Fleet_Review_2022.jpg/250px-INS_Shivalik_%28F47%29_participating_in_the_International_Fleet_Review_2022.jpg",
+    "sourceUrl": "https://en.wikipedia.org/wiki/List_of_frigates_of_the_Indian_Navy",
+    "ships": [
+      { "name": "INS Shivalik", "pennant": "F47", "commissioned": 2010 },
+      { "name": "INS Satpura", "pennant": "F48", "commissioned": 2011 },
+      { "name": "INS Sahyadri", "pennant": "F49", "commissioned": 2012 }
+    ]
+  },
+  {
+    "className": "Talwar class",
+    "classCount": 7,
+    "displacementT": 4035,
+    "origin": "Russia",
+    "homeport": "Mumbai / Karwar",
+    "role": "Guided-missile frigate",
+    "note": "Indian variant of the Krivak III frigate family.",
+    "futureOrders": "Class record shown as commissioned ships; follow-on orders are separate.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/INS_Talwar_-_2.jpg/250px-INS_Talwar_-_2.jpg",
+    "sourceUrl": "https://en.wikipedia.org/wiki/List_of_frigates_of_the_Indian_Navy",
+    "ships": [
+      { "name": "INS Talwar", "pennant": "F40", "commissioned": 2003 },
+      { "name": "INS Trishul", "pennant": "F43", "commissioned": 2003 },
+      { "name": "INS Tabar", "pennant": "F44", "commissioned": 2004 },
+      { "name": "INS Teg", "pennant": "F45", "commissioned": 2012 },
+      { "name": "INS Tarkash", "pennant": "F50", "commissioned": 2012 },
+      { "name": "INS Trikand", "pennant": "F51", "commissioned": 2013 },
+      { "name": "INS Tushil", "pennant": "F70", "commissioned": 2024 }
+    ]
+  },
+  {
+    "className": "Brahmaputra class",
+    "classCount": 3,
+    "displacementT": 3850,
+    "origin": "India",
+    "homeport": "Mumbai",
+    "role": "Guided-missile frigate",
+    "note": "Upgraded derivative of the Godavari class.",
+    "futureOrders": "No additional ships counted in this class register.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/INS_Brahmaputra-1.jpg/250px-INS_Brahmaputra-1.jpg",
+    "sourceUrl": "https://en.wikipedia.org/wiki/List_of_frigates_of_the_Indian_Navy",
+    "ships": [
+      { "name": "INS Brahmaputra", "pennant": "F31", "commissioned": 2000 },
+      { "name": "INS Betwa", "pennant": "F39", "commissioned": 2004 },
+      { "name": "INS Beas", "pennant": "F37", "commissioned": 2005 }
+    ]
+  }
+]

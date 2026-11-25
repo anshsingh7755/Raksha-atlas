@@ -1,0 +1,206 @@
+{
+  "asOf": "2026-11-04",
+  "scope": "Selected institutional and conflict milestones, not an exhaustive military history. Wikipedia-derived entries are secondary and require corroboration.",
+  "items": [
+    {
+      "id": "history-01",
+      "date": "1947",
+      "title": "Partition and service division",
+      "summary": "At independence, armed forces, ships, aircraft and formations were divided between India and Pakistan. The new services inherited distinct starting inventories.",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Indian_Armed_Forces#Dominion_of_India_(1947%E2%80%931950)",
+      "verificationStatus": "reported",
+      "sourceId": "wikipedia-indian-armed-forces",
+      "confidence": "medium"
+    },
+    {
+      "id": "history-02",
+      "date": "1947–1949",
+      "title": "First India–Pakistan war",
+      "summary": "The armed forces fought the first Kashmir conflict after independence; the event shaped early force organization and operational experience.",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Indian_Armed_Forces#Dominion_of_India_(1947%E2%80%931950)",
+      "verificationStatus": "reported",
+      "sourceId": "wikipedia-indian-armed-forces",
+      "confidence": "medium"
+    },
+    {
+      "id": "history-03",
+      "date": "1948",
+      "title": "Operation Polo",
+      "summary": "Indian forces entered Hyderabad in September 1948; the state was integrated into the Indian Union.",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Indian_Armed_Forces#Dominion_of_India_(1947%E2%80%931950)",
+      "verificationStatus": "reported",
+      "sourceId": "wikipedia-indian-armed-forces",
+      "confidence": "medium"
+    },
+    {
+      "id": "history-04",
+      "date": "1949-01-15",
+      "title": "First Indian Army Commander-in-Chief",
+      "summary": "K. M. Cariappa became the first Indian Commander-in-Chief of the Army; 15 January is observed as Army Day.",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Indian_Armed_Forces#Dominion_of_India_(1947%E2%80%931950)",
+      "verificationStatus": "reported",
+      "sourceId": "wikipedia-indian-armed-forces",
+      "confidence": "medium"
+    },
+    {
+      "id": "history-05",
+      "date": "1950-01-26",
+      "title": "Republic and national service identities",
+      "summary": "On becoming a republic, colonial-era service titles and symbols were progressively replaced by Indian national insignia.",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Indian_Armed_Forces#Republic_of_India_(1950_to_present)",
+      "verificationStatus": "reported",
+      "sourceId": "wikipedia-indian-armed-forces",
+      "confidence": "medium"
+    },
+    {
+      "id": "history-06",
+      "date": "1954-04-01",
+      "title": "First Indian Air Chief",
+      "summary": "Subroto Mukherjee became the first Indian Commander-in-Chief of the Indian Air Force.",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Indian_Armed_Forces#Republic_of_India_(1950_to_present)",
+      "verificationStatus": "reported",
+      "sourceId": "wikipedia-indian-armed-forces",
+      "confidence": "medium"
+    },
+    {
+      "id": "history-07",
+      "date": "1955",
+      "title": "Chiefs of Staff designation",
+      "summary": "Legislation changed the service chiefs’ designation from Commander-in-Chief to Chief of Staff.",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Indian_Armed_Forces#Republic_of_India_(1950_to_present)",
+      "verificationStatus": "reported",
+      "sourceId": "wikipedia-indian-armed-forces",
+      "confidence": "medium"
+    },
+    {
+      "id": "history-08",
+      "date": "1958",
+      "title": "First Indian Chief of Naval Staff",
+      "summary": "The last British naval chief was succeeded by an Indian officer, according to the linked historical account.",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Indian_Armed_Forces#Republic_of_India_(1950_to_present)",
+      "verificationStatus": "reported",
+      "sourceId": "wikipedia-indian-armed-forces",
+      "confidence": "medium"
+    },
+    {
+      "id": "history-09",
+      "date": "1961-12",
+      "title": "Goa / Operation Vijay",
+      "summary": "Army, Navy and Air Force took part in the operation that ended Portuguese rule in Goa.",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Indian_Armed_Forces#Republic_of_India_(1950_to_present)",
+      "verificationStatus": "reported",
+      "sourceId": "wikipedia-indian-armed-forces",
+      "confidence": "medium"
+    },
+    {
+      "id": "history-10",
+      "date": "1962",
+      "title": "Sino-Indian War",
+      "summary": "The conflict with China prompted major reassessment of high-altitude readiness, logistics and force posture.",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Indian_Armed_Forces#Republic_of_India_(1950_to_present)",
+      "verificationStatus": "reported",
+      "sourceId": "wikipedia-indian-armed-forces",
+      "confidence": "medium"
+    },
+    {
+      "id": "history-11",
+      "date": "1965",
+      "title": "India–Pakistan War",
+      "summary": "A major interstate conflict involving the armed forces; included as historical context, not a detailed operational account.",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Indian_Armed_Forces#Republic_of_India_(1950_to_present)",
+      "verificationStatus": "reported",
+      "sourceId": "wikipedia-indian-armed-forces",
+      "confidence": "medium"
+    },
+    {
+      "id": "history-12",
+      "date": "1971",
+      "title": "India–Pakistan War and Bangladesh liberation",
+      "summary": "All three services participated in the war that led to the creation of Bangladesh.",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Indian_Armed_Forces#Republic_of_India_(1950_to_present)",
+      "verificationStatus": "reported",
+      "sourceId": "wikipedia-indian-armed-forces",
+      "confidence": "medium"
+    },
+    {
+      "id": "history-13",
+      "date": "1984-04",
+      "title": "Operation Meghdoot",
+      "summary": "Indian forces established positions on the Siachen Glacier and Saltoro Ridge; this began a continuing high-altitude deployment.",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Indian_Armed_Forces#Republic_of_India_(1950_to_present)",
+      "verificationStatus": "reported",
+      "sourceId": "wikipedia-indian-armed-forces",
+      "confidence": "medium"
+    },
+    {
+      "id": "history-14",
+      "date": "1987–1990",
+      "title": "Indian Peace Keeping Force in Sri Lanka",
+      "summary": "IPKF deployed under the Indo–Sri Lanka Accord; the experience informed later counter-insurgency and joint operations discussions.",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Indian_Armed_Forces#Republic_of_India_(1950_to_present)",
+      "verificationStatus": "reported",
+      "sourceId": "wikipedia-indian-armed-forces",
+      "confidence": "medium"
+    },
+    {
+      "id": "history-15",
+      "date": "1999",
+      "title": "Kargil conflict",
+      "summary": "The conflict underscored requirements in surveillance, high-altitude logistics, precision fires and joint coordination.",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Indian_Armed_Forces#Republic_of_India_(1950_to_present)",
+      "verificationStatus": "reported",
+      "sourceId": "wikipedia-indian-armed-forces",
+      "confidence": "medium"
+    },
+    {
+      "id": "history-16",
+      "date": "2001–2002",
+      "title": "Defence Intelligence Agency established",
+      "summary": "Post-Kargil reforms led to the establishment of the Defence Intelligence Agency, which became operational in 2002.",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Indian_Armed_Forces#Defence_intelligence",
+      "verificationStatus": "reported",
+      "sourceId": "wikipedia-indian-armed-forces",
+      "confidence": "medium"
+    },
+    {
+      "id": "history-17",
+      "date": "2019",
+      "title": "Department of Military Affairs created",
+      "summary": "The Ministry of Defence annual report records creation of the Department of Military Affairs in 2019 to promote jointness and resource coordination.",
+      "sourceUrl": "https://www.ddpmod.gov.in/sites/default/files/f8e94bda5b77b0d965c38149f88e92d60cd38ff431611165edca1c59b99653ff/4fd1090a4871149c4845f914894dca251728a192696dcf1d284a02fb51618c3d.pdf",
+      "verificationStatus": "official",
+      "sourceId": "mod-annual-report-2024-25",
+      "confidence": "high"
+    },
+    {
+      "id": "history-18",
+      "date": "2020",
+      "title": "Chief of Defence Staff and jointness reforms",
+      "summary": "The CDS and Department of Military Affairs framework became a visible institutional modernization focus; verify individual dates against official releases.",
+      "sourceUrl": "https://www.ddpmod.gov.in/sites/default/files/f8e94bda5b77b0d965c38149f88e92d60cd38ff431611165edca1c59b99653ff/4fd1090a4871149c4845f914894dca251728a192696dcf1d284a02fb51618c3d.pdf",
+      "verificationStatus": "official",
+      "sourceId": "mod-annual-report-2024-25",
+      "confidence": "high"
+    },
+    {
+      "id": "history-19",
+      "date": "2022",
+      "title": "Agnipath recruitment scheme introduced",
+      "summary": "A major personnel policy change altered short-service recruitment pathways for the Army, Navy and Air Force.",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Indian_Armed_Forces#Recruitment_and_Training",
+      "verificationStatus": "reported",
+      "sourceId": "wikipedia-indian-armed-forces",
+      "confidence": "medium"
+    },
+    {
+      "id": "history-20",
+      "date": "2025",
+      "title": "Operation Sindoor and contemporary force posture",
+      "summary": "Recent event named in the current Wikipedia overview; expand only alongside official statements and reputable independent reporting.",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Indian_Armed_Forces#Overview",
+      "verificationStatus": "unverified",
+      "sourceId": "wikipedia-indian-armed-forces",
+      "confidence": "low"
+    }
+  ]
+}

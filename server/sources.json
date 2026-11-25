@@ -589,11 +589,11 @@
     "active": true,
     "reliabilityNotes": "Name-based search can return lookalikes or unrelated people. Treat as a discovery lead and verify account identity before citing.",
     "termsReviewedAt": null,
-    "lastCheckedAt": "2026-11-15T20:30:14.026Z",
+    "lastCheckedAt": "2026-11-25T13:30:13.154Z",
     "lastCheck": {
       "status": 200,
       "ok": true,
-      "checkedAt": "2026-11-15T20:30:14.026Z"
+      "checkedAt": "2026-11-25T13:30:13.154Z"
     }
   },
   {
@@ -607,11 +607,11 @@
     "active": true,
     "reliabilityNotes": "Secondary reporting; verify programme milestones with primary documentation.",
     "termsReviewedAt": null,
-    "lastCheckedAt": "2026-11-15T20:30:14.026Z",
+    "lastCheckedAt": "2026-11-25T13:30:13.154Z",
     "lastCheck": {
       "status": 200,
       "ok": true,
-      "checkedAt": "2026-11-15T20:30:14.026Z"
+      "checkedAt": "2026-11-25T13:30:13.154Z"
     }
   },
   {
@@ -625,11 +625,11 @@
     "active": true,
     "reliabilityNotes": "Secondary reporting. Keep claims unverified until corroborated.",
     "termsReviewedAt": null,
-    "lastCheckedAt": "2026-11-15T20:30:14.026Z",
+    "lastCheckedAt": "2026-11-25T13:30:13.154Z",
     "lastCheck": {
       "status": 200,
       "ok": true,
-      "checkedAt": "2026-11-15T20:30:14.026Z"
+      "checkedAt": "2026-11-25T13:30:13.154Z"
     }
   },
   {
@@ -643,11 +643,11 @@
     "active": true,
     "reliabilityNotes": "Secondary/international reporting. Headlines/snippets are retained, not full article text.",
     "termsReviewedAt": null,
-    "lastCheckedAt": "2026-11-15T20:30:14.026Z",
+    "lastCheckedAt": "2026-11-25T13:30:13.154Z",
     "lastCheck": {
       "status": 200,
       "ok": true,
-      "checkedAt": "2026-11-15T20:30:14.026Z"
+      "checkedAt": "2026-11-25T13:30:13.154Z"
     }
   },
   {
@@ -661,11 +661,11 @@
     "active": true,
     "reliabilityNotes": "Search index used to discover stories; verify at the publisher and primary source.",
     "termsReviewedAt": null,
-    "lastCheckedAt": "2026-11-15T20:30:14.026Z",
+    "lastCheckedAt": "2026-11-25T13:30:13.154Z",
     "lastCheck": {
       "status": 200,
       "ok": true,
-      "checkedAt": "2026-11-15T20:30:14.026Z"
+      "checkedAt": "2026-11-25T13:30:13.154Z"
     }
   },
   {
@@ -679,11 +679,11 @@
     "active": true,
     "reliabilityNotes": "Official primary releases. The RSS entry is metadata/snippet; open the original release for full context.",
     "termsReviewedAt": null,
-    "lastCheckedAt": "2026-11-15T20:30:14.026Z",
+    "lastCheckedAt": "2026-11-25T13:30:13.154Z",
     "lastCheck": {
       "status": 200,
       "ok": true,
-      "checkedAt": "2026-11-15T20:30:14.026Z"
+      "checkedAt": "2026-11-25T13:30:13.154Z"
     }
   },
   {
@@ -697,11 +697,11 @@
     "active": true,
     "reliabilityNotes": "Secondary reporting; verify programme milestones with primary documentation.",
     "termsReviewedAt": null,
-    "lastCheckedAt": "2026-11-15T20:30:14.026Z",
+    "lastCheckedAt": "2026-11-25T13:30:13.154Z",
     "lastCheck": {
       "status": 200,
       "ok": true,
-      "checkedAt": "2026-11-15T20:30:14.026Z"
+      "checkedAt": "2026-11-25T13:30:13.154Z"
     }
   },
   {
@@ -715,11 +715,11 @@
     "active": true,
     "reliabilityNotes": "Search index, not a direct AIR feed; AIR News is a public broadcaster but discovery results must be checked against the linked item.",
     "termsReviewedAt": null,
-    "lastCheckedAt": "2026-11-15T20:30:14.026Z",
+    "lastCheckedAt": "2026-11-25T13:30:13.154Z",
     "lastCheck": {
       "status": 200,
       "ok": true,
-      "checkedAt": "2026-11-15T20:30:14.026Z"
+      "checkedAt": "2026-11-25T13:30:13.154Z"
     }
   },
   {
@@ -733,11 +733,11 @@
     "active": true,
     "reliabilityNotes": "Secondary reporting; citations link to the publisher item where available.",
     "termsReviewedAt": null,
-    "lastCheckedAt": "2026-11-15T20:30:14.026Z",
+    "lastCheckedAt": "2026-11-25T13:30:13.154Z",
     "lastCheck": {
       "status": 200,
       "ok": true,
-      "checkedAt": "2026-11-15T20:30:14.026Z"
+      "checkedAt": "2026-11-25T13:30:13.154Z"
     }
   },
   {
@@ -2213,5 +2213,23 @@
     "reliabilityNotes": "Secondary curated defence news publisher covering policy, national security, diplomacy, aerospace, cyberspace, reconnaissance, defence infrastructure/business, technology and indigenous manufacturing. Preserve bylines, labels and underlying source attribution; corroborate consequential claims.",
     "termsReviewedAt": null,
     "lastCheckedAt": null
+  },
+  {
+    "id": "indian-defence-news-rss",
+    "name": "Indian Defence News — Publisher RSS",
+    "url": "https://www.indiandefensenews.in/feeds/posts/default?alt=rss",
+    "sourceType": "publisher RSS feed",
+    "official": false,
+    "defaultStatus": "reported",
+    "language": "en",
+    "active": true,
+    "reliabilityNotes": "Publisher Blogger RSS feed. Secondary curated reporting; preserve article labels/bylines and underlying source attribution. Do not treat claims as verified without primary corroboration.",
+    "termsReviewedAt": null,
+    "lastCheckedAt": "2026-11-25T13:30:13.154Z",
+    "lastCheck": {
+      "status": 200,
+      "ok": true,
+      "checkedAt": "2026-11-25T13:30:13.154Z"
+    }
   }
 ]

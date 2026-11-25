@@ -1,0 +1,12 @@
+[
+  {"id":"defence","name":"Defence","parentId":null,"keywords":["defence","defense","military","armed forces","procurement"],"active":true},
+  {"id":"defence-naval","name":"Naval Forces","parentId":"defence","keywords":["navy","warship","submarine","carrier","frigate","corvette"],"active":true},
+  {"id":"defence-air","name":"Air Forces","parentId":"defence","keywords":["air force","fighter","aircraft","awacs","aircraft carrier"],"active":true},
+  {"id":"defence-land","name":"Land Forces","parentId":"defence","keywords":["army","tank","artillery","armoured","infantry"],"active":true},
+  {"id":"defence-missiles","name":"Missiles & Space","parentId":"defence","keywords":["missile","rocket","satellite","space","launch"],"active":true},
+  {"id":"defence-industry","name":"Defence Industry","parentId":"defence","keywords":["hal","bel","shipyard","manufacturer","production","contract"],"active":true},
+  {"id":"technology","name":"Technology","parentId":null,"keywords":["technology","ai","cybersecurity","communications"],"active":true},
+  {"id":"politics","name":"Politics & Policy","parentId":null,"keywords":["parliament","government","minister","policy"],"active":true},
+  {"id":"business","name":"Business & Economy","parentId":null,"keywords":["business","economy","market","finance"],"active":true},
+  {"id":"sports","name":"Sports","parentId":null,"keywords":["sports","cricket","football","olympics"],"active":true}
+]
