@@ -1,3 +1,11 @@
+## How to use this research plan
+
+This document defines a proposed way to follow three named public defence-news publishers and organize their reporting into a source-attributed research panel.
+
+It is a source reconnaissance and implementation plan. It does not mean every historical article has been collected, every page can be accessed, or every claim is verified.
+
+A publisher feed is a discovery channel. Each important item should link to the original publisher, retain its date and be labelled according to the evidence available. Follow publisher access rules and do not copy full copyrighted articles.
+
 # Three-Publisher Defence Research and News Integration Plan
 
 **Research cut-off:** 23 November 2026  
