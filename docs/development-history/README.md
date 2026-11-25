@@ -1,27 +1,39 @@
-# Development History
+# Development history
 
-This folder records short, dated project-level changes. Detailed implementation steps and acceptance criteria remain in the [delivery roadmap](../roadmap/README.md) and its phase runbooks.
+## Why keep a history?
+
+The roadmap explains what the project intends to build and what each phase requires. The development history records what actually changed over time.
+
+Keeping these separate makes it easier to answer:
+- What was planned?
+- What was changed?
+- Why was it changed?
+- What failed and how was it fixed?
+- Which checks were actually run?
+
+## Where is the detailed history?
+
+The earlier phase-by-phase implementation notes remain in the [delivery roadmap](../roadmap/README.md), its phase runbooks and the [architecture decisions](../architecture/README.md).
+
+Use this folder for short project-level entries that point to those detailed records. Do not copy the entire phase document here.
 
 ## Entry format
 
-Use one compact entry for each meaningful change:
-
-```text
-### YYYY-MM-DD — Phase / task
-- Change: what was updated.
-- Issue: what failed or was unclear (omit if none).
-- Fix: what resolved it (omit if none).
-- Validation: exact build, test or manual check and its result.
+```markdown
+### YYYY-MM-DD — Phase or task name
+- **Change:** What was changed and which files or services were affected.
+- **Reason:** Why the change was needed.
+- **Issue:** What failed or was unclear, if anything.
+- **Fix:** What resolved the issue, if anything.
+- **Validation:** Exact command or manual check and its result.
+- **Status:** Completed, pending or blocked.
 ```
 
-## Recording rules
+## Rules
 
-- Record actual work only; do not invent dates, errors or test results.
-- Keep entries short and link to the canonical phase/runbook document.
-- Distinguish automated test results from manual checks and owner-reported status.
-- Do not duplicate full technical explanations already maintained elsewhere.
-- Preserve older records; correct them with a dated note rather than silently rewriting history.
-
-## Existing phase history
-
-The existing implementation history is maintained in the [roadmap](../roadmap/README.md), [architecture decisions](../architecture/README.md), and phase-specific runbooks. New entries should link to those documents instead of copying their contents.
+- Record only work that actually happened.
+- Use the real date of the change.
+- Separate automated test results from manual checks and owner-reported status.
+- Never say a deployment succeeded unless it was checked.
+- Keep entries short and link to the detailed technical guide.
+- Preserve older records. If a correction is needed, add a dated correction rather than silently rewriting history.
