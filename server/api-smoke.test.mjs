@@ -64,6 +64,7 @@ test("read-only API smoke checks cover health and core public registers", { time
       ["/api/programmes", (body) => Array.isArray(body.items) && body.count === body.items.length],
       ["/api/documents", (body) => Array.isArray(body.items) && body.total >= body.items.length],
       ["/api/sources", (body) => Array.isArray(body.items) && Array.isArray(body.verificationStatuses)],
+      ["/api/operations/summary", (body) => body.sources?.total >= 0 && body.feeds?.total >= 0 && body.articles?.total >= 0 && body.pipeline !== undefined],
       ["/api/search?q=aircraft", (body) => body.query === "aircraft" && Array.isArray(body.results)],
       ["/api/theatre-atlas", (body) => Array.isArray(body.items) && body.count === body.items.length],
     ];
@@ -75,6 +76,14 @@ test("read-only API smoke checks cover health and core public registers", { time
       assert.ok(validate(body), `${path} should return its documented response shape`);
     }
 
+    const articlePage = await fetch(baseUrl + "/api/articles?limit=1&offset=0");
+    assert.equal(articlePage.status, 200);
+    const articlePageBody = await articlePage.json();
+    assert.ok(Array.isArray(articlePageBody.items));
+    assert.equal(articlePageBody.limit, 1);
+    assert.equal(articlePageBody.offset, 0);
+    assert.ok(articlePageBody.total >= articlePageBody.items.length);
+    assert.equal(articlePageBody.hasMore, articlePageBody.offset + articlePageBody.items.length < articlePageBody.total);
     const missing = await fetch(`${baseUrl}/api/this-route-does-not-exist`);
     assert.equal(missing.status, 404);
     assert.deepEqual(await missing.json(), { error: "not found" });
