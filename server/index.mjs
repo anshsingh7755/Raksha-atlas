@@ -649,6 +649,7 @@ export async function handleRequest(request, response) {
     }
   }
 
+  await storeReady;
   const data = await loadData();
 
   if (request.method === "GET" && url.pathname === "/") {
