@@ -1258,7 +1258,7 @@ function App({
   useEffect(() => {
     Promise.all([
       apiGet<{ count?: number }>("/api/timelines"),
-      apiGet<{ items?: RegistrySource[] }>("/api/sources"),
+      backendApi.sources<RegistrySource>(),
       apiGet<{ items?: CommandRecord[] }>("/api/commands"),
     ])
       .then(([programmesData, sourcesData, commandsData]) => {
@@ -1841,16 +1841,13 @@ function App({
     const [inventoryError, setInventoryError] = useState("");
     useEffect(() => {
       const controller = new AbortController();
-      const params = new URLSearchParams();
-      if (serviceFilter !== "all") params.set("service", serviceFilter);
-      if (categoryFilter !== "all") params.set("category", categoryFilter);
-      if (statusFilter !== "all") params.set("quantityStatus", statusFilter);
       setLoading(true);
       setInventoryError("");
-      apiGet<{ items: InventoryItem[]; availableFilters?: InventoryFilterOptions }>(
-        `/api/inventory?${params}`,
-        { signal: controller.signal },
-      )
+      backendApi.inventory<InventoryItem>({
+        service: serviceFilter === "all" ? undefined : serviceFilter,
+        category: categoryFilter === "all" ? undefined : categoryFilter,
+        quantityStatus: statusFilter === "all" ? undefined : statusFilter,
+      }, controller.signal)
         .then((data) => {
           setItems(data.items ?? []);
           if (data.availableFilters) setFilterOptions(data.availableFilters);
