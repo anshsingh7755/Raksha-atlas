@@ -1,3 +1,14 @@
+## Read this guide in simple terms
+
+This document explains where the website's inventory and procurement information comes from and how it should be understood.
+
+- **Inventory** means equipment and platforms that are in service or otherwise explicitly recorded as current holdings.
+- **Procurement** means equipment that is being considered, requested, ordered or contracted for future delivery.
+- **Source catalogue** means the original public pages and tables used to build the records.
+- **Normalized catalogue** means those source rows arranged into a consistent format so the website can filter and display them.
+
+The key rule is: do not mix current equipment with future orders, and do not turn a source estimate into an exact number. The sections below describe the actual files and current data rules.
+
 # Inventory and procurement data
 
 ## What the website now reads
