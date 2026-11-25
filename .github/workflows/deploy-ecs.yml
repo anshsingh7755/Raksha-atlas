@@ -1,0 +1,85 @@
+name: Deploy or rollback Raksha Atlas on ECS
+
+on:
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: Deploy a reviewed task definition or roll back to a known-good revision
+        type: choice
+        options: [deploy, rollback]
+        required: true
+      environment:
+        description: Protected GitHub environment
+        type: choice
+        options: [staging, production]
+        required: true
+      task_definition_arn:
+        description: Exact, reviewed ECS task definition ARN (immutable revision)
+        type: string
+        required: true
+      confirm_execution:
+        description: Explicitly authorize ECS service update after environment approval
+        type: boolean
+        default: false
+        required: true
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: raksha-ecs-${{ inputs.environment }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: ${{ inputs.confirm_execution }}
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    timeout-minutes: 30
+    steps:
+      - name: Validate deployment configuration
+        env:
+          AWS_REGION: ${{ vars.AWS_REGION }}
+          AWS_ROLE_ARN: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          ECS_CLUSTER: ${{ vars.ECS_CLUSTER }}
+          ECS_SERVICE: ${{ vars.ECS_SERVICE }}
+          TASK_DEFINITION: ${{ inputs.task_definition_arn }}
+        run: |
+          set -euo pipefail
+          for value in "$AWS_REGION" "$AWS_ROLE_ARN" "$ECS_CLUSTER" "$ECS_SERVICE" "$TASK_DEFINITION"; do
+            test -n "$value" || { echo "Missing protected environment configuration"; exit 1; }
+          done
+          [[ "$TASK_DEFINITION" == arn:aws:ecs:*:task-definition/*:* ]] || { echo "Provide an exact ECS task definition ARN"; exit 1; }
+
+      - name: Configure AWS credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Update ECS service to reviewed task definition
+        env:
+          AWS_REGION: ${{ vars.AWS_REGION }}
+          ECS_CLUSTER: ${{ vars.ECS_CLUSTER }}
+          ECS_SERVICE: ${{ vars.ECS_SERVICE }}
+          TASK_DEFINITION: ${{ inputs.task_definition_arn }}
+        run: |
+          set -euo pipefail
+          aws ecs describe-services --cluster "$ECS_CLUSTER" --services "$ECS_SERVICE" --region "$AWS_REGION" --query 'services[?status==`ACTIVE`].serviceName' --output text | grep -Fx "$ECS_SERVICE"
+          aws ecs update-service --cluster "$ECS_CLUSTER" --service "$ECS_SERVICE" --task-definition "$TASK_DEFINITION" --region "$AWS_REGION"
+          aws ecs wait services-stable --cluster "$ECS_CLUSTER" --services "$ECS_SERVICE" --region "$AWS_REGION"
+
+      - name: Report deployed revision
+        env:
+          AWS_REGION: ${{ vars.AWS_REGION }}
+          ECS_CLUSTER: ${{ vars.ECS_CLUSTER }}
+          ECS_SERVICE: ${{ vars.ECS_SERVICE }}
+        run: |
+          aws ecs describe-services --cluster "$ECS_CLUSTER" --services "$ECS_SERVICE" --region "$AWS_REGION" --query 'services[0].{service:serviceName,taskDefinition:taskDefinition,desired:desiredCount,running:runningCount,deployments:deployments[*].rolloutState}' --output json
+
+  blocked:
+    if: ${{ !inputs.confirm_execution }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "No deployment performed. Re-run manually with explicit confirmation and protected environment approval."
