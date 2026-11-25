@@ -31,3 +31,11 @@ Thumbs.db
 # Local tools and generated caches
 .tools/
 *.tsbuildinfo
+
+# Terraform local state and credentials
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+crash.log
