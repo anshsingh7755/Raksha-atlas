@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import pg from "pg";
 import process from "node:process";
+import { createHash } from "node:crypto";
 const { Pool } = pg;
 const envText = await fs.readFile(".env", "utf8").catch(() => "");
 for (const line of envText.split(/\r?\n/)) {
@@ -61,6 +62,6 @@ try {
       }
     } finally { await legacy.end(); }
   }
-  await load("server/data.json","defence_articles",r=>({id:"article-"+require("node:crypto").createHash("sha256").update(String(r.canonicalUrl||r.url||r.id)+"|"+String(r.title||"")+"|"+String(r.publishedAt||"")).digest("hex").slice(0,40),title:r.title||r.id,canonical_url:r.canonicalUrl||null,source_id:r.sourceId||null,service:r.service||null,category:r.topic||r.category||null,published_at:r.publishedAt||null,verification_status:r.verificationStatus||"unverified",review_state:r.reviewState||"unreviewed",record:r}),d=>d.articles||[]);
+  await load("server/data.json","defence_articles",r=>({id:"article-"+createHash("sha256").update(String(r.canonicalUrl||r.url||r.id)+"|"+String(r.title||"")+"|"+String(r.publishedAt||"")).digest("hex").slice(0,40),title:r.title||r.id,canonical_url:r.canonicalUrl||null,source_id:r.sourceId||null,service:r.service||null,category:r.topic||r.category||null,published_at:r.publishedAt||null,verification_status:r.verificationStatus||"unverified",review_state:r.reviewState||"unreviewed",record:r}),d=>d.articles||[]);
   process.stdout.write(JSON.stringify({database:"defence_db",report},null,2)+"\n");
 } finally { await pool.end(); }
