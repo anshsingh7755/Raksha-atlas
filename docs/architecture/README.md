@@ -225,3 +225,10 @@ The active Node API now exposes `GET /api/operations/summary`, a read-only opera
 The article API also supports optional bounded pagination while preserving its original unpaginated response behavior for existing clients. These changes are operational visibility aids only: source freshness is not proof of source availability or claim verification, active feeds are not proof of a successful fetch, and review status is separate from verification status.
 
 See [Phase 8 intelligence operations runbook](../roadmap/PHASE-8-INTELLIGENCE-OPERATIONS.md). Node ingestion and storage remain active; no new schedule, automated source promotion, production alert or stack cutover is activated.
+
+
+## Automated monitoring — current versus proposed
+
+The active Node backend already contains a public-source collection pipeline and process-bound scheduler. That scheduler runs only while its host process remains alive. The owner's new requirement for laptop-independent operation therefore needs a hosted scheduler and worker. The proposed schedule and evidence workflow are specified in [Automated Defence Intelligence Monitoring](../intelligence/AUTOMATED-INTELLIGENCE-MONITORING.md).
+
+Do not describe the hosted worker, 08:00–09:00 digest, 10:00 refresh, all-day execution or phone-triggered jobs as active until they have been deployed and tested. The current Vite/Node application remains the active product; this requirement does not require an immediate framework migration.
