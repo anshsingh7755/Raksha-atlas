@@ -5,6 +5,7 @@ export type SpringCollection<T> = {
   count?: number;
   asOf?: string | null;
   filters?: Record<string, string>;
+  summary?: { total: number; needsVerification: number; structuredStageRecords: number; recordsWithMilestones: number; officialSourceRecords: number };
 };
 
 export type InventoryFilters = {
