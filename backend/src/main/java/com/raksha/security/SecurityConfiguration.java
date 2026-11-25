@@ -48,7 +48,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/api/admin/audit/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .oauth2ResourceServer(oauth -> oauth.jwt(jwt -> jwt.jwtAuthenticationConverter(rolesConverter())))
-                .addFilterAfter(auditFilter, ExceptionTranslationFilter.class)
+                .addFilterBefore(auditFilter, ExceptionTranslationFilter.class)
                 .build();
     }
 
