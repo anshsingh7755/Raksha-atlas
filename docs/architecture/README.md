@@ -76,14 +76,14 @@ The root Vite/Node application remains the active website and API. The current l
 
 | Path | Current contents | Not yet complete |
 |---|---|---|
-| `frontend/` | Next.js 15 shell and package | Full App Router migration and feature parity |
-| `backend/` | Spring Boot 4 / Java 21 scaffold, health and initial inventory slice | PostgreSQL runtime, full domain APIs, auth, tests and cutover |
+| `frontend/` | Next.js 15 shell, standalone output and candidate Dockerfile | Full App Router migration, runtime proxy configuration and feature parity |
+| `backend/` | Spring Boot 4 / Java 21 scaffold, initial inventory slice and multi-stage Dockerfile | Populated-data parity, identity-provider integration and cutover |
 | `ai/` | FastAPI extraction worker plus Phase 3.1–3.5 contracts, chunking, embedding client, retrieval boundary and LiteLLM routing adapter | pgvector persistence/search, gateway integration, workflows, evaluation and Node RAG replacement |
 | `data-engineering/` | Python pipeline boundary, deduplication and CLI check | Ported production collectors, orchestration and quality monitoring |
 | `database/` | PostgreSQL migration(s), initial inventory schema | Full domain schema and verified import |
-| `infrastructure/` | Docker/AWS migration notes and directories | Terraform, cloud resources, CI/CD and production observability |
+| `infrastructure/` | Docker service images, Compose profiles and AWS Terraform foundation | AWS plan/apply approval, ECS service/deployment, secrets, observability and production operations |
 
-The Next.js shell currently reuses the existing UI and proxies API requests to Node. This is a transition aid, not a second permanent frontend.
+The Next.js shell currently reuses the existing UI and proxies API requests to Node. This is a transition aid, not a second permanent frontend. Its standalone Docker image is opt-in and does not replace the root Vite/Node image.
 
 ## 5. Request flows
 
@@ -181,3 +181,7 @@ The Programmes page is a research/discovery register, not a contract ledger or o
 - [RAG chatbot](../../RAG-CHATBOT.md) — current retrieval/chat design.
 - [Theatre Atlas source register](../intelligence/THEATRE-ATLAS-SOURCE-REGISTER.md) — geography records and classification policy.
 - [Future programmes dossier](../intelligence/FUTURE-PROGRAMMES-ACQUISITION-DOSSIER.md) — public programme research.
+
+## 13. Phase 5 infrastructure boundary
+
+The default Compose stack preserves the current Vite/Node application. The `migration` profile adds the Spring Boot candidate API and the `cache` profile adds Redis; neither changes the default browser/API path. Service images live in `backend/Dockerfile`, `frontend/Dockerfile` and `ai/Dockerfile`. The AWS Terraform foundation is in `infrastructure/aws/terraform`; it defines a private encrypted RDS database, encrypted/versioned private S3 bucket, VPC network boundary, ECS cluster and scoped task IAM. No AWS resources have been applied and no production application service or ingress is created. See [Phase 5 runbook](../roadmap/PHASE-5-CUTOVER-RUNBOOK.md).
