@@ -50,8 +50,10 @@ Run:
 mvn -B -f backend/pom.xml test
 python -m pip install -r ai/requirements-dev.txt
 python -m pytest -q -c ai/pytest.ini ai/tests
-python -m unittest discover -s data-engineering/tests -v
+Push-Location data-engineering
+python -m unittest discover -s tests -v
 python -m pipeline.main --check
+Pop-Location
 docker compose config --quiet
 ```
 
