@@ -229,18 +229,22 @@ Remaining Phase 2 work: authentication, authorization, expanded API validation/p
 
 ## 9. Phase 5 — infrastructure and production
 
-**Target:** Docker, AWS, Terraform, GitHub Actions; Kubernetes/EKS when justified.
+**Target:** Docker, AWS, Terraform and GitHub Actions; Kubernetes/EKS only when justified. **Implementation status:** 5.1–5.5 foundations committed. Local runtime/profile acceptance, AWS plan review and deployment remain deferred; no AWS resources have been provisioned.
 
-1. Create reproducible local Compose services.
-2. Add service-specific Dockerfiles and health checks.
-3. Add automated format, typecheck, unit and integration tests.
-4. Build GitHub Actions CI for pull requests and branch updates.
-5. Provision AWS networking, IAM, S3, RDS and ECS with Terraform.
-6. Configure secrets, backups, encryption and access policies.
-7. Add deployment and rollback workflows.
-8. Add OpenTelemetry instrumentation, Prometheus metrics and Grafana dashboards.
-9. Perform security review, load testing and recovery exercises.
-10. Adopt Kubernetes/EKS and Helm only when operational scale/complexity justifies it; ECS is sufficient for the initial AWS deployment.
+| Sub-phase | Workstream | Status |
+|---|---|---|
+| 5.1 | Create reproducible local Compose services | Existing Vite/Node stack preserved; opt-in `migration` (Spring Boot) and `cache` (Redis) profiles added |
+| 5.2 | Add service-specific Dockerfiles and health checks | Java 21 backend and Next.js standalone images added; existing FastAPI image retained; Next.js image is candidate-only |
+| 5.3 | Add automated format, typecheck, unit and integration tests | Existing tests retained; CI expanded for container builds and Terraform static checks |
+| 5.4 | Build GitHub Actions CI for pull requests and branch updates | CI permissions, concurrency, timeout and validation steps updated |
+| 5.5 | Provision AWS networking, IAM, S3, RDS and ECS with Terraform | VPC/subnets/security groups, private encrypted RDS, encrypted/versioned S3, ECS cluster and task IAM roles defined; apply prohibited pending review |
+| 5.6 | Configure secrets, backups, encryption and access policies | Not started |
+| 5.7 | Add deployment and rollback workflows | Not started |
+| 5.8 | Add OpenTelemetry instrumentation, Prometheus metrics and Grafana dashboards | Not started |
+| 5.9 | Perform security review, load testing and recovery exercises | Deferred to Phase 10 |
+| 5.10 | Adopt Kubernetes/EKS and Helm only when justified | ECS remains the initial target; EKS deferred unless scale requires it |
+
+**Safety boundary:** Compose profiles are opt-in. The default Vite/Node request path remains active. Terraform defines infrastructure only; it does not deploy an application service, load balancer, NAT gateway or production secrets. Never apply the plan before account, budget, IAM, network, backup and security approval. See [Phase 5 cutover runbook](PHASE-5-CUTOVER-RUNBOOK.md).
 
 ## 10. Six-month learning plan
 
@@ -276,4 +280,4 @@ For each technology, use the same learning loop:
 
 ## 12. Current next action
 
-**Current execution point:** Phase 3.1–3.5 AI service foundations are implemented. Continue with Phase 3.6–3.10 without waiting for local database imports or manual cutover checks. Keep the Phase 1 browser/device parity, Phase 2 PostgreSQL import/reconciliation, identity-provider verification, API parity and rollback rehearsal as explicit Phase 10 final acceptance gates. Do not retire Vite, Node RAG or legacy APIs before those gates pass and release approval is given.
+**Current execution point:** Phase 5.1–5.5 infrastructure foundations are implemented. Continue with Phase 5.6–5.10 while retaining all runtime, cloud deployment, recovery and cutover acceptance checks for Phase 10. Keep the Phase 1 browser/device parity, Phase 2 PostgreSQL import/reconciliation, identity-provider verification, API parity and rollback rehearsal as explicit Phase 10 final acceptance gates. Do not retire Vite, Node RAG or legacy APIs before those gates pass and release approval is given.
