@@ -96,7 +96,7 @@ resource "aws_db_subnet_group" "main" {
   subnet_ids = aws_subnet.database[*].id
 }
 
-resource "aws_db_instance" "main" {
+resource "aws_db_instance" "main" {\n  kms_key_id                  = aws_kms_key.storage.arn\n  backup_retention_period     = var.database_backup_retention_days
   identifier                  = "${var.name_prefix}-postgres"
   engine                      = "postgres"
   engine_version              = "17"
@@ -135,11 +135,11 @@ resource "aws_s3_bucket_public_access_block" "documents" {
   restrict_public_buckets = true
 }
 
-resource "aws_s3_bucket_server_side_encryption_configuration" "documents" {
+resource "aws_s3_bucket_server_side_encryption_configuration" "documents" {\n  depends_on = [aws_kms_key.storage]
   bucket = aws_s3_bucket.documents.id
   rule {
     apply_server_side_encryption_by_default {
-      sse_algorithm = "AES256"
+      kms_master_key_id = aws_kms_key.storage.arn\n      sse_algorithm     = "aws:kms"
     }
   }
 }
@@ -201,4 +201,47 @@ resource "aws_iam_policy" "document_access" {
 resource "aws_iam_role_policy_attachment" "document_access" {
   role       = aws_iam_role.ecs_task.name
   policy_arn = aws_iam_policy.document_access.arn
+}
+\nresource "aws_kms_key" "storage" {
+  description             = "Raksha Atlas S3 and RDS encryption key"
+  deletion_window_in_days = 30
+  enable_key_rotation     = true
+}
+
+resource "aws_kms_alias" "storage" {
+  name          = "alias/${var.name_prefix}-storage"
+  target_key_id = aws_kms_key.storage.key_id
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "documents" {
+  bucket = aws_s3_bucket.documents.id
+  rule {
+    apply_server_side_encryption_by_default {
+      kms_master_key_id = aws_kms_key.storage.arn
+      sse_algorithm     = "aws:kms"
+    }
+    bucket_key_enabled = true
+  }
+}
+
+resource "aws_db_instance" "main" {
+  kms_key_id = aws_kms_key.storage.arn
+}
+
+resource "aws_s3_bucket_lifecycle_configuration" "documents" {
+  bucket = aws_s3_bucket.documents.id
+  rule {
+    id     = "abort-incomplete-multipart-uploads"
+    status = "Enabled"
+    filter {}
+    abort_incomplete_multipart_upload {
+      days_after_initiation = 7
+    }
+  }
+}
+
+resource "aws_cloudwatch_log_group" "ecs" {
+  name              = "/ecs/${var.name_prefix}"
+  retention_in_days = 30
+  kms_key_id        = aws_kms_key.storage.arn
 }
