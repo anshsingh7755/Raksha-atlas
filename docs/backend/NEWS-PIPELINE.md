@@ -123,3 +123,12 @@ npm test
 ```
 
 The current Node test suite covers canonical URL normalization, PIB release identity, headline matching, RSS parsing, Atom alternate-link selection and malformed feed entries. GitHub Actions runs `npm test` and `npm run build` on pushes and pull requests to the active foundation branch. Add regression tests whenever collector or editorial-state behavior changes.
+
+
+## Future requirement: laptop-independent monitoring
+
+The current pipeline already has collectors, deduplication, enrichment, storage, an hourly scheduler and a 04:00 IST reference refresh. However, the scheduler runs only while the Node API process is alive. It does not guarantee collection when the owner's laptop is offline.
+
+The new owner requirement is documented separately in [Automated Defence Intelligence Monitoring](../intelligence/AUTOMATED-INTELLIGENCE-MONITORING.md). It proposes a hosted scheduler/worker, an 08:00–09:00 IST morning digest, a separate 10:00 IST refresh, incremental collection through the day, event-level source comparison, explicit evidence labels and phone-based controls.
+
+This is a **proposed future capability**, not a claim that the hosted worker, new schedule, X monitoring or phone trigger is already implemented. The first implementation should reuse the existing Node collectors and storage, move execution to a suitable hosted runtime, and preserve current website/API behaviour. Free-tier limits and publisher access restrictions must be visible rather than bypassed.
