@@ -1,85 +1,91 @@
-# Database migration — session handoff
+# Database migration — handoff
 
-> Last updated: 25 November 2026. This is a short working checkpoint; the [delivery roadmap](../docs/roadmap/README.md) and [run/deploy guide](../docs/RUN-AND-DEPLOY.md) remain the detailed sources of truth.
+> Updated: 25 November 2026. Read this first when continuing the database migration in a new chat. Keep steps short and give the user one PowerShell command at a time.
 
-## Project stages (quick context)
+## Project runtime
 
-- **Phase 0:** Complete the website and its core modules on the existing React/Vite + Node stack.
-- **Phase 1:** Migrate the frontend to Next.js (scaffold/controlled migration).
-- **Phase 2:** Migrate the backend to Spring Boot and PostgreSQL.
-- **Phase 3:** AI service (FastAPI).
-- **Phase 4:** Python data-engineering pipelines.
-- **Phase 5:** Infrastructure and production deployment (Docker/AWS/CI/CD).
-- **Phase 6:** Security, identity, authorization and audit.
-- **Phase 7:** Frontend integration and backend connectivity.
-- **Phase 8:** Intelligence operations and data quality.
-- The roadmap does **not** currently define Phase 9 or Phase 10; do not invent their scope. The six-month learning plan is a separate roadmap section.
-- **Vercel:** The existing React/Vite + Node application is deployed at https://raksha-atlas.vercel.app using `vercel.json` and `api/[...path].mjs`. Deployment is separate from the later target-stack migration.
-
-## Current runtime and environment
-
-- Active website: `src/` (React + TypeScript + Vite).
-- Active API: `server/` (Node.js); Vercel adapter: `api/[...path].mjs`.
-- Supporting service: `ai/` (FastAPI).
+- Active frontend: `src/` — React + TypeScript + Vite.
+- Active API: `server/` — Node.js; Vercel adapter: `api/[...path].mjs`.
+- AI service: `ai/` — FastAPI.
 - Local full-stack command: `npm run dev:full`.
-- Docker Compose file: `docker-compose.yml`; PostgreSQL image: `postgres:17-alpine`.
-- Local `.env` was created from `.env.example`. It is ignored/local-only; never commit it or paste secrets into chat.
-- `DB_PASSWORD` already existed in local `.env`. It was exposed in chat during troubleshooting: rotate it after migration and update dependent services consistently.
-- PostgreSQL container user: `raksha`; original database: `raksha_atlas`.
-- A localhost-only PostgreSQL port mapping was added to the `db` service: `127.0.0.1:5432:5432`. This was intended to let Windows-hosted Node scripts connect. Verify with `docker compose port db 5432`.
+- Next.js (`frontend/`) and Spring Boot (`backend/`) are migration scaffolds, not the active runtime.
+- Existing Vercel deployment: https://raksha-atlas.vercel.app.
+- Main roadmap: `docs/roadmap/README.md`; run/deploy guide: `docs/RUN-AND-DEPLOY.md`.
 
-## Two-database separation — current state
+## Database migration status
 
-- `defence_db`: canonical public defence knowledge — inventory, programmes, procurement pipeline, articles/news, sources, timelines, history and reference data. Keep current inducted inventory separate from proposed/approved/tendered/contracted/future quantities.
-- `application_db`: concise technical knowledge about the app — architecture documents and component responsibilities. Source code remains in Git, not copied into this DB.
-- Created locally in Docker: `defence_db` and `application_db`; original `raksha_atlas` remains present.
-- Applied schemas: `database/defence/schema.sql` (8 tables) and `database/application/schema.sql` (2 tables).
-- Seeded `application_db` successfully using `node scripts/seed-application-knowledge.mjs`: 6 architecture documents + 4 components.
-- Local `.env` now has `DEFENCE_DATABASE_URL` and `APPLICATION_DATABASE_URL`, built from the existing `DB_PASSWORD`. Do not print these values.
-- No defence data import or live application cutover has happened yet. The old DB and JSON files must remain untouched until reconciliation and rollback are proven.
+Two PostgreSQL databases exist in Docker (PostgreSQL 17):
 
-## Local data and backup
+- `defence_db`: defence inventory, programmes, procurement, articles/news, sources, timelines, history and reference data.
+- `application_db`: concise application architecture and component knowledge.
+- Original `raksha_atlas` database is still present and must remain untouched.
 
-Latest local JSON counts inspected on 25 November 2026:
-- `server/data.json`: 1,176 articles (must be imported; current importer skips this file).
-- `server/sources.json`: 184 sources.
-- `server/inventory.json`: 363 inventory records.
-- `server/programmes.json`: 103 records.
-- `server/future-procurement.json`: 25 records.
-- `server/procurement-2026.json`: 3 records.
-- `server/timelines.json`: 22 records.
-- `server/history.json`: 20 records.
+Schemas applied:
+- `database/defence/schema.sql` — 8 tables.
+- `database/application/schema.sql` — 2 tables.
 
-A local `backup-db-migration/` folder was created with copies of `server/data.json`, `server/sources.json` and `imp docs.txt`. Verify it exists before relying on it. Git working tree previously showed local changes to `server/data.json`, `server/sources.json` and untracked `imp docs.txt`; preserve them.
+### Imported and verified counts
 
-## Exact next actions
+| Database/table | Verified rows |
+|---|---:|
+| defence_db.defence_sources | 184 |
+| defence_db.defence_inventory | 363 |
+| defence_db.defence_programmes | 103 |
+| defence_db.defence_procurement | 28 |
+| defence_db.defence_articles | 1,224 |
+| defence_db.defence_timelines | 22 |
+| defence_db.defence_history | 20 |
+| defence_db.defence_reference_data | 744 |
+| application_db.application_components | 4 |
+| application_db.application_documents | 6 |
 
-1. Inspect and fix `scripts/import-defence-database.mjs` **before running it**:
-   - Import all 1,176 `server/data.json` articles into `defence_articles`, preserving IDs, canonical URLs, dates, source IDs, publisher official flag, verification status, review state, confidence, keywords and full raw JSON record.
-   - Fix reference-data ID collisions by namespacing IDs with dataset/file name (for example `equipment-catalog.json:<id>`).
-   - Check procurement IDs for collisions across source datasets; namespace if needed.
-   - Check source registry merge behavior so legacy news sources do not unintentionally overwrite richer source records.
-   - Confirm every JSON file's actual shape before mapping; do not silently drop unmatched records.
-2. Run the importer only after the above fixes. Use local `.env`; never display secrets.
-3. Reconcile source and target counts, IDs, duplicates and representative raw records for every dataset, including the 1,176 articles. Inspect legacy PostgreSQL news tables and import them if configured.
-4. Only after parity, plan API cutover to `defence_db` and update application DB usage if needed. Keep `raksha_atlas`, JSON files and backups until cutover is tested and rollback is available.
-5. Do not claim migration complete or switch production/Vercel until tests, reconciliation, deployment configuration, backups and rollback are verified.
+Article details:
+- `server/data.json` contains 1,176 records but only 48 distinct original IDs.
+- Importer now assigns deterministic SHA-256-based IDs to imported articles.
+- After import, `defence_articles` contains 1,224 unique rows: 1,176 imported source records plus 48 pre-existing rows. Verified with SQL count and distinct-ID count.
+- The importer prints 1,176 processed articles; do not mistake that for the final table count.
 
-## Commands already used locally
+Application DB was seeded successfully with `node scripts/seed-application-knowledge.mjs` and verified at 4 components + 6 documents. **Do not reseed unless its content changes.**
+
+## Important local setup and safety
+
+- Local `.env` exists in project root and is hidden in VS Code Explorer because it is a dotfile; use Explorer's show-hidden-files setting if needed. Never recreate or overwrite it.
+- It contains secrets and DB URLs. Never print, paste, commit, or expose its contents. Credentials were exposed in a screenshot; rotate the DB password and affected API keys, then update dependent services.
+- PostgreSQL container/service is `db`; DB user is `raksha`.
+- A localhost-only port mapping was intended: `127.0.0.1:5432:5432`. Verify only if host connectivity is needed.
+- A backup folder `backup-db-migration/` was created for `server/data.json`, `server/sources.json`, and `imp docs.txt`; verify before relying on it.
+- Preserve local changes to `server/data.json`, `server/sources.json`, and untracked `imp docs.txt`. Never reset/clean or overwrite them.
+- Never delete JSON files, remove Docker volumes, drop the original DB, or point production at the new DB yet.
+
+## Next task — continue from here
+
+**The data import/seed stage is done; live application cutover is NOT done.**
+
+1. Inspect current Node API database access and environment handling.
+2. Connect the defence-data API/repositories to `DEFENCE_DATABASE_URL` / `defence_db`.
+3. Connect application knowledge access to `APPLICATION_DATABASE_URL` / `application_db` only where actually needed.
+4. Preserve existing API response contracts and frontend behavior.
+5. Test local API endpoints and frontend flows against the new databases; check errors and compare representative records.
+6. Keep legacy `raksha_atlas` and JSON sources available for rollback. Do not switch Vercel/production until local cutover, data checks, deployment env configuration and rollback are verified.
+
+Known incomplete source import:
+- `server/documents.json` currently imports 0 rows into `defence_reference_data`. Inspect its shape and decide whether it belongs in defence reference data or another table before claiming every source file is migrated.
+- Some reference datasets also reported 0 rows; inspect actual file shapes before changing mappings. Do not silently drop data.
+
+## Relevant files
+
+- `scripts/import-defence-database.mjs` — current defence importer; includes `server/data.json` article import and deterministic unique article IDs.
+- `scripts/seed-application-knowledge.mjs` — application DB seed script.
+- `database/defence/schema.sql`
+- `database/application/schema.sql`
+- `.env.example` — variable names only; actual secrets remain in local `.env`.
+
+## Useful verification commands
 
 ```powershell
-# Check services
-docker compose ps
+# Defence article count and uniqueness
+docker compose exec db psql -U raksha -d defence_db -c "SELECT COUNT(*) AS total, COUNT(DISTINCT id) AS unique_ids FROM defence_articles;"
 
-# List databases
-docker compose exec db psql -U raksha -d raksha_atlas -c "SELECT datname FROM pg_database WHERE datistemplate = false ORDER BY datname;"
-
-# Inspect tables
-docker compose exec db psql -U raksha -d defence_db -c "\dt"
-docker compose exec db psql -U raksha -d application_db -c "\dt"
-
-# Seed application knowledge (already succeeded)
-node scripts/seed-application-knowledge.mjs
+# Application DB seed counts
+docker compose exec db psql -U raksha -d application_db -c "SELECT 'components' AS table_name, COUNT(*) FROM application_components UNION ALL SELECT 'documents', COUNT(*) FROM application_documents;"
 ```
-
-**Safety rule:** never run destructive database commands, delete JSON, remove Docker volumes, or point production at the new databases until explicit verification and rollback are complete.
