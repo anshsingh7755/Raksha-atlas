@@ -1,10 +1,24 @@
-# Intelligence and research references
+# Intelligence and research documentation
 
-This folder contains research catalogues and source registers built from public information.
+## What is this folder?
 
-- [Indian Armed Forces catalogue](INDIAN-ARMED-FORCES-CATALOGUE.md) — catalogue/reference material for the services.
-- [Theatre Atlas source register](THEATRE-ATLAS-SOURCE-REGISTER.md) — source notes and evidence for public geographic records.
-- [Future programmes acquisition dossier](FUTURE-PROGRAMMES-ACQUISITION-DOSSIER.md) — programme and acquisition research.
+This folder contains research references and catalogues based on public information. These documents support the website's research pages and help maintain source attribution.
+
+They are reference documents, not live military feeds and not operational instructions.
+
+## Documents
+
+- [Indian Armed Forces catalogue](INDIAN-ARMED-FORCES-CATALOGUE.md) — structured public reference information about the services.
+- [Future programmes acquisition dossier](FUTURE-PROGRAMMES-ACQUISITION-DOSSIER.md) — public programme and acquisition research.
+- [Theatre Atlas source register](THEATRE-ATLAS-SOURCE-REGISTER.md) — sources and evidence used for regional map records.
 - [Three-source research and news plan](THREE-SOURCE-RESEARCH-AND-NEWS-PLAN.md) — source coverage and research approach.
 
-Treat these as research references, not live operational feeds. Preserve source URLs, publication dates and uncertainty; proposals and reporting must not be presented as confirmed facts.
+## How to read these records
+
+- Check the source link and publication date.
+- Notice whether the item is official, secondary reporting, proposed or unverified.
+- Do not assume a catalogue is complete just because it has many entries.
+- Do not turn an estimate into an exact total.
+- Do not publish sensitive operational details or precise locations that could create risk.
+
+When updating a research document, keep the original source trail and note what changed.
