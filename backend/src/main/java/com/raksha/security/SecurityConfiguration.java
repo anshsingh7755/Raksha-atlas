@@ -60,17 +60,32 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    JwtDecoder jwtDecoder(@Value("${raksha.security.jwt-secret}") String secret,
+    JwtDecoder jwtDecoder(@Value("${raksha.security.jwt-mode:hs256}") String mode,
+                          @Value("${raksha.security.jwt-secret:}") String secret,
                           @Value("${raksha.security.issuer:raksha-atlas}") String issuer,
+                          @Value("${raksha.security.issuer-uri:}") String issuerUri,
                           @Value("${raksha.security.audience:raksha-atlas-api}") String audience) {
-        if (secret.getBytes(StandardCharsets.UTF_8).length < 32)
-            throw new IllegalStateException("RAKSHA_JWT_SECRET must contain at least 32 bytes");
-        SecretKey key = new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
-        NimbusJwtDecoder decoder = NimbusJwtDecoder.withSecretKey(key)
-                .macAlgorithm(org.springframework.security.oauth2.jose.jws.MacAlgorithm.HS256).build();
+        NimbusJwtDecoder decoder;
+        if ("oidc".equalsIgnoreCase(mode)) {
+            if (issuerUri.isBlank() || !issuerUri.startsWith("https://"))
+                throw new IllegalStateException("OIDC mode requires an HTTPS RAKSHA_JWT_ISSUER_URI");
+            decoder = NimbusJwtDecoder.withIssuerLocation(issuerUri).build();
+        } else if ("hs256".equalsIgnoreCase(mode)) {
+            if (secret.getBytes(StandardCharsets.UTF_8).length < 32)
+                throw new IllegalStateException("RAKSHA_JWT_SECRET must contain at least 32 bytes");
+            SecretKey key = new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
+            decoder = NimbusJwtDecoder.withSecretKey(key)
+                    .macAlgorithm(org.springframework.security.oauth2.jose.jws.MacAlgorithm.HS256).build();
+        } else {
+            throw new IllegalStateException("RAKSHA_JWT_MODE must be either hs256 or oidc");
+        }
+        OAuth2TokenValidator<Jwt> issuerValidator = "oidc".equalsIgnoreCase(mode)
+                ? JwtValidators.createDefaultWithIssuer(issuerUri)
+                : JwtValidators.createDefaultWithIssuer(issuer);
         OAuth2TokenValidator<Jwt> validator = new DelegatingOAuth2TokenValidator<>(
-                JwtValidators.createDefaultWithIssuer(issuer),
-                jwt -> jwt.getAudience().contains(audience) ? OAuth2TokenValidatorResult.success()
+                issuerValidator,
+                jwt -> jwt.getAudience() != null && jwt.getAudience().contains(audience)
+                        ? OAuth2TokenValidatorResult.success()
                         : OAuth2TokenValidatorResult.failure(new OAuth2Error("invalid_token", "Required audience is missing", null)));
         decoder.setJwtValidator(validator);
         return decoder;
