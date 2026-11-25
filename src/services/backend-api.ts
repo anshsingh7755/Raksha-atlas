@@ -51,7 +51,8 @@ export const backendApi = {
   inventory<T>(filters: { service?: string; category?: string; quantityStatus?: string; originCountry?: string } = {}, signal?: AbortSignal) {
     const query = new URLSearchParams();
     for (const [key, value] of Object.entries(filters)) if (value) query.set(key, value);
-    return apiGet<InventoryCollection<T>>(`/api/inventory${query.size ? `?${query}` : ""}`, { signal });
+    const suffix = query.toString();
+    return apiGet<InventoryCollection<T>>(`/api/inventory${suffix ? `?${suffix}` : ""}`, { signal });
   },
   sources<T>(signal?: AbortSignal) {
     return apiGet<SpringCollection<T> & { verificationStatuses?: string[] }>("/api/sources", { signal });
@@ -59,12 +60,14 @@ export const backendApi = {
   programmes<T>(filters: ProgrammeFilters = {}, signal?: AbortSignal) {
     const query = new URLSearchParams();
     for (const [key, value] of Object.entries(filters)) if (value) query.set(key, value);
-    return apiGet<SpringCollection<T>>(`/api/programmes${query.size ? `?${query}` : ""}`, { signal });
+    const suffix = query.toString();
+    return apiGet<SpringCollection<T>>(`/api/programmes${suffix ? `?${suffix}` : ""}`, { signal });
   },
   procurement<T>(filters: ProcurementFilters = {}, signal?: AbortSignal) {
     const query = new URLSearchParams();
     for (const [key, value] of Object.entries(filters)) if (value) query.set(key, value);
-    return apiGet<SpringCollection<T>>(`/api/procurement-2026${query.size ? `?${query}` : ""}`, { signal });
+    const suffix = query.toString();
+    return apiGet<SpringCollection<T>>(`/api/procurement-2026${suffix ? `?${suffix}` : ""}`, { signal });
   },
   answer(question: string, signal?: AbortSignal) {
     return apiPost<AssistantAnswer, { question: string }>("/api/chat", { question }, { signal });
