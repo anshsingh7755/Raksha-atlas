@@ -1,7 +1,8 @@
 # Raksha Atlas — Delivery Roadmap
 
-**Branch:** `work/step-1-foundation`  
-**Purpose:** Complete the user-facing website first, then move once to the target architecture without rebuilding features twice.
+**Purpose:** Record delivery phases, implementation status, acceptance criteria and migration decisions.
+
+> **Project stage update — 25 November 2026:** The project owner confirms that the initial website is deployed and its existing functionality is working. The current task is documentation and repository organization only; new feature development follows after that cleanup. Phase tables below preserve the technical implementation history and acceptance notes recorded during earlier work. Treat environment-dependent checks as pending until they are rerun, not as proof that the live deployment is broken.
 
 ## 1. Product and engineering principles
 
