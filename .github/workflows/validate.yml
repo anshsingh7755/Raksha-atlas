@@ -6,9 +6,17 @@ on:
   pull_request:
     branches: [work/step-1-foundation]
 
+permissions:
+  contents: read
+
+concurrency:
+  group: raksha-validation-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   validate:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -69,9 +77,23 @@ jobs:
         env:
           DB_PASSWORD: test-database-password
           RAKSHA_ADMIN_TOKEN: test-admin-token
+          RAKSHA_JWT_SECRET: local-ci-only-secret-value-at-least-32-characters
         run: docker compose config --quiet
-      - name: Build document extraction worker image
-        run: docker build -t raksha-atlas-ai-test -f ai/Dockerfile ai
+      - name: Build service container images
+        run: |
+          docker build -t raksha-atlas-ai-test -f ai/Dockerfile ai
+          docker build -t raksha-atlas-backend-test -f backend/Dockerfile backend
+          docker build -t raksha-atlas-next-test -f frontend/Dockerfile frontend
+      - name: Validate Terraform AWS foundation
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.8
+      - name: Terraform format and static validation
+        working-directory: infrastructure/aws/terraform
+        run: |
+          terraform fmt -check -recursive
+          terraform init -backend=false -input=false
+          terraform validate
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
