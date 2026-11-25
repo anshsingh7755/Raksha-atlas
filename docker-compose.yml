@@ -94,7 +94,10 @@ services:
       DB_JDBC_URL: jdbc:postgresql://db:5432/raksha_atlas
       DB_USERNAME: raksha
       DB_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
+      RAKSHA_JWT_MODE: ${RAKSHA_JWT_MODE:-hs256}
+      RAKSHA_JWT_ISSUER_URI: ${RAKSHA_JWT_ISSUER_URI:-}
       RAKSHA_JWT_SECRET: ${RAKSHA_JWT_SECRET:?Set a local-only JWT secret in .env}
+      RAKSHA_ALLOWED_ORIGINS: ${RAKSHA_ALLOWED_ORIGINS:-}
       RAKSHA_AI_BASE_URL: http://ai:8001
       RAKSHA_AI_SERVICE_TOKEN: ${RAKSHA_AI_SERVICE_TOKEN:-}
       RAKSHA_AI_ENABLED: "false"
