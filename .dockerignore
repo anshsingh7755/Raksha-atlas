@@ -6,3 +6,14 @@ dist
 !.env.example
 *.log
 coverage
+
+# Exclude generated and local workspace content from root-context frontend builds
+**/node_modules
+**/.next
+**/dist
+**/coverage
+**/.venv
+**/__pycache__
+**/.pytest_cache
+**/target
+**/.terraform
