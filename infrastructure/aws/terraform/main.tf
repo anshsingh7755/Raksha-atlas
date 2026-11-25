@@ -97,32 +97,32 @@ resource "aws_db_subnet_group" "main" {
 }
 
 resource "aws_db_instance" "main" {
-  kms_key_id                  = aws_kms_key.storage.arn
-  backup_retention_period     = var.database_backup_retention_days
-  backup_window               = "03:00-04:00"
-  maintenance_window          = "sun:04:30-sun:05:30"
-  identifier                  = "${var.name_prefix}-postgres"
-  engine                      = "postgres"
-  engine_version              = "17"
-  instance_class              = var.database_instance_class
-  allocated_storage           = 20
-  max_allocated_storage       = 100
-  storage_type                = "gp3"
-  storage_encrypted           = true
-  db_name                     = var.database_name
-  username                    = var.database_username
-  manage_master_user_password = true
+  kms_key_id                    = aws_kms_key.storage.arn
+  backup_retention_period       = var.database_backup_retention_days
+  backup_window                 = "03:00-04:00"
+  maintenance_window            = "sun:04:30-sun:05:30"
+  identifier                    = "${var.name_prefix}-postgres"
+  engine                        = "postgres"
+  engine_version                = "17"
+  instance_class                = var.database_instance_class
+  allocated_storage             = 20
+  max_allocated_storage         = 100
+  storage_type                  = "gp3"
+  storage_encrypted             = true
+  db_name                       = var.database_name
+  username                      = var.database_username
+  manage_master_user_password   = true
   master_user_secret_kms_key_id = aws_kms_key.storage.arn
-  port                        = 5432
-  db_subnet_group_name        = aws_db_subnet_group.main.name
-  vpc_security_group_ids      = [aws_security_group.database.id]
-  publicly_accessible         = false
-  multi_az                    = var.database_multi_az
-  auto_minor_version_upgrade  = true
-  deletion_protection         = var.database_deletion_protection
-  skip_final_snapshot         = false
-  final_snapshot_identifier   = "${var.name_prefix}-final"
-  copy_tags_to_snapshot       = true
+  port                          = 5432
+  db_subnet_group_name          = aws_db_subnet_group.main.name
+  vpc_security_group_ids        = [aws_security_group.database.id]
+  publicly_accessible           = false
+  multi_az                      = var.database_multi_az
+  auto_minor_version_upgrade    = true
+  deletion_protection           = var.database_deletion_protection
+  skip_final_snapshot           = false
+  final_snapshot_identifier     = "${var.name_prefix}-final"
+  copy_tags_to_snapshot         = true
   enabled_cloudwatch_logs_exports = ["postgresql"]
 }
 
@@ -141,7 +141,7 @@ resource "aws_s3_bucket_public_access_block" "documents" {
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "documents" {
   depends_on = [aws_kms_key.storage]
-  bucket = aws_s3_bucket.documents.id
+  bucket     = aws_s3_bucket.documents.id
   rule {
     apply_server_side_encryption_by_default {
       kms_master_key_id = aws_kms_key.storage.arn
