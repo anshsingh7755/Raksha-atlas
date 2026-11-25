@@ -41,12 +41,6 @@ variable "database_username" {
   default = "raksha"
 }
 
-variable "database_password" {
-  description = "Supply through an ignored tfvars file or secure CI variable; never commit."
-  type        = string
-  sensitive   = true
-}
-
 variable "database_instance_class" {
   type    = string
   default = "db.t4g.micro"
