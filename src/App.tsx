@@ -26,6 +26,7 @@ import {
 import { fetchPlatformRegister, type PlatformRegisterItem } from "./services/inventory";
 import { apiGet, apiPatch, apiPost } from "./services/api";
 import { backendApi } from "./services/backend-api";
+import { getOperationsSummary } from "./services/operations";
 import TheatreAtlas from "./components/TheatreAtlas";
 import AtlasFooter from "./components/AtlasFooter";
 import SectionTitle from "./components/SectionTitle";
@@ -873,12 +874,7 @@ function ChatDialog({
 
 
 function RagMonitorStatus() {
-  const [operations, setOperations] = useState<{
-    sources: { total: number; active: number; freshness: { checkedWithin24Hours: number; staleOver24Hours: number; staleOver7Days: number; neverChecked: number } };
-    feeds: { total: number; active: number; inactive: number };
-    articles: { total: number; unreviewed: number; inReview: number; approved: number; rejected: number };
-    pipeline: { lastRefresh: string | null; lastRefreshResult: { ok?: boolean; error?: string } | null; lastRagSyncAt: string | null; lastRagSyncResult: { ok?: boolean; error?: string } | null };
-  } | null>(null);
+  const [operations, setOperations] = useState<Awaited<ReturnType<typeof getOperationsSummary>> | null>(null);
   const [status, setStatus] = useState<{
     modelConfigured: boolean;
     webSearchEnabled: boolean;
@@ -899,7 +895,7 @@ function RagMonitorStatus() {
     apiGet<typeof status>("/api/rag/status")
       .then(setStatus)
       .catch(() => setStatus(null));
-    apiGet<typeof operations>("/api/operations/summary")
+    getOperationsSummary()
       .then(setOperations)
       .catch(() => setOperations(null));
   }, []);
