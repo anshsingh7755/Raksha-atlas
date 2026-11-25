@@ -78,6 +78,7 @@ jobs:
           DB_PASSWORD: test-database-password
           RAKSHA_ADMIN_TOKEN: test-admin-token
           RAKSHA_JWT_SECRET: local-ci-only-secret-value-at-least-32-characters
+          GRAFANA_ADMIN_PASSWORD: local-ci-grafana-password
         run: docker compose config --quiet
       - name: Build service container images
         run: |
