@@ -74,7 +74,7 @@ test("Vercel API adapter exports the existing API handler without starting a per
   const vercelConfig = await read("../../vercel.json");
   assert.match(server, /export async function handleRequest\(request, response\)/);
   assert.match(server, /if \(process\.env\.VERCEL !== "1"\)/);
-  assert.match(server, /temporarily disabled in the Vercel read-only deployment/);
+  assert.match(server, /Write and AI endpoints are temporarily disabled in the Vercel read-only deployment/);
   assert.match(adapter, /export default async function handler/);
   assert.match(vercelConfig, /"outputDirectory": "dist"/);
 });
