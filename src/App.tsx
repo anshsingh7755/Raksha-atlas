@@ -873,6 +873,12 @@ function ChatDialog({
 
 
 function RagMonitorStatus() {
+  const [operations, setOperations] = useState<{
+    sources: { total: number; active: number; freshness: { checkedWithin24Hours: number; staleOver24Hours: number; staleOver7Days: number; neverChecked: number } };
+    feeds: { total: number; active: number; inactive: number };
+    articles: { total: number; unreviewed: number; inReview: number; approved: number; rejected: number };
+    pipeline: { lastRefresh: string | null; lastRefreshResult: { ok?: boolean; error?: string } | null; lastRagSyncAt: string | null; lastRagSyncResult: { ok?: boolean; error?: string } | null };
+  } | null>(null);
   const [status, setStatus] = useState<{
     modelConfigured: boolean;
     webSearchEnabled: boolean;
@@ -893,6 +899,9 @@ function RagMonitorStatus() {
     apiGet<typeof status>("/api/rag/status")
       .then(setStatus)
       .catch(() => setStatus(null));
+    apiGet<typeof operations>("/api/operations/summary")
+      .then(setOperations)
+      .catch(() => setOperations(null));
   }, []);
   return (
     <div className="rag-status-grid">
@@ -938,9 +947,26 @@ function RagMonitorStatus() {
             : "Not run"}
         </strong>
       </div>
+      <div>
+        <span>SOURCE FRESHNESS</span>
+        <strong>{operations ? operations.sources.freshness.checkedWithin24Hours + " checked ≤24h · " + operations.sources.freshness.staleOver7Days + " stale >7d · " + operations.sources.freshness.neverChecked + " never checked" : "Loading source checks…"}</strong>
+      </div>
+      <div>
+        <span>REVIEW QUEUE</span>
+        <strong>{operations ? operations.articles.unreviewed + " unreviewed · " + operations.articles.inReview + " in review · " + operations.articles.approved + " approved" : "Loading review counts…"}</strong>
+      </div>
+      <div>
+        <span>FEED CONFIGURATION</span>
+        <strong>{operations ? operations.feeds.active + " active / " + operations.feeds.total + " configured" : "Loading feed status…"}</strong>
+      </div>
+      <div>
+        <span>LAST REFRESH RESULT</span>
+        <strong>{operations?.pipeline.lastRefresh ? new Date(operations.pipeline.lastRefresh).toLocaleString("en-IN") + " · " + (operations.pipeline.lastRefreshResult?.ok === false ? "Needs attention" : "Completed") : "No refresh recorded"}</strong>
+      </div>
       <p>
         Discovery results are candidates. Search snippets and social posts never become
-        verified facts automatically.
+        verified facts automatically. Source freshness means a recorded check timestamp,
+        not proof that a publisher is currently available or that its claims are true.
       </p>
     </div>
   );
