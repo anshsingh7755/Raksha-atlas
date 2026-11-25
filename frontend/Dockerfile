@@ -6,7 +6,7 @@ RUN npm ci
 FROM dependencies AS build
 WORKDIR /app/frontend
 COPY frontend/ ./
-COPY src/ /src/
+COPY src/ /app/src/
 ARG NEXT_PUBLIC_API_BASE_URL=
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
