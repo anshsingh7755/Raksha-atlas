@@ -1,35 +1,25 @@
 # Raksha Atlas infrastructure
 
-The current deployment files remain at the project root:
+## Local runtime
 
-```text
-Dockerfile
-docker-compose.yml
-deploy/nginx.conf
-```
+Root deployment files remain the stable legacy runtime:
 
-This folder is the future home for deployment code:
+- `Dockerfile` — Vite static site and Node API images
+- `docker-compose.yml` — default Vite/Node + PostgreSQL + FastAPI worker stack
+- `deploy/nginx.conf` — legacy web/API proxy
 
-```text
-infrastructure/
-├── docker/       service-specific Dockerfiles and compose helpers
-├── aws/          ECS, RDS, S3, Bedrock and IAM configuration
-├── terraform/    reusable infrastructure definitions
-├── kubernetes/   future EKS manifests and Helm charts
-└── monitoring/   OpenTelemetry, Prometheus and Grafana configuration
-```
+Optional Compose profiles are documented in [Docker service boundaries](docker/README.md):
 
-## Current local deployment
-
-```powershell
+```bash
 docker compose up --build
+docker compose --profile migration up --build
+docker compose --profile cache up --build
 ```
 
-The existing Compose stack provides:
+## Cloud infrastructure
 
-```text
-web → api → PostgreSQL
-```
+- `aws/terraform/` — configurable AWS VPC, security groups, private RDS, S3, ECS cluster and IAM foundation. Plan only until approved.
+- `aws/README.md` — account, security and cost guardrails.
+- `docker/README.md` — service image boundaries.
 
-Do not move or duplicate the root deployment files until the new service
-containers are ready and tested.
+The initial AWS target is ECS, not EKS. Kubernetes manifests and Helm are deferred until operational scale justifies them. No infrastructure is deployed by CI.
