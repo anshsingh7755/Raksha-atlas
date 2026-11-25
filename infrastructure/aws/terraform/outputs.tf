@@ -29,3 +29,12 @@ output "ecs_task_role_arn" {
 output "ecs_execution_role_arn" {
   value = aws_iam_role.ecs_execution.arn
 }
+
+output "application_secret_arn" {
+  value = aws_secretsmanager_secret.application.arn
+}
+
+output "database_master_secret_arn" {
+  value     = aws_db_instance.main.master_user_secret[0].secret_arn
+  sensitive = true
+}
