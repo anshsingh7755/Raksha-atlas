@@ -61,3 +61,18 @@ variable "database_deletion_protection" {
   type    = bool
   default = true
 }
+\nvariable "database_backup_retention_days" {
+  description = "Automated RDS backup retention in days."
+  type        = number
+  default     = 7
+  validation {
+    condition     = var.database_backup_retention_days >= 7 && var.database_backup_retention_days <= 35
+    error_message = "Use at least 7 and at most 35 days of automated backup retention."
+  }
+}
+
+variable "log_retention_days" {
+  description = "CloudWatch log retention in days."
+  type        = number
+  default     = 30
+}
