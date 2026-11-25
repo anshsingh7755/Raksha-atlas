@@ -84,7 +84,7 @@ jobs:
         run: |
           docker build -t raksha-atlas-ai-test -f ai/Dockerfile ai
           docker build -t raksha-atlas-backend-test -f backend/Dockerfile backend
-          docker build -t raksha-atlas-next-test -f frontend/Dockerfile frontend
+          docker build -t raksha-atlas-next-test -f frontend/Dockerfile .
       - name: Validate Terraform AWS foundation
         uses: hashicorp/setup-terraform@v3
         with:
