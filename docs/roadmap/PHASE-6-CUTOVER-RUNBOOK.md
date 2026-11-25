@@ -1,29 +1,47 @@
 # Phase 6 security implementation and acceptance runbook
 
-## Implemented in 6.1–6.5
-1. Review the threat model at [PHASE-6-THREAT-MODEL.md](../../infrastructure/security/PHASE-6-THREAT-MODEL.md).
-2. Keep Spring Security stateless and bearer-token based; only signed `roles` claims from the configured token are trusted. The accepted role set is `VIEWER`, `ANALYST`, `ADMIN`.
-3. Apply Flyway V4 to create the security audit event table. The backend records mutation attempts and rejected API requests, excluding request bodies, query strings, bearer tokens, source content and client IP.
-4. Configure exact-origin CORS with `RAKSHA_ALLOWED_ORIGINS`, security response headers and an ADMIN-only audit read endpoint.
-5. Run backend tests and the complete CI workflow.
+## Implemented: 6.1–6.10
+- 6.1 Threat model and trust-boundary register.
+- 6.2 Stateless JWT validation, explicit HS256 local mode and OIDC issuer/JWKS mode; trusted role claims are restricted to VIEWER, ANALYST and ADMIN.
+- 6.3 Flyway audit event table, mutation/rejection capture and ADMIN-only bounded read endpoint.
+- 6.4 Exact-origin CORS, security response headers and bounded audit query.
+- 6.5 Regression tests for role isolation, audit access, JWT mode selection and security headers.
+- 6.6 OIDC discovery/JWKS decoder support through HTTPS issuer URI and audience validation.
+- 6.7 Documented least-privilege role policy and identity-provider-owned user lifecycle/MFA/privileged access governance. No local role assignment endpoint is exposed.
+- 6.8 Documented separation of user, AI and document-worker credentials; KMS automatic rotation is already enabled in the Phase 5 Terraform foundation. Operational secret/key rotation remains to be rehearsed.
+- 6.9 Added scheduled CodeQL analysis for Java, JavaScript/TypeScript and Python. Rate limiting/WAF is an ingress control and remains deployment-dependent; no in-process limiter is presented as DDoS protection.
+- 6.10 Added security release checklist and Phase 10 evidence gates; no penetration test or security certification is claimed.
 
 ## Local configuration
-Set `RAKSHA_JWT_SECRET` to a local-only value of at least 32 bytes, plus exact comma-separated browser origins in `RAKSHA_ALLOWED_ORIGINS`. Do not commit `.env` files or use local secrets in production. Keep AI service and document worker tokens independent.
+HS256 compatibility mode:
+- `RAKSHA_JWT_MODE=hs256`
+- `RAKSHA_JWT_SECRET` must contain at least 32 bytes.
+
+OIDC candidate mode:
+- `RAKSHA_JWT_MODE=oidc`
+- `RAKSHA_JWT_ISSUER_URI` must be an HTTPS issuer URI with OIDC discovery/JWKS support.
+- `RAKSHA_JWT_AUDIENCE` must exactly match the API audience in issued tokens.
+
+Set exact comma-separated browser origins in `RAKSHA_ALLOWED_ORIGINS`. Keep AI service and document worker tokens independent. Do not commit local environment files or use local secrets in production.
 
 ## Validation commands
 ```powershell
 mvn -B -f backend/pom.xml test
 docker compose --profile migration config --quiet
+docker build -t raksha-atlas-next-test -f frontend/Dockerfile .
 ```
 
-## Deferred to Phase 10
-- Configure and verify the approved OIDC issuer/JWKS asymmetric signing keys, MFA and account lifecycle.
-- Verify role claims issued by the real identity provider; the current HS256 decoder is a local compatibility bridge, not the final production identity architecture.
-- Validate exact production CORS origins, TLS termination and security headers through the deployed ingress.
-- Confirm audit table privileges are append-only for the application identity; define retention, export, alerting and tamper-evidence.
-- Run penetration tests, dependency/container scans, SSRF/upload abuse tests, authorization matrix tests and incident-response exercises.
-- Confirm audit persistence behavior during database outages and decide fail-closed/fail-open policy.
-- Obtain security reviewer sign-off. CI success is not security certification.
+## Phase 10 acceptance checklist
+- [ ] Select and approve the real identity provider; validate issuer metadata, JWKS signature, audience, expiry, clock skew and signing-key rotation.
+- [ ] Verify MFA, account lifecycle, group-to-role mapping, joiner/mover/leaver and privileged-access reviews.
+- [ ] Test the complete VIEWER/ANALYST/ADMIN authorization matrix against the real provider.
+- [ ] Configure database permissions so application identities cannot update/delete audit events; set retention, export, alerting and tamper-evidence.
+- [ ] Rehearse secret rotation, emergency revocation and KMS key recovery; verify IAM scope and secret delivery to runtime.
+- [ ] Configure edge rate limits/WAF after ingress and traffic budgets are approved; test abuse thresholds and safe throttling.
+- [ ] Run dependency, container, IaC and secret scans; triage and resolve release-blocking findings.
+- [ ] Conduct penetration tests, SSRF/upload abuse tests, incident-response exercise and security reviewer sign-off.
+- [ ] Validate audit behavior during database outages and approve fail-open/fail-closed semantics.
+- [ ] Complete deployment rollback rehearsal and explicit release approval.
 
 ## Release boundary
-No production identity provider, credentials, user provisioning or production route change is created by this phase. The existing Vite/Node path remains active. Do not expose the candidate Spring API publicly until Phase 10 acceptance and explicit release approval.
+No production IdP, credentials, MFA, user provisioning or public route change is activated by this phase. The current Vite/Node path remains active. OIDC code support and CodeQL workflow do not constitute live provider verification or a security certification. Do not expose the candidate Spring API publicly until Phase 10 acceptance and explicit approval.
