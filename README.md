@@ -30,21 +30,36 @@ Optional services and migration commands are documented in the relevant folder R
 
 ## Repository map
 
+The root contains three groups. Keep the active application easy to find; supporting and migration projects stay separate.
+
+### Active website
+
+| Path | Purpose |
+|---|---|
+| `src/` | React + TypeScript + Vite website |
+| `server/` | Active Node.js API, data, collectors and RAG |
+| `api/` | Vercel adapter that forwards requests to `server/` |
+
+### Supporting project folders
+
+| Path | Purpose |
+|---|---|
+| `docs/` | Architecture, roadmap, history and research documentation |
+| `scripts/` | Data refresh, import, reconciliation and maintenance |
+| `database/` | SQL schema and migration references |
+| `infrastructure/`, `deploy/` | Docker, cloud, monitoring and Nginx configuration |
+| `.github/`, `.vscode/` | CI workflows and editor settings |
+
+### Migration and future-service folders
+
 | Path | Purpose | Status |
 |---|---|---|
-| `src/` | React + TypeScript + Vite website | Active |
-| `server/` | Node.js API, data access, collectors, processors, scheduler and RAG | Active |
-| `api/` | Vercel API entry point | Deployment adapter |
-| `deploy/` | Legacy Nginx reverse-proxy configuration | Supporting deployment config |
-| `.github/workflows/` | CI validation, CodeQL and controlled ECS workflow | Automation |
-| `frontend/` | Next.js application | Migration scaffold |
-| `backend/` | Spring Boot / Java service | Migration scaffold |
+| `frontend/` | Next.js frontend | Migration scaffold |
+| `backend/` | Spring Boot / Java API | Migration scaffold |
 | `ai/` | FastAPI AI and document service | Supporting service / migration path |
-| `database/` | Database notes and historical schema references | Supporting |
-| `data-engineering/` | Python ingestion and analytics pipeline | Migration path |
-| `infrastructure/`, `deploy/` | Docker, cloud and operations configuration | Supporting |
-| `scripts/` | Import, migration, reconciliation, refresh and maintenance tools | Supporting |
-| `docs/` | Architecture, roadmap, data policy and intelligence references | Documentation |
+| `data-engineering/` | Python ingestion and analytics | Migration path |
+
+Root-level files such as `package.json`, `vite.config.ts`, `Dockerfile` and `vercel.json` are build or deployment configuration. Do not move them without checking their consumers.
 
 Do not move active code or change deployment paths as part of documentation cleanup.
 
