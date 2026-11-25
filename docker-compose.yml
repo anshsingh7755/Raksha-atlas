@@ -62,6 +62,8 @@ services:
       DOCUMENT_MAX_PAGES: ${DOCUMENT_MAX_PAGES:-300}
       DOCUMENT_MAX_TEXT_CHARS: ${DOCUMENT_MAX_TEXT_CHARS:-200000}
       DOCUMENT_MAX_OCR_PAGES: ${DOCUMENT_MAX_OCR_PAGES:-20}
+      OTEL_SERVICE_NAME: ${OTEL_SERVICE_NAME:-raksha-ai}
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-}
     expose: ["8001"]
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8001/health', timeout=3)"]
