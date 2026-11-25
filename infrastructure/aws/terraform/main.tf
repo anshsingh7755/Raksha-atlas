@@ -150,7 +150,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "documents" {
   }
 }
 
-resource "aws_s3_bucket_versioning" "documents" {
+resource "aws_s3_bucket_policy" "documents" {\n  bucket = aws_s3_bucket.documents.id\n  policy = jsonencode({\n    Version = "2012-10-17"\n    Statement = [{\n      Sid       = "DenyInsecureTransport"\n      Effect    = "Deny"\n      Principal = "*"\n      Action    = "s3:*"\n      Resource  = [aws_s3_bucket.documents.arn, "${aws_s3_bucket.documents.arn}/*"]\n      Condition = { Bool = { "aws:SecureTransport" = "false" } }\n    }]\n  })\n}\n\nresource "aws_s3_bucket_versioning" "documents" {
   bucket = aws_s3_bucket.documents.id
   versioning_configuration { status = "Enabled" }
 }
@@ -234,7 +234,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "documents" {
 
 resource "aws_cloudwatch_log_group" "ecs" {
   name              = "/ecs/${var.name_prefix}"
-  retention_in_days = 30
+  retention_in_days = var.log_retention_days
   kms_key_id        = aws_kms_key.storage.arn
 }
 
