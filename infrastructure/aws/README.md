@@ -1,15 +1,14 @@
-# AWS migration notes
+# AWS deployment boundary
 
-Target deployment:
+Terraform in this directory defines a configurable, additive AWS foundation: VPC/subnets/security groups, encrypted private RDS PostgreSQL, encrypted S3 bucket, ECS cluster and least-privilege task/execution IAM roles.
 
-```text
-ECS Fargate  → application containers
-RDS          → PostgreSQL
-S3           → documents and raw data
-Bedrock      → managed AI models
-CloudWatch   → logs and alarms
-Secrets Manager → credentials
-```
+It does **not** create an application ECS service, public load balancer, NAT gateway, DNS, WAF, production secrets, or a live deployment. Those require approved container image URIs, identity/network decisions, budget review and the Phase 10 release gate. RDS is private; ECS task placement and ingress are intentionally left for deployment design.
 
-Terraform and EKS should be introduced only after the containerized services
-have stable health checks and configuration contracts.
+## Safe workflow
+
+1. Install Terraform >= 1.6 and configure an explicitly selected AWS account/profile.
+2. Copy `terraform.tfvars.example` to a local ignored `terraform.tfvars`; set unique names, region and CIDR ranges.
+3. Run `terraform init`, `terraform fmt -check`, `terraform validate`, then inspect `terraform plan`.
+4. Do not run `terraform apply` until account, cost, IAM, networking, backup, encryption and security review are approved.
+
+State must be stored remotely with encryption, versioning and locking before team/production use. Never commit state, tfvars, credentials or secrets.
