@@ -1,8 +1,21 @@
-# Frontend
+# Frontend documentation
 
-This project currently has one active website and one migration frontend.
+## What is covered here?
 
-- [Active React + Vite frontend](../../src/README.md) — the live application's current UI source.
-- [Next.js migration frontend](../../frontend/README.md) — candidate application, not the default live website.
+This folder explains the two frontend codebases:
 
-Keep the current UI in `src/` until the Next.js version has feature parity, tested API routing and an approved rollback plan.
+- `src/` — active React + TypeScript + Vite website.
+- `frontend/` — Next.js migration application.
+
+## Read these guides
+
+- [Active frontend source](../../src/README.md) — how the current browser UI starts, renders pages and calls the API.
+- [Next.js migration frontend](../../frontend/README.md) — migration structure, local run and cutover checks.
+- [Phase 1 frontend migration](../roadmap/PHASE-1-FRONTEND-MIGRATION.md) — migration work and acceptance requirements.
+- [Phase 7 frontend integration](../roadmap/PHASE-7-FRONTEND-INTEGRATION.md) — API integration and controlled routing.
+
+## Which one should I change?
+
+For the current deployed website, start in `src/`. Only work in `frontend/` when the task explicitly concerns the Next.js migration.
+
+Do not maintain two independent copies of the same feature. Migration work should reuse components where possible and prove feature parity before switching the live route.
