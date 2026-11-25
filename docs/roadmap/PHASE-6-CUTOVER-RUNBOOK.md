@@ -1,3 +1,9 @@
+## Simple explanation
+
+Phase 6 adds security foundations: login-token validation, roles, audit records, safe API defaults and security checks.
+
+Security code is only one part of a secure system. A real identity provider, MFA, key rotation, production ingress protection and security exercises still need environment-specific setup and evidence.
+
 # Phase 6 security implementation and acceptance runbook
 
 ## Implemented: 6.1–6.10
