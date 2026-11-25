@@ -1,3 +1,14 @@
+## Read this architecture guide in simple terms
+
+This document explains three things:
+1. **Current system:** what the website and API use today.
+2. **Target system:** what the project may move to later.
+3. **Migration rules:** how to move from the current system to the target without breaking the website or losing data.
+
+Keep these states separate. The current frontend is React + Vite in `src/`; the current backend is Node.js in `server/`. Next.js, Spring Boot and Python data engineering are migration paths. FastAPI is a supporting document/AI service, not yet a replacement for Node RAG.
+
+The diagrams and tables below describe the intended boundaries. When a diagram describes the target system, it does not mean that every service has been deployed or activated.
+
 # Raksha Atlas — Architecture and Service Boundaries
 
 This document describes the current running system, the target system and the controlled migration path. The detailed delivery plan and acceptance criteria live in [the implementation roadmap](../roadmap/README.md).
